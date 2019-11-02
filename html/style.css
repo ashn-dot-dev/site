@@ -1,0 +1,27 @@
+body {
+  background-color: #404040;
+  color: #DCA;
+  font-size: large;
+  font-family: "Helvetica", "Arial", sans-serif;
+  line-height: 1.25;
+  margin: 0 auto;
+  max-width: 72ch;
+}
+
+::selection {
+  background-color: #666;
+}
+
+h1, h2, strong {
+    color: #EA0;
+}
+
+a {
+  color: #F11;
+  text-decoration: none;
+  outline: 0;
+}
+
+a:hover {
+  text-decoration: underline;
+}
