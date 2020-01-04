@@ -12,6 +12,10 @@ body {
   background-color: #666;
 }
 
+nav {
+    margin-top: 1rem;
+}
+
 h1, h2, strong {
     color: #EA0;
 }
