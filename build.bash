@@ -30,12 +30,24 @@ make_page() {
 build_page_html() {
     SRC_PATH="$1" # Path under the src/ directory.
     TITLE="$2"    # Page title.
-    echo "BUILDING PAGE: ${SRC_PATH}"
+    echo "BUILDING HTML PAGE: ${SRC_PATH}"
 
     SRC_FILE="${SRC_DIR}/${SRC_PATH}"
     OUT_FILE="${OUT_DIR}/${SRC_PATH}"
 
     CONTENT=$(cat "${SRC_FILE}")
+    make_page "${TITLE}" "${CONTENT}" > "${OUT_FILE}"
+}
+
+build_page_markdown() {
+    SRC_PATH="$1" # Path under the src/ directory.
+    TITLE="$2"    # Page title.
+    echo "BUILDING MARKDOWN PAGE: ${SRC_PATH}"
+
+    SRC_FILE="${SRC_DIR}/${SRC_PATH}"
+    OUT_FILE="${OUT_DIR}/${SRC_PATH%.md}.html"
+
+    CONTENT=$(pandoc "${SRC_FILE}")
     make_page "${TITLE}" "${CONTENT}" > "${OUT_FILE}"
 }
 
@@ -45,4 +57,4 @@ cp "${SRC_DIR}/style.css" "${OUT_DIR}"
 build_page_html "index.html" "ashn"
 build_page_html "blog.html" "blog"
 
-build_page_html "blog/2020-01-01-hello-world.html" "Hello World"
+build_page_markdown "blog/2020-01-01-hello-world.md" "Hello World"
