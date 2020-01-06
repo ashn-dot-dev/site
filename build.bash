@@ -12,7 +12,6 @@ if [ -d "${OUT_DIR}" ]; then
 fi
 mkdir -p "${OUT_DIR}"
 mkdir -p "${OUT_DIR}/blog"
-mkdir -p "${OUT_DIR}/code"
 
 #== Website Generation Helper Utilities ========================================
 TEMPLATE=$(cat template.html)
