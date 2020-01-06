@@ -12,6 +12,7 @@ if [ -d "${OUT_DIR}" ]; then
 fi
 mkdir -p "${OUT_DIR}"
 mkdir -p "${OUT_DIR}/blog"
+mkdir -p "${OUT_DIR}/code"
 
 #== Website Generation Helper Utilities ========================================
 TEMPLATE=$(cat template.html)
@@ -64,16 +65,14 @@ build_blog_page() {
 }
 
 #== Generate the Actual Website ================================================
-cp "${SRC_DIR}/favicon.ico" "${OUT_DIR}"
-cp "${SRC_DIR}/style.css" "${OUT_DIR}"
-
 echo "==== BUILDING HTML PAGES ===="
 build_page_from_html "index.html" "ashn"
 
 echo "==== BUILDING BLOG INDEX PAGE ===="
 INDEX_CONTENT=$(cat "${SRC_DIR}/blog.html")
 BLOG_INDEX_CONTENT="${BLOG_INDEX_CONTENT}${NL}<ul>"
-for f in $(ls -C "${SRC_DIR}/blog"); do
+for f in $(ls "${SRC_DIR}/blog" | sort -r); do
+    [ -f "${SRC_DIR}/blog/${f}" ] || continue
     echo "PROCESSING BLOG ENTRY: ${f}"
     # YYYY-MM-DD
     # 123456789A bytes should be parsed to get the date from the filename.
@@ -92,4 +91,16 @@ BLOG_INDEX_CONTENT="${BLOG_INDEX_CONTENT}${NL}</ul>"
 make_page "blog index" "${BLOG_INDEX_CONTENT}" > "${OUT_DIR}/blog.html"
 
 echo "==== BUILDING BLOG ENTRY PAGES ===="
-build_blog_page "blog/2020-01-01-hello-world.md"
+for f in $(ls -C "${SRC_DIR}/blog"); do
+    if [ -d "${SRC_DIR}/blog/${f}" ]; then
+        cp -r "${SRC_DIR}/blog/${f}" "${OUT_DIR}/${f}"
+        continue
+    fi
+    build_blog_page "blog/${f}"
+done
+
+echo "==== COPYING MISC FILES ===="
+set -x
+cp "${SRC_DIR}/favicon.ico" "${OUT_DIR}"
+cp "${SRC_DIR}/style.css" "${OUT_DIR}"
+{ set +x; } 2> /dev/null

@@ -13,25 +13,18 @@
     --color-text-lit: var(--color-tan);
 }
 
-
 body {
-  font-size: large;
+  font-size: 18px;
   font-family: "Helvetica", "Arial", sans-serif;
   line-height: 1.25;
-  margin: 0 auto;
+  margin: 1rem auto;
   max-width: 72ch;
 
   background-color: var(--color-bg-drk);
   color: var(--color-text-lit);
 }
-
 body *::selection {
   background-color: var(--color-bg-mid);
-}
-
-
-nav {
-    margin-top: 1rem;
 }
 
 h1, h2, strong {
@@ -43,7 +36,6 @@ a {
   text-decoration: none;
   outline: 0;
 }
-
 a:hover {
   text-decoration: underline;
 }
@@ -57,4 +49,7 @@ section pre {
 }
 section pre *::selection {
   background-color: var(--color-bg-lit);
+}
+section pre code {
+    font-size: 16px;
 }
