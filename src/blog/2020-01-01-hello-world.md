@@ -32,8 +32,7 @@ Stay hydrated.
 <br>
 \- ashn
 
-<!--FOOTNOTES-->
-<pre>--------</pre>
+## Footnotes
 <div id="ft1">\[1\]:
 [Depending](https://en.wikipedia.org/wiki/Gregorian_calendar) on
 [which](https://en.wikipedia.org/wiki/ISO_week_date)
