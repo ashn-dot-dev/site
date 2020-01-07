@@ -71,7 +71,9 @@ echo "==== BUILDING BLOG INDEX PAGE ===="
 INDEX_CONTENT=$(cat "${SRC_DIR}/blog.html")
 BLOG_INDEX_CONTENT="${BLOG_INDEX_CONTENT}${NL}<ul>"
 for f in $(ls "${SRC_DIR}/blog" | sort -r); do
-    [ -f "${SRC_DIR}/blog/${f}" ] || continue
+    [ -d "${SRC_DIR}/blog/${f}" ]            && continue # Skip directories.
+    [ $(echo "${f}" | head -c 3 -) = 'wip' ] && continue # Skip WIP entries.
+
     echo "PROCESSING BLOG ENTRY: ${f}"
     # YYYY-MM-DD
     # 123456789A bytes should be parsed to get the date from the filename.
