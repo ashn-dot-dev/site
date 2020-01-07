@@ -5,7 +5,7 @@ Happy new year!
 
 Today marks the first day of the year 2020[\[1\]](#ft1), as well as the day I
 unveil of this little corner of the internet I am calling my blog.
-I have been wanting to create my own a site/blog for a while, but did not get
+I have been wanting to create my own site/blog for a while, but did not get
 around to setting up any sort of web presence until now because:
 
 00. I didn't feel as if I had the time to dedicate to an additional side project
