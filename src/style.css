@@ -1,16 +1,16 @@
 :root {
-    --color-gray-drk: #404040;
-    --color-gray-mid: #505050;
-    --color-gray-lit: #606060;
-    --color-orange: #eeaa00;
-    --color-red: #ff1111;
-    --color-tan: #ddccaa;
+  --color-gray-drk: #404040;
+  --color-gray-mid: #505050;
+  --color-gray-lit: #606060;
+  --color-orange: #eeaa00;
+  --color-red: #ff1111;
+  --color-tan: #ddccaa;
 
-    --color-bg-drk: var(--color-gray-drk);
-    --color-bg-mid: var(--color-gray-mid);
-    --color-bg-lit: var(--color-gray-lit);
-    --color-text-drk: var(--color-gray-mid);
-    --color-text-lit: var(--color-tan);
+  --color-bg-drk: var(--color-gray-drk);
+  --color-bg-mid: var(--color-gray-mid);
+  --color-bg-lit: var(--color-gray-lit);
+  --color-text-drk: var(--color-gray-mid);
+  --color-text-lit: var(--color-tan);
 }
 
 body {
@@ -27,8 +27,12 @@ body *::selection {
   background-color: var(--color-bg-mid);
 }
 
-h1, h2, strong {
-    color: var(--color-orange);
+footer {
+    color: var(--color-gray-lit);
+}
+
+h1, strong {
+  color: var(--color-orange);
 }
 
 a {
@@ -47,9 +51,13 @@ section pre {
   background-color: var(--color-bg-mid);
   border: solid  1px var(--color-orange);
 }
+section p code {
+  color: var(--color-orange);
+}
 section pre *::selection {
   background-color: var(--color-bg-lit);
 }
 section pre code {
-    font-size: 16px;
+  font-size: 16px;
 }
+
