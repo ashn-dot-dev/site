@@ -94,7 +94,7 @@ make_page "blog index" "${BLOG_INDEX_CONTENT}" > "${OUT_DIR}/blog.html"
 echo "==== BUILDING BLOG ENTRY PAGES ===="
 for f in $(ls -C "${SRC_DIR}/blog"); do
     if [ -d "${SRC_DIR}/blog/${f}" ]; then
-        cp -r "${SRC_DIR}/blog/${f}" "${OUT_DIR}/${f}"
+        cp -r "${SRC_DIR}/blog/${f}" "${OUT_DIR}/blog/${f}"
         continue
     fi
     build_blog_page "blog/${f}"
