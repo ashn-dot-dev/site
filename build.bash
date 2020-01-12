@@ -52,7 +52,7 @@ build_page_from_md() {
     SRC_FILE="${SRC_DIR}/${SRC_PATH}"
     OUT_FILE="${OUT_DIR}/${SRC_PATH%.md}.html"
 
-    CONTENT=$(pandoc "${SRC_FILE}")
+    CONTENT=$(pandoc --preserve-tabs "${SRC_FILE}")
     make_page "${TITLE}" "${CONTENT}" > "${OUT_FILE}"
 }
 

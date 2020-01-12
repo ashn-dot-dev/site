@@ -9,8 +9,7 @@
   --color-bg-drk: var(--color-gray-drk);
   --color-bg-mid: var(--color-gray-mid);
   --color-bg-lit: var(--color-gray-lit);
-  --color-text-drk: var(--color-gray-mid);
-  --color-text-lit: var(--color-tan);
+  --color-text: var(--color-tan);
 }
 
 body {
@@ -21,7 +20,7 @@ body {
   max-width: 72ch;
 
   background-color: var(--color-bg-drk);
-  color: var(--color-text-lit);
+  color: var(--color-text);
 }
 body *::selection {
   background-color: var(--color-bg-mid);
@@ -50,14 +49,14 @@ section pre {
 
   background-color: var(--color-bg-mid);
   border: solid  1px var(--color-orange);
-}
-section p code {
-  color: var(--color-orange);
+  font-size: 16px;
 }
 section pre *::selection {
   background-color: var(--color-bg-lit);
 }
-section pre code {
-  font-size: 16px;
+section code {
+  color: var(--color-orange);
 }
-
+section pre code {
+  color: var(--color-text);
+}
