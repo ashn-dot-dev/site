@@ -96,7 +96,7 @@ clean:
 The contents of the `.clang-format` is kind of long and not particularly
 important, so just know that it exists.
 If you really want to look at its inner workings you can view it
-[here](https://git.sr.ht/~ashn/cdoc/commit/395830a8a8ef282f1cbb81c66b7bc2ef12752f03#.clang-format).
+[here](https://git.sr.ht/~ashn/cdoc/commit/895edeebd33551540276a042fda9cef0911bd5b2#.clang-format).
 
 ## Parsing Command Line Arguments
 When starting a new project I like to imagine what typical application use will
@@ -479,7 +479,7 @@ language and begin transpiling that language into some useful HTML.
 I hope to see you then!
 
 The source code for this blog post can be found
-[here](https://git.sr.ht/~ashn/cdoc/commit/395830a8a8ef282f1cbb81c66b7bc2ef12752f03).
+[here](https://git.sr.ht/~ashn/cdoc/commit/895edeebd33551540276a042fda9cef0911bd5b2).
 
 Stay hydrated.
 <br>
