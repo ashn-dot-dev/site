@@ -29,7 +29,7 @@ software are:
 00. Portable across operating systems and architectures.
 00. Zero setup required for projects using the tool.
     + No configuration files.
-    + No behavior changing option flags.
+    + No behavior-changing option flags.
 00. Follows the Unix philosophy.
     + Output simple HTML.
     + Assume the documentation tool will be used in command pipelines.
@@ -96,7 +96,7 @@ clean:
 The contents of the `.clang-format` is kind of long and not particularly
 important, so just know that it exists.
 If you really want to look at its inner workings you can view it
-[here](https://git.sr.ht/~ashn/cdoc/commit/895edeebd33551540276a042fda9cef0911bd5b2#.clang-format).
+[here](https://git.sr.ht/~ashn/cdoc/tree/895edeebd33551540276a042fda9cef0911bd5b2/.clang-format).
 
 ## Parsing Command Line Arguments
 When starting a new project I like to imagine what typical application use will
@@ -479,7 +479,7 @@ language and begin transpiling that language into some useful HTML.
 I hope to see you then!
 
 The source code for this blog post can be found
-[here](https://git.sr.ht/~ashn/cdoc/commit/895edeebd33551540276a042fda9cef0911bd5b2).
+[here](https://git.sr.ht/~ashn/cdoc/tree/895edeebd33551540276a042fda9cef0911bd5b2).
 
 Stay hydrated.
 <br>
@@ -490,7 +490,7 @@ Stay hydrated.
 Although there are many different C/C++ build systems I choose to use `make` for
 all of my C/C++ projects.
 Most distributions of Unix-like operating systems have some version of `make`
-installed by default whereas tools like `cmake`, `xmake`, `ninja` or
+installed by default whereas tools like `cmake`, `xmake`, `ninja`, or
 whatever else are not guaranteed the be on the end-user's machine.
 For a good tutorial on writing `Makefile`s I would recommend
 ["A Tutorial on Portable Makefiles"](https://nullprogram.com/blog/2017/08/20/)
