@@ -14,9 +14,9 @@ What tooling does exist often requires a non-trivial amount of configuration and
 does not fit well into the Unix philosophy.
 I have spent a fair bit of time searching for a simple documentation generator
 and have yet to find a tool that I am satisfied with.
-The great thing about being software developers is that we often have the
-means to write our own tools, so rather than settle for a documentation tool
-that I am unsatisfied with, I'll just create my own.
+One of the great benefits of being a software developer is having the means
+means to write one's own tools, so rather than settle for a documentation
+generator that I am unsatisfied with, I'll just create my own.
 
 ## What Do I Want In a Documentation Generator
 The features (or lack thereof) that I would like in documentation generation
@@ -55,8 +55,8 @@ $ c99 -o cdoc cdoc.c && ./cdoc && echo $?
 
 While we are setting up boilerplate we might as well add a `Makefile` and
 `.clang-format` to the project directory.
-Neither of these files are strictly necessary, but I like having them even if
-our project consists of only one `.c` file.
+Neither is strictly necessary, but I like having them even if our project
+consists of only one `.c` file.
 A `Makefile` helps to standardize the build process for all users[\[1\]](#ft1),
 and a `.clang-format` will help future contributors follow consistent style
 guidelines with minimal effort.
@@ -459,10 +459,6 @@ I hope to see you then!
 
 The source code for this blog post can be found
 [here](https://git.sr.ht/~ashn/cdoc/tree/895edeebd33551540276a042fda9cef0911bd5b2).
-
-Stay hydrated.
-<br>
-\- ashn
 
 ## Footnotes
 <div id="ft1">\[1\]:
