@@ -6,14 +6,14 @@ implementing `cdoc` - a source-code documentation tool for the C programming
 language.
 
 ## Why Write a Documentation Generator
-Despite the widespread popularity of C there are a surprising lack of
+Despite the widespread use of C there are a surprising lack of
 [source-code documentation tools](https://en.wikipedia.org/wiki/\
-Comparison_of_documentation_generators#Language_support) avaliable for general
+Comparison_of_documentation_generators#Language_support) available for general
 purpose use.
 What tooling does exist often requires a non-trivial amount of configuration and
 does not fit well into the Unix philosophy.
 I have spent a fair bit of time searching for a simple documentation generator
-and have yet to find a tool that I am statisfied with.
+and have yet to find a tool that I am satisfied with.
 The great thing about being software developers is that we often have the
 means to write our own tools, so rather than settle for a documentation tool
 that I am unsatisfied with, I'll just create my own.
@@ -61,7 +61,7 @@ A `Makefile` helps to standardize the build process for all users[\[1\]](#ft1),
 and a `.clang-format` will help future contributors follow consistent style
 guidelines with minimal effort.
 
-Our `Makefile` consists of three important targets:
+Our `Makefile` contains three targets:
 
 00. cdoc - Build the `cdoc` program from source.
 00. format - Run `clang-format` over the project source file(s) and modify them
@@ -71,13 +71,11 @@ Our `Makefile` consists of three important targets:
 ```Makefile
 .POSIX:
 .SUFFIXES:
-.PHONY: all format clean
+.PHONY: format clean
 
 CC = c99
 CFLAGS = -O0 -g
 OBJS = cdoc.o
-
-all: cdoc
 
 cdoc: $(OBJS)
 	$(CC) -o $@ $(OBJS) $(CFLAGS)
@@ -102,10 +100,10 @@ If you really want to look at its inner workings you can view it
 When starting a new project I like to imagine what typical application use will
 look like from the end-user's perspective.
 
-+ A user invoking `cdoc` from the command line may provide one or more C
-  language file paths as input.
-+ A user invoking `cdoc` from within a shell script may provide zero or more C
-  language file paths as input.
++ A user invoking `cdoc` from the command line may provide one or more paths to
+  C language files as input.
++ A user invoking `cdoc` from within a shell script may provide zero or more
+  paths to C language files as input.
 + A user invoking `cdoc` within a command pipeline may provide the contents of a
   C language file from `stdin`.
 + A C language file is not guaranteed to have the file extensions `.h` or `.c`.
@@ -130,10 +128,10 @@ satisfy all of the above use cases by processing a list of zero or more `FILE`s
 with the option to take input from `stdin`.
 
 We are going for a zero-configuration approach with `cdoc`, therefore our
-program does not *need* to process any option flags.
-However it would be nice if our program accepted `--help` and `--version`
-arguments so that users can get some sense of the basic program usage and what
-`cdoc`-documentation version to look for online.
+program does not require handling of any option parameters.
+However it would be nice if our program accepted `--help` and `--version` as
+arguments so that users can get some sense of the basic program usage and
+release information.
 
 First let us `#define` the macro `VERSION` as a string containing the numeric
 representation of the `cdoc` version in `MAJOR.MINOR` format.
@@ -141,35 +139,20 @@ For now the `VERSION` will be `0.0`.
 We will bump this up to `0.1` at the end of this series when we release the
 initial version of `cdoc`.
 ```c
-#include <stdlib.h>
-
 #define VERSION "0.0"
-
-int
-main(int argc, char** argv)
-{
-    return EXIT_SUCCESS;
-}
 ```
 
-Next we will add a `version` function to be invoked when `--version` is passed
-as a command line argument.
-This function that will write `VERSION` to `stdout` and `exit` sucessfully:
+Then we will define a `version` function as well as a corresponding declaration
+above `main`:
 
 ```c
-#include <stdio.h>
-#include <stdlib.h>
-
-#define VERSION "0.0"
+/* above main */
 
 static void
 version(void);
-
-int
-main(int argc, char** argv)
-{
-    return EXIT_SUCCESS;
-}
+```
+```c
+/* below main */
 
 static void
 version(void)
@@ -178,28 +161,21 @@ version(void)
     exit(EXIT_SUCCESS);
 }
 ```
+This function will be invoked when `--version` is passed as a command line
+argument.
 
-We will also add a `usage` function to be invoked when `--help` is passed as a
-command line argument.
-This function will print usage information to `stdout` and `exit` sucessfully:
+Next we define a `usage` function with a corresponding declaration above `main`
+in exactly the same way we defined `version`:
 
 ```c
-#include <stdio.h>
-#include <stdlib.h>
-
-#define VERSION "0.0"
+/* above main */
 
 static void
 usage(void);
+```
 
-static void
-version(void);
-
-int
-main(int argc, char** argv)
-{
-    return EXIT_SUCCESS;
-}
+```c
+/* below main */
 
 static void
 usage(void)
@@ -217,14 +193,10 @@ usage(void)
     // clang-format on
     exit(EXIT_SUCCESS);
 }
-
-static void
-version(void)
-{
-    puts(VERSION);
-    exit(EXIT_SUCCESS);
-}
 ```
+
+This function will be invoked when `--help` is passed as a command line
+argument.
 
 The `clang-format off` and `clang-format on` comments are required to prevent
 `clang-format` from trying to rearrange the concatenated string literal being
@@ -236,7 +208,7 @@ C99 does not support
 [raw string literals](https://en.cppreference.com/w/cpp/language/string_literal),
 so this is the next best option in my opinion.
 
-Adding parameter parsing logic for `--version` and `--help` is relatively
+Adding argument parsing logic for `--version` and `--help` is relatively
 straightforward: we do not have any single character command line switches, so
 option parsing can be handled with `strcmp` alone:
 
@@ -302,7 +274,7 @@ version(void)
 
 We track whether `--` has been encountered via the `parse_options` variable
 declared just before the main loop.
-If at any point we parse `--` then the rest of the arguments will be processed
+If at any point we parse `--` then the rest of the arguments will be treated
 as if they were file paths in the off chance that someone has a file named
 `--help`, `--version`, or `--`.
 In practice it is highly unlikely that someone is actually going to pass in a
@@ -341,9 +313,9 @@ TODO: Process '--version'
 ## Writing `cat` as a Documentation Generator
 The last thing we will tackle before calling it a day is replace that `TODO` in
 the main loop with some actual file handling.
-Hashing out the syntax and semantics of the documentation language and parser is
-best left to another blog post, so for now we will replicate the functionality
-of `cat` and then call it a day.
+Hashing out the syntax and semantics of our documentation language is best left
+for another blog post, so for now we will replicate the functionality of `cat`
+as a placeholder for logic to be added later.
 Obviously printing the contents of the entire input file is not representative
 of the end-product we are trying to produce, but it will act as a good stub for
 future work.
@@ -353,10 +325,17 @@ Inside our main loop we will add the following lines of code:
 ```c
         fp = (strcmp(arg, "-") == 0 && !parse_options) ? stdin
                                                        : fopen(arg, "rb");
+        if (fp == NULL)
+        {
+            perror(arg);
+            exit(EXIT_FAILURE);
+        }
+        do_file();
+        fclose(fp);
 ```
 
 If `-` is encountered as an argument and `--` has not yet been parsed, then we
-will use `stdin` for our `FILE*` as described in our usage text.
+will use `stdin` for our `FILE*` as described by the usage text.
 Otherwise we will attempt to open the current program argument using `fopen`
 and bail if we encounter an error.
 
@@ -473,7 +452,7 @@ foo(char const* bar, size_t n);
 ```
 
 Sweet!
-We have put together what technically counts as a documentation generator.
+We have put together what *technically* counts as a documentation generator.
 In the next post of this series we will define the grammar of our documentation
 language and begin transpiling that language into some useful HTML.
 I hope to see you then!
