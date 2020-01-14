@@ -14,7 +14,7 @@ What tooling does exist often requires a non-trivial amount of configuration and
 does not fit well into the Unix philosophy.
 I have spent a fair bit of time searching for a simple documentation generator
 and have yet to find a tool that I am satisfied with.
-One of the great benefits of being a software developer is having the means
+One of the great benefits of being a software developer is having the
 means to write one's own tools, so rather than settle for a documentation
 generator that I am unsatisfied with, I'll just create my own.
 
