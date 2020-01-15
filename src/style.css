@@ -30,6 +30,15 @@ footer {
     color: var(--color-gray-lit);
 }
 
+h1 {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+h2, h3, h4 {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
 h1, strong {
   color: var(--color-orange);
 }
