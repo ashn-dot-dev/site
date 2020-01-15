@@ -67,8 +67,8 @@ build_blog_page() {
 echo "==== BUILDING HTML PAGES ===="
 build_page_from_html "index.html" "ashn"
 
-echo "==== BUILDING BLOG INDEX PAGE ===="
-INDEX_CONTENT=$(cat "${SRC_DIR}/blog.html")
+echo "==== BUILDING BLOG ARCHIVE PAGE ===="
+BLOG_INDEX_CONTENT=$(cat "${SRC_DIR}/blog.html")
 BLOG_INDEX_CONTENT="${BLOG_INDEX_CONTENT}${NL}<ul>"
 for f in $(ls "${SRC_DIR}/blog" | sort -r); do
     [ -d "${SRC_DIR}/blog/${f}" ]            && continue # Skip directories.
@@ -89,7 +89,7 @@ for f in $(ls "${SRC_DIR}/blog" | sort -r); do
     BLOG_INDEX_CONTENT="${BLOG_INDEX_CONTENT}${NL}</li>"
 done
 BLOG_INDEX_CONTENT="${BLOG_INDEX_CONTENT}${NL}</ul>"
-make_page "blog index" "${BLOG_INDEX_CONTENT}" > "${OUT_DIR}/blog.html"
+make_page "archive" "${BLOG_INDEX_CONTENT}" > "${OUT_DIR}/blog.html"
 
 echo "==== BUILDING BLOG ENTRY PAGES ===="
 for f in $(ls -C "${SRC_DIR}/blog"); do
