@@ -8,15 +8,15 @@ language.
 ## Why Write a Documentation Generator
 Despite the widespread use of C there are a surprising lack of
 [source-code documentation tools](https://en.wikipedia.org/wiki/\
-Comparison_of_documentation_generators#Language_support) available for general
-purpose use.
+Comparison_of_documentation_generators#Language_support) available for the
+language.
 What tooling does exist often requires a non-trivial amount of configuration and
 does not fit well into the Unix philosophy.
 I have spent a fair bit of time searching for a simple documentation generator
 and have yet to find a tool that I am satisfied with.
-One of the great benefits of being a software developer is having the
-means to write one's own tools, so rather than settle for a documentation
-generator that I am unsatisfied with, I'll just create my own.
+One of the great benefits of being a software developer is being able to write
+your own tools, so rather than settle for a documentation generator that I am
+unsatisfied with, I'll just create my own.
 
 ## What Do I Want In a Documentation Generator
 The features (or lack thereof) that I would like in documentation generation
@@ -63,10 +63,10 @@ guidelines with minimal effort.
 
 Our `Makefile` contains three targets:
 
-00. cdoc - Build the `cdoc` program from source.
-00. format - Run `clang-format` over the project source file(s) and modify them
-    in place.
-00. clean - Remove build artifacts from the project directory.
+00. `cdoc` - Build the `cdoc` program from source.
+00. `format` - Run `clang-format` over the project source file(s) and modify them
+    in-place.
+00. `clean` - Remove build artifacts from the project directory.
 
 ```Makefile
 .POSIX:
@@ -124,7 +124,7 @@ $ cdoc foo.inc foo.c
 ```
 
 If we count on the shell to handle globbing then our `cdoc` implementation can
-satisfy all of the above use cases by processing a list of zero or more `FILE`s
+satisfy all of the above use-cases by processing a list of zero or more `FILE`s
 with the option to take input from `stdin`.
 
 We are going for a zero-configuration approach with `cdoc`, therefore our
@@ -287,7 +287,7 @@ satisfied with our parsing logic:
 
 ```sh
 $ make clean cdoc
-rm -f clam cdoc.o
+rm -f cdoc cdoc.o
 c99 -O0 -g -c cdoc.c
 c99 -o cdoc cdoc.o -O0 -g
 $ ./cdoc --help
@@ -336,8 +336,8 @@ Inside our main loop we will add the following lines of code:
 
 If `-` is encountered as an argument and `--` has not yet been parsed, then we
 will use `stdin` for our `FILE*` as described by the usage text.
-Otherwise we will attempt to open the current program argument using `fopen`
-and bail if we encounter an error.
+Otherwise we will attempt to open the current argument using `fopen` and bail if
+we encounter an error.
 
 The variable `fp` will be declared above `main` as:
 
