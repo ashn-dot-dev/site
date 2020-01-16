@@ -6,17 +6,14 @@ implementing `cdoc` - a source-code documentation tool for the C programming
 language.
 
 ## Why Write a Documentation Generator
-Despite the widespread use of C there are a surprising lack of
-[source-code documentation tools](https://en.wikipedia.org/wiki/\
+Despite the widespread use of C there is a surprising lack of
+[source-code documentation tooling](https://en.wikipedia.org/wiki/\
 Comparison_of_documentation_generators#Language_support) available for the
 language.
 What tooling does exist often requires a non-trivial amount of configuration and
 does not fit well into the Unix philosophy.
 I have spent a fair bit of time searching for a simple documentation generator
-and have yet to find a tool that I am satisfied with.
-One of the great benefits of being a software developer is being able to write
-your own tools, so rather than settle for a documentation generator that I am
-unsatisfied with, I'll just create my own.
+and have yet to find one that I am satisfied with, so I'll just create my own.
 
 ## What Do I Want In a Documentation Generator
 The features (or lack thereof) that I would like in documentation generation
@@ -275,12 +272,12 @@ version(void)
 We track whether `--` has been encountered via the `parse_options` variable
 declared just before the main loop.
 If at any point we parse `--` then the rest of the arguments will be treated
-as if they were file paths in the off chance that someone has a file named
-`--help`, `--version`, or `--`.
+as if they were file paths.
 In practice it is highly unlikely that someone is actually going to pass in a
-file with the path `--help`, but handling these edge cases the right way now
-is better than handling a bug report later, and the extra work required is so
-trivial that there is really no reason not to do it right the first time.
+file with the path `--help`, `--version`, or `--`, but handling these edge cases
+the right way now is better than handling a bug report later, and the extra work
+required is so trivial that there is really no reason not to do it right the
+first time.
 
 Some not-so-rigorous testing from the command line is enough to leave me
 satisfied with our parsing logic:
