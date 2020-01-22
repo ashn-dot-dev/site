@@ -16,8 +16,8 @@ I have spent a fair bit of time searching for a simple documentation generator
 and have yet to find one that I am satisfied with, so I'll just create my own.
 
 ## What Do I Want In a Documentation Generator
-The features (or lack thereof) that I would like in documentation generation
-software are:
+The features (or lack thereof) that I would like to see in documentation
+generation software are:
 
 00. Trivial to build and distribute as a single static binary.
     + No runtime dependencies (`python`, `ruby`, `mono`, etc.).
@@ -52,11 +52,11 @@ $ c99 -o cdoc cdoc.c && ./cdoc && echo $?
 
 While we are setting up boilerplate we might as well add a `Makefile` and
 `.clang-format` to the project directory.
-Neither is strictly necessary, but I like having them even if our project
+Neither are strictly necessary, but I like having them even if our project
 consists of only one `.c` file.
-A `Makefile` helps to standardize the build process for all users[\[1\]](#ft1),
-and a `.clang-format` will help future contributors follow consistent style
-guidelines with minimal effort.
+Adding a `Makefile` helps to standardize the build process for all
+users[\[1\]](#ft1), and a `.clang-format` will help future contributors follow
+consistent style guidelines with minimal effort.
 
 Our `Makefile` contains three targets:
 
@@ -88,7 +88,7 @@ clean:
 	$(CC) $(CFLAGS) -c $<
 ```
 
-The contents of the `.clang-format` is kind of long and not particularly
+The contents of `.clang-format` is kind of long and not particularly
 important, so just know that it exists.
 If you really want to look at its inner workings you can view it
 [here](https://git.sr.ht/~ashn/cdoc/tree/895edeebd33551540276a042fda9cef0911bd5b2/.clang-format).
@@ -126,13 +126,13 @@ with the option to take input from `stdin`.
 
 We are going for a zero-configuration approach with `cdoc`, therefore our
 program does not require handling of any option parameters.
-However it would be nice if our program accepted `--help` and `--version` as
+However, it would be nice if our program accepted `--help` and `--version` as
 arguments so that users can get some sense of the basic program usage and
 release information.
 
-First let us `#define` the macro `VERSION` as a string containing the numeric
-representation of the `cdoc` version in `MAJOR.MINOR` format.
-For now the `VERSION` will be `0.0`.
+First let us `#define` the macro `VERSION` as a version-string in `MAJOR.MINOR`
+format.
+For now `VERSION` will be `0.0`.
 We will bump this up to `0.1` at the end of this series when we release the
 initial version of `cdoc`.
 ```c
@@ -206,7 +206,7 @@ C99 does not support
 so this is the next best option in my opinion.
 
 Adding argument parsing logic for `--version` and `--help` is relatively
-straightforward: we do not have any single character command line switches, so
+straightforward: we do not have any single-character command line switches, so
 option parsing can be handled with `strcmp` alone:
 
 ```c
@@ -271,8 +271,8 @@ version(void)
 
 We track whether `--` has been encountered via the `parse_options` variable
 declared just before the main loop.
-If at any point we parse `--` then the rest of the arguments will be treated
-as if they were file paths.
+If at any point we parse `--` then we will treat following arguments as literal
+file paths.
 In practice it is highly unlikely that someone is actually going to pass in a
 file with the path `--help`, `--version`, or `--`, but handling these edge cases
 the right way now is better than handling a bug report later, and the extra work
