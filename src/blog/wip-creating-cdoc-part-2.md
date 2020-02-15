@@ -3,14 +3,14 @@ Creating a C Documentation Generator - Part 2
 
 Welcome to part 2 of a series in which we design and implement `cdoc` - a
 source-code documentation tool for the C programming language.
-In [part 1(TODO-link)](TODO) we created the skeleton for our program and stubbed
-out the documentation code with a pseudo-`cat` implementation.
-In this post we will define the rules for a minimal documentation language and
-implement the data structures and algorithms needed to transpile that language
-into HTML.
+In [part 1](/blog/2020-01-21-creating-cdoc-part-1.html) we created the skeleton
+for our program and stubbed out the documentation code with a pseudo-`cat`
+implementation.
+In this post we will define the shape of the minimal documentation that will be
+processed by our application.
 
-## A Minimal Documentation Language
-Over the past couple of years using Doxygen I have settled into a particular
+## ~~Ripping off~~ Borrowing from Doxygen
+Over the past several years off using Doxygen I have settled into a particular
 style of documentation that I would like to replicate in `cdoc`.
 
 Take for example an idiomatic swap function:
@@ -19,7 +19,7 @@ Take for example an idiomatic swap function:
 void swap(void* p1, void* p2, size_t size);
 ```
 
-I would write a Doxygen doc-comment for this as:
+I would write a Doxygen doc for `swap` as:
 
 ```c
 //! Exchange two objects of equal size.
@@ -35,18 +35,19 @@ void swap(void* p1, void* p2, size_t size);
 ```
 
 using `//!` [comment blocks](http://www.doxygen.nl/manual/docblocks.html)
-and Javadoc style [commands](http://www.doxygen.nl/manual/commands.html).
-Also note that I prefer to indent the text after a command.
+and Javadoc style tags[\[1\]](#ft1).
+Also note that I prefer to indent the text after a tag on a separate line.
 This documentation style would work well for `cdoc` because takes minimal effort
 to parse correctly and uses the Javadoc syntax that many developers already have
 a familiarity with.
 
-One thing I do want to change is the very first brief section of a doc-comment.
+One thing I do want to change is the very first brief section of a doc.
 Documentation generators such as Doxygen and Javadoc parse the source language
-in addition to doc-comments; Doxygen knows that `swap` is a function because it
-has a fairly sophisticated C (really C++) parser providing that information.
+in addition to documentation comments; Doxygen knows that `swap` is a function
+because it has a fairly sophisticated C (really C++) parser providing that
+information.
 We **really** do not want to go down the rabbit hole of implementing a C parser,
-so we will require the user tell us what C construct the doc-comment refers to:
+so we will require the user tell us what C construct the doc refers to:
 
 ```c
 //! @function swap
@@ -94,51 +95,6 @@ And for good measure we will say that whitespace is lenient: the lines of a
 doc comment may have leading or trailing horizontal whitespace and amount
 of horizontal whitespace is treated as one whitespace character.
 
-## Defining Data Structures
-Our informal grammar definition was described in terms of three "things":
-`line`, `section`, and `doc`.
-Let's translate each of these "things" into C data structures within our `cdoc`
-program.
-
-### Line
-A `line` of text is a sequence of characters ending with a newline character.
-If we were to replace each newline character with a `NUL` character then lines
-could be stored as a `NUL` terminated string, i.e. `char*` or `char const*`.
-
-### Section
-```c
-struct section
-{
-    char const* tag_start;
-    int tag_len;
-
-    char const* name_start;
-    int name_len;
-
-    char const** body_lines;
-    size_t body_lines_count;
-
-}
-```
-
-### Doc
-```c
-struct doc
-{
-    struct section* sections;
-    size_t sections_count;
-};
-```
-
-## Parsing
-TODO
-
-## Printing
-TODO
-
-## Revamping the Example File
-TODO
-
 ## Putting it all Together
 TODO: Show generated HTML.
 
@@ -148,5 +104,8 @@ The source code for this blog post can be found
 
 ## Footnotes
 <div id="ft1">\[1\]:
-TODO
+Doxygen uses the term [command](http://www.doxygen.nl/manual/commands.html) for
+`@foo` or `\foo`, but I have always heard these referred to by the name "tag".
+I am going to use the term "tag" for this series because I think it is a much
+clearer name.
 </div>
