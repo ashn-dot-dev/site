@@ -19,17 +19,17 @@ and have yet to find one that I am satisfied with, so I'll just create my own.
 The features (or lack thereof) that I would like to see in documentation
 generation software are:
 
-00. Trivial to build and distribute as a single static binary.
-    + No runtime dependencies (`python`, `ruby`, `mono`, etc.).
+00. Trivial to build and distribute as a single static binary
+    + No runtime dependencies (`python`, `ruby`, `mono`, etc.)
     + Installing should by as simple as running `make` and `cp`ing the
-      resulting binary to `/usr/local/bin`.
-00. Portable across operating systems and architectures.
-00. Zero setup required for projects using the tool.
-    + No configuration files.
-    + No behavior-changing option flags.
-00. Follows the Unix philosophy.
-    + Output simple HTML.
-    + Assume the documentation tool will be used in command pipelines.
+      resulting binary to `/usr/local/bin`
+00. Portable across operating systems and architectures
+00. Zero setup required for projects using the tool
+    + No configuration files
+    + No behavior-changing option flags
+00. Follows the Unix philosophy
+    + Output simple HTML
+    + Assume the documentation tool will be used in command pipelines
 
 ## Initial Setup
 Every project starts somewhere and in our case `cdoc` will begin with a
@@ -135,6 +135,7 @@ format.
 For now `VERSION` will be `0.0`.
 We will bump this up to `0.1` at the end of this series when we release the
 initial version of `cdoc`.
+
 ```c
 #define VERSION "0.0"
 ```
@@ -148,6 +149,7 @@ above `main`:
 static void
 version(void);
 ```
+
 ```c
 /* below main */
 
@@ -158,6 +160,7 @@ version(void)
     exit(EXIT_SUCCESS);
 }
 ```
+
 This function will be invoked when `--version` is passed as a command line
 argument.
 
@@ -357,7 +360,7 @@ do_file(void)
 
 with a corresponding declaration above `main`.
 
-## Putting it All Together
+## Putting it all Together
 
 To make sure that everything we wrote today works as expected, we will create a
 `.c` file with some meaningless definitions and use it as input to our current
