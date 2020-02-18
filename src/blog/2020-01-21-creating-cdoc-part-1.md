@@ -361,7 +361,6 @@ do_file(void)
 with a corresponding declaration above `main`.
 
 ## Putting it all Together
-
 To make sure that everything we wrote today works as expected, we will create a
 `.c` file with some meaningless definitions and use it as input to our current
 `cdoc` program.
