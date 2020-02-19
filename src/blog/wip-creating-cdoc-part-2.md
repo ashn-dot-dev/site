@@ -55,8 +55,8 @@ straightforward to parse[\[2\]](#ft2) and uses a syntax that many developers are
 already familiar with.
 To make our lives easier during parsing we are also going to say that every
 section of a doc must be declared with a tag.
-As a convention the first section of a doc should use a tag that describes the C
-construct being documented[\[3\]](#ft3) (where applicable).
+As a convention the first section of a doc should have a tag that describes the
+C construct being documented[\[3\]](#ft3) (where applicable).
 The `brief` section in our Doxygen example above:
 
 ```c
@@ -103,7 +103,7 @@ void swap(void* p1, void* p2, size_t size);
 
 ## Informal Grammar
 In order to parse the `cdoc` language we need to specify rules defining what
-counts as valid `cdoc` documentation.
+counts as valid documentation.
 Real computer scientists™ describe these rules using a
 [formal grammar](https://en.wikipedia.org/wiki/Formal_grammar),
 perhaps in notation such as
@@ -137,8 +137,8 @@ a whole lot of thought.
 In retrospect I realize that the file is missing a lot of C constructs
 (macros, variables, typedefs, etc.), so while we are adding comments we might
 as well just overhaul the entire thing.
-With a little bit of work revamped file (with added doc comments) has a lot more
-going on and should be a good test file to write a parser against:
+With a little bit of work the revamped file (with added doc comments) has a lot
+more going on and should be a good test file to write a parser against:
 
 ```c
 //! @file example.c
