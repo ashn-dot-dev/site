@@ -102,17 +102,17 @@ void swap(void* p1, void* p2, size_t size);
 ```
 
 ## Informal Grammar
-In order to parse the `cdoc` language we need to specify rules defining what
-counts as valid documentation.
+In order to parse `cdoc` doc-comments we are going to need to specify rules
+defining what counts as valid documentation.
 Real computer scientists™ describe these rules using a
 [formal grammar](https://en.wikipedia.org/wiki/Formal_grammar),
-perhaps in notation such as
+perhaps in a notation such as
 [Bacus-Naur form](https://en.wikipedia.org/wiki/Backus%E2%80%93Naur_Form).
 If we were producing a formal language specification or writing a non-trivial
-parser then coming up with rigorous grammar would certainly be necessary.
+parser then coming up with a rigorous grammar would certainly be necessary.
 But we are in more of an exploratory "hack it together and see what works"
-phase, so I would rather describe our language in simple English and build
-parsing code based on that.
+phase, so I would rather describe our language in simple English and see how far
+that can get us.
 
 For now we will loosely define the `cdoc` documentation language as such:
 
@@ -133,11 +133,11 @@ Pretty straightforward right?
 Now that we have a rough idea of what `cdoc` documentation will look like we
 should update our `example.c` file with doc-comments.
 In part 1 we threw together our example file at the end of the blog post without
-a whole lot of thought.
+a whole lot of thought put into it.
 In retrospect I realize that the file is missing a lot of C constructs
 (macros, variables, typedefs, etc.), so while we are adding comments we might
 as well just overhaul the entire thing.
-With a little bit of work the revamped file (with added doc comments) has a lot
+With a little bit of work the revamped file (with added doc-comments) has a lot
 more going on and should be a good test file to write a parser against:
 
 ```c
