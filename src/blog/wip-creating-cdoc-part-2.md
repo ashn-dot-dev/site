@@ -5,7 +5,7 @@ Welcome to part 2 of a series in which we design and implement `cdoc` - a
 source-code documentation tool for the C programming language.
 In [part 1](/blog/2020-01-21-creating-cdoc-part-1.html) we created the skeleton
 for our program and stubbed out the documentation code with a `cat` clone.
-In this post we will define the shape of our documentation language and apply
+In this post we will define the shape of our documentation language and add
 documentation comments to our example file.
 
 ## ~~Ripping off~~ Borrowing from Doxygen
@@ -54,7 +54,7 @@ This documentation style would work well for `cdoc` because it seems fairly
 straightforward to parse[\[2\]](#ft2) and uses a syntax that many developers are
 already familiar with.
 To make our lives easier during parsing we are also going to say that every
-section of a doc must be declared with a tag.
+section of a doc must start with a tag line.
 As a convention the first section of a doc should have a tag that describes the
 C construct being documented[\[3\]](#ft3) (where applicable).
 The `brief` section in our Doxygen example above:
@@ -132,8 +132,8 @@ Pretty straightforward right?
 ## Revamping the Example File
 Now that we have a rough idea of what `cdoc` documentation will look like we
 should update our `example.c` file with doc-comments.
-In part 1 we threw together our example file at the end of the blog post without
-a whole lot of thought put into it.
+In part 1 we threw together our example file without putting a whole lot of
+thought into it.
 In retrospect I realize that the file is missing a lot of C constructs
 (macros, variables, typedefs, etc.), so while we are adding comments we might
 as well just overhaul the entire thing.
@@ -225,7 +225,7 @@ by transforming `cdoc` documentation into HTML!
 I hope to see you then!
 
 The source code for this blog post can be found
-[here(TODO-link)](TODO).
+[here](https://git.sr.ht/~ashn/cdoc/tree/085f77ed14609ae9b388b754d9c6ae08f50a9802).
 
 
 ## Footnotes
