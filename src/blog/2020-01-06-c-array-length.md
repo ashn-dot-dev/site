@@ -1,4 +1,4 @@
-The ARRAY_LENGTH macro in C
+The ARRAY_LENGTH Macro in C
 ===========================
 
 The number of elements in a C array can be determined through the use of the
