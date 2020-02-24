@@ -129,4 +129,4 @@ Overall I am pretty happy with these results. I feel confident that my
 `read_text_file` function will work as expected when added to `cdoc`, and I
 learned that nifty trick for causing a read failure using `/proc/self/mem`.
 The source code for this post can be found
-[here](/blog/wip-testing-read-text-file-failure/).
+[here](/blog/2020-02-24-testing-read-text-file-failure/).
