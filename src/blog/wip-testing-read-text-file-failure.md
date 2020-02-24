@@ -41,7 +41,7 @@ different than this, but the concept is the same: if a NUL byte is encountered
 or a read failure occurs then indicate that the entire read has failed.
 
 Before I add this code to the blog post I wanted to test this function to make
-sure it actually worked.
+sure it actually works.
 The two error conditions I care about checking are (1) if a NUL byte is
 encountered and (2) if a read error occurred in `fgetc`.
 This is blogware so I am choosing to ignore the cases in which `stream == NULL`
@@ -51,7 +51,7 @@ Checking the NUL byte error handling was easy: the Linux file system
 conveniently has `/dev/zero` which will always spit out NUL bytes when read.
 Generating a read error was a bit trickier, but thankfully
 [someone on StackExchange](https://unix.stackexchange.com/questions/77492/special-file-that-causes-i-o-error/77571#77571)
-has already solved this problem; a process' zero page is never mapped, so
+has already solved this problem: a process' zero page is never mapped, so
 attempting to read from the start of your own process' memory will always
 trigger an IO error:
 
