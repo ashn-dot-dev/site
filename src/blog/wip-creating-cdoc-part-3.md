@@ -40,6 +40,11 @@ followed by zero or more lines of HTML text.
 
 
 ## The Game Plan
+This is probably going to be the longest blog post in this series, mostly
+because there are a bunch of steps that need to be tackled all at once.
+To keep us on track I have created a list of functionality we need to implement,
+organized roughly based the phases of transpilation that `cdoc` will perform on
+each file.
 
 00. Read the C source into a buffer
 00. Split that buffer into lines
@@ -49,9 +54,13 @@ followed by zero or more lines of HTML text.
     + Parse lines starting with "`//!`" into `doc`s/`section`s
 00. Print an HTML representation of each `doc` and its `section`s
 
+We will walk through each element in this list, and hopefully by the end we will
+end up with an actually useful documentation parser!
+There is a lot to do, so let's jump right into it.
+
 
 ## Read the C Source Into a Buffer
-Out `do_file` function already has the basic structure in place for reading a
+Our `do_file` function already has the basic structure in place for reading a
 file.
 All we really need to do is create a wrapper function around:
 
@@ -412,6 +421,7 @@ static void
 print_section(struct section const s);
 ```
 
+### Parsing
 We said that a `doc` consists of one or more sections, and right now we have
 those sections represented as a heap allocated array in `struct doc`, so the
 `parse_doc` function will repeatedly try to parse sections and append them to
@@ -436,23 +446,7 @@ parse_doc(void)
 ```
 
 The `parse_section` function is a bit beefier, but should still be relatively
-easy to follow.
-First we perform some basic error checking to make sure that a doc section
-begins with a non-empty tag.
-We then walk a character along the tag line recording TAG and NAME (if it
-exists) while skipping over whitespace.
-Right now there is no check for a tag line with *more* than TAG and NAME such
-as:
-
-```c
-//! @foo bar extra text
-```
-
-so that might be something to add in the future.
-After parsing the tag line we iterate over remaining lines until we hit the
-end of the doc (`is_doc_line(*linep)` would be false) or we reach another
-section (`*doc_content_start(*linep) != '@'` would be `true`).
-
+easy to follow:
 
 ```c
 static struct section
@@ -486,6 +480,16 @@ parse_section(void)
     while (!is_hspace(*cp) && (*cp != '\0')) cp += 1;
     s.name_len = (int)(cp - s.name_start);
 
+    while (is_hspace(*cp)) cp += 1;
+    if (*cp != '\0')
+    {
+        fprintf(
+            stderr,
+            "error(line %d): Extra character(s) after tag line <NAME>\n",
+            LINENO);
+        exit(EXIT_FAILURE);
+    }
+
     // TEXT
     linep += 1;
     s.text_start = linep;
@@ -496,26 +500,66 @@ parse_section(void)
 }
 ```
 
+First we perform some basic error checking to make sure that a doc section
+begins with a non-empty tag.
+We then walk a character pointer along the tag line recording TAG and
+(optionally) NAME while skipping over whitespace.
+We perform additional error checking at the end of a tag line to make sure that
+the line does not contain any text apart from TAG and NAME, and if everything
+looks good then we will parse the rest of the section's text line-by-line.
 
----
-
----
-
----
-
-## Outputting HTML
+### Printing
+Our `parse_doc` function was a glorified section *parsing* loop, so
+unsuprisingly our `print_doc` function is going to be section *printing* loop.
 
 ```c
 static void
-print_doc(struct doc d);
-```
-```c
-static void
-print_section(struct section s);
+print_doc(struct doc const d)
+{
+    for (size_t i = 0; i < d.section_count; ++i) print_section(d.sections[i]);
+    puts("<hr>");
+}
 ```
 
+We are going to put an additional `<hr>` at the end of every doc just to make
+the HTML more readable: a wall of text with no styling is a bit difficult to
+read, so creating clear points of separation between `doc`s will do a lot to
+improve the user experience.
+
+Although our `parse_section` function was a pretty hefty, the `print_section`
+function is super straightforward.
+
 ```c
+static void
+print_section(struct section const s)
+{
+    printf(
+        "<h3>%.*s: %.*s</h3>\n",
+        s.tag_len,
+        s.tag_start,
+        s.name_len,
+        s.name_start);
+    for (int i = 0; i < s.text_len; ++i)
+    {
+        char const* const start = doc_content_start(s.text_start[i]);
+        puts(start);
+    }
+}
 ```
+
+We stick the TAG and NAME of the section inside a heading (`<h3>`) tag and dump
+the lines of text verbatim just below that.
+Having each section tag denoted by large (and often bold) font of a heading in
+conjunction with the `<hr>`s separating each `doc` will allow users to quickly
+scan for the specific `doc` and `section` they are looking for without having
+search through a mountain of text.
+HTML is (mostly) whitespace agnostic, so multiple lines in a `section` will
+render as a continuous body of text in an HTML layout engine.
+
+
+## Putting it all Together
+Alright moment of truth: let's see how well our documentation generator fairs
+when run against our `example.c` file:
 
 ```sh
 $ make clean cdoc > /dev/null && ./cdoc example.c
@@ -567,15 +611,27 @@ Convert meters into kilometers.
 <hr>
 ```
 
+Well that is definitely HTML, and nothing about it looks obviously wrong.
+Looking at HTML in a terminal kind of misses the point, so I ran:
 
-## Putting it all Together
-Generated HTML can be found [here](/blog/wip-creating-cdoc-part-3/example.html).
+```sh
+$ make clean cdoc > /dev/null && ./cdoc example.c > example.html
+```
+
+and `cp`ed the output to [here](/blog/wip-creating-cdoc-part-3/example.html) so
+that we check the results in a web browser.
+I might be biased, but I think it looks pretty good for a first pass.
+Things are a bit plain and a lack of source code for documentation such as
+"function: swap" makes it difficult to tell *how* to use that specific
+construct, but as a "here are some things to go grep for" documentation page I
+really think it is a good start.
+
+We still have a lot of work to do before `cdoc` is `0.1` ready, but I think the
+longest and most laborious bits of work are behind us.
+From here on out we are going to revisit portions of the `cdoc` code and make
+small incremental improvements until we have a documentation generator that we
+would be comfortable using on a real™ project.
+Thanks for sticking around this far - I hope to see you again!
 
 The source code for this blog post can be found
 [here(TODO)](TODO).
-
-
-## Footnotes
-<div id="ft1">\[1\]:
-TODO
-</div>
