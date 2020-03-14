@@ -4,9 +4,9 @@ Creating a C Documentation Generator - Part 3
 Welcome to part 3 of a series in which we design and implement `cdoc` - a
 source-code documentation tool for the C programming language.
 In [part 2](/blog/2020-02-22-creating-cdoc-part-2.html) we defined the rough
-shape `cdoc` documentation and revamped our example file.
-In this post we will write the code to transform a C source file into HTML based
-on the `cdoc` comments within that source file.
+shape of `cdoc` documentation and revamped our example file.
+In this post we will write a transpiler that will transform `cdoc` comments
+within a C source file into HTML.
 
 As a quick refresher we want to turn documentation that looks like this:
 
@@ -40,13 +40,12 @@ followed by zero or more lines of HTML text.
 
 
 ## The Game Plan
-Parsing and HTML generation are going to require us to complete a bunch of
-little steps that will only really come together once every step is completed.
-That being the case, this is probably going to be the longest blog post in the
-`cdoc` series.
-To keep us on track I have prepared a list of functionality we are going to
-implement in this post, organized roughly based the phases of transpilation for
-one C source file.
+Implementing a primitive transpiler will require completing a bunch of little
+steps that will only really come together once everything is finished.
+For that reason, this is probably going to be the longest and most code-heavy
+blog post in the `cdoc` series.
+To keep us on track I have prepared a list of these steps, organized roughly
+based the phases of transpilation for one C source file.
 
 00. Read the C source into a buffer
 00. Split that buffer into lines
@@ -56,8 +55,8 @@ one C source file.
     + Parse lines starting with "`//!`" into `doc`s/`section`s
 00. Print an HTML representation of each `doc` and its `section`s
 
-We will walk through step in this list, and hopefully by the end of this post
-we will have a somewhat useful documentation parser!
+We will walk through each step in this list, and hopefully produce a somewhat
+useful documentation generator by the end of the post!
 There is a lot to do, so let's jump right into it.
 
 
@@ -70,7 +69,7 @@ All we really need to do is create a wrapper function around:
 while ((c = fgetc(fp)) != EOF) { /* do stuff */ }
 ```
 
-that will build and return a heap-allocated cstring built from the characters
+that will build and return a heap-allocated cstring made up of the characters
 returned from `fgetc`.
 This wrapper should also make sure that no `NUL` bytes are encountered and no
 read errors occur, that way we know that the cstring produced contains the
@@ -155,7 +154,7 @@ text_to_lines(char* text)
 }
 ```
 
-Once again we can check that things are working as expected by rewrite our
+Once again we can check that things are working as expected by rewriting our
 pseudo-`cat` `do_file` function using `text_to_lines`:
 
 ```c
@@ -207,8 +206,8 @@ do_file(void)
 }
 ```
 
-We are going to need to parse the whitespace at the start of lines (both before
-and after the "`//!`") and between TAG and NAME on a tag line.
+We are going to need to parse the whitespace at the start of lines (before/after
+the "`//!`") and between TAG and NAME on a tag line.
 For our purposes we will say that horizontal whitespace is a tab, carriage
 return, or space character.
 The horizontal whitespace checking function, `is_hspace`, simply returns the
@@ -222,9 +221,9 @@ is_hspace(int c)
 }
 ```
 
-Okay last utilities I want to add are functions that will (1) check whether a
-line satisfies the definition of a doc-comment-line (a line with "`//!`" as its
-first non-whitespace characters) and (2) find the first non-whitespace
+Okay the last utilities I want to add are functions that will (1) check whether
+a line satisfies the definition of a doc-comment-line (a line with "`//!`" as
+its first non-whitespace characters) and (2) find the first non-whitespace
 characters after the "`//!`" on a doc-comment-line.
 Both functions take a `char const*` and walk that pointer along the string
 using `is_hspace` until non-horizontal-whitespace is found.
@@ -346,7 +345,7 @@ fine.
 We have utilities in place for handling lines of text, but we are still missing
 the data structures and supporting functions for `doc`s and `section`s.
 Our definition of a `doc` is basically just an ordered sequence of `section`s,
-so our `doc` data structure only needs to act as a wrapper around a `section`
+so the `doc` data structure only needs to act as a wrapper around a `section`
 array.
 
 ```c
@@ -362,7 +361,7 @@ text for the TAG and NAME components of the tag line plus a slice of lines for
 all of the text under the tag line.
 The characters/lines we need to slice are already in memory from when we parsed
 the lines of the file, so all we will need to do is fill out start and length
-data fields for the TAG, NAME, and lines of text.
+data fields for TAG, NAME, and the lines of section text.
 
 ```c
 struct section
@@ -495,18 +494,18 @@ parse_section(void)
 }
 ```
 
-First we perform some basic error checking to make sure that a doc section
-begins with a non-empty tag.
+First we perform some basic error checking to make sure that a `section` begins
+with a non-empty tag.
 We then walk a character pointer along the tag line, recording TAG and
 (optionally) NAME, while skipping over whitespace.
 We perform additional error checking at the end of a tag line to make sure that
 the line does not contain any text apart from TAG and NAME, and if everything
-looks good then we will parse the rest of the section's text line-by-line,
+looks good then we will parse the rest of the `section`'s text line-by-line,
 stopping if another tag line is encountered or we reach the end of the `doc`.
 
 ### Printing
-Our `parse_doc` function was a glorified section *parsing* loop, so
-unsuprisingly our `print_doc` function is going to be section *printing* loop.
+Our `parse_doc` function was a glorified *parsing* loop, so unsuprisingly our
+`print_doc` function is going to be a *printing* loop.
 
 ```c
 static void
@@ -518,11 +517,11 @@ print_doc(struct doc const d)
 ```
 
 We are going to print an additional `<hr>` at the end of every doc to make the
-HTML a bit more readable: a wall of text with no styling is a bit difficult to
-read, so creating clear points of separation between `doc`s will do a lot to
-improve the user experience.
+HTML a bit more readable: a wall of text with no styling is difficult to read,
+so creating clear points of separation between `doc`s will do a lot to improve
+the user experience.
 
-Although our `parse_section` function was a pretty hefty, the `print_section`
+Although our `parse_section` function was pretty hefty, the `print_section`
 function is super straightforward:
 
 ```c
@@ -550,7 +549,7 @@ tag in conjunction with the `<hr>`s separating each `doc` will allow users to
 quickly scan for the specific `doc` and `section` they are looking for without
 having search through a mountain of text.
 HTML is (mostly) whitespace agnostic, so multiple lines of text in a `section`
-will render as a continuous blob of text in an HTML layout engine.
+will render as a continuous blob of text in an HTML viewer.
 
 
 ## Putting it all Together
@@ -608,7 +607,7 @@ Convert meters into kilometers.
 ```
 
 Well that is definitely HTML, and nothing about it looks obviously wrong.
-Looking at HTML in a isn't very useful however, so I ran:
+Looking at HTML in a terminal isn't very useful however, so I ran:
 
 ```sh
 $ make clean cdoc > /dev/null && ./cdoc example.c > example.html
