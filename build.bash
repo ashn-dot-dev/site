@@ -5,6 +5,7 @@ set -e
 NL=$'\n'
 SRC_DIR='src'
 OUT_DIR='out'
+TIMEFORMAT="TIME: %E"
 
 #== Create Output Directory ====================================================
 if [ -d "${OUT_DIR}" ]; then
@@ -64,44 +65,58 @@ build_blog_page() {
 }
 
 #== Generate the Actual Website ================================================
-echo "==== BUILDING HTML PAGES ===="
-build_page_from_html "index.html" "ashn"
+build_html_pages() {
+    echo "==== BUILDING HTML PAGES ===="
+    build_page_from_html "index.html" "ashn"
+}
 
-echo "==== BUILDING BLOG ARCHIVE PAGE ===="
-BLOG_INDEX_CONTENT=$(cat "${SRC_DIR}/blog.html")
-BLOG_INDEX_CONTENT="${BLOG_INDEX_CONTENT}${NL}<ul>"
-for f in $(ls "${SRC_DIR}/blog" | sort -r); do
-    [ -d "${SRC_DIR}/blog/${f}" ]            && continue # Skip directories.
-    [ $(echo "${f}" | head -c 3 -) = 'wip' ] && continue # Skip WIP entries.
+build_blog_archive_page() {
+    echo "==== BUILDING BLOG ARCHIVE PAGE ===="
+    BLOG_INDEX_CONTENT=$(cat "${SRC_DIR}/blog.html")
+    BLOG_INDEX_CONTENT="${BLOG_INDEX_CONTENT}${NL}<ul>"
+    for f in $(ls "${SRC_DIR}/blog" | sort -r); do
+        [ -d "${SRC_DIR}/blog/${f}" ]            && continue # Skip directories.
+        [ $(echo "${f}" | head -c 3 -) = 'wip' ] && continue # Skip WIP entries.
 
-    echo "PROCESSING BLOG ENTRY: ${f}"
-    # YYYY-MM-DD
-    # 123456789A bytes should be parsed to get the date from the filename.
-    F_DATE=$(echo "${f}" | head -c 10 -)
-    F_TITLE=$(md_page_title "${SRC_DIR}/blog/${f}")
-    F_HREF="/blog/${f%.md}.html"
+        echo "PROCESSING BLOG ENTRY: ${f}"
+        # YYYY-MM-DD
+        # 123456789A bytes should be parsed to get the date from the filename.
+        F_DATE=$(echo "${f}" | head -c 10 -)
+        F_TITLE=$(md_page_title "${SRC_DIR}/blog/${f}")
+        F_HREF="/blog/${f%.md}.html"
 
-    BLOG_INDEX_CONTENT="${BLOG_INDEX_CONTENT}${NL}<li>"
-    BLOG_INDEX_CONTENT="${BLOG_INDEX_CONTENT}${NL}  [ ${F_DATE} ] "
-    BLOG_INDEX_CONTENT="${BLOG_INDEX_CONTENT}${NL}  <a href=\"${F_HREF}\">"
-    BLOG_INDEX_CONTENT="${BLOG_INDEX_CONTENT}${NL}    ${F_TITLE}"
-    BLOG_INDEX_CONTENT="${BLOG_INDEX_CONTENT}${NL}  </a>"
-    BLOG_INDEX_CONTENT="${BLOG_INDEX_CONTENT}${NL}</li>"
-done
-BLOG_INDEX_CONTENT="${BLOG_INDEX_CONTENT}${NL}</ul>"
-make_page "archive" "${BLOG_INDEX_CONTENT}" > "${OUT_DIR}/blog.html"
+        BLOG_INDEX_CONTENT="${BLOG_INDEX_CONTENT}${NL}<li>"
+        BLOG_INDEX_CONTENT="${BLOG_INDEX_CONTENT}${NL}  [ ${F_DATE} ] "
+        BLOG_INDEX_CONTENT="${BLOG_INDEX_CONTENT}${NL}  <a href=\"${F_HREF}\">"
+        BLOG_INDEX_CONTENT="${BLOG_INDEX_CONTENT}${NL}    ${F_TITLE}"
+        BLOG_INDEX_CONTENT="${BLOG_INDEX_CONTENT}${NL}  </a>"
+        BLOG_INDEX_CONTENT="${BLOG_INDEX_CONTENT}${NL}</li>"
+    done
+    BLOG_INDEX_CONTENT="${BLOG_INDEX_CONTENT}${NL}</ul>"
+    make_page "archive" "${BLOG_INDEX_CONTENT}" > "${OUT_DIR}/blog.html"
+}
 
-echo "==== BUILDING BLOG ENTRY PAGES ===="
-for f in $(ls -C "${SRC_DIR}/blog"); do
-    if [ -d "${SRC_DIR}/blog/${f}" ]; then
-        cp -r "${SRC_DIR}/blog/${f}" "${OUT_DIR}/blog/${f}"
-        continue
-    fi
-    build_blog_page "blog/${f}"
-done
+build_blog_entry_pages() {
+    echo "==== BUILDING BLOG ENTRY PAGES ===="
+    for f in $(ls -C "${SRC_DIR}/blog"); do
+        if [ -d "${SRC_DIR}/blog/${f}" ]; then
+            cp -r "${SRC_DIR}/blog/${f}" "${OUT_DIR}/blog/${f}"
+            continue
+        fi
+        build_blog_page "blog/${f}" &
+    done
+    wait
+}
 
-echo "==== COPYING MISC FILES ===="
-set -x
-cp "${SRC_DIR}/favicon.ico" "${OUT_DIR}"
-cp "${SRC_DIR}/style.css" "${OUT_DIR}"
-{ set +x; } 2> /dev/null
+copy_misc_files() {
+    echo "==== COPYING MISC FILES ===="
+    set -x
+    cp "${SRC_DIR}/favicon.ico" "${OUT_DIR}"
+    cp "${SRC_DIR}/style.css" "${OUT_DIR}"
+    { set +x; } 2> /dev/null
+}
+
+time build_html_pages
+time build_blog_archive_page
+time build_blog_entry_pages
+time copy_misc_files
