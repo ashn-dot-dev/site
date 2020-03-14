@@ -613,8 +613,9 @@ Looking at HTML in a terminal isn't very useful however, so I ran:
 $ make clean cdoc > /dev/null && ./cdoc example.c > example.html
 ```
 
-and `cp`ed the output to [here](/blog/wip-creating-cdoc-part-3/example.html) so
-that we check the results in a web browser.
+and `cp`ed the output to
+[here](/blog/2020-03-14-creating-cdoc-part-3/example.html) so that we check the
+results in a web browser.
 I might be biased, but I think it looks pretty good for a first pass.
 Things are kind of plain and a lack of associated source code for constructs
 such as "function: swap" make it difficult to tell *how* to use that specific C
@@ -629,4 +630,4 @@ would be comfortable using on a real™ project.
 Thanks for sticking around this far - I hope to see you again!
 
 The source code for this blog post can be found
-[here(TODO)](TODO).
+[here](https://git.sr.ht/~ashn/cdoc/tree/ade8f9cf763b030f9f9636905101693c9aa2eeae).
