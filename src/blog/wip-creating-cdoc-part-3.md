@@ -268,7 +268,7 @@ Let's test our `is_hspace` and `is_doc_line` functions to make sure they are
 working as expected.
 We will once again modify our `do_file` function, but this time we will
 (finally) do something other than emulate `cat`: we will iterate through all the
-lines of a file and print only the doc-lines.
+lines of a file and print only the doc-comment-lines.
 
 ```c
 static void
@@ -356,12 +356,12 @@ struct doc
 };
 ```
 
-Sections are slightly more complicated because we have to deal with slices of
-text for the TAG and NAME components of the tag line plus a slice of lines for
-all of the text under the tag line.
+`Section`s are slightly more complicated because we have to deal with slices of
+text for the TAG and NAME components plus a slice of lines for all of the text
+under the tag line.
 The characters/lines we need to slice are already in memory from when we parsed
 the lines of the file, so all we will need to do is fill out start and length
-data fields for TAG, NAME, and the lines of section text.
+data fields for TAG, NAME, and the lines of `section` text.
 
 ```c
 struct section
@@ -384,7 +384,7 @@ This is the real meat of our documentation generator (or really any
 compiler/transpiler).
 In the parsing phase of `cdoc` we are going to map the lines of text in a
 source file onto `doc` and `section` data structures.
-Then in the printing phase we are going to spit out some HTML representation of
+Then in the printing phase we are going to spit out an HTML representation of
 those data structures independent of the original C source.
 
 ```txt
@@ -516,7 +516,7 @@ print_doc(struct doc const d)
 }
 ```
 
-We are going to print an additional `<hr>` at the end of every doc to make the
+We are going to print an additional `<hr>` at the end of every `doc` to make the
 HTML a bit more readable: a wall of text with no styling is difficult to read,
 so creating clear points of separation between `doc`s will do a lot to improve
 the user experience.
@@ -542,11 +542,11 @@ print_section(struct section const s)
 }
 ```
 
-We stick the TAG and NAME of the section inside a heading (`<h3>`) tag and dump
+We stick the TAG and NAME of the `section` inside a heading (`<h3>`) and dump
 the lines of text verbatim just below that.
-Having each section tag denoted by the large (and often bold) font of a heading
-tag in conjunction with the `<hr>`s separating each `doc` will allow users to
-quickly scan for the specific `doc` and `section` they are looking for without
+Having each `section` tag denoted by the large (and often bold) font of a
+heading in conjunction with the `<hr>`s separating each `doc` will allow users
+to quickly scan for the specific `doc` and `section` they are looking for without
 having search through a mountain of text.
 HTML is (mostly) whitespace agnostic, so multiple lines of text in a `section`
 will render as a continuous blob of text in an HTML viewer.
@@ -616,13 +616,13 @@ $ make clean cdoc > /dev/null && ./cdoc example.c > example.html
 and `cp`ed the output to [here](/blog/wip-creating-cdoc-part-3/example.html) so
 that we check the results in a web browser.
 I might be biased, but I think it looks pretty good for a first pass.
-Things are kind of plain and a lack of associated source code for documentation
-such as "function: swap" makes it difficult to tell *how* to use that specific C
+Things are kind of plain and a lack of associated source code for constructs
+such as "function: swap" make it difficult to tell *how* to use that specific C
 construct, but as a "here are some things to go grep for" documentation page I
-really think it is a good start.
+think it is a good start.
 
 We still have a lot of work to do before `cdoc` is `0.1` ready, but the longest
-and most laborious bits of work are behind us.
+and most laborious bits of labor are behind us.
 From here on out we are going to revisit portions of the `cdoc` code and make
 small incremental improvements until we have a documentation generator that we
 would be comfortable using on a real™ project.
