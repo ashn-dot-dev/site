@@ -17,14 +17,14 @@ It is possible that `realloc` may fail[\[1\]](#ft1), so we *should* have some
 form of NULL-check in place, but `assert` is not best option for doing so:
 `assert`s are disabled when `NDEBUG` is defined and if we *always* want to
 `exit` (or `abort`) on allocation failure then the logic for doing so should
-really be handled inside the allocation function rather than the call-site.
+really be handled inside the allocation function rather than at the call-site.
 
 We will add a function `xalloc` that will behave like `realloc`, but will either
-return the amount of memory requested or `exit` on out-of-memory failure.
+return the amount of memory requested or `exit` on failure.
 Additionally, we will narrow the
 [specification for realloc](https://pubs.opengroup.org/onlinepubs/009695399/functions/realloc.html)
 by stating that zero-sized allocations `free` the memory backed by the provided
-pointer the passed in pointer and *always* return NULL:
+pointer and *always* return NULL:
 
 ```c
 static void*
@@ -44,17 +44,17 @@ xalloc(void* ptr, size_t size)
 With this function we can replace all of the lines in `cdoc.c` that look like:
 
 ```c
-buf = realloc(buf, len + 1);
-assert(buf != NULL);
+mem = realloc(mem, some_size);
+assert(mem != NULL);
 ```
 
 with one line that looks like:
 
 ```c
-buf = xalloc(buf, len + 1);
+mem = xalloc(mem, some_size);
 ```
 
-The source code with the `xalloc` addition can be found
+The updated source code with `xalloc` can be found
 [here](https://git.sr.ht/~ashn/cdoc/tree/98ef0659cd0c7b32e1e8f351d0358c63d8da4066).
 
 
@@ -128,10 +128,10 @@ After doing similar replacements for the rest of the error handling code in
 `cdoc.c` I want to make sure that the `errorf` function actually works as
 expected.
 Since our `example.c` file  contains only valid `cdoc` documentation we
-currently don't have we don't have a way to test the `errorf` function.
+currently do not have a way to test an error condition.
 At some point we should probably add unit/integration tests to the project, but
-let's hold off on doing that for now and just test the `errorf` function by
-creating/using a temporary `bad.c` file containing an error:
+let's hold off on doing that for now and instead create a temporary `bad.c` file
+containing an error:
 
 ```c
 $ cat bad.c
@@ -175,13 +175,13 @@ parse_section(void)
     char const* cp = doc_content_start(*linep);
     if (*cp++ != '@')
         errorf("[line %d] Doc-section must begin with @<TAG>", LINENO);
-    if (is_hspace(*cp) || *cp == '\0')
+    if (is_hspace(*cp))
         errorf("[line %d] Empty doc-comment tag", LINENO);
 ```
 
-Running `cdoc` on `bad.c` should trigger a call to `errorf` in `parse_section`
-will print a string equivalent to
-`"error: [line 1] Empty doc-comment tag\n"` to `stdout` and then `exit`.
+Running `cdoc` on `bad.c` should trigger a call to `errorf` in `parse_section`,
+write a string equivalent to
+`"error: [line 1] Empty doc-comment tag\n"` to `stdout`, and then `exit`.
 Running `cdoc` on `bad.c` we get:
 
 ```sh
@@ -195,9 +195,9 @@ c99 -o cdoc cdoc.o -O0 -g
 ```
 
 Wait what?
-Okay it looks like we have a bug.
-Looking again at `parse_section` function I think the NUL terminator is being
-reached causing the second if statement, `if (is_hspace(*cp))` to have a
+Okay it seems like we have a bug.
+Looking again at `parse_section`, I think the NUL terminator is being reached
+causing the second `if`-statement, `if (is_hspace(*cp))` to have a
 falsy condition since NUL is not a horizontal whitespace character.
 
 That second `if`-statement should probably be:
@@ -222,20 +222,20 @@ It looks like our `errorf` function is working correctly and it it seems that
 we have fixed a bug.
 Sweet!
 
-The tree with the addition of `errorf` and updates to `xalloc` and other
-functions can be found
+The updated source code with `errorf` and the `parse_section` bug-fix can be
+found
 [here](https://git.sr.ht/~ashn/cdoc/commit/2e146e2c60b2008efe50f7a6f9827180064ff1e5).
 
 
 ## Wrapping Up
-Okay I think the addition of two utility functions and a bug fix is enough for
-this blog post.
-I think that we have accomplished more than enough for this "nice little break"
-blog post, so for now we will call it a day.
+I think the addition of two utility functions and a bug-fix is enough for this
+blog post.
+We have accomplished plenty for this "nice little break" blog post, so for now I
+say we call it a day.
 There is certainly more that can be improved, but perhaps we will leave that for
 another time.
-In the next post we will add associated source code for certain `cdoc` tags to
-our generated HTML output.
+In the next post we will improve our documentation output for certain C
+constructs by adding their associated source code to the generated HTML.
 I hope to see you then!
 
 ## Footnotes
