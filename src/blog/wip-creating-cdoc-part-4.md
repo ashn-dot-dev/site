@@ -11,10 +11,10 @@ some minor improvements to what we currently have.
 
 ## Replacing `realloc`
 Right now there are a bunch of places where we dynamically allocate/reallocate
-memory with `realloc` and immediately `assert` that a non-NULL value was
+memory with `realloc` and immediately `assert` that a non-`NULL` value was
 returned.
 It is possible that `realloc` may fail[\[1\]](#ft1), so we *should* have some
-form of NULL-check in place, but `assert` is not best option for doing so:
+form of `NULL`-check in place, but `assert` is not best option for doing so:
 `assert`s are disabled when `NDEBUG` is defined and if we *always* want to
 `exit` (or `abort`) on allocation failure then the logic for doing so should
 really be handled inside the allocation function rather than at the call-site.
@@ -24,7 +24,7 @@ return the amount of memory requested or `exit` on failure.
 Additionally, we will narrow the
 [specification for realloc](https://pubs.opengroup.org/onlinepubs/009695399/functions/realloc.html)
 by stating that zero-sized allocations `free` the memory backed by the provided
-pointer and *always* return NULL:
+pointer and *always* return `NULL`:
 
 ```c
 static void*
@@ -65,7 +65,7 @@ where we handle an error by calling `fprintf` or `fputs` followed by the call
 This pattern appears enough times that I think it is worth making into a
 function.
 We always print a string `"error: "` followed by an error message that may
-contain `printf`-style formatting + variadic arguments.
+contain `printf`-style formatting + variadic format arguments.
 It appears that our use case calls for an `errorf` function that will take a
 format string `fmt` and (optional) format arguments, write everything to
 `stderr`, and then `exit`:
@@ -196,9 +196,9 @@ c99 -o cdoc cdoc.o -O0 -g
 
 Wait what?
 Okay it seems like we have a bug.
-Looking again at `parse_section`, I think the NUL terminator is being reached
+Looking again at `parse_section`, I think the `NUL` terminator is being reached
 causing the second `if`-statement, `if (is_hspace(*cp))` to have a
-falsy condition since NUL is not a horizontal whitespace character.
+falsy condition since `NUL` is not a horizontal whitespace character.
 
 That second `if`-statement should probably be:
 
@@ -218,8 +218,8 @@ error: [line 1] Empty doc-comment tag
 ```
 
 Okay that's more like what I was expecting.
-It looks like our `errorf` function is working correctly and it it seems that
-we have fixed a bug.
+It looks like our `errorf` function is working correctly and it seems that we
+have fixed a bug.
 Sweet!
 
 The updated source code with `errorf` and the `parse_section` bug-fix can be
@@ -229,12 +229,10 @@ found
 
 ## Wrapping Up
 I think the addition of two utility functions and a bug-fix is enough for this
-blog post.
-We have accomplished plenty for this "nice little break" blog post, so for now I
-say we call it a day.
+"nice little break" blog post.
 There is certainly more that can be improved, but perhaps we will leave that for
 another time.
-In the next post we will improve our documentation output for certain C
+In the next post we will improve the documentation output for certain C
 constructs by adding their associated source code to the generated HTML.
 I hope to see you then!
 
@@ -242,7 +240,7 @@ I hope to see you then!
 <div id="ft1">\[1\]:
 I have noticed that the Linux-centric model of overcommit-by-default memory
 allocation has lead many programmers to assume that `malloc` and friends will
-never return NULL.
+never return `NULL`.
 At some point I would like to write an article on how this assumption is both
 wrong and dangerous, but I think that sort of rant is best left for another
 time.
