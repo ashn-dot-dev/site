@@ -6,18 +6,19 @@ source-code documentation tool for the C programming language.
 In [part 3](/blog/2020-03-14-creating-cdoc-part-3.html) we finished the minimum
 viable product for `cdoc`.
 That post took a long time to put together and was filled with a hefty amount
-of code, so I though that it would be nice to take a bit of a break and focus on
-some minor improvements to what we currently have.
+of code.
+I though that it would be nice to take a bit of a break and focus on some minor
+improvements to what we currently have.
 
 ## Replacing `realloc`
-Right now there are a bunch of places where we dynamically allocate/reallocate
-memory with `realloc` and immediately `assert` that a non-`NULL` value was
-returned.
+Right now there are many places where we dynamically allocate/reallocate memory
+with `realloc` and immediately `assert` that a non-`NULL` value was returned.
 It is possible that `realloc` may fail[\[1\]](#ft1), so we *should* have some
-form of `NULL`-check in place, but `assert` is not best option for doing so:
-`assert`s are disabled when `NDEBUG` is defined and if we *always* want to
-`exit` (or `abort`) on allocation failure then the logic for doing so should
-really be handled inside the allocation function rather than at the call-site.
+form of `NULL`-check in place.
+However, `assert` is not best option for doing so: `assert`s are disabled when
+`NDEBUG` is defined and if we *always* want to `exit` (or `abort`) on allocation
+failure then the logic for doing so should really be handled inside the
+allocation function rather than at the call-site.
 
 We will add a function `xalloc` that will behave like `realloc`, but will either
 return the amount of memory requested or `exit` on failure.
@@ -127,8 +128,8 @@ xalloc(void* ptr, size_t size)
 After doing similar replacements for the rest of the error handling code in
 `cdoc.c` I want to make sure that the `errorf` function actually works as
 expected.
-Since our `example.c` file  contains only valid `cdoc` documentation we
-currently do not have a way to test an error condition.
+Our `example.c` file  contains only valid `cdoc` documentation, so we currently
+do not have a way to test an error condition.
 At some point we should probably add unit/integration tests to the project, but
 let's hold off on doing that for now and instead create a temporary `bad.c` file
 containing an error:
@@ -196,9 +197,9 @@ c99 -o cdoc cdoc.o -O0 -g
 
 Wait what?
 Okay it seems like we have a bug.
-Looking again at `parse_section`, I think the `NUL` terminator is being reached
-causing the second `if`-statement, `if (is_hspace(*cp))` to have a
-falsy condition since `NUL` is not a horizontal whitespace character.
+Looking again at `parse_section`, I think the `NUL` terminator is being reached,
+causing the second `if`-statement, `if (is_hspace(*cp))`, to have a falsy
+condition since `NUL` is not a horizontal whitespace character.
 
 That second `if`-statement should probably be:
 
