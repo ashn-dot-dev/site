@@ -17,7 +17,7 @@ body {
   font-family: sans-serif;
   line-height: 1.25;
   margin: 1rem auto;
-  max-width: 74ch;
+  max-width: 80ch;
 
   background-color: var(--color-bg-drk);
   color: var(--color-text);
