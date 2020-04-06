@@ -1,0 +1,82 @@
+<h3>file: example.c</h3>
+This is a C source file used to test cdoc.
+<h3>license: 0BSD</h3>
+<hr>
+<h3>function: swap</h3>
+Exchange two objects of equal size.
+<h3>param: p1</h3>
+Pointer to the first object.
+<h3>param: p2</h3>
+Pointer to the second object.
+<h3>param: size</h3>
+The sizeof both objects.
+<h3>note: </h3>
+Objects p1 and p2 may point to overlapping memory.
+E.g swap(&foo, &foo, sizeof(foo)) is valid.
+<pre><code>
+void swap(void* p1, void* p2, size_t size);
+</code></pre>
+<hr>
+<h3>struct: string</h3>
+POD type representing an array-of-char with a known size.
+<pre><code>
+struct string
+{
+    char* data;
+    size_t size;
+};
+</code></pre>
+<hr>
+<h3>union: foobar</h3>
+A data packet sent over the wire from FooBar Inc.
+<pre><code>
+union foobar
+{
+    uint32_t foo;
+    float bar;
+};
+</code></pre>
+<hr>
+<h3>enum: color</h3>
+<h3>todo: </h3>
+Add more colors.
+<pre><code>
+typedef enum
+{
+    RED = 0,
+    BLUE = 1,
+    GREEN = 2
+} color;
+</code></pre>
+<hr>
+<h3>typedef: colour</h3>
+Convenient typedef for non-American software engineers.
+<pre><code>
+typedef color colour;
+</code></pre>
+<hr>
+<h3>function: get_color</h3>
+Cdoc should be lenient with whitespace.
+Any amount of indenting should be allowed.
+Even with tabs.
+<h3>return: </h3>
+My favorite color.
+<pre><code>
+color get_color(void)
+{
+/* function definition... */
+</code></pre>
+<hr>
+<h3>macro: M_PER_KM</h3>
+<hr>
+<h3>macro: KM</h3>
+Convert meters into kilometers.
+<hr>
+<h3>macro: NUM_FOOBAR</h3>
+256 is a computer-ish number, right?
+<hr>
+<h3>variable: foobars</h3>
+<pre><code>
+union foobar foobars[NUM_FOOBAR];
+</code></pre>
+<hr>

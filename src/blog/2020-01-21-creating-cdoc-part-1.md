@@ -2,7 +2,7 @@ Creating a C Documentation Generator - Part 1
 =============================================
 
 In this series we are going to walk through the process of designing and
-implementing `cdoc` - a source-code documentation tool for the C programming
+implementing `cdoc` - a source code documentation tool for the C programming
 language.
 
 ## Why Write a Documentation Generator

@@ -2,7 +2,7 @@ Creating a C Documentation Generator - Part 3
 =============================================
 
 Welcome to part 3 of a series in which we design and implement `cdoc` - a
-source-code documentation tool for the C programming language.
+source code documentation tool for the C programming language.
 In [part 2](/blog/2020-02-22-creating-cdoc-part-2.html) we defined the rough
 shape of `cdoc` documentation and revamped our example file.
 In this post we will write a transpiler that will transform `cdoc` comments
