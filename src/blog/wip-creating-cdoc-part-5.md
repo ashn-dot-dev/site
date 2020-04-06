@@ -10,7 +10,7 @@ release.
 
 ## What Are We Trying to Do?
 
-Our declaration for `struct string` in `example.c` is currently transformed from
+Our declaration of `struct string` in `example.c` is currently transformed from
 this C source:
 
 ```c
@@ -31,8 +31,8 @@ POD type representing an array-of-char with a known size.
 <hr>
 ```
 
-Our goal for this this post is to add the source code for this and other
-`struct` declarations into our generated HTML output:
+Our goal for this this post is to add the source code for `struct string` and
+other `struct` declarations into our generated HTML output:
 
 ```html
 <h3>struct: string</h3>
@@ -50,7 +50,7 @@ We want to do this for all `struct`s, `union`s, `enum`s, `typedef`s, variable
 declarations, function prototypes, function definitions, and macros (basically
 all of the C constructs we have in `example.c`).
 Let's start off trying to get `struct` declarations working and then add the
-other C constructs one-by-one as we go along.
+other C constructs as we go along.
 
 --------------------------------------------------------------------------------
 
@@ -77,7 +77,7 @@ struct doc
 };
 ```
 
-We then update the cleanup step in `do_file` to account for this new dynamically
+We then update the cleanup step in `do_file` to account for this dynamically
 allocated member by changing the line:
 
 ```c
