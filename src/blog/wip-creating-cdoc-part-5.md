@@ -5,8 +5,8 @@ Welcome to part 5 of a series in which we design and implement `cdoc` - a
 source code documentation tool for the C programming language.
 In this post we will write the code to parse C source associated with some of
 our @tagged C constructs.
-This will (hopefully) be the last parsing code we write for the initial release
-of `cdoc`.
+This will (hopefully) be the last parsing code we write for the `cdoc` 0.1
+release.
 
 ## What Are We Trying to Do?
 
@@ -31,9 +31,8 @@ POD type representing an array-of-char with a known size.
 <hr>
 ```
 
-Our goal for this this post is to make it so that the generated HTML will
-contain a reference copy of the `struct` declaration in addition to the parsed
-`cdoc` comments:
+Our goal for this this post is to add the source code for this and other
+`struct` declarations into our generated HTML output:
 
 ```html
 <h3>struct: string</h3>
@@ -47,7 +46,7 @@ struct string
 </code></pre>
 ```
 
-We want to do this for `struct`s, `union`s, `enum`s, `typedef`s, variable
+We want to do this for all `struct`s, `union`s, `enum`s, `typedef`s, variable
 declarations, function prototypes, function definitions, and macros (basically
 all of the C constructs we have in `example.c`).
 Let's start off trying to get `struct` declarations working and then add the
@@ -59,12 +58,13 @@ other C constructs one-by-one as we go along.
 
 We will assume that the source code for any C construct can be represented as
 a list of lines in a C source file.
-*Technically* struct declarations may span multiple source files, and
-*technically* multiple struct declarations may be declared on a single line,
-but this is so infrequent that the "list of lines" representation of source code
-is adequate for our purposes.
+*Technically* `struct` declarations may span multiple source files, and
+*technically* multiple `struct` declarations may be declared on a single line,
+but this is so infrequent that the "list of lines" source code representation is
+adequate for our purposes.
 
-We create a new member `source` in `struct doc` for this list of lines:
+We create a new member, `source`, in `struct doc` to hold the list of source
+lines:
 
 ```c
 struct doc
@@ -77,8 +77,8 @@ struct doc
 };
 ```
 
-And then we should update the cleanup step in `do_file` to account for the new
-dynamically allocated member by changing the line:
+We then update the cleanup step in `do_file` to account for this new dynamically
+allocated member by changing the line:
 
 ```c
     // CLEANUP
@@ -113,17 +113,17 @@ has the tag `@struct`:
 //!     POD type representing an array-of-char with a known size.
 ```
 
-So we should attempt to parse a struct if and only if the first section of a
-`doc` has a tag that string-compares equal to `"struct"`.
-The `section` data structure represents a tag with a slice-of-`char`, so
-performing a string comparison between that and a cstring will look something
-like:
+We should attempt to parse a struct if and only if the first section of a `doc`
+has a tag that string-compares equal to `"struct"`.
+The `section` data structure represents a tag as a slice-of-`char`, so
+performing a string comparison between that and cstring `"struct"` will look
+something like:
 
 ```c
 len == strlen("struct") && strncmp(start, "struct", len) == 0
 ```
 
-If we jam that string comparison expression into the `parse_doc` function, we
+If we jam that string comparison expression into our `parse_doc` function, we
 see that it does in fact find the `struct` documentation in `example.c`:
 
 ```c
@@ -170,9 +170,10 @@ of writing a C parser.
 Instead of writing real `struct` parsing code™ we will use a nifty trick to
 fake-kinda-sorta-close-enough parse a `struct`.
 Note that any valid struct declaration (forward declaration or full declaration)
-must satisfy the following properties:
+must satisfy the following:
 
-00. The number of opening-braces is equal to the number of closing-braces
+00. The number of opening-braces in the declaration is equal to the number of
+    closing-braces in the declaration 
 00. The declaration ends in a semicolon
 
 So the dumb way to parse a `struct` declaration is to just loop through the
@@ -208,16 +209,17 @@ parse_struct_source(void)
 }
 ```
 
-We should take note however that this method of parsing a struct has a fatal
-flaw in that comments are *not* ignored: If the comment `// };` is contained
-within the `struct` declaration then the parser will incorrectly count the
-`'}'` and `';'` characters even though they are "invisible" to the C compiler.
+We should take careful note that this method of parsing a `struct` has a fatal
+flaw: comments are *not* ignored.
+If the comment `// };` exists within the `struct` declaration then this parsing
+code will incorrectly count the `'}'` and `';'` characters even though they are
+"invisible" to the C compiler.
 We can always revisit this function later, so for now let's focus on getting
-things working and leave the beatification for another time.
+things working and fix the comment issue at some later time (if ever).
 
 We will plug this function into `parse_doc` where we had our `puts` + `exit`
-functions before, and then add some logic to `print_doc` to write out the lines
-of source code associated with a `doc` if they exist:
+before, and then add some logic to `print_doc` to write out the lines of source
+code associated with a `doc`:
 
 ```c
 static struct doc
@@ -277,13 +279,13 @@ Hooray!
 
 ## Additional Declarations
 
-In addition to struct declarations we also want to be able to parse `union`,
-`enum`, `typedef` and `variable` declarations.
+In addition to `struct` declarations we also want to parse `union`, `enum`,
+`typedef` and variable declarations.
 Conveniently the nifty trick for parsing `struct` declarations happens to apply
 for all of these cases as well.
-So rather than write a function for each of these C constructs, we can duplicate
-the string comparison check for each of these cases and call
-`parse_struct_source` for all of them:
+Rather than write a function for each of these C constructs, we can duplicate
+the string comparison check for each case and use `parse_struct_source` for all
+of them:
 
 ```c
 static struct doc
@@ -312,9 +314,9 @@ parse_doc(void)
 }
 ```
 
-I decided to use a local macro `DOC_IS` to avoid the repetition for each string
-comparison, but the code is functionally identical to its previous incarnation,
-just with more cases added to the `if`-statement in `parse_doc`.
+I decided to use a local macro, `DOC_IS`, to avoid repetition.
+The code is functionally identical to its previous incarnation, just with more
+cases added to the `if`-statement.
 
 ```sh
 $ make clean cdoc && ./cdoc example.c > example1.html
@@ -339,7 +341,7 @@ a function may be forward declared:
 int foo(double bar);
 ```
 
-or they may be defined without a forward declaration:
+or defined without a forward declaration:
 
 ```c
 int foo(double bar)
@@ -352,12 +354,12 @@ We want `cdoc` to be able to handle documentation for both cases, and while our
 trick for parsing `struct` declarations *would* work for a forward declared
 function, that trick would fail to parse a function definition.
 We will create a function that is mostly copy-pasted from `parse_struct_source`,
-but will stop parsing check for both a `';'` or a `'{'` and stop parsing if
-it either is encountered.
+but will check for a `';'` or a `'{'` and stop parsing if it either is
+encountered.
 In the case of a function definition (`'{'` is encountered) a bonus line,
 `"/* function definition... */"` will be appended to the source lines to let
 the reader know that the function implementation exists, but is not presented
-int the generated documentation.
+in generated documentation.
 
 ```c
 static char**
@@ -437,18 +439,18 @@ c99 -o cdoc cdoc.o -O0 -g
 
 The generated `example2.html` output can be found
 [here](/blog/wip-creating-cdoc-part-5/example2.html)
-and once again seems to be working fine, now containing source code for the
-`swap` and `get_color` functions in `example.c`.
+and now contains source code for the `swap` and `get_color` functions found in
+`example.c`.
 
 --------------------------------------------------------------------------------
 
 ## Parsing Macros
 
-The last C construct we want to parse will be preprocessor macros.
+The last C construct we want to parse is preprocessor macros.
 These are actually the easiest to parse since macros only end when the last
 character of a line is not a backslash.
 We will once again copy-paste the `parse_struct_source` function, and replace
-the inner `for`-loop with a one-liner that checks the last character of the
+the inner `for`-loop with a one-liner that checks the last character of that
 line:
 
 
@@ -538,12 +540,15 @@ As expected the macros are parsed just fine.
 
 ## Wrapping Up
 
-With the addition of these `parse_*_source` functions we have a hacky yet
-functional way to associate source code with `cdoc` documentation.
-With source code association in place `cdoc` has pretty much everything that I
-was looking for in a documentation generator.
+The addition of these `parse_*_source` functions gives us a hacky yet functional
+way to associate source code with `cdoc` documentation.
+With this functionality in place `cdoc` has pretty much everything that I was
+looking for in a documentation generator.
 We are not finished development just yet, but I would say we are in the home
 stretch.
-In the next post we are going to do another round cleanup, similar to what we
-did in part 4, in preparation for the 0.1 release of `cdoc`.
+In the next post we are going to do another round cleanup in preparation for the
+0.1 release of `cdoc`.
 I hope to see you then!
+
+The source code for this blog post can be found
+[here](https://git.sr.ht/~ashn/cdoc/tree/5ff8436009fc9c7a6e2d7646b3d00e7e661d0357).
