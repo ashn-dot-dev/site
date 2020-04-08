@@ -106,7 +106,7 @@ If you remember back in part 2 of this series we said:
 > the C construct being documented.
 
 If we again look at `struct string` we see that its first (and only) doc-section
-has the tag `@struct`:
+has the tag `struct`:
 
 ```c
 //! @struct string
@@ -211,7 +211,7 @@ parse_struct_source(void)
 
 We should take careful note that this method of parsing a `struct` has a fatal
 flaw: comments are *not* ignored.
-If the comment `// };` exists within the `struct` declaration then the parsing
+If the comment `/* }; */` exists within the `struct` declaration then the parsing
 code will incorrectly count the `'}'` and `';'` characters even though they are
 "invisible" to the C compiler.
 We can always revisit this function later, so for now let's ignore this issue
@@ -541,11 +541,9 @@ The addition of these `parse_*_source` functions gives us a hacky yet functional
 way to associate source code with `cdoc` documentation.
 With this functionality in place `cdoc` has pretty much everything that I was
 looking for in a documentation generator.
-We are not finished development just yet, but I would say we are in the home
-stretch.
-In the next post we are going to do another round cleanup in preparation for the
-0.1 release of `cdoc`.
+In the next post we are going to conclude this mini-series with the alpha 0.1
+release of `cdoc`.
 I hope to see you then!
 
 The source code for this blog post can be found
-[here](https://git.sr.ht/~ashn/cdoc/tree/5ff8436009fc9c7a6e2d7646b3d00e7e661d0357).
+[here](https://git.sr.ht/~ashn/cdoc/tree/ee44c0b34df0ccfe6994f9ab86dd44069cb04f55).
