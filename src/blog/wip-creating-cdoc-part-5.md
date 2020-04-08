@@ -31,8 +31,8 @@ POD type representing an array-of-char with a known size.
 <hr>
 ```
 
-Our goal for this this post is to add the source code for `struct string` and
-other `struct` declarations into our generated HTML output:
+Our goal for this post is add the source code for constructs such as
+`struct string` in our generated HTML output:
 
 ```html
 <h3>struct: string</h3>
@@ -57,9 +57,9 @@ other C constructs as we go along.
 ## Add a `source` Member to `struct doc`
 
 We will assume that the source code for any C construct can be represented as
-a list of lines in a C source file.
+a list of lines within a C source file.
 *Technically* `struct` declarations may span multiple source files, and
-*technically* multiple `struct` declarations may be declared on a single line,
+*technically* multiple `struct` declarations may occur on a single line,
 but this is so infrequent that the "list of lines" source code representation is
 adequate for our purposes.
 
@@ -116,8 +116,8 @@ has the tag `@struct`:
 We should attempt to parse a struct if and only if the first section of a `doc`
 has a tag that string-compares equal to `"struct"`.
 The `section` data structure represents a tag as a slice-of-`char`, so
-performing a string comparison between that and cstring `"struct"` will look
-something like:
+performing an equality string comparison against the cstring `"struct"`
+will look something like:
 
 ```c
 len == strlen("struct") && strncmp(start, "struct", len) == 0
@@ -211,15 +211,14 @@ parse_struct_source(void)
 
 We should take careful note that this method of parsing a `struct` has a fatal
 flaw: comments are *not* ignored.
-If the comment `// };` exists within the `struct` declaration then this parsing
+If the comment `// };` exists within the `struct` declaration then the parsing
 code will incorrectly count the `'}'` and `';'` characters even though they are
 "invisible" to the C compiler.
-We can always revisit this function later, so for now let's focus on getting
-things working and fix the comment issue at some later time (if ever).
+We can always revisit this function later, so for now let's ignore this issue
+and focus on getting things working.
 
 We will plug this function into `parse_doc` where we had our `puts` + `exit`
-before, and then add some logic to `print_doc` to write out the lines of source
-code associated with a `doc`:
+before, and then add some logic in `print_doc` to write out the source lines:
 
 ```c
 static struct doc
@@ -280,12 +279,12 @@ Hooray!
 ## Additional Declarations
 
 In addition to `struct` declarations we also want to parse `union`, `enum`,
-`typedef` and variable declarations.
+`typedef`, and variable declarations.
 Conveniently the nifty trick for parsing `struct` declarations happens to apply
 for all of these cases as well.
 Rather than write a function for each of these C constructs, we can duplicate
-the string comparison check for each case and use `parse_struct_source` for all
-of them:
+the string comparison check for each case and reuse `parse_struct_source` for
+all of them:
 
 ```c
 static struct doc
@@ -350,8 +349,8 @@ int foo(double bar)
 }
 ```
 
-We want `cdoc` to be able to handle documentation for both cases, and while our
-trick for parsing `struct` declarations *would* work for a forward declared
+We want `cdoc` to be able to handle both cases, and while our
+trick for parsing `struct` declarations *would* work with a forward declared
 function, that trick would fail to parse a function definition.
 We will create a function that is mostly copy-pasted from `parse_struct_source`,
 but will check for a `';'` or a `'{'` and stop parsing if it either is
@@ -387,7 +386,6 @@ parse_function_source(void)
                 parsed = true;
                 lines = xalloc(lines, (count + 1) * sizeof(char*));
                 lines[count++] = "/* function definition... */";
-
             }
             if (*cp == '{' || *cp == ';') parsed = true;
         }
@@ -449,10 +447,9 @@ and now contains source code for the `swap` and `get_color` functions found in
 The last C construct we want to parse is preprocessor macros.
 These are actually the easiest to parse since macros only end when the last
 character of a line is not a backslash.
-We will once again copy-paste the `parse_struct_source` function, and replace
-the inner `for`-loop with a one-liner that checks the last character of that
-line:
-
+We will once again copy-paste the `parse_struct_source` function, this time
+replacing the inner `for`-loop with a one-liner that checks the last character
+of that line:
 
 ```sh
 static char**
