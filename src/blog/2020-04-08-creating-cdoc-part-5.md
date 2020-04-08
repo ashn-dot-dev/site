@@ -270,7 +270,7 @@ c99 -o cdoc cdoc.o -O0 -g
 ```
 
 The generated `example0.html` output can be found
-[here](/blog/wip-creating-cdoc-part-5/example0.html)
+[here](/blog/2020-04-08-creating-cdoc-part-5/example0.html)
 and contains a copy of the source for `struct string` from `example.c`.
 Hooray!
 
@@ -325,7 +325,7 @@ c99 -o cdoc cdoc.o -O0 -g
 ```
 
 The generated `example1.html` output can be found
-[here](/blog/wip-creating-cdoc-part-5/example1.html)
+[here](/blog/2020-04-08-creating-cdoc-part-5/example1.html)
 and looks like it was able to correctly parse the source for all of the C
 constructs we added.
 
@@ -436,7 +436,7 @@ c99 -o cdoc cdoc.o -O0 -g
 ```
 
 The generated `example2.html` output can be found
-[here](/blog/wip-creating-cdoc-part-5/example2.html)
+[here](/blog/2020-04-08-creating-cdoc-part-5/example2.html)
 and now contains source code for the `swap` and `get_color` functions found in
 `example.c`.
 
@@ -530,7 +530,7 @@ c99 -o cdoc cdoc.o -O0 -g
 ```
 
 The generated `example3.html` output can be found
-[here](/blog/wip-creating-cdoc-part-5/example3.html).
+[here](/blog/2020-04-08-creating-cdoc-part-5/example3.html).
 As expected the macros are parsed just fine.
 
 --------------------------------------------------------------------------------
