@@ -51,7 +51,7 @@ And with that, version 0.1 of `cdoc` is released.
 
 Release 0.1 marks the end of this series, but not the end of `cdoc` development.
 The goal of this series was to build a documentation generator from scratch, and
-after 5+ posts we have done just that.
+after 5+ posts we have done just that[\[1\]](#ft1).
 There is a *lot* of work that needs to be done to bring `cdoc` out of an
 alpha-quality state, and I hope to accomplish that work over the coming months
 and years.
@@ -75,6 +75,7 @@ Here is a small sampling of things on the TODO list:
       data structure which leads to poor information locality
 + Clean up the overall code quality of the project
 
+
 ## Wrapping Up
 
 Thank you so much for joining me on this journey.
@@ -84,3 +85,10 @@ If you have any questions, comments, or concerns please feel free to reach out
 to me by email.
 
 Cheers and stay hydrated!
+
+
+## Footnotes
+<div id="ft1">\[1\]:
+Plus each of these posts take a weirdly long time to put together and I have
+other important stuff I need to do.
+</div>
