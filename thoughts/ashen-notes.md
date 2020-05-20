@@ -3,13 +3,9 @@ Ashen Notes
 
 Playing on Nintendo Switch.
 Game is normally $40 on the eShop, but I got it on sale for $20.
-I think there is a good seed of a game here, but honestly right now I would
-really only give it a 3/5.
-
-Almost done first play through at the time I started writing this.
-I am on the final boss (Sissna) after playing for roughly thirty hours, but
-don't know if I care enough to beat that boss because I am just so painfully
-bored of the game at this point.
+Finished my first play through in 30h48m.
+I think there is a good seed of a game here, but right now I would only give it
+a 3/5.
 
 ## Good
 I love the art style.
@@ -41,6 +37,13 @@ them.
 It's like that torch mechanic from DSII that was removed in the final game, only
 in Ashen it is a core part of gameplay and exploration.
 
+Journeys are a fantastic idea, and I love the idea of side-quests being the only
+thing that grants a true equivalent to leveling.
+It prevents grinding until you can brute-force an area or boss.
+I don't think was explored as much as it could have, and I find it weird that
+you can have a companion in your party, get the item for their journey, and
+still need to head back to the town to talk to them about it.
+
 
 ## Bad
 Very small pool of enemy types.
@@ -70,16 +73,26 @@ Boss battles are really lacking:
 + Garoran's fight was bland and uneventful.
 + Amiren's fight is the most enjoyable fight in the game and is the fight that
 comes closest to a traditional Dark Souls boss.
-+ Shadow of the Ashen's fight feels unfinished.
++ Shadow of the Ashen's fight feels unfinished. The enemies that constantly
+spawn during the battle feels out of place, and the actual boss has such low DPS
+that he is never really that much of a threat.
 + Sissna's fight is a huge difficulty spike compared to the rest of the game up
-to that point. The big twist/reveal was cool and definitely surprised me, and
-her fight is the most mechanically interesting of the bosses so far, but she
-still only come in as a mid-tier boss fight in the souls series (think Iudex
-Gundyr).
+to that point, but even then she only took four tries for me. The big
+twist/reveal was cool and definitely surprised me, and her fight is the most
+mechanically interesting of the bosses, but she still only feels like a mid-tier
+boss fight in the souls series (think Iudex Gundyr).
 
-In general bosses also have way too much health. If the bosses had half as much
-health as they currently do then I think the fights would still have the same
-level of difficulty, but would be much less tedious.
+Story is pretty meh.
+Too much lore with not enough enough of it shown to the player.
+Text-box lore doesn't really do it for me, and I didn't feel invested in the
+story or any of the supporting chracters.
+I checked out about half way through the game and mostly just speed-read journey
+descriptions.
+
+In general bosses have way too much health.
+If the bosses (except Sissna) had half as much health as they currently do then
+I think the fights would still have the same level of difficulty, but would be
+much less tedious.
 
 Platforming is really bad.
 The movement system and engine really don't feel like they fit the platforming
@@ -109,7 +122,7 @@ press on or not because you don't know how further it is to safety).
 But both of these dungeons are way to long and after you've gone through a
 portion of them once it is tedious to go through that section again to get back
 to where you were.
-I was lucking in that I found a secret path to the bottom in the first dungeon,
+I was lucky in that I found a secret path to the bottom in the first dungeon,
 but when I went back to use the long-route just to see how it is I was so bored
 by the time I got to the checkpoint before the boss.
 The second dungeon has a massive problem in that the hallways all look and play
