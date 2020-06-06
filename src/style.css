@@ -10,6 +10,7 @@
   --color-bg-mid: var(--color-gray-mid);
   --color-bg-lit: var(--color-gray-lit);
   --color-text: var(--color-tan);
+  --color-link: var(--color-red);
 }
 
 body {
@@ -41,7 +42,7 @@ h2, h3, h4 {
 }
 
 a {
-  color: var(--color-red);
+  color: var(--color-link);
   text-decoration: none;
   outline: 0;
 }
@@ -66,4 +67,7 @@ section code {
 }
 section pre code {
   color: var(--color-text);
+}
+section a code {
+  color: var(--color-link);
 }

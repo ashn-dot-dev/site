@@ -1,7 +1,10 @@
 Typesafe Result Codes in C
 ==========================
 
-## Different Error Handling Mechanisms
+Let's take a look at three functions:
+[`open`](https://linux.die.net/man/3/open),
+[`fopen`](https://linux.die.net/man/3/fopen),
+and [`sqlite3_open`](https://www.sqlite.org/c3ref/open.html).
 
 ```c
 int fd = open("foo.txt", O_RDONLY);
@@ -25,6 +28,15 @@ if (res != SQLITE_OK) {
     // handle the error...
 }
 ```
+
+These functions perform similar operations yet use three different mechanisms
+for indicating and handling errors.
+The POSIX `open` function returns a non-negative file descriptor on success, or
+`-1` if an error occurred.
+The standard C `fopen` function returns a handle to a `FILE` object on success,
+or `NULL` if an error occurred.
+The function `sqlite3_open` returns an `int` corresponding to a SQLite
+[result code](https://sqlite.org/rescode.html#constraint_rowid).
 
 --------------------------------------------------------------------------------
 
