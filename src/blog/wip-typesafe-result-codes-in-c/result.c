@@ -9,16 +9,18 @@ reserror(struct rescode res)
 }
 #define RESCODE_SUCCESS (struct rescode){.error = 0}
 
-int
-do_thing(char const* path);
-struct rescode
-do_thing_rescode(char const* path);
-
-
 #include <errno.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdio.h>
+
+int
+do_thing(char const* path);
+struct rescode
+do_thing_rescode(char const* path);
+struct rescode
+fopen_resode(FILE** out_fp, char const* path, char const* mode);
 
 static void
 example(void)
@@ -62,6 +64,23 @@ example_rescode(void)
     }
 }
 
+static void
+example_fopen_rescode(void)
+{
+    char const* const path = "/path/that/does/not/exist";
+
+    FILE* fp = NULL;
+    struct rescode res = fopen_resode(&fp, path, "rb");
+    if (reserror(res)) {
+        printf("Failed to open '%s' - %s\n", path, strerror(res.error));
+        // handle error...
+    }
+
+    if (res != 0); // <- compile error
+    if (res < 0);  // <- compile error
+    if (!res);     // <- compile error
+}
+
 int
 main(void)
 {
@@ -72,6 +91,11 @@ main(void)
 
     puts("EXAMPLE WITH RESCODE");
     example_rescode();
+
+    fputs("\n\n", stdout);
+
+    puts("EXAMPLE FOPEN_RESCODE");
+    example_fopen_rescode();
 
     return EXIT_SUCCESS;
 }

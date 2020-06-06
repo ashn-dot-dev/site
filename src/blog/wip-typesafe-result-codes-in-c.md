@@ -1,6 +1,14 @@
 Typesafe Result Codes in C
 ==========================
 
+
+How do we indicate that an operation may fail.
+Java has [exceptions](https://docs.oracle.com/javase/8/docs/api/java/lang/Exception.html),
+Rust has [`Result`](https://doc.rust-lang.org/std/result/index.html),
+Go has [`error`](https://golang.org/pkg/builtin/#error),
+and of course C has... well C has a bunch of different ways of indicating
+errors.
+
 Let's take a look at three functions:
 [`open`](https://linux.die.net/man/3/open),
 [`fopen`](https://linux.die.net/man/3/fopen),
@@ -47,11 +55,13 @@ struct rescode
 {
     int error;
 };
+
 int
 reserror(struct rescode res)
 {
     return res.error;
 }
+
 #define RESCODE_SUCCESS (struct rescode){.error = 0}
 ```
 
@@ -88,13 +98,13 @@ fopen_resode(FILE** out_fp, char const* path, char const* mode)
 }
 ```
 ```c
-char const* path = "/path/that/does/not/exist";
+char const* const path = "/path/that/does/not/exist";
 
 FILE* fp = NULL;
-struct rescode res = try_fopen(&fp, path, "rb");
+struct rescode res = fopen_resode(&fp, path, "rb");
 if (reserror(res)) {
     printf("Failed to open '%s' - %s\n", path, strerror(res.error));
-    exit(EXIT_FAILURE);
+    // handle error...
 }
 ```
 
@@ -109,11 +119,13 @@ struct rescode
 {
     int error;
 };
+
 int
 reserror(struct rescode res)
 {
     return res.error;
 }
+
 #define RESCODE_SUCCESS (struct rescode){.error = 0}
 
 #include <errno.h>
@@ -270,3 +282,4 @@ main:                                   # @main
         mov     edi, 1
         call    exit
 ```
+
