@@ -50,6 +50,11 @@ a:hover {
   text-decoration: underline;
 }
 
+img {
+    max-width: 90%;
+    padding: 0 5%;
+}
+
 section pre {
   padding: 0.5rem;
   margin: 0.5rem;
