@@ -15,3 +15,11 @@ error check *and* you can reuse the macro for `strerror`-style error number
 extraction.
 Could also have a macro/function `MAKE_STATUS`/`make_status` that will construct
 this struct.
+
+## Cron Job to Automate Being a Good Romatic Partner
+Automated email reminders to initiate and set up dates.
+Use two lines in my crontab that send me email reminders every X and Y days
+where X and Y are relatively prime so that the time at which dates are scheduled
+doesn't *just* become painfully predictable monthly or bi-monthly event.
+
+Automated text reminders to ask partner about their day at 18:00 every weekday.
