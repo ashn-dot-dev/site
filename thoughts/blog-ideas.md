@@ -23,3 +23,10 @@ where X and Y are relatively prime so that the time at which dates are scheduled
 doesn't *just* become painfully predictable monthly or bi-monthly event.
 
 Automated text reminders to ask partner about their day at 18:00 every weekday.
+
+## Elseless Programming
+Reference that Golang talk about the things in go that the speaker never uses.
+
+## Golden Testing in C99
+Use autil library as example.
+Or put together a minimal Makefile + boilerplate code to get started.
