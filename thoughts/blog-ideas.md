@@ -30,3 +30,6 @@ Reference that Golang talk about the things in go that the speaker never uses.
 ## Golden Testing in C99
 Use autil library as example.
 Or put together a minimal Makefile + boilerplate code to get started.
+
+## Pre C99 static assert
+Use the hackey enum trick.
