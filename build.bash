@@ -75,7 +75,6 @@ build_html_pages() {
 build_blog_archive_page() {
     echo "==== BUILDING BLOG ARCHIVE PAGE ===="
     BLOG_INDEX_CONTENT=$(cat "${SRC_DIR}/blog.html")
-    BLOG_INDEX_CONTENT="${BLOG_INDEX_CONTENT}${NL}<ul style='list-style:none;'>"
     for f in $(ls "${SRC_DIR}/blog" | sort -r); do
         [ -d "${SRC_DIR}/blog/${f}" ]            && continue # Skip directories.
         [ $(echo "${f}" | head -c 3 -) = 'wip' ] && continue # Skip WIP entries.
@@ -87,14 +86,12 @@ build_blog_archive_page() {
         F_TITLE=$(md_page_title "${SRC_DIR}/blog/${f}")
         F_HREF="/blog/${f%.md}.html"
 
-        BLOG_INDEX_CONTENT="${BLOG_INDEX_CONTENT}${NL}<li>"
-        BLOG_INDEX_CONTENT="${BLOG_INDEX_CONTENT}${NL}  [ ${F_DATE} ] "
-        BLOG_INDEX_CONTENT="${BLOG_INDEX_CONTENT}${NL}  <a href=\"${F_HREF}\">"
-        BLOG_INDEX_CONTENT="${BLOG_INDEX_CONTENT}${NL}    ${F_TITLE}"
-        BLOG_INDEX_CONTENT="${BLOG_INDEX_CONTENT}${NL}  </a>"
-        BLOG_INDEX_CONTENT="${BLOG_INDEX_CONTENT}${NL}</li>"
+        BLOG_INDEX_CONTENT="${BLOG_INDEX_CONTENT}${NL}[ ${F_DATE} ] "
+        BLOG_INDEX_CONTENT="${BLOG_INDEX_CONTENT}${NL}<a href=\"${F_HREF}\">"
+        BLOG_INDEX_CONTENT="${BLOG_INDEX_CONTENT}${NL}  ${F_TITLE}"
+        BLOG_INDEX_CONTENT="${BLOG_INDEX_CONTENT}${NL}</a>"
+        BLOG_INDEX_CONTENT="${BLOG_INDEX_CONTENT}${NL}<br>"
     done
-    BLOG_INDEX_CONTENT="${BLOG_INDEX_CONTENT}${NL}</ul>"
     make_page "archive" "${BLOG_INDEX_CONTENT}" > "${OUT_DIR}/blog.html"
 }
 
