@@ -68,6 +68,7 @@ build_blog_page() {
 build_html_pages() {
     echo "==== BUILDING HTML PAGES ===="
     build_page_from_html "index.html" "ashn"
+    build_page_from_html "art.html" "art"
     build_page_from_html "mus.html" "music"
 }
 
