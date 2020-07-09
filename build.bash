@@ -13,7 +13,6 @@ if [ -d "${OUT_DIR}" ]; then
 fi
 mkdir -p "${OUT_DIR}"
 mkdir -p "${OUT_DIR}/blog"
-mkdir -p "${OUT_DIR}/mus"
 
 #== Website Generation Helper Utilities ========================================
 TEMPLATE=$(cat template.html)
@@ -115,7 +114,6 @@ copy_misc_files() {
     set -x
     cp "${SRC_DIR}/favicon.ico" "${OUT_DIR}"
     cp "${SRC_DIR}/style.css" "${OUT_DIR}"
-    cp -r "${SRC_DIR}/mus" "${OUT_DIR}" # music files
     { set +x; } 2> /dev/null
 }
 
