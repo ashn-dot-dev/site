@@ -79,6 +79,12 @@ Cyndr's health until it dies.
 
 <img src="wip-gw1-cyndr-the-mountain-heart/hero-using-skills.jpg">
 
+In some cases your hero will appear to be in the correct position, but Cyndr
+will be able to hit them with
+[Bed of Coals](https://wiki.guildwars.com/wiki/Bed_of_Coals).
+If this happens, move the player character far away from the action and try
+adjusting the necromancer hero's flag location until they find the sweet spot.
+
 Good luck and have fun!
 
 ## Thanks
