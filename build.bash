@@ -13,6 +13,7 @@ if [ -d "${OUT_DIR}" ]; then
 fi
 mkdir -p "${OUT_DIR}"
 mkdir -p "${OUT_DIR}/blog"
+mkdir -p "${OUT_DIR}/proj"
 
 #== Website Generation Helper Utilities ========================================
 TEMPLATE=$(cat template.html)
@@ -70,6 +71,8 @@ build_html_pages() {
     build_page_from_html "index.html" "ashn"
     build_page_from_html "art.html" "art"
     build_page_from_html "mus.html" "music"
+
+    build_page_from_html "proj/scratchpad.html" "Scratchpad"
 }
 
 build_blog_archive_page() {
