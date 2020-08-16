@@ -112,6 +112,8 @@ copy_misc_files() {
     set -x
     cp "${SRC_DIR}/favicon.ico" "${OUT_DIR}"
     cp "${SRC_DIR}/style.css" "${OUT_DIR}"
+    cp -r "${SRC_DIR}/art/" "${OUT_DIR}"
+    cp -r "${SRC_DIR}/mus/" "${OUT_DIR}"
     { set +x; } 2> /dev/null
 }
 
