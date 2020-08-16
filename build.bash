@@ -72,7 +72,8 @@ build_html_pages() {
     build_page_from_html "art.html" "art"
     build_page_from_html "mus.html" "music"
 
-    build_page_from_html "proj/scratchpad.html" "Scratchpad"
+    build_page_from_html "proj.html" "projects"
+    build_page_from_html "proj/scratchpad.html" "scratchpad"
 }
 
 build_blog_archive_page() {
