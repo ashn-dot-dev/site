@@ -54,9 +54,9 @@ Although the exact positions of Cyndr and your necromancer hero will vary from
 attempt to attempt, the two images below provide a rough idea of where the two
 need to be in order for this strategy to work.
 
-<img src="wip-gw1-cyndr-the-mountain-heart/cynder-the-mountain-heart-location.jpg">
+<img src="2020-08-16-gw1-cyndr-the-mountain-heart/cynder-the-mountain-heart-location.jpg">
 
-<img src="wip-gw1-cyndr-the-mountain-heart/hero-flag-location.jpg">
+<img src="2020-08-16-gw1-cyndr-the-mountain-heart/hero-flag-location.jpg">
 
 It is unlikely that Cyndr will have an optimal spawn, so the first
 portion of the fight will likely involve exploding Dwarven Powder Kegs near
@@ -76,7 +76,7 @@ The -3 Health degeneration from Barbed Signet mostly cancels out Cyndr's health
 regeneration, and the life steal from Vampric Gaze will slowly whittle down
 Cyndr's health until it dies.
 
-<img src="wip-gw1-cyndr-the-mountain-heart/hero-using-skills.jpg">
+<img src="2020-08-16-gw1-cyndr-the-mountain-heart/hero-using-skills.jpg">
 
 In some cases your hero will appear to be in the correct position, but Cyndr
 will be able to hit them with
