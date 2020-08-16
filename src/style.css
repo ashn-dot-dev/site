@@ -55,6 +55,11 @@ img {
     margin: 0 auto;
     max-width: 90%;
 }
+video {
+    display: block;
+    margin: 0 auto;
+    max-width: 90%;
+}
 
 section pre {
   padding: 0.5rem;
