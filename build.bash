@@ -74,6 +74,9 @@ build_html_pages() {
 
     build_page_from_html "proj.html" "projects"
     build_page_from_html "proj/scratchpad.html" "scratchpad"
+    build_page_from_html "proj/life.html" "life"
+    # TODO: Maybe sepate where we build individual projects like life?
+    cp -r "${SRC_DIR}/proj/life/" "${OUT_DIR}/proj/life/"
 }
 
 build_blog_archive_page() {

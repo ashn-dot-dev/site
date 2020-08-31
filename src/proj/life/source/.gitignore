@@ -1,0 +1,9 @@
+life
+
+*.out
+*.o
+*.a
+
+*.html
+*.js
+*.wasm
