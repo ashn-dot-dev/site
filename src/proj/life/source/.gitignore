@@ -4,6 +4,7 @@ life
 *.o
 *.a
 
+!shell.html
 *.html
 *.js
 *.wasm
