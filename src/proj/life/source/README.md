@@ -11,7 +11,7 @@ rule set, ranging from gliders all the way up to working computer architectures
 capable of playing Tetris[1].
 
 My entry was developed using my own work-in-progress 2D engine with an SDL2
-backed.
+backend.
 I currently do not have access to a Window or Mac development machine, so to
 keep things cross platform I compiled the entire thing for the web with
 Emscripten.

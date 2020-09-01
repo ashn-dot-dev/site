@@ -66,17 +66,12 @@ build_blog_page() {
 }
 
 #== Generate the Actual Website ================================================
-build_html_pages() {
-    echo "==== BUILDING HTML PAGES ===="
+build_main_pages() {
+    echo "==== BUILDING MAIN HTML PAGES ===="
     build_page_from_html "index.html" "ashn"
     build_page_from_html "art.html" "art"
     build_page_from_html "mus.html" "music"
-
     build_page_from_html "proj.html" "projects"
-    build_page_from_html "proj/scratchpad.html" "scratchpad"
-    build_page_from_html "proj/life.html" "life"
-    # TODO: Maybe sepate where we build individual projects like life?
-    cp -r "${SRC_DIR}/proj/life/" "${OUT_DIR}/proj/life/"
 }
 
 build_blog_archive_page() {
@@ -114,6 +109,22 @@ build_blog_entry_pages() {
     wait
 }
 
+build_proj_pages() {
+    echo "==== BUILDING PROJECT PAGES ===="
+    build_proj_scratchpad() {
+        build_page_from_html "proj/scratchpad.html" "scratchpad"
+    }
+
+    build_proj_life() {
+        build_page_from_html "proj/life.html" "life"
+        (cd "${SRC_DIR}/proj/life/source/" && make clean)
+        cp -r "${SRC_DIR}/proj/life/" "${OUT_DIR}/proj/life/"
+    }
+
+    build_proj_scratchpad
+    build_proj_life
+}
+
 copy_misc_files() {
     echo "==== COPYING MISC FILES ===="
     set -x
@@ -124,7 +135,8 @@ copy_misc_files() {
     { set +x; } 2> /dev/null
 }
 
-time build_html_pages
+time build_main_pages
 time build_blog_archive_page
 time build_blog_entry_pages
+time build_proj_pages
 time copy_misc_files
