@@ -60,4 +60,4 @@ format:
 
 .SUFFIXES: .c .o
 .c.o:
-	$(CC) -o $@ $(INCS) $(CFLAGS) -c $<
+	$(CC) -o $@ $(CFLAGS) -c $<
