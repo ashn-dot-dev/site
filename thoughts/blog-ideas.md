@@ -33,3 +33,7 @@ Or put together a minimal Makefile + boilerplate code to get started.
 
 ## Pre C99 static assert
 Use the hackey enum trick.
+
+## Golflibc
+ANSI C standards compliant libc that uses the fewest number of possible ASCII
+characters.
