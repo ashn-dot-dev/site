@@ -28,6 +28,9 @@ body *::selection {
   background-color: var(--color-bg-mid);
 }
 
+header nav {
+  text-align: center;
+}
 footer {
   color: var(--color-gray-lit);
 }
