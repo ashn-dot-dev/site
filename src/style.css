@@ -13,6 +13,7 @@
   --color-link: var(--color-red);
 }
 
+/* GENERAL STYLING */
 body {
   font-size: 18px;
   font-family: sans-serif;
@@ -51,6 +52,7 @@ a:hover {
   text-decoration: underline;
 }
 
+/* MEDIA ELEMENTS */
 canvas {
     display: block;
     margin: 0 auto;
@@ -67,7 +69,8 @@ video {
     max-width: 90%;
 }
 
-section pre {
+/* CODE (GENERATED FROM PANDOC) */
+main pre {
   padding: 0.5rem;
   margin: 0.5rem;
 
@@ -76,15 +79,15 @@ section pre {
   font-size: 15px;
   overflow-x: auto;
 }
-section pre *::selection {
+main pre *::selection {
   background-color: var(--color-bg-lit);
 }
-section code {
+main code {
   color: var(--color-orange);
 }
-section pre code {
+main pre code {
   color: var(--color-text);
 }
-section a code {
+main a code {
   color: var(--color-link);
 }
