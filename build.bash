@@ -79,7 +79,7 @@ build_blog_archive_page() {
     BLOG_INDEX_CONTENT=$(cat "${SRC_DIR}/blog.html")
     for f in $(ls "${SRC_DIR}/blog" | sort -r); do
         [ -d "${SRC_DIR}/blog/${f}" ]            && continue # Skip directories.
-        [ $(echo "${f}" | head -c 3 -) = 'wip' ] && continue # Skip WIP entries.
+        [ "$(echo "${f}" | head -c 3 -)" = 'wip' ] && continue # Skip WIP entries.
 
         echo "PROCESSING BLOG ENTRY: ${f}"
         # YYYY-MM-DD
