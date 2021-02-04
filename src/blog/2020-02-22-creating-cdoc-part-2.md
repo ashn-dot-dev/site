@@ -35,7 +35,7 @@ void swap(void* p1, void* p2, size_t size);
 ```
 
 using `//!` [comment blocks](http://www.doxygen.nl/manual/docblocks.html)
-and Javadoc style tags[\[1\]](#ft1).
+and Javadoc style tags[^1].
 I also prefer to write section text indented starting on the line after a tag
 because to me:
 
@@ -51,12 +51,12 @@ is easier to read than:
 ```
 
 This documentation style would work well for `cdoc` because it seems fairly
-straightforward to parse[\[2\]](#ft2) and uses a syntax that many developers are
+straightforward to parse[^2] and uses a syntax that many developers are
 already familiar with.
 To make our lives easier during parsing we are also going to say that every
 section of a doc must start with a tag line.
 As a convention the first section of a doc should have a tag that describes the
-C construct being documented[\[3\]](#ft3) (where applicable).
+C construct being documented[^3] (where applicable).
 The `brief` section in our Doxygen example above:
 
 ```c
@@ -229,21 +229,19 @@ The source code for this blog post can be found
 
 
 ## Footnotes
-<div id="ft1">\[1\]:
+[^1]:
 Doxygen uses the term [command](http://www.doxygen.nl/manual/commands.html) for
 `@foo` or `\foo`, but I have always heard these referred to as tags.
 I am going to use "tag" for this series because I think it is a much clearer
 name.
-</div>
 
-<div id="ft2">\[2\]:
+[^2]:
 Spoiler - I have actually already written the parser for `cdoc`, so my intuition
 on what should and should not be in the documentation language is a more a
 product of trial and error over many weekends rather than any sort of informed
 parsing wisdom.
-</div>
 
-<div id="ft3">\[3\]:
+[^3]:
 Although most of `cdoc`'s documentation language is "borrowed" from Doxygen the
 convention to use the first tag as a description of the construct being
 documented is being lifted from
@@ -251,4 +249,3 @@ documented is being lifted from
 another high quality documentation generator.
 If the Doxygen/Javadoc/Cdoc documentation style is not your cup of tea then I
 would give NaturalDocs a look.
-</div>

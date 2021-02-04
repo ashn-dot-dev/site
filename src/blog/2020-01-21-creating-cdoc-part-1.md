@@ -55,7 +55,7 @@ While we are setting up boilerplate we might as well add a `Makefile` and
 Neither are strictly necessary, but I like having them even if our project
 consists of only one `.c` file.
 Adding a `Makefile` helps to standardize the build process for all
-users[\[1\]](#ft1), and a `.clang-format` will help future contributors follow
+users[^1], and a `.clang-format` will help future contributors follow
 consistent style guidelines with minimal effort.
 
 Our `Makefile` contains three targets:
@@ -460,7 +460,7 @@ The source code for this blog post can be found
 [here](https://git.sr.ht/~ashn/cdoc/tree/895edeebd33551540276a042fda9cef0911bd5b2).
 
 ## Footnotes
-<div id="ft1">\[1\]:
+[^1]:
 Although there are many different C/C++ build systems I choose to use `make` for
 all of my C/C++ projects.
 Most distributions of Unix-like operating systems have some version of `make`
@@ -469,4 +469,3 @@ whatever else are not guaranteed the be on the end-user's machine.
 For a good tutorial on writing `Makefile`s I would recommend
 ["A Tutorial on Portable Makefiles"](https://nullprogram.com/blog/2017/08/20/)
 from Chris Wellons' blog.
-</div>

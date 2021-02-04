@@ -6,7 +6,7 @@ The number of elements in a C array can be determined through the use of the
 ```c
 #define ARRAY_LENGTH(x) (sizeof(x) / sizeof((x)[0]))
 ```
-This macro is not a part of the C standard[\[1\]](#ft1), but it is common to
+This macro is not a part of the C standard[^1], but it is common to
 find individual codebases defining `ARRAY_LENGTH` or one of its variants
 (`ARRAY_LEN`, `ARRAY_SIZE`, `ARRAY_COUNT`, `COUNTOF`, `NUM_ELEMS`, etc.)
 internally.
@@ -171,9 +171,8 @@ CSTR_COUNT(FOO)  == 4
 ```
 
 ## Footnotes
-<div id="ft1">\[1\]:
+[^1]:
 Sort of...
 The expression `sizeof array / sizeof array[0]` actually *does* appear in the
 standard as we will see shortly.
 However the `#define` for `ARRAY_LENGTH` does not.
-</div>

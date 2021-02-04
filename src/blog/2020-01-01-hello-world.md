@@ -3,7 +3,7 @@ Hello World
 
 Happy new year!
 
-Today marks the first day of the year 2020[\[1\]](#ft1), as well as the day I
+Today marks the first day of the year 2020[^1], as well as the day I
 unveil of this little corner of the internet I am calling my blog.
 I have been wanting to create my own site/blog for a while, but did not get
 around to setting up any sort of web presence until now because:
@@ -33,10 +33,9 @@ Stay hydrated.
 \- ashn
 
 ## Footnotes
-<div id="ft1">\[1\]:
+[^1]:
 [Depending](https://en.wikipedia.org/wiki/Gregorian_calendar) on
 [which](https://en.wikipedia.org/wiki/ISO_week_date)
 [calendar](https://en.wikipedia.org/wiki/Hebrew_calendar)
 [you](https://en.wikipedia.org/wiki/Islamic_calendar)
 [use](https://en.wikipedia.org/wiki/Chinese_calendar).
-</div>

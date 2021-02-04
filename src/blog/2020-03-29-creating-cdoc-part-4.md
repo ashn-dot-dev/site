@@ -13,7 +13,7 @@ improvements to what we currently have.
 ## Replacing `realloc`
 Right now there are many places where we dynamically allocate/reallocate memory
 with `realloc` and immediately `assert` that a non-`NULL` value was returned.
-It is possible that `realloc` may fail[\[1\]](#ft1), so we *should* have some
+It is possible that `realloc` may fail[^1], so we *should* have some
 form of `NULL`-check in place.
 However, `assert` is not best option for doing so: `assert`s are disabled when
 `NDEBUG` is defined and if we *always* want to `exit` (or `abort`) on allocation
@@ -238,11 +238,10 @@ constructs by adding their associated source code to the generated HTML.
 I hope to see you then!
 
 ## Footnotes
-<div id="ft1">\[1\]:
+[^1]:
 I have noticed that the Linux-centric model of overcommit-by-default memory
 allocation has lead many programmers to assume that `malloc` and friends will
 never return `NULL`.
 At some point I would like to write an article on how this assumption is both
 wrong and dangerous, but I think that sort of rant is best left for another
 time.
-</div>
