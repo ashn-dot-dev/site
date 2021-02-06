@@ -70,7 +70,6 @@ build_main_pages() {
     echo "==== BUILDING MAIN HTML PAGES ===="
     build_page_from_html "index.html" "ashn"
     build_page_from_html "art.html" "art"
-    build_page_from_html "mus.html" "music"
     build_page_from_html "proj.html" "projects"
 }
 
@@ -131,7 +130,6 @@ copy_misc_files() {
     cp "${SRC_DIR}/favicon.ico" "${OUT_DIR}"
     cp "${SRC_DIR}/style.css" "${OUT_DIR}"
     cp -r "${SRC_DIR}/art/" "${OUT_DIR}"
-    cp -r "${SRC_DIR}/mus/" "${OUT_DIR}"
     { set +x; } 2> /dev/null
 }
 
