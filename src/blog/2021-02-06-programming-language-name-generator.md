@@ -41,7 +41,7 @@ Language name idea #5: Gonr
 ```
 
 With this *revolutionary* technology you too can generate your own vaguely
-western sounding three-to-four letter name that is guaranteed catapult your
+western sounding three-to-four letter name that is guaranteed to catapult your
 language to the top of the GitHub trending page!
 
 Download the sources for yourself from
@@ -49,7 +49,7 @@ Download the sources for yourself from
 [GitHub](https://github.com/ash-nolan/plname).
 
 <small><small><small>
-This is a tongue-in-cheek joke. No disrespect is meant towards any of the
-aforementioned languages, their authors, or the members of there respective
+This is a tongue-in-cheek joke. No disrespect is intended towards any of the
+aforementioned languages, their authors, or the members of their respective
 communities. 😛
 </small></small></small>
