@@ -87,7 +87,7 @@ build_blog_archive_page() {
         F_TITLE=$(md_page_title "${SRC_DIR}/blog/${f}")
         F_HREF="/blog/${f%.md}.html"
 
-        BLOG_INDEX_CONTENT="${BLOG_INDEX_CONTENT}${NL}[ ${F_DATE} ] "
+        BLOG_INDEX_CONTENT="${BLOG_INDEX_CONTENT}${NL}[${F_DATE}] "
         BLOG_INDEX_CONTENT="${BLOG_INDEX_CONTENT}${NL}<a href=\"${F_HREF}\">"
         BLOG_INDEX_CONTENT="${BLOG_INDEX_CONTENT}${NL}  ${F_TITLE}"
         BLOG_INDEX_CONTENT="${BLOG_INDEX_CONTENT}${NL}</a>"
