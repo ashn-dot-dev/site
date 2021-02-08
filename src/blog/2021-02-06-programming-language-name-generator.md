@@ -50,6 +50,6 @@ Download the sources for yourself from
 
 <small><small><small>
 This is a tongue-in-cheek joke. No disrespect is intended towards any of the
-aforementioned languages, their authors, or the members of their respective
+aforementioned languages, their authors, or members of their respective
 communities. 😛
 </small></small></small>
