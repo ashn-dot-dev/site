@@ -43,7 +43,7 @@ build_page_from_html() {
     OUT_FILE="${OUT_DIR}/${SRC_PATH}"
 
     CONTENT=$(cat "${SRC_FILE}")
-    make_page "${TITLE}" "${CONTENT}" > "${OUT_FILE}"
+    make_page "${TITLE}" "${CONTENT}" >"${OUT_FILE}"
 }
 
 build_page_from_md() {
@@ -55,7 +55,7 @@ build_page_from_md() {
     OUT_FILE="${OUT_DIR}/${SRC_PATH%.md}.html"
 
     CONTENT=$(pandoc --preserve-tabs "${SRC_FILE}")
-    make_page "${TITLE}" "${CONTENT}" > "${OUT_FILE}"
+    make_page "${TITLE}" "${CONTENT}" >"${OUT_FILE}"
 }
 
 build_blog_page() {
@@ -77,8 +77,8 @@ build_blog_archive_page() {
     echo "==== BUILDING BLOG ARCHIVE PAGE ===="
     BLOG_INDEX_CONTENT=$(cat "${SRC_DIR}/blog.html")
     for f in $(ls "${SRC_DIR}/blog" | sort -r); do
-        [ -d "${SRC_DIR}/blog/${f}" ]            && continue # Skip directories.
-        [ "$(echo "${f}" | head -c 3 -)" = 'wip' ] && continue # Skip WIP entries.
+        [ -d "${SRC_DIR}/blog/${f}" ]              && continue # Skip dirs
+        [ "$(echo "${f}" | head -c 3 -)" = 'wip' ] && continue # Skip WIP posts
 
         echo "PROCESSING BLOG ENTRY: ${f}"
         # YYYY-MM-DD
@@ -93,7 +93,7 @@ build_blog_archive_page() {
         BLOG_INDEX_CONTENT="${BLOG_INDEX_CONTENT}${NL}</a>"
         BLOG_INDEX_CONTENT="${BLOG_INDEX_CONTENT}${NL}<br>"
     done
-    make_page "archive" "${BLOG_INDEX_CONTENT}" > "${OUT_DIR}/blog.html"
+    make_page "archive" "${BLOG_INDEX_CONTENT}" >"${OUT_DIR}/blog.html"
 }
 
 build_blog_entry_pages() {
@@ -130,7 +130,7 @@ copy_misc_files() {
     cp "${SRC_DIR}/favicon.ico" "${OUT_DIR}"
     cp "${SRC_DIR}/style.css" "${OUT_DIR}"
     cp -r "${SRC_DIR}/art/" "${OUT_DIR}"
-    { set +x; } 2> /dev/null
+    { set +x; } 2>/dev/null
 }
 
 time build_main_pages
