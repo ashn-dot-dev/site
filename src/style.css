@@ -97,6 +97,9 @@ main code {
 main pre code {
   color: var(--color-text);
 }
+main pre code a {
+  color: var(--color-text);
+}
 main a code {
   color: var(--color-link);
 }
