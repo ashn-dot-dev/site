@@ -88,18 +88,18 @@ main pre {
   font-size: 15px;
   overflow-x: auto;
 }
-main pre *::selection {
-  background-color: var(--color-bg-lit);
-}
 main code {
   color: var(--color-orange);
 }
-main pre code {
-  color: var(--color-text);
-}
-main pre code a {
-  color: var(--color-text);
-}
 main a code {
   color: var(--color-link);
+}
+* pre code * {
+  color: var(--color-text);
+}
+* pre *::selection {
+  background-color: var(--color-bg-lit);
+}
+* pre * a:hover {
+  text-decoration: none;
 }
