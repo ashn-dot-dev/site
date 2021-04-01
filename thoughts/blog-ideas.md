@@ -37,3 +37,11 @@ Use the hackey enum trick.
 ## Golflibc
 ANSI C standards compliant libc that uses the fewest number of possible ASCII
 characters.
+
+## Electoral College / House of Representative Apportionment Calculations
+
+See:
++ https://en.wikipedia.org/wiki/United_States_congressional_apportionment
++ https://en.wikipedia.org/wiki/Huntington%E2%80%93Hill_method
++ https://www.youtube.com/watch?v=6JN4RI7nkes
+
