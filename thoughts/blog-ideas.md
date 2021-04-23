@@ -38,8 +38,12 @@ Use the hackey enum trick.
 ANSI C standards compliant libc that uses the fewest number of possible ASCII
 characters.
 
-## Electoral College / House of Representative Apportionment Calculations
+## Metronome-Lang
+Esolang that has random effects for some core keywords, where the initial RNG
+seed is based the hash of the program. Allows random-effects to happen while
+programming while still being deterministic.
 
+## Electoral College / House of Representative Apportionment Calculations
 See:
 + https://en.wikipedia.org/wiki/United_States_congressional_apportionment
 + https://en.wikipedia.org/wiki/Huntington%E2%80%93Hill_method
