@@ -13,7 +13,7 @@ if [ -d "${OUT_DIR}" ]; then
 fi
 mkdir -p "${OUT_DIR}"
 mkdir -p "${OUT_DIR}/blog"
-mkdir -p "${OUT_DIR}/proj"
+mkdir -p "${OUT_DIR}/projects"
 
 #== Website Generation Helper Utilities ========================================
 TEMPLATE=$(cat template.html)
@@ -69,8 +69,8 @@ build_blog_page() {
 build_main_pages() {
     echo "==== BUILDING MAIN HTML PAGES ===="
     build_page_from_html "index.html" "ashn"
-    build_page_from_html "art.html" "art"
-    build_page_from_html "proj.html" "projects"
+    build_page_from_html "misc.html" "misc"
+    build_page_from_html "projects.html" "projects"
 }
 
 build_blog_archive_page() {
@@ -108,20 +108,20 @@ build_blog_entry_pages() {
     wait
 }
 
-build_proj_pages() {
-    echo "==== BUILDING PROJECT PAGES ===="
-    build_proj_scratchpad() {
-        build_page_from_html "proj/scratchpad.html" "scratchpad"
+build_projects_pages() {
+    echo "==== BUILDING PROJECTS PAGES ===="
+    build_projects_scratchpad() {
+        build_page_from_html "projects/scratchpad.html" "scratchpad"
     }
 
-    build_proj_life() {
-        build_page_from_html "proj/life.html" "life"
-        (cd "${SRC_DIR}/proj/life/source/" && make clean)
-        cp -r "${SRC_DIR}/proj/life/" "${OUT_DIR}/proj/life/"
+    build_projects_life() {
+        build_page_from_html "projects/life.html" "life"
+        (cd "${SRC_DIR}/projects/life/source/" && make clean)
+        cp -r "${SRC_DIR}/projects/life/" "${OUT_DIR}/projects/life/"
     }
 
-    build_proj_scratchpad
-    build_proj_life
+    build_projects_scratchpad
+    build_projects_life
 }
 
 copy_misc_files() {
@@ -129,12 +129,12 @@ copy_misc_files() {
     set -x
     cp "${SRC_DIR}/favicon.ico" "${OUT_DIR}"
     cp "${SRC_DIR}/style.css" "${OUT_DIR}"
-    cp -r "${SRC_DIR}/art/" "${OUT_DIR}"
+    cp -r "${SRC_DIR}/misc/" "${OUT_DIR}"
     { set +x; } 2>/dev/null
 }
 
 time build_main_pages
 time build_blog_archive_page
 time build_blog_entry_pages
-time build_proj_pages
+time build_projects_pages
 time copy_misc_files
