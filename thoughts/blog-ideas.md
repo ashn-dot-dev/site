@@ -25,7 +25,7 @@ doesn't *just* become painfully predictable monthly or bi-monthly event.
 Automated text reminders to ask partner about their day at 18:00 every weekday.
 
 ## Elseless Programming
-Reference that Golang talk about the things in go that the speaker never uses.
+Reference that Golang talk about the things in Go that the speaker never uses.
 
 ## Golden Testing in C99
 Use autil library as example.
@@ -55,3 +55,8 @@ for (size_t i = thing_count; i--;) {
   // code...
 }
 ```
+
+## Render Bad Apple Using GCC error messages.
+Find some way to make GCC error messages print out in some sort of Pixel format
+on a monospace terminal. Construct C programs that produce the desired frame in
+error messages when compiled. Profit.
