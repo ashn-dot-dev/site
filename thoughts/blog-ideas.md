@@ -60,3 +60,8 @@ for (size_t i = thing_count; i--;) {
 Find some way to make GCC error messages print out in some sort of Pixel format
 on a monospace terminal. Construct C programs that produce the desired frame in
 error messages when compiled. Profit.
+
+## Render Mandelbrot Set using things other than the actual equation
+Bezier curves, machine learning, or maybe something else. Basically try to
+approximate the famous image of the Mandelbrot set without actually using the
+correct math.
