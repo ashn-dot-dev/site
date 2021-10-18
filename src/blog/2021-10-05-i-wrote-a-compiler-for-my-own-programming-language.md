@@ -234,8 +234,8 @@ var n: typeof(m) = m + 1;
 Automatic index out-of-bounds, integer overflow, integer underflow, and
 divide-by-zero checking:
 ```txt
-# When this expression is executed the program will print the following error
-# message and exit:
+# When this expression is executed the program will print the following
+# error message and exit:
 #
 # fatal: arithmetic operation produces out-of-range result
 0xFFFFu16 + 1u16;
@@ -279,7 +279,7 @@ on the language, compiler, and standard library over the coming weeks, months,
 and (maybe) years.
 
 There is no shortage of work to be done on the Sunder project. The language has
-no concept of user defined `struct` types, nor does it have a concept of
+no concept of user-defined `struct` types, nor does it have a concept of
 generics, both of which are required to develop the abstractions and interfaces
 I would like to have within Sunder's standard library. There is also a fair bit
 of cleanup needed in the compiler. Although I am extraordinarily pleased with
