@@ -77,6 +77,11 @@ video {
   margin: 0 auto;
   max-width: 90%;
 }
+iframe {
+  display: block;
+  margin: 0 auto;
+  max-width: 90%;
+}
 
 /* CODE (GENERATED FROM PANDOC) */
 main pre {
