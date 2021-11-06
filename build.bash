@@ -13,7 +13,9 @@ if [ -d "${OUT_DIR}" ]; then
 fi
 mkdir -p "${OUT_DIR}"
 mkdir -p "${OUT_DIR}/blog"
+mkdir -p "${OUT_DIR}/misc"
 mkdir -p "${OUT_DIR}/projects"
+mkdir -p "${OUT_DIR}/tmp"
 
 #== Website Generation Helper Utilities ========================================
 TEMPLATE=$(cat template.html)
@@ -133,8 +135,17 @@ copy_misc_files() {
     { set +x; } 2>/dev/null
 }
 
+copy_tmp_files() {
+    echo "==== COPYING TEMPORARY FILES ===="
+    set -x
+    cp -r "${SRC_DIR}/tmp" "${OUT_DIR}"
+    { set +x; } 2>/dev/null
+}
+
 time build_main_pages
 time build_blog_archive_page
 time build_blog_entry_pages
 time build_projects_pages
+time build_projects_pages
 time copy_misc_files
+time copy_tmp_files
