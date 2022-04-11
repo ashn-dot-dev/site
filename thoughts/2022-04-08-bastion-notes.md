@@ -31,3 +31,38 @@ disappointed once I picked up the Battering Ram in the final level, because my
 DPS was just straight up higher with the Calamity Cannon. There is a NG+ option
 available after beating the game, so that might be nice to go back and do just
 to see if it is harder.
+
+# Update (2022-04-10)
+Okay so this evening I started and completed a NG+ playthrough just for funzies
+before I closed the book on this game. I mained the Cael Hammer & Calamity
+Cannon for the entire run which allowed me to absolutely breeze through the
+game. I'm not sure if NG+ changes the difficulty, but there was not a single
+point in this run that was harder for me than my first (already super easy)
+playthrough. Having the Calamity Cannon with homing rockets absolutely
+trivializes every encounter in the game, and my strategy for this playthrough
+was pretty much "press Y to win" in every encounter except against few enemies
+that were just easier to kill with my hammer (specifically lunkheads and
+anklegators).
+
+In this playthrough I again chose to save Zulf just because I couldn't bring
+myself to leave him for dead. I also chose *not* to reset the world in this
+playthough, so the ending I got showed the Kid, Rucks, Zia, and Zulf all
+sailing away. I'm not sure how I feel about this specific ending since Zulf has
+lost the love of his life and will never get her back. During the end credits
+Zulf is shown preparing some food with our squirt, but his face is filled with
+grief, and I don't know if saving him after all the pain he has been through
+was really the right thing to do.
+
+In this playthrough I also went through the strangers dream, which was
+definitely the hardest of all the dream sequences, but was still a cakewalk
+with my hammer/cannon combo. It was nice to have a bit more content to work
+through, but I was hoping for much more of a backstory in this sequence than
+what was actually presented. Oh well.
+
+So now that I've completed all of the main content in Bastion I think I am
+going to be done-done with this game. I don't really see myself coming back and
+doing another playthrough any time soon, mainly because the game's mechanics
+are not interesting enough nor challenging enough for my liking. I enjoyed the
+story and lore aspects of the game, and it was nice to casually work through
+~10-12 hours of a one-shot game, so overall I think the time that I did spend
+playing Bastion was a good investment.
