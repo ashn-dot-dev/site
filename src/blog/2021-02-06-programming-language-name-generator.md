@@ -46,7 +46,7 @@ language to the top of the GitHub trending page!
 
 Download the sources for yourself from
 [Sourcehut](https://git.sr.ht/~ashn/plname) or
-[GitHub](https://github.com/ash-nolan/plname).
+[GitHub](https://github.com/ashn-dot-dev/plname).
 
 <small><small><small>
 This is a tongue-in-cheek joke. No disrespect is intended towards any of the

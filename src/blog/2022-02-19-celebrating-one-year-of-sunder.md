@@ -2,7 +2,7 @@ Celebrating One Year of Sunder
 ==============================
 
 One year ago today I began working on the project that would eventually become
-[Sunder](https://github.com/ash-nolan/sunder), a C-like systems programming
+[Sunder](https://github.com/ashn-dot-dev/sunder), a C-like systems programming
 language and compiler for x86-64 Linux. These past twelve months have been an
 incredible experience, and I am pleased to say that Sunder has far exceeded my
 expectations for where I thought the project would be after a year of

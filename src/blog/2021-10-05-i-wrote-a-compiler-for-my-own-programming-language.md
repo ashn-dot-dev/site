@@ -2,8 +2,8 @@ I Wrote a Compiler for My Own Programming Language
 ==================================================
 
 This past Friday I officially tagged the [first
-release](https://github.com/ash-nolan/sunder/releases/tag/2021.10.01) of
-[Sunder](https://github.com/ash-nolan/sunder), a C-like systems programming
+release](https://github.com/ashn-dot-dev/sunder/releases/tag/2021.10.01) of
+[Sunder](https://github.com/ashn-dot-dev/sunder), a C-like systems programming
 language and compiler for x86-64 Linux. Here is "Hello World" in Sunder:
 
 ```txt
@@ -296,7 +296,7 @@ the language or standard library.
 
 Anyway that's all I have for this blog post. For those interested, the main
 Sunder repository and issue tracker can be found on
-[GitHub](https://github.com/ash-nolan/sunder) and a mirror can be found on
+[GitHub](https://github.com/ashn-dot-dev/sunder) and a mirror can be found on
 [SourceHut](https://git.sr.ht/~ashn/sunder). I am *extremely* happy with how
 this project has turned out so far and I am super proud of how much I have grown
 as a language and compiler author. Cheers!
