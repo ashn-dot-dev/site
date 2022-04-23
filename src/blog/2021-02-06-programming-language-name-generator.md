@@ -44,9 +44,8 @@ With this *revolutionary* technology you too can generate your own vaguely
 western sounding three-to-four letter name that is guaranteed to catapult your
 language to the top of the GitHub trending page!
 
-Download the sources for yourself from
-[Sourcehut](https://git.sr.ht/~ashn/plname) or
-[GitHub](https://github.com/ashn-dot-dev/plname).
+Download the sources for yourself
+[here](/blog/2021-02-06-programming-language-name-generator/plname.py).
 
 <small><small><small>
 This is a tongue-in-cheek joke. No disrespect is intended towards any of the
