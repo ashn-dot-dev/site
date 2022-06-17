@@ -8,13 +8,13 @@ finishing any of the game's major campaigns until very recently.
 
 When COVID-19 put the world into lockdown at the start of 2020 I had a lot of
 free time on my hands[^1], and figured it was the perfect opportunity go on a
-Guild Wars nostalgia trip. My plan was play the campaigns/expansions in
+Guild Wars nostalgia trip. My plan was to play the campaigns/expansions in
 chronological order (Prophecies, then Factions, then Nightfall, and finally Eye
 of the North) with a single character starting from pre-Searing Ascalon in the
 Prophecies campaign. Back when I was younger I mained an elementalist fire
-nuker, so I decided to stick with that flavor build for this playthrough for
-nostalgia reasons. I created my character, spent ~35 hours grinding up to level
-20 in Pre-Searing for the [Legendary Defender of
+nuker, so I decided to stick with that flavor of build for this playthrough. I
+created my character, spent ~35 hours grinding up to level 20 in Pre-Searing
+for the [Legendary Defender of
 Ascalon](https://wiki.guildwars.com/wiki/Defender_of_Ascalon) title, and then
 progressed through the Prophecies campaign more or less as normal[^2] up until
 I reached Lion's Arch.
@@ -32,11 +32,11 @@ Mantle](https://wiki.guildwars.com/wiki/Report_to_the_White_Mantle) in
 Prophesies.
 
 Exploring the main content of Eye of the North allowed me to build up a solid
-party and allowed me flesh out my elementalist with a "good enough" set of
-skills to get through rest of the Prophesies missions. My build and party
-composition were less than optimal, but thankfully Prophesies is pretty lenient
-on the difficulty side of things. I was able to breeze through the rest of the
-campaign without too much trouble, but last mission, [Hell's
+party and flesh out my elementalist with a "good enough" set of skills to get
+through rest of the Prophesies missions. My build and party composition were
+less than optimal, but thankfully Prophesies is pretty lenient on the
+difficulty side of things. I was able to breeze through the rest of the
+campaign without too much trouble, although the last mission, [Hell's
 Precipice](https://wiki.guildwars.com/wiki/Hell%27s_Precipice), did require a
 couple of tries to beat. In total it took about a hundred hours of play time on
 this character to complete every mission[^3] in Prophesies.
@@ -45,18 +45,18 @@ You would think this is where I would say "mission accomplished" on the
 Prophesies portion of my Guild Wars playthrough, but you would be wrong. See,
 after you complete Hell's Precipice, there are a couple of quests that task the
 player to deal with the Titans that are still threatening Tyria. These quests
-include,[Defend Droknar's
+include, [Defend Droknar's
 Forge](https://wiki.guildwars.com/wiki/Defend_Droknar%27s_Forge), [Defend North
 Kryta Province](https://wiki.guildwars.com/wiki/Defend_North_Kryta_Province),
 [Defend Denravi](https://wiki.guildwars.com/wiki/Defend_Denravi), [The Last Day
 Dawns](https://wiki.guildwars.com/wiki/The_Last_Day_Dawns), and [The Titan
 Source](https://wiki.guildwars.com/wiki/The_Titan_Source). Most of these quests
-are challenging but not extraordinarily difficult. Defend Droknar's Forge and
-The Titan Source can be brute forced, Defend Denravi can be cheesed, and Defend
-North Kryta Province can be beaten with a good planning and a bit of luck[^4].
-But The Last Day Dawns... that quest is without a doubt the hardest piece of
-content I have completed in Guild Wars, and was an absolute nightmare to
-finish.
+are challenging, but they are not extraordinarily difficult. Defend Droknar's
+Forge and The Titan Source can be brute forced, Defend Denravi can be cheesed,
+and Defend North Kryta Province can be beaten with a good planning and a bit of
+luck[^4]. But The Last Day Dawns... that quest is without a doubt the hardest
+piece of content I have completed in Guild Wars, and was an absolute nightmare
+to finish.
 
 Okay so let me explain exactly why The Last Day Dawns is such utter bullshit,
 and why this quest was so difficult to complete. Your maximum party size in the
@@ -78,13 +78,13 @@ lmao". So you have to deal with not one, but five really difficult fights in a
 row, without really having a chance to take a break and recover, all while King
 Adelbern is trying his best to get himself killed.
 
-But oh it gets even worser! My build is a fire nuker elementalist, and the
+But oh it gets even worse-er! My build is a fire nuker elementalist, and the
 Titans in this quest are all fire-based, meaning they have a high armor rating
 against fire typed damage. So my character's attacks are much less effective
 against these Titans than the attacks would be against other high level
-enemies. My elementalist's damage output certainly isn't zero, but in an area
-where my party is already at a disadvantage due to the low maximum party size,
-the limited damage output from one of the main damage dealers ends up severely
+enemies. My elementalist's damage output isn't zero, but in an area where my
+party is already at a disadvantage due to the low maximum party size, the
+limited damage output from one of the main damage dealers ends up severely
 hurting the overall survivability of the party. As far as I could tell there
 was no way to deal enough damage to take down each group of Titans before
 getting overwhelmed.
@@ -98,8 +98,8 @@ getting lucky, so I shelved the playthrough.
 
 But a over a year and a half later I still felt that I had unfinished business.
 It didn't seem right just leaving things as they were so close to the finish
-line. So last week I returned to my Guild Wars playthrough to complete what I
-had started.
+line. So a few weeks ago I returned to my Guild Wars playthrough to complete
+what I had started.
 
 I decided to keep my fire nuker elementalist build, but this time around I
 focused much more on optimizing the rest of the limited party. I revamped the
@@ -110,22 +110,20 @@ area from a back route, skipping the trigger that sends King Adelbern into
 battle, and allowing the party to engage the majority of the Titan groups one
 at a time. This strategy was a pain in the behind to execute, because every
 time my party would die fighting a Titan group I would have to make a four and
-a half minute journey from the resurrection shrine back to the main combat area
-in order to re-engage in combat with the enemy group and hopefully get some
-kills before before the party was wiped out. I had attempted this strategy in
-the past, but had messed it up every time after spending hours carving through
-the explorable area, so this was the first time I actually got the strategy to
-work.
+a half minute journey from the resurrection shrine back to the main combat
+area. I had attempted this strategy in the past, but had messed it up every
+time after spending hours carving through the explorable area, so this was the
+first time I actually got the strategy to work.
 
 Anyway, with patience and little bit of luck, I was completed The Last Day
 Dawns on the evening of 2022-05-24! Shortly thereafter I completed the
-following quest, The Titan Source[^7], meaning that I had finally finished the
+following quest, The Titan Source[^6], meaning that I had finally finished the
 main Guild Wars Prophesies content! Completing the base campaign of a now-dead
 MMO over 17 years after release isn't exactly a total-1337-pro-gamer
 achievement worth shouting from the rooftops, but it does feel satisfying to
 reach the end of a journey that feels like it has been over a decade and a half
 in the making. Guild Wars was a *huge* part of my life, and I think past-me
-would be very proud of what we have accomplished[^8].
+would be very proud of what we have accomplished[^7].
 
 ## Footnotes
 [^1]:
@@ -156,11 +154,11 @@ cutting out damage dealers in some instances or cutting out support in other
 instances. It all depends on the encounters a party is facing, so it isn't as
 clean as saying half the party means exactly half the effectiveness.
 
-[^7]:
+[^6]:
 Which is way easier than The Last Day Dawns for some reason despite supposedly
 being the capstone to the Prophesies questline.
 
-[^8]:
+[^7]:
 That being said, I still have two campaigns to go. I have already started
 Factions, and am having a lot of fun so far. Once I finish Factions I will work
 my way through Nightfall and (maybe) complete some hard-mode content. My fire
