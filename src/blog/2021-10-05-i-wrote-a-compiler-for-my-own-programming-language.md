@@ -79,7 +79,7 @@ Expressions including:
   0o0755; # octal
   0xBEEF; # hexadecimal
   ```
-+ String literals with type slice-of-byte):
++ String literals (with type slice-of-byte):
   ```txt
   "this is a string (a.k.a bytes) literal";
   ```
