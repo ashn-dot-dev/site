@@ -169,9 +169,8 @@ The classic peanut butter and jelly sandwich.
 
 I think the Markdown version looks much nicer as a text file. When I showed
 both versions of the recipe to my partner, they also preferred the Markdown
-version. So even though Tart was originally designed for our recipe website, I
-do not think we are actually going to end up using the language for that
-purpose.
+version. So even though Tart was originally designed for a recipe website, I do
+not think we are actually going to end up using the language for that purpose.
 
 Tart was a lot of fun to work on. I do not really see myself doing much with
 the project after this week, but I think the language, the interpreter, and the
