@@ -265,3 +265,76 @@ time, but I really *really* enjoyed my time with it, and I am excited to do my
 NG+ run (in smalls chunks rather than 7+ hours of day for two-ish weeks...).
 
 9/10, ez game
+
+# Update (2022-08-20)
+Okay so over the past couple of months I've played some Elden Ring on and off
+and have now completed six journeys with my `ashn` character. I wrote about the
+first journey above. The second, third, and fourth journeys were speedruns (of
+which the fourth journey was sub-two-hours), the fifth journey was a
+do-all-the-quests speedrun following the TLDR NPC questline steps roundtable
+guide, and the sixth journey was a speedrun for the frenzied flame ending in
+order to pick up the last achievement for the game. After over 185 hours with
+this character and this game, I have much less favorable view of Elden Ring. I
+still think ER is and amazing game with probably the best visuals of the
+series, but the game has some really souring aspects that have left me with
+mixed feelings about the overall game package as well as the future of the
+souls series in general.
+
+For starters, ER suffers terribly in its third act from a late-game string of
+bad bosses. Fire Giant is a *terribly* designed boss. Like... I am baffled at
+how Fire Giant made it into the final game. He has all the problems that large
+bosses have had in the souls series, but his gigantic health bar coupled with
+some really devastating (often times one-shotting) attacks leave little room
+for error in an exhaustingly long fight that just is not fun to participate in.
+Godskip Duo uses recycled bosses who both have gamepad-reading AI. Maliketh has
+the speed of a Bloodborne boss with some absolutely bullshit
+clipping-through-walls-and-pillars attacks, and he spends so much time
+beyblading around the arena that it feels less like two foes in combat and more
+like a waiting game where you sit around during 30 second long acrobatic
+flurries so that you can finally have "your turn" to attack. Gideon Ofnir is
+not offensively bad, but the fight feels out of place and is maybe a bit too
+easy. Hoarah Loux and Radagon are great fights with some bad moments, and
+overall I think they would have been nice to end the game with, but... Elden
+Beast is one of my least favorite bosses is a souls game *ever*. In fact it
+might be *the* worst fight in a souls game. Maybe I'm bitter and my opinion
+will change later, but having Elden Beast a final boss of an epic 100+ hour
+journey or 2+ hour speedrun is equally disappointing. I wanted to take this
+character all the way to a NG+7 run, but thinking about having to fight Fire
+Giant, Maliketh, and Elden Beast at least two more times makes it hard to
+justify committing to the runs.
+
+Another issue is that ER is just too fucking big. I don't necessarily mean in
+terms of map size, I think the whole package has too much content. My
+do-all-the-quests run took ~30 hours and that was with an already leveled
+character with all map pieces unlocked and map locations discovered running
+straight lines from point to point ticking off items on the checklist. It is
+*exhausting* to complete a full playthrough of this game, and I honestly do not
+have the time to commit to another full run. And I think it is this size that
+leads to a lot of the problems I talked about in my initial review. Repeated
+bosses and copy-paste dungeons? With so much game that might have been the best
+option to fill the world. Beyblading bosses that move too fast? Probably some
+bad design choices, but I imagine they might not have had as much time to
+balance with all the world that needed populating. Bad lag spikes everywhere?
+Well ya the world is huge and is probably an optimization nightmare. The size
+of the world also breaks the traditional souls formula in unexpected ways; I
+didn't about this during my first playthrough, but many reviewers noted how
+bonkers it is that the quest progression in this game expects you to find NPCs
+all across this massive world as they change locations. Like without a guide
+there is absolutely no way I was going to be able to complete all these quests,
+or in many case even *find* where some of these NPCs move to. This section is a
+bit rambly, but basically I think that ER is the size of three AAA games with
+the polish of one.
+
+I still think ER is a wonderful game, and I'm sure I'll come back to it with a
+more favorable attitude after a few months. I don't think I would be so
+critical if I didn't have a genuine love for these games. After spending nearly
+200 hours with ER it is hard *not* to see its flaws, and I do not necessarily
+think that those flaws should ruin the experience for me as a whole forever
+into the future. But I am worried... it feels like the team bit off more than
+they could chew, and I wonder if ER will set the standard for what fans expect
+out of the series. I would actually like the souls game to return to smaller
+and more intimate settings like the compact yet interconnected world design of
+DS1. I think ER does a lot off neat things, but if future games continue in the
+direction that ER has started then I am going to find it harder and harder to
+enjoy this series. ER is not my favorite in From Software Souls line of games,
+and that gives me a lot of mixed emotions. :(
