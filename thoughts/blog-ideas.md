@@ -49,13 +49,6 @@ See:
 + https://en.wikipedia.org/wiki/Huntington%E2%80%93Hill_method
 + https://www.youtube.com/watch?v=6JN4RI7nkes
 
-## Reverse iteration trick in C
-```
-for (size_t i = thing_count; i--;) {
-  // code...
-}
-```
-
 ## Render Bad Apple Using GCC error messages.
 Find some way to make GCC error messages print out in some sort of Pixel format
 on a monospace terminal. Construct C programs that produce the desired frame in
