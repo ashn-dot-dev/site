@@ -8,16 +8,20 @@ finishing any of the game's major campaigns until very recently.
 
 When COVID-19 put the world into lockdown at the start of 2020 I had a lot of
 free time on my hands[^1], and figured it was the perfect opportunity go on a
-Guild Wars nostalgia trip. My plan was to play the campaigns/expansions in
-chronological order (Prophecies, then Factions, then Nightfall, and finally Eye
-of the North) with a single character starting from pre-Searing Ascalon in the
-Prophecies campaign. Back when I was younger I mained an elementalist fire
-nuker, so I decided to stick with that flavor of build for this playthrough. I
-created my character, spent ~35 hours grinding up to level 20 in Pre-Searing
-for the [Legendary Defender of
-Ascalon](https://wiki.guildwars.com/wiki/Defender_of_Ascalon) title, and then
-progressed through the Prophecies campaign more or less as normal[^2] up until
-I reached Lion's Arch.
+Guild Wars nostalgia trip. My plan was to play the main campaigns/expansions in
+chronological order
+([Prophecies](https://wiki.guildwars.com/wiki/Guild_Wars_Prophecies), then
+[Factions](https://wiki.guildwars.com/wiki/Guild_Wars_Factions), then
+[Nightfall](https://wiki.guildwars.com/wiki/Guild_Wars_Nightfall), and finally
+[Eye of the
+North](https://wiki.guildwars.com/wiki/Guild_Wars_Eye_of_the_North)) with a
+single character starting from pre-Searing Ascalon in the Prophecies campaign.
+Back when I was younger I mained an elementalist fire nuker, so I decided to
+stick with that flavor of build for this playthrough. I created my character,
+spent ~35 hours grinding up to level 20 in Pre-Searing for the [Legendary
+Defender of Ascalon](https://wiki.guildwars.com/wiki/Defender_of_Ascalon)
+title, and then progressed through the Prophecies campaign more or less as
+normal[^2] up until I reached Lion's Arch.
 
 Up to this point I was working my way through the Prophesies campaign using a
 party built from the henchmen local to each city/outpost. But I figured that if
@@ -58,6 +62,7 @@ luck[^4]. But The Last Day Dawns... that quest is without a doubt the hardest
 piece of content I have completed in Guild Wars, and was an absolute nightmare
 to finish.
 
+<div id=the-last-day-dawns></div>
 Okay so let me explain exactly why The Last Day Dawns is such utter bullshit,
 and why this quest was so difficult to complete. Your maximum party size in the
 Prophesies campaign starts at four in the early-game areas of the post-Searing
