@@ -4,8 +4,8 @@ Completing All of the Guild Wars Campaigns
 Previously I wrote a [blog
 post](/blog/2022-06-17-finishing-guild-wars-prophesies-17-years-after-release.html)
 about my journey completing the Guild Wars Eye of the North expansion and
-Prophesies campaign for the first time. Well after a couple more months of
-playing I have now completed the remaining two Guild Wars campaigns:
+Prophesies campaign for the first time. Well, after a couple more months of
+playing, I have now completed the remaining two Guild Wars campaigns:
 [Factions](https://wiki.guildwars.com/wiki/Guild_Wars_Factions) and
 [Nightfall](https://wiki.guildwars.com/wiki/Guild_Wars_Nightfall). With all
 four of the major campaigns/expansions[^1] completed, I have finally finished
@@ -30,7 +30,7 @@ partially because I wanted to do a full-game playthrough with a single
 character, and partially because my elementalist already had a working build
 and decent gear. Much of my time in Eye of the North and Prophesies was spent
 developing a player skill bar that would be useful for a seven-hero
-single-player playthrough of the campaigns, and by the end of Prophesies I had
+single-player playthrough of the campaigns. By the end of Prophesies I had
 settled on build that used [Arcane
 Echo](https://wiki.guildwars.com/wiki/Arcane_Echo) in combination with
 high-damage fire spells like [Rodgort's
