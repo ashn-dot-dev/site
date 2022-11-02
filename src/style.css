@@ -5,12 +5,13 @@
   --color-orange: #eeaa00;
   --color-red: #ff1111;
   --color-tan: #ddccaa;
+  --color-blue: #bbaaee;
 
   --color-bg-drk: var(--color-gray-drk);
   --color-bg-mid: var(--color-gray-mid);
   --color-bg-lit: var(--color-gray-lit);
   --color-text: var(--color-tan);
-  --color-link: var(--color-red);
+  --color-link: var(--color-blue);
 }
 
 /* GENERAL STYLING */
