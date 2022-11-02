@@ -58,3 +58,10 @@ error messages when compiled. Profit.
 Bezier curves, machine learning, or maybe something else. Basically try to
 approximate the famous image of the Mandelbrot set without actually using the
 correct math.
+
+## Implementing Fixed Point Math in Sunder
++ https://github.com/gbmhunter/MFixedPoint
++ https://github.com/MikeLankamp/fpm
++ https://en.wikipedia.org/wiki/Libfixmath
++ https://github.com/burner/sweet.hpp/blob/master/fixed.hpp
++ https://sourceforge.net/p/fixedptc/code/ci/default/tree/
