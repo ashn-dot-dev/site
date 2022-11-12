@@ -65,3 +65,11 @@ correct math.
 + https://en.wikipedia.org/wiki/Libfixmath
 + https://github.com/burner/sweet.hpp/blob/master/fixed.hpp
 + https://sourceforge.net/p/fixedptc/code/ci/default/tree/
+
+## Write about my 200 hour Skyrim playthrough
+Honestly, PatricianTV does a way better job tearing this game to shreds, but it
+would still be nice to talk about my burnout with the game, how it made me
+dislike the open world Bethesda RPG. And how I will never another Elder Scrolls
+or Fallout game from Bethesda again.
+
+https://www.youtube.com/watch?v=dHP02JEC5H0
