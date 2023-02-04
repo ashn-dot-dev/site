@@ -1,7 +1,7 @@
 Sunder is a Sufficiently Stable Programming Language
 ====================================================
 
-This week I tagged what I consider to be the [first stable
+This week I tagged what I consider to be the [first stable-ish
 release](https://github.com/ashn-dot-dev/sunder/releases/tag/2022.07.13) of
 [Sunder](https://github.com/ashn-dot-dev/sunder), my C-like systems programming
 language and compiler for x86-64 Linux. The Sunder project does not use
