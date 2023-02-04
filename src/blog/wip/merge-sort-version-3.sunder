@@ -1,40 +1,40 @@
 # merge-sort-version-3.sunder
 import "std";
 
-func merge_sort[[T]](a: []T, allocator: std::allocator) void {
-    if countof(a) <= 1 {
+func merge_sort[[T]](slice: []T) void {
+    if countof(slice) <= 1 {
         return;
     }
 
-    var a0 = std::slice[[T]]::new(allocator, countof(a)/2);
-    var a1 = std::slice[[T]]::new(allocator, countof(a) - countof(a)/2);
+    var slice0 = std::slice[[T]]::new(countof(slice)/2);
+    var slice1 = std::slice[[T]]::new(countof(slice) - countof(slice)/2);
     defer {
-        std::slice[[T]]::delete(allocator, a0);
-        std::slice[[T]]::delete(allocator, a1);
+        std::slice[[T]]::delete(slice0);
+        std::slice[[T]]::delete(slice1);
     }
-    std::slice[[T]]::copy(a0, a[0:countof(a)/2]);
-    std::slice[[T]]::copy(a1, a[countof(a)/2:countof(a)]);
+    std::slice[[T]]::copy(slice0, slice[0:countof(slice)/2]);
+    std::slice[[T]]::copy(slice1, slice[countof(slice)/2:countof(slice)]);
 
-    merge_sort[[T]](a0, allocator);
-    merge_sort[[T]](a1, allocator);
+    merge_sort[[T]](slice0);
+    merge_sort[[T]](slice1);
 
     var i0 = 0u;
     var i1 = 0u;
-    for i in countof(a) {
-        if i0 == countof(a0) {
-            a[i] = a1[i1];
+    for i in countof(slice) {
+        if i0 == countof(slice0) {
+            slice[i] = slice1[i1];
             i1 = i1 + 1;
         }
-        elif i1 == countof(a1) {
-            a[i] = a0[i0];
+        elif i1 == countof(slice1) {
+            slice[i] = slice0[i0];
             i0 = i0 + 1;
         }
-        elif std::compare[[T]](&a0[i0], &a1[i1]) < 0 {
-            a[i] = a0[i0];
+        elif std::compare[[T]](&slice0[i0], &slice1[i1]) < 0 {
+            slice[i] = slice0[i0];
             i0 = i0 + 1;
         }
         else {
-            a[i] = a1[i1];
+            slice[i] = slice1[i1];
             i1 = i1 + 1;
         }
     }
@@ -52,19 +52,13 @@ func display[[T]](slice: []T) void {
 }
 
 func main() void {
-    var allocator = std::general_allocator::init();
-    defer {
-        allocator.fini();
-    }
-    var allocator = std::allocator::init[[std::general_allocator]](&allocator);
-
     var slice = (:[]ssize)[4, 8, 5, 3, 1, 6, 2, 7];
     display[[ssize]](slice);
-    merge_sort[[ssize]](slice, allocator);
+    merge_sort[[ssize]](slice);
     display[[ssize]](slice);
 
     var slice = (:[][]byte)["banana", "carrot", "apple"];
     display[[[]byte]](slice);
-    merge_sort[[[]byte]](slice, allocator);
+    merge_sort[[[]byte]](slice);
     display[[[]byte]](slice);
 }

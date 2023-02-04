@@ -1,6 +1,25 @@
 # merge-sort-version-1.sunder
 import "std";
 
+func merge_sort[[T]](a: []T) void {
+    if countof(a) <= 1 {
+        return;
+    }
+
+    var a0 = std::slice[[T]]::new(countof(a)/2);
+    var a1 = std::slice[[T]]::new(countof(a) - countof(a)/2);
+    defer {
+        std::slice[[T]]::delete(a0);
+        std::slice[[T]]::delete(a1);
+    }
+    std::slice[[T]]::copy(a0, a[0:countof(a)/2]);
+    std::slice[[T]]::copy(a1, a[countof(a)/2:countof(a)]);
+
+    merge_sort[[T]](a0);
+    merge_sort[[T]](a1);
+    merge[[T]](a0, a1, a);
+}
+
 func merge[[T]](a0: []T, a1: []T, a: []T) void {
     var i0 = 0u;
     var i1 = 0u;
@@ -23,29 +42,6 @@ func merge[[T]](a0: []T, a1: []T, a: []T) void {
             i1 = i1 + 1;
         }
     }
-}
-
-func merge_sort[[T]](a: []T) void {
-    if countof(a) <= 1 {
-        return;
-    }
-
-    var allocator = std::general_allocator::init();
-    var allocator = std::allocator::init[[std::general_allocator]](&allocator);
-
-    var a0 = std::slice[[T]]::new(allocator, countof(a)/2);
-    std::slice[[T]]::copy(a0, a[0:countof(a)/2]);
-    var a1 = std::slice[[T]]::new(allocator, countof(a) - countof(a)/2);
-    std::slice[[T]]::copy(a1, a[countof(a)/2:countof(a)]);
-    defer {
-        std::slice[[T]]::delete(allocator, a0);
-        std::slice[[T]]::delete(allocator, a1);
-    }
-
-
-    merge_sort[[T]](a0);
-    merge_sort[[T]](a1);
-    merge[[T]](a0, a1, a);
 }
 
 func display[[T]](slice: []T) void {
