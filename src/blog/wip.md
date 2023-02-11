@@ -260,8 +260,8 @@ The assign-and-increment-index statement in C++:
 a[i] = a1[i1++];
 ```
 
-translates as two separate statements in Sunder, since prefix and postfix
-increment operators are explicitly not supported in Sunder:
+translates as two separate statements, as prefix and postfix increment
+operators are explicitly not supported in Sunder:
 
 ```
 a[i] = a1[i1];
@@ -305,12 +305,304 @@ func merge[[T]](a0: []T, a1: []T, a: []T) void {
 }
 ```
 
---------------------------------------------------------------------------------
+The initial versions of our `merge_sort` and `merge` functions are complete.
+Before we do anything else, it would probably be a good idea to test our
+sorting algorithm to make sure nothing was missed in translation. Sunder has a
+standard testing program, `sunder-test`, that ships as part of the Sunder
+toolchain. However, I want this blog post to focus purely on porting code, so
+for now we will settle on ad-hoc print-and-eyeball-the-output testing.
 
-TODO:
+Using a hastily thrown together `display` function:
 
-+ Show setup of a basic `main`
-+ Improve code in subsequent versions
+```
+func display[[T]](slice: []T) void {
+    std::print(std::out(), "[");
+    for i in countof(slice) {
+        if i != 0 {
+            std::print(std::out(), ", ");
+        }
+        std::print_format(std::out(), "{}", (:[]std::formatter)[std::formatter::init[[T]](&slice[i])]);
+    }
+    std::print_line(std::out(), "]");
+}
+```
+
+we can verify that `merge_sort` correctly sorts a slice by `display`ing the
+elements of an initially unsorted slice before and after `merge_sort` is
+called:
+
+```
+func main() void {
+    var slice = (:[]ssize)[4, 8, 5, 3, 1, 6, 2, 7];
+    display[[ssize]](slice);
+    merge_sort[[ssize]](slice);
+    display[[ssize]](slice);
+
+    var slice = (:[][]byte)["banana", "carrot", "apple"];
+    display[[[]byte]](slice);
+    merge_sort[[[]byte]](slice);
+    display[[[]byte]](slice);
+}
+```
+
+All together this is version 1 of our merge sort implementation and ad-hoc
+tests:
+
+```
+# merge-sort-version-1.sunder
+import "std";
+
+func merge_sort[[T]](a: []T) void {
+    if countof(a) <= 1 {
+        return;
+    }
+
+    var a0 = std::slice[[T]]::new(countof(a)/2);
+    var a1 = std::slice[[T]]::new(countof(a) - countof(a)/2);
+    defer {
+        std::slice[[T]]::delete(a0);
+        std::slice[[T]]::delete(a1);
+    }
+    std::slice[[T]]::copy(a0, a[0:countof(a)/2]);
+    std::slice[[T]]::copy(a1, a[countof(a)/2:countof(a)]);
+
+    merge_sort[[T]](a0);
+    merge_sort[[T]](a1);
+    merge[[T]](a0, a1, a);
+}
+
+func merge[[T]](a0: []T, a1: []T, a: []T) void {
+    var i0 = 0u;
+    var i1 = 0u;
+
+    for i in countof(a) {
+        if i0 == countof(a0) {
+            a[i] = a1[i1];
+            i1 = i1 + 1;
+        }
+        elif i1 == countof(a1) {
+            a[i] = a0[i0];
+            i0 = i0 + 1;
+        }
+        elif std::compare[[T]](&a0[i0], &a1[i1]) < 0 {
+            a[i] = a0[i0];
+            i0 = i0 + 1;
+        }
+        else {
+            a[i] = a1[i1];
+            i1 = i1 + 1;
+        }
+    }
+}
+
+func display[[T]](slice: []T) void {
+    std::print(std::out(), "[");
+    for i in countof(slice) {
+        if i != 0 {
+            std::print(std::out(), ", ");
+        }
+        std::print_format(std::out(), "{}", (:[]std::formatter)[std::formatter::init[[T]](&slice[i])]);
+    }
+    std::print_line(std::out(), "]");
+}
+
+func main() void {
+    var slice = (:[]ssize)[4, 8, 5, 3, 1, 6, 2, 7];
+    display[[ssize]](slice);
+    merge_sort[[ssize]](slice);
+    display[[ssize]](slice);
+
+    var slice = (:[][]byte)["banana", "carrot", "apple"];
+    display[[[]byte]](slice);
+    merge_sort[[[]byte]](slice);
+    display[[[]byte]](slice);
+}
+```
+
+```sh
+$ sunder-run merge-sort-version-1.sunder
+[4, 8, 5, 3, 1, 6, 2, 7]
+[1, 2, 3, 4, 5, 6, 7, 8]
+[banana, carrot, apple]
+[apple, banana, carrot]
+```
+
+Horray, that output certainly looks sorted to me!
+
+Okay so we could declare our port mission-accomplished here, but I think there
+is still a little bit of cleanup that we could do if we want to make our ported
+code look like idiomatic Sunder. Currently we have two functions, `merge_sort`
+and `merge`, but `merge` is only ever called from within `merge_sort`. Sunder
+style generally prefers longer functions where all the logic is in one place as
+opposed to multiple smaller functions where logic is separated by
+responsibility. The easy solution in our case is to inline the contents of
+`merge` into our `merge_sort` function:
+
+```
+# merge-sort-version-2.sunder
+import "std";
+
+func merge_sort[[T]](a: []T) void {
+    if countof(a) <= 1 {
+        return;
+    }
+
+    var a0 = std::slice[[T]]::new(countof(a)/2);
+    var a1 = std::slice[[T]]::new(countof(a) - countof(a)/2);
+    defer {
+        std::slice[[T]]::delete(a0);
+        std::slice[[T]]::delete(a1);
+    }
+    std::slice[[T]]::copy(a0, a[0:countof(a)/2]);
+    std::slice[[T]]::copy(a1, a[countof(a)/2:countof(a)]);
+
+    merge_sort[[T]](a0);
+    merge_sort[[T]](a1);
+
+    var i0 = 0u;
+    var i1 = 0u;
+    for i in countof(a) {
+        if i0 == countof(a0) {
+            a[i] = a1[i1];
+            i1 = i1 + 1;
+        }
+        elif i1 == countof(a1) {
+            a[i] = a0[i0];
+            i0 = i0 + 1;
+        }
+        elif std::compare[[T]](&a0[i0], &a1[i1]) < 0 {
+            a[i] = a0[i0];
+            i0 = i0 + 1;
+        }
+        else {
+            a[i] = a1[i1];
+            i1 = i1 + 1;
+        }
+    }
+}
+
+func display[[T]](slice: []T) void {
+    std::print(std::out(), "[");
+    for i in countof(slice) {
+        if i != 0 {
+            std::print(std::out(), ", ");
+        }
+        std::print_format(std::out(), "{}", (:[]std::formatter)[std::formatter::init[[T]](&slice[i])]);
+    }
+    std::print_line(std::out(), "]");
+}
+
+func main() void {
+    var slice = (:[]ssize)[4, 8, 5, 3, 1, 6, 2, 7];
+    display[[ssize]](slice);
+    merge_sort[[ssize]](slice);
+    display[[ssize]](slice);
+
+    var slice = (:[][]byte)["banana", "carrot", "apple"];
+    display[[[]byte]](slice);
+    merge_sort[[[]byte]](slice);
+    display[[[]byte]](slice);
+}
+```
+
+Running our ad-hoc tests again, we can see that this version 2 of our merge
+sort implementation behaves identically to our version 1 implementation:
+
+```
+$ sunder-run merge-sort-version-2.sunder
+[4, 8, 5, 3, 1, 6, 2, 7]
+[1, 2, 3, 4, 5, 6, 7, 8]
+[banana, carrot, apple]
+[apple, banana, carrot]
+```
+
+Finally, it would be good to take a pass over the `merge_sort` function and see
+about using more idiomatic names for parameters and local variables. The ODS
+implementation uses names like `a`, `a0`, and `a1`, because the ODS
+implementation (presumably) sorts containers of type `ods::array` of `T`. But
+our Sunder implementation sorts slices of type `T`, so some more appropriate
+names would be `slice`, `slice0`, and `slice1`, following the convention used
+by the standard library for functions that perform an operation on a slice
+type:
+
+```
+# merge-sort-version-3.sunder
+import "std";
+
+func merge_sort[[T]](slice: []T) void {
+    if countof(slice) <= 1 {
+        return;
+    }
+
+    var slice0 = std::slice[[T]]::new(countof(slice)/2);
+    var slice1 = std::slice[[T]]::new(countof(slice) - countof(slice)/2);
+    defer {
+        std::slice[[T]]::delete(slice0);
+        std::slice[[T]]::delete(slice1);
+    }
+    std::slice[[T]]::copy(slice0, slice[0:countof(slice)/2]);
+    std::slice[[T]]::copy(slice1, slice[countof(slice)/2:countof(slice)]);
+
+    merge_sort[[T]](slice0);
+    merge_sort[[T]](slice1);
+
+    var i0 = 0u;
+    var i1 = 0u;
+    for i in countof(slice) {
+        if i0 == countof(slice0) {
+            slice[i] = slice1[i1];
+            i1 = i1 + 1;
+        }
+        elif i1 == countof(slice1) {
+            slice[i] = slice0[i0];
+            i0 = i0 + 1;
+        }
+        elif std::compare[[T]](&slice0[i0], &slice1[i1]) < 0 {
+            slice[i] = slice0[i0];
+            i0 = i0 + 1;
+        }
+        else {
+            slice[i] = slice1[i1];
+            i1 = i1 + 1;
+        }
+    }
+}
+
+func display[[T]](slice: []T) void {
+    std::print(std::out(), "[");
+    for i in countof(slice) {
+        if i != 0 {
+            std::print(std::out(), ", ");
+        }
+        std::print_format(std::out(), "{}", (:[]std::formatter)[std::formatter::init[[T]](&slice[i])]);
+    }
+    std::print_line(std::out(), "]");
+}
+
+func main() void {
+    var slice = (:[]ssize)[4, 8, 5, 3, 1, 6, 2, 7];
+    display[[ssize]](slice);
+    merge_sort[[ssize]](slice);
+    display[[ssize]](slice);
+
+    var slice = (:[][]byte)["banana", "carrot", "apple"];
+    display[[[]byte]](slice);
+    merge_sort[[[]byte]](slice);
+    display[[[]byte]](slice);
+}
+```
+
+Once again, running our ad-hoc tests shows that version 3 of our merge sort
+implementation behaves identically to our version 1 and version 2
+implementations:
+
+```
+$ sunder-run merge-sort-version-3.sunder
+[4, 8, 5, 3, 1, 6, 2, 7]
+[1, 2, 3, 4, 5, 6, 7, 8]
+[banana, carrot, apple]
+[apple, banana, carrot]
+```
 
 --------------------------------------------------------------------------------
 
