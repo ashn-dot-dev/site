@@ -98,9 +98,9 @@ array<T>::copyOfRange(a1, a, a.length/2, a.length);
 ```
 
 Sunder's standard library has
-[`std::slice[[T]]::new`](https://github.com/ashn-dot-dev/sunder/blob/2023.02.01/lib/std/std.sunder#L901)
+[`std::slice[[T]]::new`](https://github.com/ashn-dot-dev/sunder/blob/2023.02.19/lib/std/std.sunder#L901)
 and
-[`std::slice[[T]]::copy`](https://github.com/ashn-dot-dev/sunder/blob/2023.02.01/lib/std/std.sunder#L818)
+[`std::slice[[T]]::copy`](https://github.com/ashn-dot-dev/sunder/blob/2023.02.19/lib/std/std.sunder#L818)
 which we can use to dynamically allocate and populate our own `a0` and `a1`
 slices in the Sunder implementation.
 
@@ -120,7 +120,7 @@ automatically `delete[]` allocated memory at scope exit when the `ods::array`
 destructor is run for each object. Sunder does not have
 destructors, but we can achieve similar resource cleanup using a `defer`
 statement to deallocate the `a0` and, `a1` arrays with
-[`std::slice[[T]]::delete`](https://github.com/ashn-dot-dev/sunder/blob/2023.02.01/lib/std/std.sunder#L942),
+[`std::slice[[T]]::delete`](https://github.com/ashn-dot-dev/sunder/blob/2023.02.19/lib/std/std.sunder#L942),
 at scope exit:
 
 ```
@@ -186,7 +186,7 @@ int i0 = 0, i1 = 0;
 }
 ```
 
-Once again, the generic C++ template function signature is:
+The generic C++ template function signature:
 
 ```cpp
 template<class T>
@@ -199,7 +199,7 @@ would appear in Sunder as the template function signature:
 func merge[[T]](a0: []T, a1: []T, a: []T) void
 ```
 
-The declarations of `i0` and `i0` in the first line of the ODS implementation:
+The declarations of `i0` and `i1` in the first line of the ODS implementation:
 
 ```cpp
 int i0 = 0, i1 = 0;
@@ -274,7 +274,7 @@ to C's `strcmp` function or Java's `compareTo` method, returning a signed
 integer less than, equal to, or greater than zero if the first operand is less
 than, equal to, or greater than the second operand, respectively. Sunder has an
 function,
-[`std::compare`](https://github.com/ashn-dot-dev/sunder/blob/2023.02.01/lib/std/std.sunder#L1793),
+[`std::compare`](https://github.com/ashn-dot-dev/sunder/blob/2023.02.19/lib/std/std.sunder#L1793),
 which performs this same comparison for two comparable objects of type `T`[^2].
 
 All together the Sunder `merge` function takes the form:
@@ -310,7 +310,7 @@ Before we do anything else, it would probably be a good idea to test our
 sorting algorithm to make sure nothing was missed in translation. Sunder has a
 standard testing program, `sunder-test`, that ships as part of the Sunder
 toolchain. However, I want this blog post to focus purely on porting code, so
-for now we will settle on ad-hoc print-and-eyeball-the-output testing.
+for now we will settle for ad hoc print-and-eyeball-the-output testing.
 
 Using a hastily thrown together `display` function:
 
@@ -345,7 +345,7 @@ func main() void {
 }
 ```
 
-All together this is version 1 of our merge sort implementation and ad-hoc
+All together this is version 1 of our merge sort implementation and ad hoc
 tests:
 
 ```
@@ -430,13 +430,13 @@ $ sunder-run merge-sort-version-1.sunder
 Horray, that output certainly looks sorted to me!
 
 Okay so we could declare our port mission-accomplished here, but I think there
-is still a little bit of cleanup that we could do if we want to make our ported
-code look like idiomatic Sunder. Currently we have two functions, `merge_sort`
-and `merge`, but `merge` is only ever called from within `merge_sort`. Sunder
-style generally prefers longer functions where all the logic is in one place as
-opposed to multiple smaller functions where logic is separated by
-responsibility. The easy solution in our case is to inline the contents of
-`merge` into our `merge_sort` function:
+is still a bit of cleanup that we could do if we want to make our ported code
+look like idiomatic Sunder. Currently we have two functions, `merge_sort` and
+`merge`, but `merge` is only ever called from within `merge_sort`. Sunder style
+generally prefers longer functions where all the logic is in one place as
+rather than multiple smaller functions where logic is spread out. The easy
+solution in our case is to inline the contents of `merge` into our `merge_sort`
+function:
 
 ```
 # merge-sort-version-2.sunder
@@ -505,7 +505,7 @@ func main() void {
 }
 ```
 
-Running our ad-hoc tests again, we can see that this version 2 of our merge
+Running our ad hoc tests again, we can see that this version 2 of our merge
 sort implementation behaves identically to our version 1 implementation:
 
 ```
@@ -519,11 +519,11 @@ $ sunder-run merge-sort-version-2.sunder
 Finally, it would be good to take a pass over the `merge_sort` function and see
 about using more idiomatic names for parameters and local variables. The ODS
 implementation uses names like `a`, `a0`, and `a1`, because the ODS
-implementation (presumably) sorts containers of type `ods::array` of `T`. But
-our Sunder implementation sorts slices of type `T`, so some more appropriate
-names would be `slice`, `slice0`, and `slice1`, following the convention used
-by the standard library for functions that perform an operation on a slice
-type:
+implementation (presumably) sorts containers of type `ods::array`. But our
+Sunder implementation sorts slices, so more appropriate names for these
+parameters would be `slice`, `slice0`, and `slice1`, following the convention
+used by the standard library for functions that perform operations on slice
+types:
 
 ```
 # merge-sort-version-3.sunder
@@ -592,7 +592,7 @@ func main() void {
 }
 ```
 
-Once again, running our ad-hoc tests shows that version 3 of our merge sort
+Unsurprisingly, running our ad hoc tests shows that version 3 of our merge sort
 implementation behaves identically to our version 1 and version 2
 implementations:
 
@@ -608,16 +608,16 @@ $ sunder-run merge-sort-version-3.sunder
 
 ## Footnotes
 [^1]:
-Specifically [Sunder version 2023.02.01](https://github.com/ashn-dot-dev/sunder/releases/tag/2023.02.01).
+Specifically [Sunder version 2023.02.19](https://github.com/ashn-dot-dev/sunder/releases/tag/2023.02.19).
 
 [^2]:
 Any type `T` that implements a `compare` member function with the signature
 `func compare(lhs: *T, rhs: *T) ssize` is considered comparable. Comparable
 types in the Sunder standard library include built-ins such as
-[s32](https://github.com/ashn-dot-dev/sunder/blob/2023.02.01/lib/std/std.sunder#L4175)
+[s32](https://github.com/ashn-dot-dev/sunder/blob/2023.02.19/lib/std/std.sunder#L417519)
 and
-[\[\]byte](https://github.com/ashn-dot-dev/sunder/blob/2023.02.01/lib/std/std.sunder#L4215),
+[\[\]byte](https://github.com/ashn-dot-dev/sunder/blob/2023.02.19/lib/std/std.sunder#L4215),
 as well as higher level manged types such as
-[std::big_intger](https://github.com/ashn-dot-dev/sunder/blob/2023.02.01/lib/std/std.sunder#L2107)
+[std::big_integer](https://github.com/ashn-dot-dev/sunder/blob/2023.02.19/lib/std/std.sunder#L2107)
 and
-[std::string](https://github.com/ashn-dot-dev/sunder/blob/2023.02.01/lib/std/std.sunder#L2785).
+[std::string](https://github.com/ashn-dot-dev/sunder/blob/2023.02.19/lib/std/std.sunder#L2785).
