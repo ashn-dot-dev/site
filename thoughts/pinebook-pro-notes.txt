@@ -1,0 +1,29 @@
+Pinebook Pro Notes
+==================
+Ordered a PbP after some heat damage to the screen of my ThinkPad, plus the
+persistent issue of the shoddy trackpad (mouse clicks not registering) that has
+been occurring since the summer, incentivised me to get a backup laptop. Came
+in within a week, so pretty fast shipping. Installed Manjaro on a 256 GB SD
+card that I boot into as the main OS. Haven't used Arch (or derivatives) since
+college and the setup process was exactly as much of a PITA as I remember. I
+was hoping Manjaro would be less frustrating, which turned out to be true, but
+I still ended up with a laptop that had no working camera and a broken desktop
+manager that needed to be manually disabled. So definitely less smooth of an
+experience than Debian/Ubuntu/Mint. I see that Armbian is also supported, so I
+*might* try to get a Debian setup with MATE going, since I'm not super thrilled
+with Manjaro.
+
+Initial Notes:
++ Camera lens thingy came off while trying to remove protective plastic.
++ Parts of the case are not flush.
++ Default Manjaro OS loaded was soooooo slow to respond to user input. Noticeable delay! Is this a Wayland issue?
++ Backlight is not great.
++ Can't get Google-Chrome!
+    + Apparently it isn't even packaged for ARM. This was my mistake. Using the Distro chromium instead.
++ Pandoc not available?
+    + Switched to cmark for my personal website.
++ Camera does not connect at all. Running cheese brings up the error message "Error during camera setup: No device found".
++ Lightdm busted after setup and update. It does a login loop that never actually reaches my DE. Had to disable lightdm, and manually run `startx` to bring up my DE.
++ Wifi, bluetooth, and sound seem to be working (haven't actually tried bluetooth but the interface is at least up), so the only usual suspect of busted hardware that is actually busted is the camera.
++ Speakers sometimes randomly emit a popping, even if completely muted. I don't know why this is, but it startles me every time, which is not great.
++ Docker was not supported for manjaro-arm, but that's fine since I wasn't exactly expecting to receive support on this platform.
