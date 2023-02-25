@@ -56,8 +56,11 @@ build_page_from_md() {
     SRC_FILE="${SRC_DIR}/${SRC_PATH}"
     OUT_FILE="${OUT_DIR}/${SRC_PATH%.md}.html"
 
-    CONTENT=$(pandoc --preserve-tabs "${SRC_FILE}")
-    make_page "${TITLE}" "${CONTENT}" >"${OUT_FILE}"
+    MARKDOWN=$(cat "${SRC_FILE}")
+    MARKDOWN=$(echo "${MARKDOWN}" | sed -r 's/\[\^([1-9]+)\]:$/<span id="footnote-\1">\1./g')
+    MARKDOWN=$(echo "${MARKDOWN}" | sed -r 's/\[\^([1-9]+)\]/<a href="#footnote-\1"><sup>\1<\/sup><\/a>/g')
+    RENDERED=$(echo "${MARKDOWN}" | cmark --unsafe)
+    make_page "${TITLE}" "${RENDERED}" >"${OUT_FILE}"
 }
 
 build_blog_page() {

@@ -8,7 +8,7 @@ for our program and stubbed out the documentation code with a `cat` clone.
 In this post we will define the shape of our documentation language and add
 documentation comments to our example file.
 
-## ~~Ripping off~~ Borrowing from Doxygen
+## <s>Ripping off</s> Borrowing from Doxygen
 Over the past few years of using Doxygen I have settled into a particular
 documentation style that I would like to replicate in `cdoc`.
 
