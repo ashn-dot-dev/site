@@ -7,13 +7,12 @@ language.
 
 ## Why Write a Documentation Generator
 Despite the widespread use of C there is a surprising lack of
-[source-code documentation tooling](https://en.wikipedia.org/wiki/\
-Comparison_of_documentation_generators#Language_support) available for the
-language.
-What tooling does exist often requires a non-trivial amount of configuration and
-does not fit well into the Unix philosophy.
-I have spent a fair bit of time searching for a simple documentation generator
-and have yet to find one that I am satisfied with, so I'll just create my own.
+[source-code documentation tooling](https://en.wikipedia.org/wiki/Comparison_of_documentation_generators#Language_support)
+available for the language. What tooling does exist often requires a
+non-trivial amount of configuration and does not fit well into the Unix
+philosophy. I have spent a fair bit of time searching for a simple
+documentation generator and have yet to find one that I am satisfied with, so
+I'll just create my own.
 
 ## What Do I Want In a Documentation Generator
 The features (or lack thereof) that I would like to see in documentation
