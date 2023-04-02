@@ -16,7 +16,7 @@ the language could be considered
 [sufficiently stable](/blog/2022-07-14-sunder-is-a-sufficiently-stable-programming-language.html)[^4],
 and although there will always be a seemingly endless supply of work to be done
 improving the language and standard library, I am absolutely thrilled with
-where the project is after two years of development.  Happy second birthday
+where the project is after two years of development. Happy second birthday
 Sunder!
 
 ## Footnotes
