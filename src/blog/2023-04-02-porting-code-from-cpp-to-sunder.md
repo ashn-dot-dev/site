@@ -260,7 +260,7 @@ The assign-and-increment-index statement in C++:
 a[i] = a1[i1++];
 ```
 
-translates as two separate statements, as prefix and postfix increment
+translates as two separate statements, since prefix and postfix increment
 operators are explicitly not supported in Sunder:
 
 ```
@@ -517,8 +517,8 @@ $ sunder-run merge-sort-version-2.sunder
 
 Finally, it would be good to take a pass over the `merge_sort` function and see
 about using more idiomatic names for parameters and local variables. The ODS
-implementation uses names like `a`, `a0`, and `a1`, because the ODS
-implementation (presumably) sorts containers of type `ods::array`. But our
+implementation uses names like `a`, `a0`, and `a1`, because (presumably) the
+ODS implementation sorts containers of type `ods::array`. But our
 Sunder implementation sorts slices, so more appropriate names for these
 parameters would be `slice`, `slice0`, and `slice1`, following the convention
 used by the standard library for functions that perform operations on slice
@@ -608,14 +608,14 @@ merge-sort port complete! For a relatively small amount of effort, we were able
 to take existing C++ code and bring it to Sunder with few conceptual changes.
 Of course, not all C and C++ code is this easy to implement in Sunder, but a
 surprising number of data structures and algorithms can be ported from C or C++
-to Sunder line-for-line. In fact, the process of porting merge-sort seen in
-this blog post is almost exactly how Sunder's
+to Sunder line-for-line. In fact, the process of porting the merge-sort
+algorithm seen in this blog post is almost exactly how Sunder's
 [`std::sort`](https://github.com/ashn-dot-dev/sunder/blob/2023.03.31/lib/std/std.sunder#L1846)
 was introduced into the Sunder standard library. Although this blog post was
 more of an example porting journey rather than a porting guide, I hope it is a
 little easier to see how Sunder compares to existing systems programming
-languages, and how writing/porting software to Sunder might look like
-from a development perspective.
+languages, and what porting software to Sunder might look like from a
+development perspective.
 
 --------------------------------------------------------------------------------
 
