@@ -9,8 +9,8 @@ blog post we will walk through the process of porting a merge-sort
 implementation from C++ to Sunder[^1].
 
 Our initial merge-sort code comes from the C++ version of Open Data Structures
-(Edition 0.1G), chapter 11.1 - Comparison-Based Sorting. The code can be found
-in the online textbook
+(OSD), Edition 0.1G, chapter 11.1 - Comparison-Based Sorting. The code can be
+found in the online textbook
 [here](https://opendatastructures.org/ods-cpp/11_1_Comparison_Based_Sorti.html)
 and in the Open Data Structures GitHub repository
 [here](https://github.com/patmorin/ods/blob/edition-0.1g/cpp/Algorithms.h#L83).
@@ -44,7 +44,7 @@ void mergeSort(array<T> &a) {
 }
 ```
 
-The Open Data Structures (ODS) implementation operates on an
+The Open Data Structures implementation operates on an
 [`ods::array`](https://github.com/patmorin/ods/blob/edition-0.1g/cpp/array.h)
 of some type `T`. The closest equivalent to `ods::array` would be Sunder's
 slice type, so our merge-sort implementation will operate on a slice of
@@ -70,8 +70,8 @@ func merge_sort[[T]](a: []T) void
 
 Alright so let's begin porting the body of the ODS implementation to Sunder.
 The first line of the ODS implementation is a recursive check that bails out
-when there are zero or one elements to sort (i.e. the collection is already
-sorted):
+when there are zero or one elements to sort (i.e. when the collection is
+already sorted):
 
 ```cpp
 if (a.length <= 1) return;
@@ -102,7 +102,7 @@ Sunder's standard library has
 and
 [`std::slice[[T]]::copy`](https://github.com/ashn-dot-dev/sunder/blob/2023.03.31/lib/std/std.sunder#L820)
 which we can use to dynamically allocate and populate our own `a0` and `a1`
-slices in the Sunder implementation.
+slices in the Sunder implementation:
 
 ```
 var a0 = std::slice[[T]]::new(countof(a)/2);
@@ -606,10 +606,10 @@ $ sunder-run merge-sort-version-3.sunder
 With that last bit of cleanup done, I think we can call our C++-to-Sunder
 merge-sort port complete! For a relatively small amount of effort, we were able
 to take existing C++ code and bring it to Sunder with few conceptual changes.
-Of course, not all C and C++ code would be this easy to implement in Sunder,
-but a surprising number of data structures and algorithms can be ported from C
-or C++ to Sunder line-for-line. In fact, the process of porting merge-sort seen
-in this blog post is almost exactly how Sunder's
+Of course, not all C and C++ code is this easy to implement in Sunder, but a
+surprising number of data structures and algorithms can be ported from C or C++
+to Sunder line-for-line. In fact, the process of porting merge-sort seen in
+this blog post is almost exactly how Sunder's
 [`std::sort`](https://github.com/ashn-dot-dev/sunder/blob/2023.03.31/lib/std/std.sunder#L1846)
 was introduced into the Sunder standard library. Although this blog post was
 more of an example porting journey rather than a porting guide, I hope it is a
