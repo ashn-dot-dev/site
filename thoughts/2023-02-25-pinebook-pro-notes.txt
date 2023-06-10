@@ -13,7 +13,7 @@ experience than Debian/Ubuntu/Mint. I see that Armbian is also supported, so I
 *might* try to get a Debian setup with MATE going, since I'm not super thrilled
 with Manjaro.
 
-Initial Notes:
+2023-02-25 Initial Notes:
 + Camera lens thingy came off while trying to remove protective plastic.
 + Parts of the case are not flush.
 + Default Manjaro OS loaded was soooooo slow to respond to user input. Noticeable delay! Is this a Wayland issue?
@@ -27,3 +27,11 @@ Initial Notes:
 + Wifi, bluetooth, and sound seem to be working (haven't actually tried bluetooth but the interface is at least up), so the only usual suspect of busted hardware that is actually busted is the camera.
 + Speakers sometimes randomly emit a popping, even if completely muted. I don't know why this is, but it startles me every time, which is not great.
 + Docker was not supported for manjaro-arm, but that's fine since I wasn't exactly expecting to receive support on this platform.
+
+2023-06-10 Notes:
++ After a full system update Vim is behaving really weirdly:
+    + Alt+Tab is opening explore.
+    + Opening explore with my leader+v+e+x binding will open explore in both the left and right buffers instead of just the right.
+    + Vim feels basically unusable for my normal workflow.
++ Between Vim being busted and Lightdm not working, I feel like updating Manjaro is a minefield.
++ Opening Firefox is reaaaaaaaly slow. Opening chrome is even slower.
