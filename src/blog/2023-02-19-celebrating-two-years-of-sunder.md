@@ -42,6 +42,3 @@ Sunder has received a few major updates since the "Sunder is a Sufficiently
 Stable Programming Language" blog post, including a keyword change (`const` to
 `let`), as well as a standard library allocator rework. However, the core
 language and standard library are still very much the same.
-
-[^5]:
-Some of which are currently in the works!
