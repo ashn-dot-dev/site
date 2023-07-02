@@ -204,14 +204,14 @@ busted with `Heal` and `Force Wave` completely breaking most combat scenarios.
 Having 2+ jedi able to use `Heal` at pretty much any time makes your party
 practically invincible, and I used almost no health items for the rest of the
 game after unlocking `Cure` on Dantooine. Compare that with ranged characters
-like Mission and Carth with DPS that is nowhere even close to the PCs, even with
-properly outfitted / upgraded weapons and armor. Mission was in my party for
-most of the game, but barely ended up contributing to the DPS of the group: I
-would have Mission spam whatever variation of `Sniper Shot` she had at the time,
-but compared to any jedi character it was just no contest. I understand that
-from a lore perspective the jedi characters *should* be much more powerful than
-the non-jedi characters, but from a gameplay perspective the balance doesn't
-provide enough incentive to use the non-jedi characters unless you are
+like Mission and Carth with DPS that is nowhere even close to the PC's, even
+with properly outfitted / upgraded weapons and armor. Mission was in my party
+for most of the game, but barely ended up contributing to the DPS of the group:
+I would have Mission spam whatever variation of `Sniper Shot` she had at the
+time, but compared to any jedi character it was just no contest. I understand
+that from a lore perspective the jedi characters *should* be much more powerful
+than the non-jedi characters, but from a gameplay perspective the balance
+doesn't provide enough incentive to use the non-jedi characters unless you are
 specifically crafting a run to use non-jedi like I did this time around with
 Mission. To this day I have never used T3-M4, HK-47, or Canderous as main party
 members during a run outside of one or two areas (and I have literally never
