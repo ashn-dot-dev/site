@@ -170,7 +170,7 @@ station from four maps scattered across the galaxy. One such map is on Korriban,
 so you travel to Korriban only to learn that you can't access the map until you
 prove your worthiness Sith Academy headmaster. To prove your wordiness you
 tackle a number of small sub-missions, one of which involves investigating a
-tomb where the previous (now excited) headmaster of the academy is hiding. While
+tomb where the previous (now exciled) headmaster of the academy is hiding. While
 investigating you are captured and have a small side-quest that ends with you
 killing the previous headmaster and saving another captured student (at least
 that's how I did the quest in my playthrough). The long-term progression of the
