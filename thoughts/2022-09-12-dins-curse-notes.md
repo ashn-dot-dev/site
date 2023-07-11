@@ -42,13 +42,13 @@ the levels I gained from my first town would allow me to breeze through a lower
 level dungeon. And I was in fact correct, I absolutely dominated the second
 dungeon with basically no trouble. Ironically this is the town that I lost the
 most villagers in, because there was a particularly bad attack that took me far
-to long to fend off due to me being stuck in the lower levels of a dungeon with
-not easy-to-find warp gate at the time. This town was also interesting because
-there was a water drought, a food famine, and a curse that was all effecting
-the town at one. Even I eventually was effected by the curse, and had a
-permanent debuf until I completed the quest that allowed all the villagers and
-myself to be cured of the curse. During this quest I also started using the
-Fireball spell for AoE damage in addition to Fiery Blast.
+to long to fend off due to me being stuck in the lower levels of a dungeon
+without an easy-to-find warp gate at the time. This town was also interesting
+because there was a water drought, a food famine, and a curse that was all
+effecting the town at once. Even I was eventually was affected by the curse,
+and had a permanent debuf until I completed the quest that allowed all the
+villagers and myself to be cured of the curse. During this quest I also started
+using the Fireball spell for AoE damage in addition to Fiery Blast.
 
 I started my third town on the hardest possible difficult I could, to see if a
 higher difficulty was easier for leveling and if a higher difficulty would
