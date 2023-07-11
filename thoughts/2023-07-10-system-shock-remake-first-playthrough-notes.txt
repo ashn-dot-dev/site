@@ -1,0 +1,80 @@
++ Cyberspace sections are awkward to control and not super fun. Same thing every time without really having any strategy.
++ Respawning enemies feels too frequent. Some halls are "safe" meaning you will not see respawn, and other halls replace enemies nearly every time.
+	+ After playing the game for a while I think that each level might have a counter for the number of enemies that respawn on that floor, because eventually most floors stopped respawning enemies. Science in particular kept respawning robots in the same corridor to the point that they started stacking up next to each other in groups of two or three.
++ Glare from some of the lights on the puzzles actually makes it more difficult to see the puzzle tiles.
++ Noticed number on the destroyed CPU nodes in research. Went back and found the number from medical as well.
++ After 7+ hours I got stuck after clearing reactor and maintenance without a path forward.
+	+ Found [1] which told me to go to the radiation shield reactor with the isotope I picked up. It was not obvious my first time in the room that there was a spot to put the isotope in.
++ Looks like story events trigger new waves of enemies. After clearing reactor and being used to running through it without problems, I come back to heal after blowing up the mining laser and there is security-3 robot right outside the elevator door.
++ I tried the cyberspace section opening Diego's locker twice and died twice. It just kinda sucks. Not a fan at all.
++ There really needs to be a vaporize hotkey.
++ Circle-strafing enemies with the rapier is a valid tactic for some that do not have guns.
++ Didn't get the mark three assault rife until after the boss battle on the flight deck despite acquiring ammo for it the whole game up until now. Not sure if there was a secret one somewhere earlier.
++ Only learned about modkits after clearing flight deck. I feel dumb, I could have had some way more powerful guns up until now. Went back through previous levels to collect modkits.
++ In storage there was a puzzle with the gravity lifts and I felt like a fucking genius when I wondered "if I throw an EMP grenade can a get by a lift blocking my way" and the answer was yes, and it let me (unknowingly) skip the entire puzzle!
++ I like the dismemberment and gore in this game. Really satisfying to slice someone in half with the laser rapier.
++ The magnum is so damn satisfying to shoot.
++ The Chess puzzle was *really* cool to stumble upon! Both in seeing it and wondering "oh wow this looks like chess" and then working out which pieces were which.
+	+ With a couple of losses due to dumb blunders and one bishop + king vs king draw, I finally won on my like 4th or 5th attempt by double queen squeezing the king like you would with a pair of rooks or rook and queen!
++ GROVES:
+	+ Alpha cleared.
+	+ Beta is blocked by SHODAN. Now unblocked. Jettisoned.
+	+ Delta cleared but not sure the safety interlock button was hit. Went back later and I absolutely *did* miss it. Now Delta is actually cleared.
+	+ Gamma is unreachable?
++ Just noticed I have not seen any beds outside of medical. This game does an okay-ish job of making the station feel like a lived-in place, but is missing food and sleeping quarters.
+	+ Turns out there were some beds and a cafeteria in security, so there *was* worldbuilding, but it still doesn't really make sense with how many people were on this station.
++ I wish there was a way to split stacks in my inventory.
++ Got stuck again at the ~15 hour mark. I cleared executive, flight deck, storage, and then Alpha and Delta groves, but the rest of maintenance was blocked off, Beta was blocked by SHODAN, and the elevator in Diego's office was non-functional due to biohazard or something, so I am out of ideas.
+	+ I looked at the guide again and it said there was a way to unlock beta grove with the admin card somewhere, but I though I had cleared all of executive. Turns out I missed a button in an office somewhere that unlocked beta grove access, which I found after running around all over executive.
++ Beta grove was fucking scary. It was the first time I really brought out the shotgun, the first time I didn't go for 0% security, and the first time where I was really using healing and energy recharging items frequently. That plus some high damage enemies made it nerve wracking. I boots jumped all the way over to the interlock room which might have been a skip, but I just wanted to get out of there ASAP.
++ Random head of a dude turned out to be a key item I needed waaaaaaaaaay after I picked it up, so good thing I kept it safe *and* remembered it was there.
++ Got stuck figuring out how to get the relay analyzer back up. I found the one disk thing that in maintenance that looked like it needed repairing, and I thought I left some items around that looked like the replacement, but after going to the location where I thought I left them they were not there and I am not sure if I was misremembering or whether I stashed them somewhere different.
+	+ Looking at the steam guide again, the guide said something about relay 428. I tried that as the access code on the relay and that worked as the passcode apparently. I'm not sure how I was supposed to figure that out, so this is the first time I genuinely needed help and didn't just miss something :(
+		+ Apparently looking at [2] later, it said that there was supposed to be a diagnostic log on the wall, but the only thing I saw was a black screen each time I went in, so I'm not sure if I was looking at the wrong thing or I just completely missed it or what.
+	+ It said fix broken interface demodulator, but I have no idea where that would be. I found [2] that I used since I was tired of running around (which I have been doing for like the past hour).
+		+ Okay I actually *did* leave these in the place that I found them! I just looked everywhere around the space station *except* for where they were (where I stacked them in a pile). Ughhhhh that was so annoying that I basically knew the solution when I saw the broken thing, but knowing where the items for the solution were made things tedious and difficult, even if it were not the game's fault.
++ This has been a problem for the entire game, but I am finally writing it down now. The max voltage level of the SparQ is the one you almost always want the gun on, but it is really annoying to look at and hear with the sparks coming off of it!
++ Engineering:
+	+ Alpha antenna destroyed.
+	+ Beta antenna destroyed.
+	+ Delta antenna destroyed.
+	+ Gamma antenna destroyed.
++ I've been conservative with ammo for the whole game, but they are really just handing it out in engineering. I'm kinda glad because it lets me have a little bit more fun with the guns.
++ Just realizing now the game would be a lot more tense with music turned off. The cyberpunk tunes are great, but they let me know when I am still in combat and when I have cleared the area. Plus the background noise of the station is nice.
++ Grabbing all of my items before heading to security. Gathered all my ammo and all of the weapons I may want to use for the rest of the game. Drank *all* of my booze (7 * 8 + 2 = 58 bottles of booze)! Enjoyed my collection of 23 skulls! Ate all my snacks.
+	+ I had a plasma core laying around, so I did peek on the wiki to see if I had missed and did get spoiled that it was in security. Whoops.
++ I originally wrote down 6 for level 6 digit, and ended up with an incorrect password for the 6-digit code in reactor. I spent over half an hour going through levels 1-6 checking the digits again only for me to find out the last one was written down wrong :/
++ Security turned the game into a normal-ish FPS. The sub machine gun hear is goat. Teflon rounds are acquired faster than I can spend them and the higher damage + higher magazine size mods made that gun a beast.
++ The cutscene where the station blows up as we listen to elevator music was kinda funny. I enjoyed it a bunch :)
++ The ending cyberspace sequence was really dumb. Even when I have a hitscan weapon, the fights here just feel terrible.
+	+ Very anticlimactic too. I didn't even realize I had shot the final shot until I was pulled out of cyberspace. Completely killed the end-game pacing.
+	+ Looking at [3], the spear thing was apparently called the cybergun.
++ Final autosave was as 21:49:18 IGT so ~22 hours to beat on default difficulty.
++ Didn't really use the implants/features at all. Energy shield, targeting hack thing, etc. Just never came up.
++ Only after re-watching the intro on YouTube did I notice that the three balls that you send out to SHODAN in the final cyberspace sequence are the ethical restraints that the Hacker disabled at the beginning of the game.
++ In the future if I ever do another run I will tune the difficulty to have combat on 2 or 3 (2 felt like a good mix, but I could see a bigger challenge being fun), mission on 2 or 3 (3 for the true difficulty experience), and cyber and puzzle both on one because I just did not like the cyberspace sequences and the puzzles were a bit repetitive and boring by the end of the game.
++ In my playthough I tried not to be a quicksave queen, but I quickly learned that this is absolutely a game where you want o be quicksaving after every fight. Feel no shame!
++ Random note is that the performance of this game is all around great. 60 FPS, no stutter, and everything looks great.
+
++ PASSCODES:
+	+ 766 - In the executive room in science => Safety interlock in reactor. Set to disabled but what the heck did this do?
+	+ 643 (maybe) message - message from Fortier, Jared in maintenance
+        + In exec suite (clockwise):
+		+ 232
+		+ 141 (was one of the codes to a door in the exec suite)
+		+ 692
+                + 137
+		+ Log told me one of these is the maintenance conduit access code.
+	+ Storage room in storage starts with an 8 and ends with an 8 => Turned out to be 838.
+	+ FROM DESTROYED CPU NODES:
+		+ 1 (level 1 medical)
+		+ 8 (level 2 research)
+		+ 0 (level 3 maintenance)
+		+ 6 (level 4 storage)
+		+ 9 (level 5 flight deck)
+                + 5 (level 6 executive)
+	+ 001 - Flight deck code.
+
+[1]: https://steamcommunity.com/sharedfiles/filedetails/?id=1761349780
+[2]: https://www.escapistmagazine.com/where-to-find-the-broken-interface-demodulator-in-system-shock-remake/
+[3]: https://www.youtube.com/watch?v=eJXUMr9guQs
