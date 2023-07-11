@@ -13,7 +13,6 @@ if [ -d "${OUT_DIR}" ]; then
 fi
 mkdir -p "${OUT_DIR}"
 mkdir -p "${OUT_DIR}/blog"
-mkdir -p "${OUT_DIR}/misc"
 mkdir -p "${OUT_DIR}/projects"
 mkdir -p "${OUT_DIR}/tmp"
 
@@ -74,7 +73,6 @@ build_blog_page() {
 build_main_pages() {
     echo "==== BUILDING MAIN HTML PAGES ===="
     build_page_from_html "index.html" "ashn"
-    build_page_from_html "misc.html" "misc"
     build_page_from_html "projects.html" "projects"
 }
 
@@ -134,7 +132,6 @@ copy_misc_files() {
     set -x
     cp "${SRC_DIR}/favicon.ico" "${OUT_DIR}"
     cp "${SRC_DIR}/style.css" "${OUT_DIR}"
-    cp -r "${SRC_DIR}/misc/" "${OUT_DIR}"
     { set +x; } 2>/dev/null
 }
 
