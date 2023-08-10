@@ -361,7 +361,7 @@ invalid character `$`
 ```
 
 With the addition of the `next_token` method, our lexer is complete. Not bad
-for less fifty lines of code!
+for less than fifty lines of code!
 
 ## Writing the Parser
 
