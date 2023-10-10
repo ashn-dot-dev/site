@@ -81,12 +81,12 @@ build_blog_archive_page() {
     BLOG_INDEX_CONTENT=$(cat "${SRC_DIR}/blog.html")
     for f in $(ls "${SRC_DIR}/blog" | sort -r); do
         [ -d "${SRC_DIR}/blog/${f}" ]              && continue # Skip dirs
-        [ "$(echo "${f}" | head -c 3 -)" = 'wip' ] && continue # Skip WIP posts
+        [ "$(echo "${f}" | head -c 3)" = 'wip' ] && continue # Skip WIP posts
 
         echo "PROCESSING BLOG ENTRY: ${f}"
         # YYYY-MM-DD
         # 123456789A bytes should be parsed to get the date from the filename.
-        F_DATE=$(echo "${f}" | head -c 10 -)
+        F_DATE=$(echo "${f}" | head -c 10)
         F_TITLE=$(md_page_title "${SRC_DIR}/blog/${f}")
         F_HREF="/blog/${f%.md}.html"
 
