@@ -84,6 +84,26 @@ iframe {
   max-width: 90%;
 }
 
+/* <blockquote> elements assume the last child is attribution */
+blockquote {
+  background: var(--color-gray-drk);
+  border-left: 10px solid var(--color-gray-lit);
+  margin:  1.5em 10px;
+  padding: 0.5em 10px;
+}
+blockquote > *:not(:last-child) {
+  font-style: italic;
+}
+blockquote > p:not(:last-child):before  {
+  content: '“';
+}
+blockquote > p:not(:last-child):after {
+  content: '”';
+}
+blockquote > *:last-child {
+  font-style: bold;
+}
+
 /* CODE (GENERATED FROM PANDOC) */
 main pre {
   padding: 0.5rem;
