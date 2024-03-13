@@ -13,7 +13,6 @@ if [ -d "${OUT_DIR}" ]; then
 fi
 mkdir -p "${OUT_DIR}"
 mkdir -p "${OUT_DIR}/blog"
-mkdir -p "${OUT_DIR}/projects"
 mkdir -p "${OUT_DIR}/tmp"
 
 #== Website Generation Helper Utilities ========================================
@@ -73,7 +72,7 @@ build_blog_page() {
 build_main_pages() {
     echo "==== BUILDING MAIN HTML PAGES ===="
     build_page_from_html "index.html" "ashn"
-    build_page_from_html "projects.html" "projects"
+    build_page_from_html "scratchpad.html" "ashn"
 }
 
 build_blog_archive_page() {
@@ -111,22 +110,6 @@ build_blog_entry_pages() {
     wait
 }
 
-build_projects_pages() {
-    echo "==== BUILDING PROJECTS PAGES ===="
-    build_projects_scratchpad() {
-        build_page_from_html "projects/scratchpad.html" "scratchpad"
-    }
-
-    build_projects_life() {
-        build_page_from_html "projects/life.html" "life"
-        (cd "${SRC_DIR}/projects/life/source/" && make clean)
-        cp -r "${SRC_DIR}/projects/life/" "${OUT_DIR}/projects/life/"
-    }
-
-    build_projects_scratchpad
-    build_projects_life
-}
-
 copy_misc_files() {
     echo "==== COPYING MISC FILES ===="
     set -x
@@ -145,7 +128,5 @@ copy_tmp_files() {
 time build_main_pages
 time build_blog_archive_page
 time build_blog_entry_pages
-time build_projects_pages
-time build_projects_pages
 time copy_misc_files
 time copy_tmp_files
