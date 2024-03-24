@@ -1,4 +1,6 @@
 out/
+src/tmp/
+!src/tmp/README.txt
 
 *.o
 *.out
