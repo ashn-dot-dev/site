@@ -1,5 +1,5 @@
-I built a Networked Catan Clone Without a Game Engine in My Own Programming Language
-====================================================================================
+I built a Networked Catan Clone in Sunder
+=========================================
 
 For the past eight or so months I have been building a networked implementation
 of Klaus Teuber's [Settlers of Catan](https://en.wikipedia.org/wiki/Catan) in
@@ -10,8 +10,8 @@ called Natac, and it can be found on
 [GitHub](https://github.com/ashn-dot-dev/natac) and
 [SourceHut](https://git.sr.ht/~ashn/natac).
 
-<img src="2024-04-15-i-built-a-catan-clone-without-a-game-engine-in-my-own-programming-language/natac-turn-main.png">
-<img src="2024-04-15-i-built-a-catan-clone-without-a-game-engine-in-my-own-programming-language/natac-winner.png">
+<img src="2024-04-15-i-built-a-catan-clone-in-sunder/natac-turn-main.png">
+<img src="2024-04-15-i-built-a-catan-clone-in-sunder/natac-winner.png">
 
 This was my first non-trival project in Sunder and is probably the largest game
 I have ever worked on. I am not a game developer, and I have never seriously
