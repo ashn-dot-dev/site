@@ -57,6 +57,10 @@ a:hover {
   text-decoration: underline;
 }
 
+table td, table td * {
+    vertical-align: top;
+}
+
 /* MEDIA ELEMENTS */
 canvas {
   display: block;
