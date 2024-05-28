@@ -68,4 +68,4 @@ You should now have a viewable flame graph.
 ~/sources/FlameGraph$ firefox --new-window "file://$(realpath sample.svg)"
 ```
 
-<img src="2024-05-27-macos-flame-graphs/sample.svg">
+<a href="2024-05-27-macos-flame-graphs/sample.svg"><img src="2024-05-27-macos-flame-graphs/sample.svg"></a>
