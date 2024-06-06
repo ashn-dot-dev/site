@@ -1,0 +1,24 @@
+```
+/Users/victorcushman/sources/game-of-life-mojo/life.mojo:85:9: error: cannot raise error in this context
+        raise Error("[glider] invalid board size")
+        ^~~~~~~~~~
+/Users/victorcushman/sources/game-of-life-mojo/life.mojo:85:9: note: try surrounding 'raise' in a 'try' block
+        raise Error("[glider] invalid board size")
+        ^
+/Users/victorcushman/sources/game-of-life-mojo/life.mojo:83:4: note: or mark surrounding function as 'raises'
+fn glider[Rows: Int, Cols: Int]() -> Board[Rows, Cols]:
+   ^
+mojo: error: failed to parse the provided Mojo source module
+```
+
+Example of something that I want to do. I don't have raises in this context, one of the suggestions says to add it, but does show me where to add it. I thought it would be.
+
+    fn name[params](args) -> returns raises:
+        ...
+
+but apparently not. So I look for it in the docs, and it is hard to find references to raises syntax in the search. I happen to know raises has type `Error`, so I can look that up, but hold on can't we just point out where the raises should be in source code. Like what does everything feel like a C++ error instead of a Rust error.
+
+Turns out the syntax is:
+
+    fn name[params](args) raises -> returns:
+        ...
