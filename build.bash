@@ -111,6 +111,37 @@ build_blog_entry_pages() {
     wait
 }
 
+build_blog_rss_page() {
+    echo "==== BUILDING BLOG RSS PAGE ===="
+    RSS_CONTENT="<?xml version=\"1.0\" encoding=\"UTF-8\" ?>"
+    RSS_CONTENT="${RSS_CONTENT}${NL}<rss version=\"2.0\" xmlns:atom=\"http://www.w3.org/2005/Atom\">"
+    RSS_CONTENT="${RSS_CONTENT}${NL}<channel>"
+    RSS_CONTENT="${RSS_CONTENT}${NL}  <title>Ashn's Blog</title>"
+    RSS_CONTENT="${RSS_CONTENT}${NL}  <link>https://ashn.dev/</link>"
+    RSS_CONTENT="${RSS_CONTENT}${NL}  <atom:link href=\"https://ashn.dev/rss.xml\" rel=\"self\" type=\"application/rss+xml\" />"
+    RSS_CONTENT="${RSS_CONTENT}${NL}  <description>Ashn's Blog</description>"
+    RSS_CONTENT="${RSS_CONTENT}${NL}  <language>en</language>"
+    for f in $(ls "${SRC_DIR}/blog" | sort -r); do
+        [ -d "${SRC_DIR}/blog/${f}" ]            && continue # Skip dirs
+        [ "$(echo "${f}" | head -c 3)" = 'wip' ] && continue # Skip WIP posts
+
+        # YYYY-MM-DD
+        # 123456789A bytes should be parsed to get the date from the filename.
+        F_DATE=$(echo "${f}" | head -c 10)
+        F_TITLE=$(md_page_title "${SRC_DIR}/blog/${f}")
+        F_LINK="https://ashn.dev/blog/${f%.md}.html"
+
+        RSS_CONTENT="${RSS_CONTENT}${NL}  <item>"
+        RSS_CONTENT="${RSS_CONTENT}${NL}    <title>${F_TITLE}</title>"
+        RSS_CONTENT="${RSS_CONTENT}${NL}    <link>${F_LINK}</link>"
+        RSS_CONTENT="${RSS_CONTENT}${NL}    <description></description>"
+        RSS_CONTENT="${RSS_CONTENT}${NL}  </item>"
+    done
+    RSS_CONTENT="${RSS_CONTENT}${NL}</channel>"
+    RSS_CONTENT="${RSS_CONTENT}${NL}</rss>"
+    echo "${RSS_CONTENT}" >"${OUT_DIR}/rss.xml"
+}
+
 copy_misc_files() {
     echo "==== COPYING MISC FILES ===="
     set -x
@@ -129,5 +160,6 @@ copy_tmp_files() {
 time build_main_pages
 time build_blog_archive_page
 time build_blog_entry_pages
+time build_blog_rss_page
 time copy_misc_files
 time copy_tmp_files
