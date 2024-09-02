@@ -1,0 +1,36 @@
+# sort.lumpy - merge sort implemented in Lumpy
+
+let sort = function(x) {
+    if x.count() <= 1 {
+        return x;
+    }
+    let mid = (x.count() / 2).trunc();
+    let lo = sort(x.slice(0, mid));
+    let hi = sort(x.slice(mid, x.count()));
+    let lo_index = 0;
+    let hi_index = 0;
+    let result = [];
+    for _ in x.count() {
+        if lo_index == lo.count() {
+            result.push(hi[hi_index]);
+            hi_index = hi_index + 1;
+        }
+        elif hi_index == hi.count() {
+            result.push(lo[lo_index]);
+            lo_index = lo_index + 1;
+        }
+        elif lo[lo_index] < hi[hi_index] {
+            result.push(lo[lo_index]);
+            lo_index = lo_index + 1;
+        }
+        else {
+            result.push(hi[hi_index]);
+            hi_index = hi_index + 1;
+        }
+    }
+    return result;
+};
+
+let vec = [6, 8, 3, 1, 7, 2, 4, 5, 9];
+println("unsorded vector is " + repr(vec));
+println("sorted vector is " + repr(sort(vec)));

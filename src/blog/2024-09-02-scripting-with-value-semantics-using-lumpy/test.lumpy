@@ -1,0 +1,7 @@
+# test.lumpy
+let a = ["foo", "bar", "baz"];
+let b = a; # b becomes a *copy* of a
+a.push("lasagne"); # modification of a does not affect b
+
+println("a: " + repr(a));
+println("b: " + repr(b));
