@@ -287,11 +287,11 @@ for x in ordered {
 ```
 $ lumpy dfs.lumpy
 Ordered:
-"B"
-"E"
-"A"
-"C"
-"D"
+B
+E
+A
+C
+D
 ```
 
 The game framework I mentioned earlier is a small wrapper around Pygame written
