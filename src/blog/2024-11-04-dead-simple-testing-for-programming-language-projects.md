@@ -474,7 +474,7 @@ reference@0x100f97200
 **Unrelated changes can break exist tests!** Say I wanted to add a new warning
 to the Sunder compiler that will inform a user when they have a function call
 with an unused return value. The patch for it is pretty simple, but there are
-currently hundreds of tests (and a significant portion of the standard library)
+currently hundreds of tests (and a few places in the the standard library)
 containing call-expressions with (purposefully) unused return values. This
 small change would require me to update all of those tests even though they do
 not have a whole lot to do with the actual changeset. This is a form of spooky
