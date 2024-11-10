@@ -73,3 +73,8 @@ dislike the open world Bethesda RPG. And how I will never another Elder Scrolls
 or Fallout game from Bethesda again.
 
 https://www.youtube.com/watch?v=dHP02JEC5H0
+
+## N-in-1 Shower Product
+
+Extrapolated version of how men have 2-in-1, 3-in-1, etc. Scale the number of
+things in the shower product ridiculously high, but make sure nothing clashes.
