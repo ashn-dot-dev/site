@@ -341,16 +341,16 @@ EXPECTED=$(\
 
 Here we look for a line beginning with eight or more `#` characters. Both
 Sunder and Lumpy have single-line comments that begin with `#`, and a different
-language would require substiting `#` with the appropriate single-line comment
-character(s). We then remove that line of `#` characters, and strip the leading
-`#` characters from the remaining text of the expected output section. We also
-remove an optional space character just after each `#` within the expected
-output section so that a line such as `# 123 + 456 is 579` will be treated the
-same as the line `#123 + 456 is 579`. In my opinion, that extra space makes it
-significantly easier to read the expected output section when you have been
-debugging and testing all day. Just to show this `sed` chain in action, let us
-take a look at what happens when we run this command on our example test from
-earlier:
+language would require substituting `#` with the appropriate single-line
+comment character(s). We then remove that line of `#` characters, and strip the
+leading `#` characters from the remaining text of the expected output section.
+We also remove an optional space character just after each `#` within the
+expected output section so that a line such as `# 123 + 456 is 579` will be
+treated the same as the line `#123 + 456 is 579`. In my opinion, that extra
+space makes it significantly easier to read the expected output section when
+you have been debugging and testing all day. Just to show this `sed` chain in
+action, let us take a look at what happens when we run this command on our
+example test from earlier:
 
 ```sh
 $ cat add.test.lumpy
