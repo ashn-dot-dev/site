@@ -27,11 +27,17 @@ make_page() {
     PAGE_TITLE="$1"
     PAGE_CONTENT="$2"
 
-    PAGE_OUT="${TEMPLATE}"
-    PAGE_OUT="${PAGE_OUT/<!--TITLE-->/${PAGE_TITLE}}"
-    PAGE_OUT="${PAGE_OUT/<!--PAGE-->/${PAGE_CONTENT}}"
+    TEMP_FILE=$(mktemp)
+    echo "${PAGE_CONTENT}" > "${TEMP_FILE}"
 
-    echo "${PAGE_OUT}"
+    echo "${TEMPLATE}" | \
+    sed "s|<!--TITLE-->|${PAGE_TITLE}|g" | \
+    sed -e '/<!--PAGE-->/{
+        r '"${TEMP_FILE}"'
+        d
+    }'
+
+    rm "${TEMP_FILE}"
 }
 
 build_page_from_html() {
