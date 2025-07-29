@@ -20,6 +20,7 @@
 ## Start of Grind Info and Rules
 
 Prepped in the evening of 2025-07-28 at ~9:00 PM.
+Starting the grind in the morning of 2025-07-29 on the way to work.
 Starting the grind with 1,210,715 thieving xp - just over the level 75 mark.
 Grind seems like it will be 125+ hours.
 Started with ~1232 hours of playtime.
