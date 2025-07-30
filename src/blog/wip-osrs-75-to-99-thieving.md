@@ -1,7 +1,7 @@
 75 to 99 Thieving in Old School RuneScape by Stealing Valuables
 ===============================================================
 
-## Pre-Grind Work
+## Pre-Grind Notes
 
 + Filled all easy clue STASH units so I did not have to build and/or item hunt during the grind.
 + Wanted to get to 100 easy clue completions before the grind started for the clue box. I got to 85, but I did not really want to grind out another 15 on gourmet implings before starting the grind, and just doing 2 clues at a time during the thieving portion seemed like it would be fine.
@@ -19,12 +19,22 @@
 
 ## Start of Grind Info and Rules
 
-Prepped in the evening of 2025-07-28 at ~9:00 PM.
-Starting the grind in the morning of 2025-07-29 on the way to work.
-Starting the grind with 1,210,715 thieving xp - just over the level 75 mark.
-Grind seems like it will be 125+ hours.
-Started with ~1232 hours of playtime.
-I will us XP lamps on herblore, but will not be doing any other random events that give items, gp, or xp (e.g. bob the cat fishing random).
-I will not be collecting from tears of guthix during this grind.
-I will allow myself to do holiday and seasonal events if I have the change, but we'll see if I actuall need to before finishing this grind.
-Probably going to go for 1000 hourse keys first and see how many clues, gp, and xp that gets me. I know I'll need to do more, but don't know if it will be like 2000 total keys, or 3000 total keys, or even more.
++ Prepped in the evening of 2025-07-28 at ~9:00 PM.
++ Starting the grind in the morning of 2025-07-29 on the way to work.
++ Starting the grind with 1,210,715 thieving xp - just over the level 75 mark.
++ Grind seems like it will be 125+ hours.
++ Started with ~1232 hours of playtime.
++ I will us XP lamps on herblore, but will not be doing any other random events that give items, gp, or xp (e.g. bob the cat fishing random).
++ I will not be collecting from tears of guthix during this grind.
++ I will allow myself to do holiday and seasonal events if I have the change, but we'll see if I actually need to before finishing this grind.
++ Probably going to go for 1000 hourse keys first and see how many clues, gp, and xp that gets me. I know I'll need to do more, but don't know if it will be like 2000 total keys, or 3000 total keys, or even more.
+
+## Mid-Grind Notes
+
++ Set most NPC left click options to `Walk here` for citizens, tourists, the street urchins, etc. Basically, I wanted to prevent misclicks if I moused over the wrong NPC when going for thieving the wealthy citizens in the market.
+    + For some reason, menu entry swapper on mobile doesn't work as well as in RuneLite. It seems like the options of NPC were somehow linked, like if I set one NPC to `Walk here` on tap, then all NPCs would get that, including the wealthy citizens. Not sure if that is a bug or feature.
++ Swapped left click on easy reward caskets to `Use` so I could stack them.
++ I opened 15 easy caskets day 1 of the grind to get up to 100 for the scroll case. No master clue thankfully.
+    + I completed my black wizard robes (g) set and I got a ham joint! Such a good 15 clues. Also a full black wizard (g) set in 100 caskets is great RNG.
++ I think a goal of ~100k xp/day amortized, which equates to ~1hr of playtime a day.
++ Created a spreadsheet to track metrics throughout the grind. Each entry will correspond to the EOD stats.
