@@ -15,9 +15,9 @@ consent. You know what I find even more annoying? I find it even more annoying
 when the additions that an IDE added to my personal configuration and system
 setup without my explicit consent don't even work correctly.
 
-Today I installed Visual Studio Code on my Mac and was annoyingly greeted with
-the output `bash: -: command not found` within the integrated terminal every
-time a command was executed:
+Today I installed Visual Studio Code on my Mac and was greeted with the output
+`bash: -: command not found` within the integrated terminal every time a
+command was executed:
 
 ```sh
 $ echo 'hello'
@@ -26,7 +26,7 @@ hello
 ```
 
 When I checked what was being executed with `set -x`, I noticed that Visual
-Studio Code had added a ton of bloat before and after the executing command:
+Studio Code had added a ton of bloat around the actual executing command:
 
 ```sh
 $ echo 'hello'
@@ -68,9 +68,9 @@ and uncheck the `Terminal -> Integrated -> Shell Integration: Enabled` setting.
 
 ![terminal.integrated.shellIntegration.enabled setting](/blog/2025-08-03-vscode-disable-shell-integration/setting.png)
 
-I understand that I got Visual Studio Code is a free (as in beer not as
-in freedom) product that I willingly downloaded onto my machine. I understand
-that there were probably a good number of engineering hours put into this shell
+I understand that Visual Studio Code is a free (as in beer not as in freedom)
+product that I willingly downloaded onto my machine. I understand that there
+were probably a good number of engineering hours put into this shell
 integration. I even understand that this level of shell integration is
 something that a lot (most?) developers will want by default when using Visual
 Studio Code as an IDE. But there is something about this that rubs me the wrong
@@ -82,6 +82,6 @@ behalf** with **my explicit consent**. I do not like when a company or a
 product opts me into something I was unaware of. If I hadn't stumbled upon that
 `bash: -: command not found` error message, then I probably would not have
 known that this shell integration was even happening. Microsoft's choice of
-default IDE settings are arguably not worth getting upset over, but this
+default IDE settings is arguably not worth getting upset over, but this
 happened to hit at just the right time for me to get maximally grumpy to the
 point where I needed to rant!
