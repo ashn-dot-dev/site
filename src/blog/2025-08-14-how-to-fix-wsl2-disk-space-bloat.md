@@ -3,8 +3,8 @@ How to Fix WSL2 Disk Space Bloat
 
 This morning when I hopped online for work I was greeted with a murder mystery.
 For some unknown reason, my WSL2 Ubuntu installation had eaten over a third of
-my 1 TB disk space even though the actual content within distro was less than
-10 GB:
+my 1 TB disk space even though the actual content within the distro was less
+than 10 GB:
 
 ![WSL2 taking up 373 GB of disk space](/blog/2025-08-14-how-to-fix-wsl2-disk-space-bloat/ubuntu-373gb.png)
 
@@ -29,8 +29,8 @@ PS C:\Users\me> (Get-Item (Get-ChildItem "$env:LOCALAPPDATA\Packages" -Recurse -
 372.947265625
 ```
 
-The `wsl2.exe` program has an an option `--set-sparse` which according to the
-program help text should allow the disk space to be automatically reclaimed
+The `wsl2.exe` program has an option, `--set-sparse` which, according to the
+program help text, should allow the disk space to be automatically reclaimed
 when set to `true`:
 
 ```ps1
