@@ -24,7 +24,7 @@
 + Starting the grind with 1,210,715 thieving xp - just over the level 75 mark.
 + Grind seems like it will be 125+ hours.
 + Started with ~1232 hours of playtime.
-+ I will us XP lamps on herblore, but will not be doing any other random events that give items, gp, or xp (e.g. bob the cat fishing random).
++ I will us xp lamps on herblore, but will not be doing any other random events that give items, gp, or xp (e.g. bob the cat fishing random).
 + I will not be collecting from tears of guthix during this grind.
 + I will allow myself to do holiday and seasonal events if I have the change, but we'll see if I actually need to before finishing this grind.
 + Probably going to go for 1000 hourse keys first and see how many clues, gp, and xp that gets me. I know I'll need to do more, but don't know if it will be like 2000 total keys, or 3000 total keys, or even more.
@@ -38,3 +38,4 @@
     + I completed my black wizard robes (g) set and I got a ham joint! Such a good 15 clues. Also a full black wizard (g) set in 100 caskets is great RNG.
 + I think a goal of ~100k xp/day amortized, which equates to ~1hr of playtime a day.
 + Created a spreadsheet to track metrics throughout the grind. Each entry will correspond to the EOD stats.
++ I got Rocky at 83 thieving with ~2,850,000 xp! I grabbed a redberry from Varok and turned him into Red!
