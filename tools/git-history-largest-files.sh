@@ -1,7 +1,12 @@
 #!/bin/sh
 #
-# Usage: git-history-largest-files.sh [number-of-files]
+# Usage: git-history-largest-files.sh [NUMBER-OF-FILES]
 set -eu
+
+if [ $# -ge 2 ]; then
+    echo "Usage: $0 [NUMBER-OF-FILES]"
+    exit 1
+fi
 
 COUNT=${1:-10}
 BYTES_PER_GB=1073741824
