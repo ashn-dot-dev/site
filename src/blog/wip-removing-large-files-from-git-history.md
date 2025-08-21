@@ -87,3 +87,78 @@ $ sh tools/git-history-largest-files.sh
 1.18 MB src/misc/2020-08-16-dvd-screensaver/2020-08-16-dvd-screensaver.mp4
 ```
 
+I don't actually *need* to keep this `src/misc/2021-10-18-braille-apple.webm`
+video around in the repository git history; the content is stored elsewhere,
+and this site is much more of a living document then it is a historical
+archive. So I am fine removing this file if it shrinks the repository size and
+gives me more leeway to jam different media blobs in later.
+
+Okay so now that we have a file path, let's use `git filter-branch`[^1] to
+replace the binary file with a placeholder across the entire git history, and
+then yeet remaining references to the old objects/commits.
+
+```sh
+#!/bin/sh
+#
+# Usage: git-history-elide-file.sh FILE
+set -eu
+
+if [ $# -ne 1 ]; then
+    echo "Usage: $0 FILE"
+    exit 1
+fi
+
+FILE="$1"
+
+export FILE
+export FILTER_BRANCH_SQUELCH_WARNING=1
+git filter-branch -f --tree-filter '
+if git ls-files | grep -q "^${FILE}$"; then
+    mkdir -p "$(dirname "${FILE}")"
+    echo "original file removed from git history" > "${FILE}"
+fi
+' -- --all
+rm -rf .git/refs/original/
+git reflog expire --expire=now --all
+git gc --prune=now --aggressive
+```
+
+Running this tool we can see that removed all of that repository blot
+
+```sh
+$ sh tools/git-history-elide-file.sh src/misc/2021-10-18-braille-apple.webm
+Rewrite e326cb816c72b2986ab9d6a7472ee3999860936b (287/294) (9 seconds passed, remaining 0 predicted)
+WARNING: Ref 'refs/heads/main' is unchanged
+WARNING: Ref 'refs/remotes/github/main' is unchanged
+WARNING: Ref 'refs/remotes/github/main' is unchanged
+WARNING: Ref 'refs/remotes/sourcehut/main' is unchanged
+Enumerating objects: 1513, done.
+Counting objects: 100% (1513/1513), done.
+Delta compression using up to 16 threads
+Compressing objects: 100% (1495/1495), done.
+Writing objects: 100% (1513/1513), done.
+Total 1513 (delta 973), reused 387 (delta 0), pack-reused 0
+$ git count-objects -vH
+count: 0
+size: 0 bytes
+in-pack: 1513
+packs: 1
+size-pack: 33.01 MiB
+prune-packable: 0
+garbage: 0
+size-garbage: 0 bytes
+$ sh tools/git-history-largest-files.sh 5
+3.93 MB src/blog/2022-03-19-breaking-cookie-clicker/living-room-pi.jpg
+3.82 MB src/blog/2022-03-19-breaking-cookie-clicker/supplies.jpg
+3.76 MB src/blog/2022-03-19-breaking-cookie-clicker/living-room-pi-and-tv.jpg
+2.13 MB src/blog/2022-03-19-breaking-cookie-clicker/cookie-clicker-final-stats.png
+2.08 MB src/misc/2020-07-04-disco-descent-1-1.mp3
+```
+
+After getting rid of the `src/misc/2021-10-18-braille-apple.webm` file, we can
+see that we reduced our pack size from ~110 MV to ~33 MB.
+
+## Footnotes
+[^1]:
+Yes, we probably should be using the more modern `git-filter-repo`.
+And yes, I *was* too lazy to install it on my machine for this blog post.
