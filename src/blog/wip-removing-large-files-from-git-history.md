@@ -155,10 +155,10 @@ $ sh tools/git-history-largest-files.sh 5
 2.08 MB src/misc/2020-07-04-disco-descent-1-1.mp3
 ```
 
-After getting rid of the `src/misc/2021-10-18-braille-apple.webm` file, we can
-see that we reduced our pack size from ~110 MB to ~33 MB. That size reduction
-is good enough for now, but there are plenty of other now-deleted files that I
-could remove in the future!
+After getting rid of the `src/misc/2021-10-18-braille-apple.webm` file, we
+observe that we reduced our pack size from ~110 MB to ~33 MB. That size
+reduction is good enough for now, but there are plenty of other now-deleted
+files that I could remove in the future!
 
 ## Footnotes
 [^1]:
