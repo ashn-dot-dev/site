@@ -13,7 +13,7 @@ with some rather large binary files in its Git history, many of which
 correspond to media content no longer accessible on the actual deployed
 website.
 
-I put together a tool to scape this repository's commit history and dump the
+I put together a tool to scrape this repository's commit history and dump the
 largest files from that history to the terminal, sorted by size:
 
 ```sh
@@ -89,7 +89,7 @@ $ sh tools/git-history-largest-files.sh
 
 I don't actually *need* to keep this `src/misc/2021-10-18-braille-apple.webm`
 video around in the repository git history; the content is stored elsewhere,
-and this site is much more of a living document then it is a historical
+and this site is much more of a living document than it is a historical
 archive. So I am fine removing this file if it shrinks the repository size and
 gives me more leeway to jam different media blobs in later.
 
@@ -123,7 +123,7 @@ git reflog expire --expire=now --all
 git gc --prune=now --aggressive
 ```
 
-Running this tool we can see that removed all of that repository blot
+Running this tool we can see that it removed all of that repository bloat:
 
 ```sh
 $ sh tools/git-history-elide-file.sh src/misc/2021-10-18-braille-apple.webm
@@ -156,9 +156,12 @@ $ sh tools/git-history-largest-files.sh 5
 ```
 
 After getting rid of the `src/misc/2021-10-18-braille-apple.webm` file, we can
-see that we reduced our pack size from ~110 MV to ~33 MB.
+see that we reduced our pack size from ~110 MB to ~33 MB. That size reduction
+is good enough for now, but there are plenty of other now-deleted files that I
+could remove in the future!
 
 ## Footnotes
 [^1]:
-Yes, we probably should be using the more modern `git-filter-repo`.
-And yes, I *was* too lazy to install it on my machine for this blog post.
+Yes, we probably should be using the more modern `git-filter-repo`. And yes, I
+*was* too lazy to install it on my machine for this blog post; I am grug
+brained and `git filter-branch` was already on my machine and perfectly usable.
