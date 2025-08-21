@@ -3,14 +3,14 @@ Removing Large Files from a Repository's Git History
 
 I consider myself to be a [grug-brained developer](https://grugbrain.dev/). I
 enjoy building and maintaining software systems that eschew complexity in favor
-of readability and ease of understanding. This website is one of those systems:
-the entire thing is built as a static site from a bunch of loose HTML and
-Markdown files all jammed together using a dead simple templating system in a
-Bash script. All of the media content (images, videos, etc.) is stored directly
-in the Git repository alongside the textual content. As a result of this
-grug-brained structure, the website repository has ended up with some rather
-large binary files in its Git history, many of which correspond to media
-content no longer accessible on the actual deployed website.
+of readability and ease of understanding. This website is one of those systems.
+The entire thing is built as a static site from a bunch of loose HTML and
+Markdown files all jammed together using a dead simple templating system, and
+all of the media content (images, videos, etc.) is stored directly in the Git
+repository alongside the textual content. As a result of this grug-brained
+structure, the website repository has ended up with some rather large binary
+files in its Git history, many of which correspond to media content no longer
+accessible on the actual deployed website.
 
 I put together a tool to scrape this repository's commit history and dump the
 largest files from that history to the terminal, sorted by size:
