@@ -13,14 +13,21 @@ if [ -d "${OUT_DIR}" ]; then
 fi
 mkdir -p "${OUT_DIR}"
 mkdir -p "${OUT_DIR}/blog"
+mkdir -p "${OUT_DIR}/recipes"
+mkdir -p "${OUT_DIR}/recipes/mains"
 mkdir -p "${OUT_DIR}/tmp"
 
 #== Website Generation Helper Utilities ========================================
 TEMPLATE=$(cat template.html)
 
-md_page_title() {
+md_blog_entry_title() {
     FILE="$1"
     head -n 1 "${FILE}"
+}
+
+md_recipes_entry_title() {
+    FILE="$1"
+    sed -n '/^# /{s/^# //p;q;}' "$FILE"
 }
 
 make_page() {
@@ -67,13 +74,6 @@ build_page_from_md() {
     make_page "${TITLE}" "${RENDERED}" >"${OUT_FILE}"
 }
 
-build_blog_page() {
-    SRC_PATH="$1" # Path under the src/ directory.
-
-    TITLE="$(md_page_title "${SRC_DIR}/${SRC_PATH}")"
-    build_page_from_md "${SRC_PATH}" "${TITLE}"
-}
-
 #== Generate the Actual Website ================================================
 build_main_pages() {
     echo "==== BUILDING MAIN HTML PAGES ===="
@@ -81,10 +81,10 @@ build_main_pages() {
     build_page_from_html "scratchpad.html" "ashn"
 }
 
-build_blog_archive_page() {
-    echo "==== BUILDING BLOG ARCHIVE PAGE ===="
-    BLOG_INDEX_CONTENT=$(cat "${SRC_DIR}/blog.html")
-    BLOG_INDEX_CONTENT="${BLOG_INDEX_CONTENT}${NL}<table>"
+build_blog_page() {
+    echo "==== BUILDING BLOG PAGE ===="
+    BLOG_PAGE_CONTENT=$(cat "${SRC_DIR}/blog.html")
+    BLOG_PAGE_CONTENT="${BLOG_PAGE_CONTENT}${NL}<table>"
     for f in $(ls "${SRC_DIR}/blog" | sort -r); do
         [ -d "${SRC_DIR}/blog/${f}" ]            && continue # Skip dirs
         [ "$(echo "${f}" | head -c 3)" = 'wip' ] && continue # Skip WIP posts
@@ -93,16 +93,16 @@ build_blog_archive_page() {
         # YYYY-MM-DD
         # 123456789A bytes should be parsed to get the date from the filename.
         F_DATE=$(echo "${f}" | head -c 10)
-        F_TITLE=$(md_page_title "${SRC_DIR}/blog/${f}")
+        F_TITLE=$(md_blog_entry_title "${SRC_DIR}/blog/${f}")
         F_HREF="/blog/${f%.md}.html"
 
-        BLOG_INDEX_CONTENT="${BLOG_INDEX_CONTENT}${NL}<tr>"
-        BLOG_INDEX_CONTENT="${BLOG_INDEX_CONTENT}${NL}<td>[${F_DATE}]</td>"
-        BLOG_INDEX_CONTENT="${BLOG_INDEX_CONTENT}${NL}<td><a href=\"${F_HREF}\">${F_TITLE}</a></td>"
-        BLOG_INDEX_CONTENT="${BLOG_INDEX_CONTENT}${NL}</tr>"
+        BLOG_PAGE_CONTENT="${BLOG_PAGE_CONTENT}${NL}<tr>"
+        BLOG_PAGE_CONTENT="${BLOG_PAGE_CONTENT}${NL}<td>[${F_DATE}]</td>"
+        BLOG_PAGE_CONTENT="${BLOG_PAGE_CONTENT}${NL}<td><a href=\"${F_HREF}\">${F_TITLE}</a></td>"
+        BLOG_PAGE_CONTENT="${BLOG_PAGE_CONTENT}${NL}</tr>"
     done
-    BLOG_INDEX_CONTENT="${BLOG_INDEX_CONTENT}${NL}</table>"
-    make_page "archive" "${BLOG_INDEX_CONTENT}" >"${OUT_DIR}/blog.html"
+    BLOG_PAGE_CONTENT="${BLOG_PAGE_CONTENT}${NL}</table>"
+    make_page "blog" "${BLOG_PAGE_CONTENT}" >"${OUT_DIR}/blog.html"
 }
 
 build_blog_entry_pages() {
@@ -112,9 +112,16 @@ build_blog_entry_pages() {
             cp -r "${SRC_DIR}/blog/${f}" "${OUT_DIR}/blog/${f}"
             continue
         fi
-        build_blog_page "blog/${f}" &
+        build_blog_entry_page "blog/${f}" &
     done
     wait
+}
+
+build_blog_entry_page() {
+    SRC_PATH="$1" # Path under the src/ directory.
+
+    TITLE="$(md_blog_entry_title "${SRC_DIR}/${SRC_PATH}")"
+    build_page_from_md "${SRC_PATH}" "${TITLE}"
 }
 
 build_blog_rss_page() {
@@ -134,7 +141,7 @@ build_blog_rss_page() {
         # YYYY-MM-DD
         # 123456789A bytes should be parsed to get the date from the filename.
         F_DATE=$(echo "${f}" | head -c 10)
-        F_TITLE=$(md_page_title "${SRC_DIR}/blog/${f}")
+        F_TITLE=$(md_blog_entry_title "${SRC_DIR}/blog/${f}")
         F_LINK="https://ashn.dev/blog/${f%.md}.html"
 
         RSS_CONTENT="${RSS_CONTENT}${NL}  <item>"
@@ -146,6 +153,45 @@ build_blog_rss_page() {
     RSS_CONTENT="${RSS_CONTENT}${NL}</channel>"
     RSS_CONTENT="${RSS_CONTENT}${NL}</rss>"
     echo "${RSS_CONTENT}" >"${OUT_DIR}/rss.xml"
+}
+
+build_recipes_page() {
+    echo "==== BUILDING RECIPES PAGE ===="
+    RECIPES_PAGE_CONTENT="<h1>Recipes</h1>"
+
+    RECIPES_PAGE_CONTENT="${RECIPES_PAGE_CONTENT}${NL}<h2>Mains</h2>"
+    RECIPES_PAGE_CONTENT="${RECIPES_PAGE_CONTENT}${NL}<ul>"
+    for f in $(cd "${SRC_DIR}/recipes/mains" && find * -type f | sort); do
+        F_TITLE=$(md_recipes_entry_title "${SRC_DIR}/recipes/mains/${f}")
+        F_HREF="/recipes/mains/${f%.md}.html"
+        RECIPES_PAGE_CONTENT="${RECIPES_PAGE_CONTENT}${NL}<li><a href=\"${F_HREF}\">${F_TITLE}</a></li>"
+    done
+    RECIPES_PAGE_CONTENT="${RECIPES_PAGE_CONTENT}${NL}</ul>"
+
+    make_page "recipes" "${RECIPES_PAGE_CONTENT}" >"${OUT_DIR}/recipes.html"
+}
+
+build_recipes_entry_pages() {
+    echo "==== BUILDING RECIPES ENTRY PAGES ===="
+    TITLE="$(md_recipes_entry_title "${SRC_DIR}/${SRC_PATH}")"
+    for f in $(cd "${SRC_DIR}/recipes" && find * -type f); do
+        case "${f}" in
+        *.md)
+            build_recipes_entry_page "recipes/${f}" &
+            ;;
+        *)
+            cp "${SRC_DIR}/recipes/${f}" "${OUT_DIR}/recipes/${f}"
+            ;;
+    esac
+    done
+    wait
+}
+
+build_recipes_entry_page() {
+    SRC_PATH="$1" # Path under the src/ directory.
+
+    TITLE="$(md_recipes_entry_title "${SRC_DIR}/${SRC_PATH}")"
+    build_page_from_md "${SRC_PATH}" "${TITLE}"
 }
 
 copy_misc_files() {
@@ -164,8 +210,10 @@ copy_tmp_files() {
 }
 
 time build_main_pages
-time build_blog_archive_page
+time build_blog_page
 time build_blog_entry_pages
 time build_blog_rss_page
+time build_recipes_page
+time build_recipes_entry_pages
 time copy_misc_files
 time copy_tmp_files
