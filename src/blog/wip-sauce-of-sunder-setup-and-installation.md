@@ -17,7 +17,7 @@ with its own custom ABI/calling convention, and interacting with the host
 system by making direct system calls to the Linux kernel. Although the Sunder
 of today is a lot more portable than the Sunder of the x86-64 Linux days, many
 of the design decisions from that period had a lasting impact on the design and
-implementation of the language which we still observe today.
+implementation of the language which we still observe in the present.
 
 One of those design decisions, relevant to us in this post, is the Unix-centric
 focus of the language, standard library, and tooling. You don't have to dig too
@@ -40,9 +40,9 @@ machine.
 ## Diving Into Dependencies
 
 Sunder is relatively lightweight in the dependencies required for installation
-and nominal operation. The Sunder compiler is written in relatively clean C99,
-and generates GNU-flavored C11 as a "portable assembly" which is then handed
-off to a C compiler for backend compilation and linking. In addition to a GNU C
+and nominal operation. The Sunder compiler is written in clean C99, and
+generates GNU-flavored C11 as a "portable assembly" which is then handed off to
+a C compiler for backend compilation and linking. In addition to a GNU C
 compiler, you will need a standard set of POSIX development utilities to build
 the Sunder compiler and run the non-Sunder-compiler tools within the Sunder
 toolchain. And of course, you will need Git in order to actually clone the
