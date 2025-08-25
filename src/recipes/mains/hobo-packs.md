@@ -40,12 +40,24 @@ through baking.
 
 ## Variations
 
-### Vegetarian Portobello-Patty Hobo Packs
+### Beef-Potato Patty Hobo Packs
+
+Mix 1 pound of ground beef, 1 large egg, 1 russet potato (grated or diced), 1/2
+cup of breadcrumbs, 1/2 teaspoon of kosher salt, and 1/2 teaspoon of black
+pepper together when forming patties. If you do not have bread crumbs on hand
+then you can throw a few pieces of bread in a blender and then bake them in the
+preheated oven for a couple of minutes. Measurements don't need to be exact -
+you can use whatever potato is left after preparing the thinly sliced potato
+that goes on top of the patties. Substituting the russet potato for 1/2 cup of
+onion is also acceptable if you want a different take on a flavorful burger,
+but are not potato-crazy.
+
+### Vegetarian Portobello Patty Hobo Packs
 
 Substitute the hamburger patty with a large portobello mushroom coated in
 warmed butter or olive oil. Sprinkle a bit of Italian seasoning, salt, and
 pepper on top of the portobello mushroom before adding the rest of the
-vegetables. The portobello mushroom will shrink in size at it bakes, so you may
+vegetables. The portobello mushroom will shrink in size as it bakes, so you may
 want to compensate by adding additional potato and carrot slices. Top the
 veggie mixture with some fresh rosemary leaves and more Italian seasoning
 before sealing in aluminum foil. Bake for 35-40 minutes instead of 1 hour as
