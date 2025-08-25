@@ -37,3 +37,19 @@ to remedy the fat pooling: (1) use more veggies as they will absorb additional
 fat, or (2) poke holes in the bottom of the foil with a knife to let the fat
 drain from the hobo packs into the pan, and then pour this fat out halfway
 through baking.
+
+## Variations
+
+### Vegetarian Portobello-Patty Hobo Packs
+
+Substitute the hamburger patty with a large portobello mushroom coated in
+warmed butter or olive oil. Sprinkle a bit of Italian seasoning, salt, and
+pepper on top of the portobello mushroom before adding the rest of the
+vegetables. The portobello mushroom will shrink in size at it bakes, so you may
+want to compensate by adding additional potato and carrot slices. Top the
+veggie mixture with some fresh rosemary leaves and more Italian seasoning
+before sealing in aluminum foil. Bake for 35-40 minutes instead of 1 hour as
+the portobello patty will cook significantly faster than a beef patty. As the
+mushroom bakes it will release a lot of moisture, so you may want to poke holes
+in the bottom of the foil to let the water drain from the hobo pack in a
+similar fashion to the fatty patties from the notes above.
