@@ -15,6 +15,7 @@ mkdir -p "${OUT_DIR}"
 mkdir -p "${OUT_DIR}/blog"
 mkdir -p "${OUT_DIR}/recipes"
 mkdir -p "${OUT_DIR}/recipes/mains"
+mkdir -p "${OUT_DIR}/characters"
 mkdir -p "${OUT_DIR}/tmp"
 
 #== Website Generation Helper Utilities ========================================
@@ -67,7 +68,7 @@ build_page_from_md() {
     SRC_FILE="${SRC_DIR}/${SRC_PATH}"
     OUT_FILE="${OUT_DIR}/${SRC_PATH%.md}.html"
 
-    MARKDOWN=$(cat "${SRC_FILE}")
+    MARKDOWN=$(cat "${SRC_FILE}" | python3 preprocess.py)
     MARKDOWN=$(echo "${MARKDOWN}" | sed -r 's/\[\^([1-9]+)\]:$/<span id="footnote-\1">\1./g')
     MARKDOWN=$(echo "${MARKDOWN}" | sed -r 's/\[\^([1-9]+)\]/<a href="#footnote-\1"><sup>\1<\/sup><\/a>/g')
     RENDERED=$(echo "${MARKDOWN}" | cmark --unsafe)
@@ -194,6 +195,13 @@ build_recipes_entry_page() {
     build_page_from_md "${SRC_PATH}" "${TITLE}"
 }
 
+copy_character_files() {
+    echo "==== COPYING CHARACTER FILES ===="
+    set -x
+    cp -r ${SRC_DIR}/characters/* ${OUT_DIR}/characters
+    { set +x; } 2>/dev/null
+}
+
 copy_misc_files() {
     echo "==== COPYING MISC FILES ===="
     set -x
@@ -215,5 +223,6 @@ time build_blog_entry_pages
 time build_blog_rss_page
 time build_recipes_page
 time build_recipes_entry_pages
+time copy_character_files
 time copy_misc_files
 time copy_tmp_files
