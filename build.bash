@@ -1,6 +1,5 @@
 #!/bin/bash
-
-set -e
+set -eu
 
 NL=$'\n'
 SRC_DIR='src'
@@ -162,7 +161,8 @@ build_recipes_page() {
 
     RECIPES_PAGE_CONTENT="${RECIPES_PAGE_CONTENT}${NL}<h2>Mains</h2>"
     RECIPES_PAGE_CONTENT="${RECIPES_PAGE_CONTENT}${NL}<ul>"
-    for f in $(cd "${SRC_DIR}/recipes/mains" && find * -type f | sort); do
+    for f in $(ls -C "${SRC_DIR}/recipes/mains" | sort); do
+        [ -d "${SRC_DIR}/recipes/mains/${f}" ] && continue # Skip dirs
         F_TITLE=$(md_recipes_entry_title "${SRC_DIR}/recipes/mains/${f}")
         F_HREF="/recipes/mains/${f%.md}.html"
         RECIPES_PAGE_CONTENT="${RECIPES_PAGE_CONTENT}${NL}<li><a href=\"${F_HREF}\">${F_TITLE}</a></li>"
@@ -175,15 +175,18 @@ build_recipes_page() {
 build_recipes_entry_pages() {
     echo "==== BUILDING RECIPES ENTRY PAGES ===="
     TITLE="$(md_recipes_entry_title "${SRC_DIR}/${SRC_PATH}")"
-    for f in $(cd "${SRC_DIR}/recipes" && find * -type f); do
-        case "${f}" in
-        *.md)
-            build_recipes_entry_page "recipes/${f}" &
-            ;;
-        *)
-            cp "${SRC_DIR}/recipes/${f}" "${OUT_DIR}/recipes/${f}"
-            ;;
-    esac
+    for category in $(ls -C "${SRC_DIR}/recipes"); do
+        echo "Category '${category}'..."
+        for recipe in $(ls -C "${SRC_DIR}/recipes/${category}"); do
+            case "${recipe}" in
+            *.md)
+                build_recipes_entry_page "recipes/${category}/${f}" &
+                ;;
+            *)
+                cp -r "${SRC_DIR}/recipes/${category}/${recipe}" "${OUT_DIR}/recipes/${category}/${recipe}"
+                ;;
+        esac
+        done
     done
     wait
 }

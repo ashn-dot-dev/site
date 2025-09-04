@@ -136,6 +136,11 @@ main a code {
   text-decoration: none;
 }
 
+/* RECIPES PAGE STYLING */
+.recipe-primary-image {
+  max-width: 50%;
+}
+
 /* {{Wave}} - RUNESCAPE WAVE EFFECT */
 @keyframes wave {
   0%, 100% {
