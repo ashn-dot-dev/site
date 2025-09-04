@@ -159,15 +159,18 @@ build_recipes_page() {
     echo "==== BUILDING RECIPES PAGE ===="
     RECIPES_PAGE_CONTENT="<h1>Recipes</h1>"
 
-    RECIPES_PAGE_CONTENT="${RECIPES_PAGE_CONTENT}${NL}<h2>Mains</h2>"
-    RECIPES_PAGE_CONTENT="${RECIPES_PAGE_CONTENT}${NL}<ul>"
-    for f in $(ls -C "${SRC_DIR}/recipes/mains" | sort); do
-        [ -d "${SRC_DIR}/recipes/mains/${f}" ] && continue # Skip dirs
-        F_TITLE=$(md_recipes_entry_title "${SRC_DIR}/recipes/mains/${f}")
-        F_HREF="/recipes/mains/${f%.md}.html"
-        RECIPES_PAGE_CONTENT="${RECIPES_PAGE_CONTENT}${NL}<li><a href=\"${F_HREF}\">${F_TITLE}</a></li>"
+    for category in $(ls -C "${SRC_DIR}/recipes"); do
+        RECIPES_PAGE_CATEGORY=$(echo "${category}" | python3 -c 'print(input().title(), end="")')
+        RECIPES_PAGE_CONTENT="${RECIPES_PAGE_CONTENT}${NL}<h2>${RECIPES_PAGE_CATEGORY}</h2>"
+        RECIPES_PAGE_CONTENT="${RECIPES_PAGE_CONTENT}${NL}<ul>"
+        for f in $(ls -C "${SRC_DIR}/recipes/${category}" | sort); do
+            [ -d "${SRC_DIR}/recipes/${category}/${f}" ] && continue # Skip dirs
+            F_TITLE=$(md_recipes_entry_title "${SRC_DIR}/recipes/${category}/${f}")
+            F_HREF="/recipes/${category}/${f%.md}.html"
+            RECIPES_PAGE_CONTENT="${RECIPES_PAGE_CONTENT}${NL}<li><a href=\"${F_HREF}\">${F_TITLE}</a></li>"
+        done
+        RECIPES_PAGE_CONTENT="${RECIPES_PAGE_CONTENT}${NL}</ul>"
     done
-    RECIPES_PAGE_CONTENT="${RECIPES_PAGE_CONTENT}${NL}</ul>"
 
     make_page "recipes" "${RECIPES_PAGE_CONTENT}" >"${OUT_DIR}/recipes.html"
 }
@@ -176,7 +179,7 @@ build_recipes_entry_pages() {
     echo "==== BUILDING RECIPES ENTRY PAGES ===="
     TITLE="$(md_recipes_entry_title "${SRC_DIR}/${SRC_PATH}")"
     for category in $(ls -C "${SRC_DIR}/recipes"); do
-        echo "CATEGROY: ${category}"
+        echo "CATEGORY: ${category}"
         for recipe in $(ls -C "${SRC_DIR}/recipes/${category}"); do
             case "${recipe}" in
             *.md)
