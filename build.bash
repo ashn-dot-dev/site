@@ -176,11 +176,11 @@ build_recipes_entry_pages() {
     echo "==== BUILDING RECIPES ENTRY PAGES ===="
     TITLE="$(md_recipes_entry_title "${SRC_DIR}/${SRC_PATH}")"
     for category in $(ls -C "${SRC_DIR}/recipes"); do
-        echo "Category '${category}'..."
+        echo "CATEGROY: ${category}"
         for recipe in $(ls -C "${SRC_DIR}/recipes/${category}"); do
             case "${recipe}" in
             *.md)
-                build_recipes_entry_page "recipes/${category}/${f}" &
+                build_recipes_entry_page "recipes/${category}/${recipe}" &
                 ;;
             *)
                 cp -r "${SRC_DIR}/recipes/${category}/${recipe}" "${OUT_DIR}/recipes/${category}/${recipe}"

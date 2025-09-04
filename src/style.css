@@ -136,9 +136,9 @@ main a code {
   text-decoration: none;
 }
 
-/* RECIPES PAGE STYLING */
+/* RECIPES STYLING */
 .recipe-primary-image {
-  max-width: 50%;
+  max-width: 60%; /* recipe pages look better when the primary image occupies less screen space */
 }
 
 /* {{Wave}} - RUNESCAPE WAVE EFFECT */
