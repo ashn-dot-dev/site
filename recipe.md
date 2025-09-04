@@ -1,6 +1,14 @@
 # Recipe Title
 
-![Recipe photo description.](/recipes/mains/recipe-name-800x600.png)
+{{Image class="recipe-primary-image" src="/recipes/mains/recipe-name/recipe-name-800x600.png"}}
+Brief description of the primary image at the top of the page.
+
+Remember to run:
+
+    sh tools/exif-clean.sh src/recipes/{category}/{recipe}/{recipe}-800x600.png
+
+to normalize the EXIF data in the image.
+{{/Image}}
 
 <!--
     Quick Info
