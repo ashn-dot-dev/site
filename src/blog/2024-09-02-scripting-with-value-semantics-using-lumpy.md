@@ -214,7 +214,7 @@ Depth-First-Search in Lumpy:
 # dfs.lumpy - depth first search implemented in Lumpy
 
 let node = {
-    "new": function(name) {
+    "init": function(name) {
         let self = {"name": name, "children": set{}};
         setmeta(self.&, node);
         return self;
@@ -225,7 +225,7 @@ let node = {
 };
 
 let graph = {
-    "new": function(nodes) {
+    "init": function(nodes) {
         let self = {"nodes": nodes};
         setmeta(self.&, graph);
         return self;
@@ -260,11 +260,11 @@ let dfs = function(graph) {
 #      |     v
 #      +---->D
 
-let a = node::new("A");
-let b = node::new("B");
-let c = node::new("C");
-let d = node::new("D");
-let e = node::new("E");
+let a = node::init("A");
+let b = node::init("B");
+let c = node::init("C");
+let d = node::init("D");
+let e = node::init("E");
 
 a.children.insert(c.&);
 a.children.insert(d.&);
@@ -277,7 +277,7 @@ c.children.insert(d.&);
 e.children.insert(a.&);
 e.children.insert(c.&);
 
-let ordered = dfs(graph::new({a.&, b.&, c.&, d.&, e.&}));
+let ordered = dfs(graph::init({a.&, b.&, c.&, d.&, e.&}));
 println("Ordered:");
 for x in ordered {
     println(x);
