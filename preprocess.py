@@ -40,7 +40,6 @@ class TagImage(Tag):
     def __str__(self):
         attrs = " ".join(f'{k}="{v}"' for k, v in self.attributes.items())
         alt = html.escape(self.inner().strip().replace("\n", " "))
-        print("HERE:", alt, file=sys.stderr)
         return f'<img {attrs} alt="{alt}"/>'
 
 

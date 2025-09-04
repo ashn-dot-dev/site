@@ -1,5 +1,12 @@
 # Hobo Packs
 
+{{Image class="recipe-primary-image" src="/recipes/mains/hobo-packs/hobo-packs-800x600.png"}}
+Four disposable baking trays sitting on top of an oven, each containing six
+foil-wrapped mixtures of meat and/or veggies. The trays are also filled with
+the delicious-looking juices let go by the mixtures during baking, as well as
+extra potatoes and rosemary that were baked alongside the wrapped mixtures.
+{{/Image}}
+
 ## 1 serving | gluten-free
 
 > This is not a glamorous recipe, but it is easy and can be prepared while
