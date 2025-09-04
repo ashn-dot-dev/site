@@ -54,7 +54,7 @@ soup every time I make it, and it is delicious every time.
    soup pot receives one blender plunge. Alternatively, if you do not have an
    immersion blender, pour half the contents of the pot into a countertop
    blender, blend, and then return the contents to the pot.
-6. Stir in the measured portions of salt and pepper, and shredded cheese.
+6. Stir in the measured portions of salt, pepper, and shredded cheese.
 7. Ladle the soup into bowls or containers. Top with an additional sprinkle of
    cheddar cheese, a little bit of black pepper, and green onions.
 
