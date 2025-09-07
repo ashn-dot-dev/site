@@ -198,23 +198,28 @@ build_recipes_entry_page() {
     build_page_from_md "${SRC_PATH}" "${TITLE}"
 }
 
-copy_character_files() {
-    echo "==== COPYING CHARACTER FILES ===="
+build_characters_page() {
+    echo "==== BUILD CHARACTERS PAGE ===="
+    build_page_from_md "characters.md" "Characters"
+}
+
+build_characters_files() {
+    echo "==== BUILD CHARACTERS FILES ===="
     set -x
     cp -r ${SRC_DIR}/characters/* ${OUT_DIR}/characters
     { set +x; } 2>/dev/null
 }
 
-copy_misc_files() {
-    echo "==== COPYING MISC FILES ===="
+build_misc_files() {
+    echo "==== BUILD MISC FILES ===="
     set -x
     cp "${SRC_DIR}/favicon.ico" "${OUT_DIR}"
     cp "${SRC_DIR}/style.css" "${OUT_DIR}"
     { set +x; } 2>/dev/null
 }
 
-copy_tmp_files() {
-    echo "==== COPYING TEMPORARY FILES ===="
+build_tmp_files() {
+    echo "==== BUILD TEMPORARY FILES ===="
     set -x
     cp -r "${SRC_DIR}/tmp" "${OUT_DIR}"
     { set +x; } 2>/dev/null
@@ -226,6 +231,7 @@ time build_blog_entry_pages
 time build_blog_rss_page
 time build_recipes_page
 time build_recipes_entry_pages
-time copy_character_files
-time copy_misc_files
-time copy_tmp_files
+time build_characters_page
+time build_characters_files
+time build_misc_files
+time build_tmp_files
