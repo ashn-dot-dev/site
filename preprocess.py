@@ -71,7 +71,7 @@ class TagDialogue(Tag):
         <img src="/characters/{character}/{portrait}" alt="{portrait} portrait"/>
     </div>
     <div class="dialogue-content">
-        <div class="dialogue-name">{character}</div>
+        <div class="dialogue-name">{character.title()}</div>
         <div>{self.inner().strip()}</div>
     </div>
 </div>""".strip()
