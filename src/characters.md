@@ -6,13 +6,23 @@ principles and build things from scratch, which occasionally prevents her from
 reaching out for help and building upon the foundation of others. Ashley is
 written as the student in Socratic dialogues.
 
-**WARNING**: Ashley's current character art was generated using AI pixel-art
-generator at [perchance.org](https://perchance.org/ai-pixel-art-generator). I
-am working to replace this AI slop with character art from a professional
-artist as soon as possible.
+**WARNING**: The Asheley character portrait below was generated with the AI
+pixel-art generator at
+[perchance.org](https://perchance.org/ai-pixel-art-generator). I am working to
+replace this AI slop with character art from a professional artist as soon as
+possible.
 
 {{Image src="/characters/ashley/ashley-ai-slop.jpg"}}
 AI slop image of Ashley used as an initial character reference.
+{{/Image}}
+
+Ashley's character design is based off of this pixel art avatar in the style of
+Crypt of the Necrodancer that I made forever ago in
+[Piskel](https://www.piskelapp.com/).
+
+{{Image src="/characters/ashley/crypt-of-the-necrodancer-original-avatar.png"}}
+Pixel art character with a medium skin tone, maroon hair, a dark grey shirt,
+purple pants, a brown belt with a gold buckle, and brown shoes.
 {{/Image}}
 
 {{Dialogue character="Ashley"}}
