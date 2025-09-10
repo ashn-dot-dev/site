@@ -97,7 +97,7 @@ build_blog_page() {
         F_HREF="/blog/${f%.md}.html"
 
         BLOG_PAGE_CONTENT="${BLOG_PAGE_CONTENT}${NL}<tr>"
-        BLOG_PAGE_CONTENT="${BLOG_PAGE_CONTENT}${NL}<td>[${F_DATE}]</td>"
+        BLOG_PAGE_CONTENT="${BLOG_PAGE_CONTENT}${NL}<td style=\"white-space: nowrap;\">[${F_DATE}]</td>"
         BLOG_PAGE_CONTENT="${BLOG_PAGE_CONTENT}${NL}<td><a href=\"${F_HREF}\">${F_TITLE}</a></td>"
         BLOG_PAGE_CONTENT="${BLOG_PAGE_CONTENT}${NL}</tr>"
     done
