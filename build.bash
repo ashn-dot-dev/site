@@ -67,7 +67,7 @@ build_page_from_md() {
     SRC_FILE="${SRC_DIR}/${SRC_PATH}"
     OUT_FILE="${OUT_DIR}/${SRC_PATH%.md}.html"
 
-    MARKDOWN=$(cat "${SRC_FILE}" | python3 preprocess.py)
+    MARKDOWN=$(cat "${SRC_FILE}" | python3 nihtml.py)
     MARKDOWN=$(echo "${MARKDOWN}" | sed -r 's/\[\^([1-9]+)\]:$/<span id="footnote-\1">\1./g')
     MARKDOWN=$(echo "${MARKDOWN}" | sed -r 's/\[\^([1-9]+)\]/<a href="#footnote-\1"><sup>\1<\/sup><\/a>/g')
     RENDERED=$(echo "${MARKDOWN}" | cmark --unsafe)
