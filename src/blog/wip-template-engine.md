@@ -3,7 +3,7 @@ Janky Bespoke Template Engine
 
 This page is generated from a Markdown document containing standard Markdown-y
 things such as *emphasized text* and a [hyperlink](https://zombo.com/), as well
-custom templating elements such this {{Wave}}wavy bit of text{{/Wave}} right
+custom templating elements such as this {{Wave}}wavy bit of text{{/Wave}} right
 here.
 
 {{Dialogue character="Ashley"}}
