@@ -6,8 +6,19 @@ from dataclasses import dataclass
 import argparse
 import enum
 import html
+import math
 import re
 import sys
+
+def number_to_string(number):
+    string = str(number)
+    dot = string.find(".")
+    end = len(string)
+    while string[end - 1] == "0":
+        end -= 1  # Remove trailing zeros.
+    if dot == end - 1:
+        end -= 1  # Remove trailing dot.
+    return string[0:end]
 
 
 class Node(ABC):
@@ -36,6 +47,23 @@ class Tag(Node):
         return f"<div>TODO: {self.__class__.__name__}</div>"
 
 
+class TagDialogue(Tag):
+    def __str__(self):
+        character = self.attributes["character"].lower()
+        portrait = self.attributes.get("portrait", "default.png")
+
+        return f"""
+<div class="dialogue-container" dialogue-character="{character}">
+    <div class="dialogue-portrait">
+        <img src="/characters/{character}/{portrait}" alt="{character} portrait"/>
+    </div>
+    <div class="dialogue-content">
+        <div class="dialogue-name">{character.title()}</div>
+        <div>{self.inner().strip()}</div>
+    </div>
+</div>""".strip()
+
+
 class TagImage(Tag):
     def __str__(self):
         attrs = " ".join(f'{k}="{v}"' for k, v in self.attributes.items())
@@ -47,12 +75,9 @@ class TagWave(Tag):
     def __str__(self):
         text = self.inner()
         characters = []
+        # TODO: Need to iterate over characters grapheme-cluster, not by rune.
         for i, character in enumerate(text):
-            if character == " ":
-                characters.append(" ")
-                continue
-
-            delay = i * 0.15  # 150 ms delay per character
+            delay = number_to_string(i * 0.15)  # 150 ms delay per character
             characters.append(
                 f'<span class="wave-character" style="animation-delay: {delay}s;">{html.escape(character)}</span>'
             )
@@ -60,27 +85,10 @@ class TagWave(Tag):
         return f'<span class="wave-container">{"".join(characters)}</span>'
 
 
-class TagDialogue(Tag):
-    def __str__(self):
-        character = self.attributes["character"].lower()
-        portrait = self.attributes.get("portrait", "default.png")
-
-        return f"""
-<div class="dialogue-container" dialogue-character="{character.lower()}">
-    <div class="dialogue-portrait">
-        <img src="/characters/{character}/{portrait}" alt="{portrait} portrait"/>
-    </div>
-    <div class="dialogue-content">
-        <div class="dialogue-name">{character.title()}</div>
-        <div>{self.inner().strip()}</div>
-    </div>
-</div>""".strip()
-
-
 TAG_REGISTRY = {
+    "Dialogue": TagDialogue,
     "Image": TagImage,
     "Wave": TagWave,
-    "Dialogue": TagDialogue,
 }
 
 
@@ -165,6 +173,8 @@ class Lexer:
                 continue
 
             text += self._remaining()[0]
+            if self._remaining()[0] == "\n":
+                self.location.line += 1
             self.position += 1
         return Token(location, TokenKind.TEXT, text)
 
