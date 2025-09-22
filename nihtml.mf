@@ -128,29 +128,17 @@ let token = type {
 };
 
 # \{{
-let match_escaped_lbraces = function(text) {
-    return text =~ `^\\\{\{`;
-};
+let re_escaped_lbraces = @`^\\\{\{`;
 # \}}
-let match_escaped_rbraces = function(text) {
-    return text =~ `^\\\{\{`;
-};
+let re_escaped_rbraces = @`^\\\{\{`;
 # attribute-a attribute-b="value-b" attribute-c
-let match_attributes = function(text) {
-    return text =~ `^(\w+)(?:="([^"]*)")?`;
-};
+let re_attributes = @`^(\w+)(?:="([^"]*)")?`;
 # attribute="value"
-let match_attribute = function(text) {
-    return text =~ `^(\w+)(="([^"]*)")?`;
-};
+let re_attribute = @`^(\w+)(="([^"]*)")?`;
 # {{TagName attribute-a attribute-b="value-b" attribute-c}}
-let match_opening_tag = function(text) {
-    return text =~ `^\{\{([A-Za-z]\w*)(?:\s+([^}]*?))?\}\}`;
-};
+let re_opening_tag = @`^\{\{([A-Za-z]\w*)(?:\s+([^}]*?))?\}\}`;
 # {{/TagName}}
-let match_closing_tag = function(text) {
-    return text =~ `^\{\{/([A-Za-z]\w*)\}\}`;
-};
+let re_closing_tag = @`^\{\{/([A-Za-z]\w*)\}\}`;
 
 let lexer = type {
     .init = function(source, location) {
@@ -168,12 +156,12 @@ let lexer = type {
             return token::init(location, token_kind::EOF, "");
         }
 
-        if match_opening_tag(self.*._remaining()) {
+        if self.*._remaining() =~ re_opening_tag {
             self.*.position = self.*.position + re::group(0).count();
             return token::init(location, token_kind::OPENING_TAG, re::group(0));
         }
 
-        if match_closing_tag(self.*._remaining()) {
+        if self.*._remaining() =~ re_closing_tag {
             self.*.position = self.*.position + re::group(0).count();
             return token::init(location, token_kind::CLOSING_TAG, re::group(0));
         }
@@ -184,17 +172,17 @@ let lexer = type {
                 break;
             }
 
-            if match_opening_tag(self.*._remaining()) or match_closing_tag(self.*._remaining()) {
+            if self.*._remaining() =~ re_opening_tag or self.*._remaining() =~ re_closing_tag {
                 break;
             }
 
-            if match_escaped_lbraces(self.*._remaining()) {
+            if self.*._remaining() =~ re_escaped_lbraces {
                 text = text + "{{";
                 self.*.position = self.*.position + re::group(0).count();
                 continue;
             }
 
-            if match_escaped_rbraces(self.*._remaining()) {
+            if self.*._remaining() =~ re_escaped_rbraces {
                 text = text + "}}";
                 self.*.position = self.*.position + re::group(0).count();
                 continue;
@@ -251,13 +239,13 @@ let parser = type {
     },
     ._parse_tag = function(self) {
         let opening_tag = self.*._expect_current(token_kind::OPENING_TAG);
-        assert(match_opening_tag(opening_tag.text));
+        assert(opening_tag.text =~ re_opening_tag);
         let name = re::group(1);
 
         let attributes = map{};
         if re::group(2) != null {
             let text = re::group(2).trim();
-            while match_attribute(text) {
+            while text =~ re_attribute {
                 let k = re::group(1);
                 let v = re::group(3);
                 if v == null {
@@ -274,7 +262,7 @@ let parser = type {
         }
 
         let closing_tag = self.*._expect_current(token_kind::CLOSING_TAG);
-        assert(match_closing_tag(closing_tag.text));
+        assert(closing_tag.text =~ re_closing_tag);
         if re::group(1) != name {
             error parse_error::init(
                 self.*.current.location,
