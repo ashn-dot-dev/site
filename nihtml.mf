@@ -30,7 +30,7 @@ let tag = type {
 };
 
 
-let tag_dialogue = type Map::union(tag, {
+let tag_dialogue = type extends(tag, {
     .init = function(attributes, children) {
         return new tag_dialogue tag::init(attributes, children);
     },
@@ -53,7 +53,7 @@ let tag_dialogue = type Map::union(tag, {
     }
 });
 
-let tag_image = type Map::union(tag, {
+let tag_image = type extends(tag, {
     .init = function(attributes, children) {
         return new tag_image tag::init(attributes, children);
     },
@@ -67,7 +67,7 @@ let tag_image = type Map::union(tag, {
     }
 });
 
-let tag_wave = type Map::union(tag, {
+let tag_wave = type extends(tag, {
     .init = function(attributes, children) {
         return new tag_wave tag::init(attributes, children);
     },
