@@ -6,7 +6,7 @@ let text = type {
             "text" = txt,
         };
     },
-    .string = function(value) {
+    .into_string = function(value) {
         return value.text;
     },
 };
@@ -18,14 +18,14 @@ let tag = type {
             .children = children,
         };
     },
-    .string = function(value) {
+    .into_string = function(value) {
         error "unimplemented for type " + typename(value);
     },
     .inner = function(self) {
         return "".join(self.*.children
             .iterator()
-            .transform(function(child) { return string(child); })
-            .collect());
+            .transform(function(child) { return string::init(child); })
+            .into_vector());
     },
 };
 
@@ -34,7 +34,7 @@ let tag_dialogue = type extends(tag, {
     .init = function(attributes, children) {
         return new tag_dialogue tag::init(attributes, children);
     },
-    .string = function(value) {
+    .into_string = function(value) {
         let character = value.attributes["character"].to_lower();
         let portrait = "default.png";
         if value.attributes.contains("portrait") {
@@ -57,10 +57,10 @@ let tag_image = type extends(tag, {
     .init = function(attributes, children) {
         return new tag_image tag::init(attributes, children);
     },
-    .string = function(value) {
+    .into_string = function(value) {
         let attrs = [];
         for k, v in value.attributes {
-            attrs.push($`{string(k)}="{string(v)}"`);
+            attrs.push($`{string::init(k)}="{string::init(v)}"`);
         }
         let alt = html::escape(value.inner().trim()).replace("\n", " ");
         return $`<img {" ".join(attrs)} alt="{alt}"/>`;
@@ -71,7 +71,7 @@ let tag_wave = type extends(tag, {
     .init = function(attributes, children) {
         return new tag_wave tag::init(attributes, children);
     },
-    .string = function(value) {
+    .into_string = function(value) {
         let text = value.inner();
         let characters = [];
         # TODO: Need to iterate over characters grapheme-cluster, not by byte.
@@ -86,7 +86,7 @@ let tag_wave = type extends(tag, {
     }
 });
 
-let TAG_REGISTRY = map{
+let TAG_REGISTRY = {
     "Dialogue": tag_dialogue,
     "Image": tag_image,
     "Wave": tag_wave,
@@ -242,7 +242,7 @@ let parser = type {
         assert(opening_tag.text =~ re_opening_tag);
         let name = re::group(1);
 
-        let attributes = map{};
+        let attributes = Map{};
         if re::group(2) != null {
             let text = re::group(2).trim();
             while text =~ re_attribute {
