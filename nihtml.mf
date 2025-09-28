@@ -1,4 +1,15 @@
 #!/usr/bin/env mf
+#
+# Debug performance:
+#   term-clear && ./nihtml.mf --debug src/blog/ENTRY.md 2>&1 | ts-absolute
+
+let is_debug = false;
+let debugln = function(x) {
+    if not is_debug {
+        return;
+    }
+    eprintln($"[DEBUG] {x}");
+};
 
 let text = type {
     .init = function(txt) {
@@ -151,23 +162,29 @@ let lexer = type {
     .next_token = function(self) {
         let start = self.*.position;
         let location = self.*.location;
+        debugln($"{lexer.next_token}: lexing token@{location}");
 
         if self.*._is_eof() {
+            debugln($"{lexer.next_token}: lexing {token_kind::EOF} token@{location}");
             return token::init(location, token_kind::EOF, "");
         }
 
         if self.*._remaining() =~ re_opening_tag {
+            debugln($"{lexer.next_token}: lexing {token_kind::OPENING_TAG} token@{location}");
             self.*.position = self.*.position + re::group(0).count();
             return token::init(location, token_kind::OPENING_TAG, re::group(0));
         }
 
         if self.*._remaining() =~ re_closing_tag {
+            debugln($"{lexer.next_token}: lexing {token_kind::CLOSING_TAG} token@{location}");
             self.*.position = self.*.position + re::group(0).count();
             return token::init(location, token_kind::CLOSING_TAG, re::group(0));
         }
 
+        debugln($"{lexer.next_token}: lexing {token_kind::TEXT} token@{location}");
         let text = "";
         while true {
+            debugln($"{lexer.next_token}: lexing {token_kind::TEXT} part@{self.*.location}");
             if self.*._is_eof() {
                 break;
             }
@@ -216,7 +233,10 @@ let parser = type {
     .parse = function(self) {
         let nodes = [];
         while self.*.current.kind != token_kind::EOF {
+            let current = self.*.current;
+            debugln($"{parser.parse}: parsing node with current token {current.kind}@{current.location}");
             let node = self.*._parse_node();
+            debugln($"{parser.parse}: parsed node {typename(node)}@{current.location}");
             nodes.push(node);
         }
         return nodes;
@@ -296,21 +316,29 @@ let parser = type {
 
 let file = null;
 let source = null;
-if argv.count() == 1 {
+let argi = 1;
+while argi < argv.count() {
+    if argv[argi] =~ r`-+d(ebug)?` {
+        is_debug = true;
+        argi = argi + 1;
+        continue;
+    }
+
+    if file != null and source != null {
+        error $"multiple input files, {file} and {argv[argi]}";
+    }
+    file = argv[argi];
+    source = fs::read(file);
+    argi = argi + 1;
+}
+if file == null and source == null {
     file = "<stdin>";
     source = input();
-}
-elif argv.count() == 2 {
-    file = argv[1];
-    source = fs::read(file);
-}
-else {
-    error "multiple input files specified " + repr(argv.slice(1, argv.count()));
 }
 
 let location = source_location::init(file, 1);
 let nodes = parser::init(lexer::init(source, location)).parse();
 for node in nodes {
-    #println($`{typename(node)}: {node}`);
+    #debugln($`{typename(node)}: {node}`);
     print(node);
 }
