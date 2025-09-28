@@ -10,6 +10,7 @@ import math
 import re
 import sys
 
+
 def number_to_string(number):
     string = str(number)
     dot = string.find(".")
@@ -131,6 +132,8 @@ RE_ATTRIBUTES = re.compile(r'(\w+)(?:="([^"]*)")?')
 RE_OPENING_TAG = re.compile(r"\{\{([A-Za-z]\w*)(?:\s+([^}]*?))?\}\}")
 # {{/TagName}}
 RE_CLOSING_TAG = re.compile(r"\{\{/([A-Za-z]\w*)\}\}")
+# Matches text that doesn't start with \{{, \}}, or {{
+RE_NOMINAL_TEXT = re.compile(r"^([^\\{]|\\[^{}]|{[^{])+")
 
 
 class Lexer:
@@ -161,6 +164,13 @@ class Lexer:
 
             if self._match_opening_tag() or self._match_closing_tag():
                 break
+
+            if match := self._match_nominal_text():
+                chunk = match.group(0)
+                text += chunk
+                self.location.line += len(chunk.split("\n")) - 1
+                self.position += len(chunk)
+                continue
 
             if match := self._match_escaped_lbraces():
                 text += "{{"
@@ -195,6 +205,9 @@ class Lexer:
 
     def _match_closing_tag(self):
         return RE_CLOSING_TAG.match(self._remaining())
+
+    def _match_nominal_text(self):
+        return RE_NOMINAL_TEXT.match(self._remaining())
 
 
 class Parser:

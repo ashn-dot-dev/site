@@ -1,7 +1,7 @@
 #!/usr/bin/env mf
 #
 # Debug performance:
-#   term-clear && ./nihtml.mf --debug src/blog/ENTRY.md 2>&1 | ts-absolute
+#   term-clear && ./nihtml.mf --debug src/blog/wip-template-engine.md 2>&1 | ts-absolute
 
 let is_debug = false;
 let debugln = function(x) {
@@ -141,7 +141,7 @@ let token = type {
 # \{{
 let re_escaped_lbraces = r`^\\\{\{`;
 # \}}
-let re_escaped_rbraces = r`^\\\{\{`;
+let re_escaped_rbraces = r`^\\\}\}`;
 # attribute-a attribute-b="value-b" attribute-c
 let re_attributes = r`^(\w+)(?:="([^"]*)")?`;
 # attribute="value"
@@ -150,6 +150,8 @@ let re_attribute = r`^(\w+)(="([^"]*)")?`;
 let re_opening_tag = r`^\{\{([A-Za-z]\w*)(?:\s+([^}]*?))?\}\}`;
 # {{/TagName}}
 let re_closing_tag = r`^\{\{/([A-Za-z]\w*)\}\}`;
+# Matches text that doesn't start with \{{, \}}, or {{
+let re_nominal_text = r`^([^\\{]|\\[^{}]|{[^{])+`;
 
 let lexer = type {
     .init = function(source, location) {
@@ -181,10 +183,8 @@ let lexer = type {
             return token::init(location, token_kind::CLOSING_TAG, re::group(0));
         }
 
-        debugln($"{lexer.next_token}: lexing {token_kind::TEXT} token@{location}");
         let text = "";
         while true {
-            debugln($"{lexer.next_token}: lexing {token_kind::TEXT} part@{self.*.location}");
             if self.*._is_eof() {
                 break;
             }
@@ -193,18 +193,30 @@ let lexer = type {
                 break;
             }
 
+            if self.*._remaining() =~ re_nominal_text {
+                debugln($"{lexer.next_token}: lexing {token_kind::TEXT} chunk@{self.*.location}");
+                let chunk = re::group(0);
+                text = text + chunk;
+                self.*.location.line = self.*.location.line + (chunk.split("\n").count() - 1);
+                self.*.position = self.*.position + chunk.count();
+                continue;
+            }
+
             if self.*._remaining() =~ re_escaped_lbraces {
+                debugln($"{lexer.next_token}: lexing {token_kind::TEXT} lbrace@{self.*.location}");
                 text = text + "{{";
                 self.*.position = self.*.position + re::group(0).count();
                 continue;
             }
 
             if self.*._remaining() =~ re_escaped_rbraces {
+                debugln($"{lexer.next_token}: lexing {token_kind::TEXT} rbrace@{self.*.location}");
                 text = text + "}}";
                 self.*.position = self.*.position + re::group(0).count();
                 continue;
             }
 
+            debugln($"{lexer.next_token}: lexing {token_kind::TEXT} byte@{self.*.location}");
             text = text + self.*._remaining().slice(0, 1);
             if text.ends_with("\n") {
                 self.*.location.line = self.*.location.line + 1;
