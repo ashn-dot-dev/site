@@ -76,7 +76,7 @@ class TagWave(Tag):
     def __str__(self):
         text = self.inner()
         characters = []
-        # TODO: Need to iterate over characters grapheme-cluster, not by rune.
+        # TODO: Need to iterate over characters by grapheme-cluster, not by rune.
         for i, character in enumerate(text):
             delay = number_to_string(i * 0.15)  # 150 ms delay per character
             characters.append(

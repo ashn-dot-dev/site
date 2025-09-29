@@ -1,4 +1,4 @@
-#!/usr/bin/env mf
+#!/usr/bin/env -S mf --
 #
 # Debug performance:
 #   term-clear && ./nihtml.mf --debug src/blog/wip-template-engine.md 2>&1 | ts-absolute
@@ -85,12 +85,13 @@ let tag_wave = type extends(tag, {
     .into_string = function(value) {
         let text = value.inner();
         let characters = [];
-        # TODO: Need to iterate over characters grapheme-cluster, not by byte.
+        # TODO: Need to iterate over characters by grapheme-cluster, not by byte.
         for i in range(0, text.count()) {
             let character = text.slice(i, i+1);
             let delay = i * 0.15; # 150 ms delay per character
             characters.push(
-                $`<span class="wave-character" style="animation-delay: {delay}s;">{html::escape(character)}</span>`);
+                $`<span class="wave-character" style="animation-delay: {delay}s;">{html::escape(character)}</span>`
+            );
         }
 
         return $`<span class="wave-container">{"".join(characters)}</span>`;
@@ -326,6 +327,21 @@ let parser = type {
     },
 };
 
+let help = function(writeln) {
+    writeln($```
+usage: {argv[0]} [file]
+
+Not Invented Here Text Markup Language
+
+positional arguments:
+  file          Text file to process (defaults to stdin).
+
+optional arguments:
+  -d, --debug   Write diagnostic debug information to stderr.
+  -h, --help    Display this help text and exit.
+    ```.trim());
+};
+
 let file = null;
 let source = null;
 let argi = 1;
@@ -334,6 +350,10 @@ while argi < argv.count() {
         is_debug = true;
         argi = argi + 1;
         continue;
+    }
+    if argv[argi] =~ r`-+h(elp)?` {
+        help(println);
+        exit(0);
     }
 
     if file != null and source != null {
