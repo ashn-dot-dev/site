@@ -5,10 +5,10 @@ export LC_ALL=C.UTF-8
 PROGNAME=$(basename "$0")
 usage() {
     cat <<EOF
-Usage: ${PROGNAME} [FILE...]
+usage: ${PROGNAME} [FILE...]
 
-Options:
-  -h        Display usage information and exit.
+options:
+  -h    Display usage information and exit.
 EOF
 }
 
