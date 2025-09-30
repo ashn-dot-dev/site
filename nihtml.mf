@@ -40,7 +40,6 @@ let tag = type {
     },
 };
 
-
 let tag_dialogue = type extends(tag, {
     .init = function(attributes, children) {
         return new tag_dialogue tag::init(attributes, children);
@@ -320,7 +319,7 @@ let parser = type {
     ._expect_current = function(self, kind) {
         let current = self.current;
         if current.kind != kind {
-            error parse_error::init(current.location, "expected " + repr(kind) + ", found " + repr(current));
+            error parse_error::init(current.location, $"expected {repr(kind)}, found {repr(current)}");
         }
         self._advance();
         return current;

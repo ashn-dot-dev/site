@@ -5,6 +5,42 @@ NL=$'\n'
 SRC_DIR='src'
 OUT_DIR='out'
 TIMEFORMAT="TIME: %E"
+PROGNAME=$(basename "$0")
+
+usage() {
+    cat <<EOF
+usage: ${PROGNAME}
+
+options:
+  -h    Display usage information and exit.
+  -mf   Use Mellifera for NIHTML transpilation.
+  -py   Use Python for NIHTML transpilation.
+EOF
+}
+
+NIHTML_CMD_MF="mf nihtml.mf"
+NIHTML_CMD_PY="python3 nihtml.py"
+NIHTML_CMD="${NIHTML_CMD_PY}"
+
+for arg in "$@"; do
+case "${arg}" in
+    -h|--help)
+        usage
+        exit 0
+        ;;
+    -mf|--mf)
+        NIHTML_CMD="${NIHTML_CMD_MF}"
+        ;;
+    -py|--py)
+        NIHTML_CMD="${NIHTML_CMD_PY}"
+        ;;
+    *)
+        echo "unknown argument: ${arg}"
+        usage
+        exit 1
+        ;;
+esac
+done
 
 #== Create Output Directory ====================================================
 if [ -d "${OUT_DIR}" ]; then
@@ -67,7 +103,7 @@ build_page_from_md() {
     SRC_FILE="${SRC_DIR}/${SRC_PATH}"
     OUT_FILE="${OUT_DIR}/${SRC_PATH%.md}.html"
 
-    MARKDOWN=$(cat "${SRC_FILE}" | python3 nihtml.py)
+    MARKDOWN=$(cat "${SRC_FILE}" | ${NIHTML_CMD})
     MARKDOWN=$(echo "${MARKDOWN}" | sed -r 's/\[\^([1-9]+)\]:$/<span id="footnote-\1">\1./g')
     MARKDOWN=$(echo "${MARKDOWN}" | sed -r 's/\[\^([1-9]+)\]/<a href="#footnote-\1"><sup>\1<\/sup><\/a>/g')
     RENDERED=$(echo "${MARKDOWN}" | cmark --unsafe)
