@@ -17,8 +17,8 @@ let text = type {
             "text" = txt,
         };
     },
-    .into_string = function(value) {
-        return value.text;
+    .into_string = function(self) {
+        return self.text;
     },
 };
 
@@ -29,11 +29,11 @@ let tag = type {
             .children = children,
         };
     },
-    .into_string = function(value) {
-        error "unimplemented for type " + typename(value);
+    .into_string = function(self) {
+        error $"unimplemented for type {typename(self.*)}";
     },
     .inner = function(self) {
-        return "".join(self.*.children
+        return "".join(self.children
             .iterator()
             .transform(function(child) { return string::init(child); })
             .into_vector());
@@ -45,11 +45,11 @@ let tag_dialogue = type extends(tag, {
     .init = function(attributes, children) {
         return new tag_dialogue tag::init(attributes, children);
     },
-    .into_string = function(value) {
-        let character = value.attributes["character"].to_lower();
+    .into_string = function(self) {
+        let character = self.attributes["character"].to_lower();
         let portrait = "default.png";
-        if value.attributes.contains("portrait") {
-            portrait = value.attributes["portrait"].to_lower();
+        if self.attributes.contains("portrait") {
+            portrait = self.attributes["portrait"].to_lower();
         }
         return $```
 <div class="dialogue-container" dialogue-character="{character}">
@@ -58,7 +58,7 @@ let tag_dialogue = type extends(tag, {
     </div>
     <div class="dialogue-content">
         <div class="dialogue-name">{character.to_title()}</div>
-        <div>{value.inner().trim()}</div>
+        <div>{self.inner().trim()}</div>
     </div>
 </div>```.trim();
     }
@@ -68,12 +68,12 @@ let tag_image = type extends(tag, {
     .init = function(attributes, children) {
         return new tag_image tag::init(attributes, children);
     },
-    .into_string = function(value) {
+    .into_string = function(self) {
         let attrs = [];
-        for k, v in value.attributes {
+        for k, v in self.attributes {
             attrs.push($`{string::init(k)}="{string::init(v)}"`);
         }
-        let alt = html::escape(value.inner().trim()).replace("\n", " ");
+        let alt = html::escape(self.inner().trim()).replace("\n", " ");
         return $`<img {" ".join(attrs)} alt="{alt}"/>`;
     }
 });
@@ -82,8 +82,8 @@ let tag_wave = type extends(tag, {
     .init = function(attributes, children) {
         return new tag_wave tag::init(attributes, children);
     },
-    .into_string = function(value) {
-        let text = value.inner();
+    .into_string = function(self) {
+        let text = self.inner();
         let characters = [];
         # TODO: Need to iterate over characters by grapheme-cluster, not by byte.
         for i in range(0, text.count()) {
@@ -163,75 +163,75 @@ let lexer = type {
         };
     },
     .next_token = function(self) {
-        let start = self.*.position;
-        let location = self.*.location;
+        let start = self.position;
+        let location = self.location;
         debugln($"{lexer.next_token}: lexing token@{location}");
 
-        if self.*._is_eof() {
+        if self._is_eof() {
             debugln($"{lexer.next_token}: lexing {token_kind::EOF} token@{location}");
             return token::init(location, token_kind::EOF, "");
         }
 
-        if self.*._remaining() =~ re_opening_tag {
+        if self._remaining() =~ re_opening_tag {
             debugln($"{lexer.next_token}: lexing {token_kind::OPENING_TAG} token@{location}");
-            self.*.position = self.*.position + re::group(0).count();
+            self.position = self.position + re::group(0).count();
             return token::init(location, token_kind::OPENING_TAG, re::group(0));
         }
 
-        if self.*._remaining() =~ re_closing_tag {
+        if self._remaining() =~ re_closing_tag {
             debugln($"{lexer.next_token}: lexing {token_kind::CLOSING_TAG} token@{location}");
-            self.*.position = self.*.position + re::group(0).count();
+            self.position = self.position + re::group(0).count();
             return token::init(location, token_kind::CLOSING_TAG, re::group(0));
         }
 
         let text = "";
         while true {
-            if self.*._is_eof() {
+            if self._is_eof() {
                 break;
             }
 
-            if self.*._remaining() =~ re_opening_tag or self.*._remaining() =~ re_closing_tag {
+            if self._remaining() =~ re_opening_tag or self._remaining() =~ re_closing_tag {
                 break;
             }
 
-            if self.*._remaining() =~ re_nominal_text {
-                debugln($"{lexer.next_token}: lexing {token_kind::TEXT} chunk@{self.*.location}");
+            if self._remaining() =~ re_nominal_text {
+                debugln($"{lexer.next_token}: lexing {token_kind::TEXT} chunk@{self.location}");
                 let chunk = re::group(0);
                 text = text + chunk;
-                self.*.location.line = self.*.location.line + (chunk.split("\n").count() - 1);
-                self.*.position = self.*.position + chunk.count();
+                self.location.line = self.location.line + (chunk.split("\n").count() - 1);
+                self.position = self.position + chunk.count();
                 continue;
             }
 
-            if self.*._remaining() =~ re_escaped_lbraces {
-                debugln($"{lexer.next_token}: lexing {token_kind::TEXT} lbrace@{self.*.location}");
+            if self._remaining() =~ re_escaped_lbraces {
+                debugln($"{lexer.next_token}: lexing {token_kind::TEXT} lbrace@{self.location}");
                 text = text + "{{";
-                self.*.position = self.*.position + re::group(0).count();
+                self.position = self.position + re::group(0).count();
                 continue;
             }
 
-            if self.*._remaining() =~ re_escaped_rbraces {
-                debugln($"{lexer.next_token}: lexing {token_kind::TEXT} rbrace@{self.*.location}");
+            if self._remaining() =~ re_escaped_rbraces {
+                debugln($"{lexer.next_token}: lexing {token_kind::TEXT} rbrace@{self.location}");
                 text = text + "}}";
-                self.*.position = self.*.position + re::group(0).count();
+                self.position = self.position + re::group(0).count();
                 continue;
             }
 
-            debugln($"{lexer.next_token}: lexing {token_kind::TEXT} byte@{self.*.location}");
-            text = text + self.*._remaining().slice(0, 1);
+            debugln($"{lexer.next_token}: lexing {token_kind::TEXT} byte@{self.location}");
+            text = text + self._remaining().slice(0, 1);
             if text.ends_with("\n") {
-                self.*.location.line = self.*.location.line + 1;
+                self.location.line = self.location.line + 1;
             }
-            self.*.position = self.*.position + 1;
+            self.position = self.position + 1;
         }
         let token = token::init(location, token_kind::TEXT, text);
         return token;
     },
     ._is_eof = function(self) {
-        return self.*.position >= self.*.source.count();
+        return self.position >= self.source.count();
     },
     ._remaining = function(self) {
-        return self.*.source.slice(self.*.position, self.*.source.count());
+        return self.source.slice(self.position, self.source.count());
     },
 };
 
@@ -245,33 +245,33 @@ let parser = type {
     },
     .parse = function(self) {
         let nodes = [];
-        while self.*.current.kind != token_kind::EOF {
-            let current = self.*.current;
+        while self.current.kind != token_kind::EOF {
+            let current = self.current;
             debugln($"{parser.parse}: parsing node with current token {current.kind}@{current.location}");
-            let node = self.*._parse_node();
+            let node = self._parse_node();
             debugln($"{parser.parse}: parsed node {typename(node)}@{current.location}");
             nodes.push(node);
         }
         return nodes;
     },
     ._parse_node = function(self) {
-        if self.*.current.kind == token_kind::TEXT {
-            return self.*._parse_text();
+        if self.current.kind == token_kind::TEXT {
+            return self._parse_text();
         }
 
-        if self.*.current.kind == token_kind::OPENING_TAG {
-            return self.*._parse_tag();
+        if self.current.kind == token_kind::OPENING_TAG {
+            return self._parse_tag();
         }
 
         error parse_error::init(
-            self.*.current.location,
-            "expected tag or text, found " + repr(self.*.current.kind));
+            self.current.location,
+            "expected tag or text, found " + repr(self.current.kind));
     },
     ._parse_text = function(self) {
-        return text::init(self.*._expect_current(token_kind::TEXT).text);
+        return text::init(self._expect_current(token_kind::TEXT).text);
     },
     ._parse_tag = function(self) {
-        let opening_tag = self.*._expect_current(token_kind::OPENING_TAG);
+        let opening_tag = self._expect_current(token_kind::OPENING_TAG);
         assert(opening_tag.text =~ re_opening_tag);
         let name = re::group(1);
 
@@ -290,15 +290,15 @@ let parser = type {
         }
 
         let children = [];
-        while not self.*._check_current(token_kind::CLOSING_TAG) {
-            children.push(self.*._parse_node());
+        while not self._check_current(token_kind::CLOSING_TAG) {
+            children.push(self._parse_node());
         }
 
-        let closing_tag = self.*._expect_current(token_kind::CLOSING_TAG);
+        let closing_tag = self._expect_current(token_kind::CLOSING_TAG);
         assert(closing_tag.text =~ re_closing_tag);
         if re::group(1) != name {
             error parse_error::init(
-                self.*.current.location,
+                self.current.location,
                 "expected " +
                 token_kind::CLOSING_TAG +
                 " `" +
@@ -312,17 +312,17 @@ let parser = type {
         return TAG_REGISTRY[name]::init(attributes, children);
     },
     ._advance = function(self) {
-        self.*.current = self.*.lexer.next_token();
+        self.current = self.lexer.next_token();
     },
     ._check_current = function(self, kind) {
-        return self.*.current.kind == kind;
+        return self.current.kind == kind;
     },
     ._expect_current = function(self, kind) {
-        let current = self.*.current;
+        let current = self.current;
         if current.kind != kind {
             error parse_error::init(current.location, "expected " + repr(kind) + ", found " + repr(current));
         }
-        self.*._advance();
+        self._advance();
         return current;
     },
 };
