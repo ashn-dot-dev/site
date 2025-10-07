@@ -1,5 +1,5 @@
-Janky Bespoke Template Engine
-=============================
+NIHTML Test Page
+================
 
 This page is generated from a Markdown document containing standard Markdown-y
 things such as *emphasized text* and a [hyperlink](https://zombo.com/), as well
@@ -17,7 +17,7 @@ character portraits instead of this placeholder image.
 For example, this `Image` tag has a body that contains the alt text for the
 displayed image.
 
-{{Image src="/blog/wip-template-engine/2020-11-21-mya-with-ball-780x1040.png" style="height: 25vw"}}
+{{Image src="/nihtml/2020-11-21-mya-with-ball-780x1040.png" style="height: 25vw"}}
 Mya, an elderly black lab, stares out of left frame while holding a green
 tennis ball in her mouth. Mya is sitting outside in a grassy field next to a
 fence while wearing her pink activity harness, likely at the tail end of a
