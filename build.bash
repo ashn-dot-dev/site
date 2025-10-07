@@ -51,6 +51,7 @@ mkdir -p "${OUT_DIR}/blog"
 mkdir -p "${OUT_DIR}/recipes"
 mkdir -p "${OUT_DIR}/recipes/mains"
 mkdir -p "${OUT_DIR}/characters"
+mkdir -p "${OUT_DIR}/nihtml"
 mkdir -p "${OUT_DIR}/tmp"
 
 #== Website Generation Helper Utilities ========================================
@@ -249,6 +250,18 @@ build_characters_files() {
     { set +x; } 2>/dev/null
 }
 
+build_nihtml_page() {
+    echo "==== BUILD NIHTML PAGE ===="
+    build_page_from_md 'nihtml.md' 'NIHTML TEST PAGE'
+}
+
+build_nihtml_files() {
+    echo "==== BUILD NIHTML FILES ===="
+    set -x
+    cp -r ${SRC_DIR}/nihtml/* ${OUT_DIR}/nihtml
+    { set +x; } 2>/dev/null
+}
+
 build_misc_files() {
     echo "==== BUILD MISC FILES ===="
     set -x
@@ -272,5 +285,7 @@ time build_recipes_page
 time build_recipes_entry_pages
 time build_characters_page
 time build_characters_files
+time build_nihtml_page
+time build_nihtml_files
 time build_misc_files
 time build_tmp_files

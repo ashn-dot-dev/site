@@ -78,6 +78,10 @@ class TagWave(Tag):
         characters = []
         # TODO: Need to iterate over characters by grapheme-cluster, not by rune.
         for i, character in enumerate(text):
+            if character == " ":
+                characters.append(" ")
+                continue
+
             delay = number_to_string(i * 0.15)  # 150 ms delay per character
             characters.append(
                 f'<span class="wave-character" style="animation-delay: {delay}s;">{html.escape(character)}</span>'

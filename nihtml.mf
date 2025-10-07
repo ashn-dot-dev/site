@@ -1,7 +1,7 @@
 #!/usr/bin/env -S mf --
 #
 # Debug performance:
-#   term-clear && ./nihtml.mf --debug src/blog/wip-template-engine.md 2>&1 | ts-absolute
+#   term-clear && ./nihtml.mf --debug src/nihtml.md 2>&1 | ts-absolute
 
 let is_debug = false;
 let debugln = function(x) {
@@ -87,6 +87,11 @@ let tag_wave = type extends(tag, {
         # TODO: Need to iterate over characters by grapheme-cluster, not by byte.
         for i in range(0, text.count()) {
             let character = text.slice(i, i+1);
+            if character == " " {
+                characters.push(" ");
+                continue;
+            }
+
             let delay = i * 0.15; # 150 ms delay per character
             characters.push(
                 $`<span class="wave-character" style="animation-delay: {delay}s;">{html::escape(character)}</span>`
