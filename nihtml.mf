@@ -350,12 +350,12 @@ let file = null;
 let source = null;
 let argi = 1;
 while argi < argv.count() {
-    if argv[argi] =~ r`-+d(ebug)?` {
+    if argv[argi] =~ r`^-+d(ebug)?$` {
         is_debug = true;
         argi = argi + 1;
         continue;
     }
-    if argv[argi] =~ r`-+h(elp)?` {
+    if argv[argi] =~ r`^-+h(elp)?$` {
         help(println);
         exit(0);
     }
