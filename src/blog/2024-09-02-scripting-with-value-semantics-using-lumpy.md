@@ -1,7 +1,7 @@
 Scripting with Value Semantics Using Lumpy
 ==========================================
 
-For the past few weeks I have had a blast working on,
+For the past few weeks I have had a blast working on
 [Lumpy](https://github.com/ashn-dot-dev/lumpy), a new scripting language
 featuring value semantics as the principal language feature.
 
