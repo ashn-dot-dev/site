@@ -14,6 +14,6 @@ fi
 USER="$1"
 SERVER="$2"
 
-./build.bash
+./build.bash --mf
 ssh "$USER@$SERVER" 'rm -rf /var/www/html/*'
 scp -r out/* "$USER@$SERVER:/var/www/html/"
