@@ -148,8 +148,9 @@ and I plan to use the language for some other small projects in the future.
 However, I specifically want to avoid burnout when working on Mellifera, so
 progress on the project is purposefully intended to proceed at a scenic pace.
 
-For now, you can check out the reference implementation in Python on either the
-project's [GitHub](https://github.com/ashn-dot-dev/mellifera) or
+For now, you can check out the Mellifera reference implementation in written in
+Python on either the project's
+[GitHub](https://github.com/ashn-dot-dev/mellifera) or
 [SourceHut](https://git.sr.ht/~ashn/mellifera) pages. I hope you find some
 value in programming with these value semantics! 😉
 
