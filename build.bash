@@ -42,6 +42,8 @@ case "${arg}" in
 esac
 done
 
+echo "Building site using NIHTML command: ${NIHTML_CMD}"
+
 #== Create Output Directory ====================================================
 if [ -d "${OUT_DIR}" ]; then
     rm -rf "${OUT_DIR}"
