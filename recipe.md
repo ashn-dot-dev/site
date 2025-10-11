@@ -48,8 +48,8 @@ health, add two whole sticks of butter into your pan before starting the second
 step. Add an additional 1/2 cup of finely chopped third ingredient to keep the
 flavor balanced.
 
-To make **Texas style Recipe Title**, replace your 1 first ingredient with
-smoked the equivalent weight of smoked pulled pork, and add BBQ sauce to taste.
+To make **Texas style Recipe Title**, replace your 1 first ingredient with the
+equivalent weight of smoked pulled pork, and add BBQ sauce to taste.
 
 ## Source
 
