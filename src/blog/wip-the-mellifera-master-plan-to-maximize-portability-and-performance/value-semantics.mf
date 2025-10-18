@@ -1,0 +1,6 @@
+let a = ["foo", "bar", "baz"];
+let b = a; # b is a copy of a
+a.push("lasagne");
+
+println($"a is {a}");
+println($"b is {b}");
