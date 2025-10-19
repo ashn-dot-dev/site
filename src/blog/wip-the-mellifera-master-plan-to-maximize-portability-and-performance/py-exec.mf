@@ -1,0 +1,13 @@
+println("This is plain ol' Mellifera code.");
+println("Mellifera normally does not have a way to execute web requests!");
+println("================================");
+py::exec(```
+import urllib.request
+import json
+request = urllib.request.Request(
+    "https://icanhazdadjoke.com/",
+    headers={'Accept': "text/plain"}
+)
+response = urllib.request.urlopen(request)
+print(response.read().decode("UTF-8"))
+```);
