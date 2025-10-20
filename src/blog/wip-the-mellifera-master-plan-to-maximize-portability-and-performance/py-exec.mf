@@ -1,5 +1,5 @@
 println("This is plain ol' Mellifera code.");
-println("Mellifera normally does not have a way to execute web requests!");
+println("Mellifera normally does not have a way to execute HTTP requests!");
 println("================================");
 py::exec(```
 import urllib.request
