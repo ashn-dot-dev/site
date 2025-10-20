@@ -64,14 +64,15 @@ April
 Aprils
 ```
 
-So this is cute right. Like, if this was an undergraduate capstone project or
+So this is cute, right? Like, if this was an undergraduate capstone project or
 one of my usual programming language research projects, then now would be a
 good time to stop and say "here is this cool thing I made, and this is what I
 learned from it". But I actually want to *use* this language outside of an
 academic or one-off project context, so instead of wrapping things up I find
 myself asking the question "what are the next steps needed in order to take
 this language from a research project and make it into something actually
-usable?", which believe it or not is something I have never really done before.
+usable?", which, believe it or not, is something I have never really done
+before.
 
 At the time of writing, Mellifera, specifically Mellifera as implemented by the
 current reference interpreter written in Python, has a few major hurdles to
@@ -94,9 +95,7 @@ Python script,
 [`mf.py`](https://github.com/ashn-dot-dev/mellifera/blob/df1d59a822052c3f01b641576b04a53d9f46a6d9/mf.py).
 This Python script is the thing I have been referring to as the "reference
 interpreter", and is, at least at the time of writing, the authoritative
-definition of the Mellifera language. That is to say, the behavior of a
-Mellifera program **is** whatever the behavior of this Python script does when
-executing that program.
+definition of the Mellifera language.
 
 When standalone Mellifera tooling is built via `make build` or `make install`,
 the `mf.py` script is compiled into a native executable, `mf`, using
@@ -118,8 +117,8 @@ bin/mf:
 	/opt/homebrew/opt/python@3.13/Frameworks/Python.framework/Versions/3.13/Python (compatibility version 3.13.0, current version 3.13.0)
 ```
 
-Look you can even do a horrifying trick at runtime by executing new Python code
-from within the Mellifera itself.
+Look, you can even do a horrifying trick at runtime by executing new Python
+code from within the Mellifera itself.
 
 ```mellifera
 println("This is plain ol' Mellifera code.");
@@ -224,7 +223,7 @@ a 293
 
 real    0m0.008s
 user    0m0.010s
-sys     0m0.006
+sys     0m0.006s
 $ time (cat gutenberg-71.txt | mf examples/word-count.mf --top 5)
 the 692
 to 440
@@ -311,13 +310,13 @@ larger projects where one would have the time to properly sort through existing
 libraries or build/wrap their own dependencies as needed. For a modern
 scripting language, these things are just table stakes.
 
-But this seems like a solvable problem right? Like, if Melliera is missing CSV
-support, then why not just add a CSV library to the interpreter base
-environment? Look Python even has [CSV
+But this seems like a solvable problem, right? Like, if Mellifera is missing
+CSV support, then why not just add a CSV library to the interpreter base
+environment? Look, Python even has [CSV
 support](https://docs.python.org/3/library/csv.html) built into its standard
 library! Well, dear reader, the problem of spotty standard library support is
 less of a technical limitation, and more of a deliberate choice to avoid
-implementation specific behavior.
+implementation-specific behavior.
 
 See, I knew that this Mellifera reference interpreter would probably not scale,
 and that eventually there might be some form of a rewrite or alternate
@@ -341,7 +340,7 @@ hidden implementation detail.
 
 So a major reason that these batteries-included library features are currently
 missing from Mellifera is that I have had to be cautious as a language author
-to not let anything implementation specific slip by. With limited free time to
+to not let anything implementation-specific slip by. With limited free time to
 work on personal projects like this, and without a second implementation of
 Mellifera to verify that core language and standard library additions are
 indeed implementation agnostic, it is difficult to make headway at a reasonable
@@ -369,7 +368,7 @@ The install process could probably be a bit simpler, maybe with some sort of
 install script or something. But even as it is now, installing and running
 standalone Mellifera tooling on macOS and Linux is not too difficult.
 
-Okay so how does one install Mellifera on Windows? Uhhh.. Well installing
+Okay, so how does one install Mellifera on Windows? Uhhh.. Well... Installing
 Python on Windows can be a little bit of a pain, but as long as you have an
 up-to-date Python install then... Oh wait Nuitka on Windows requires a C
 compiler with support for C11 installed, so I guess we need to install Visual
@@ -456,7 +455,7 @@ Go-based interpreter will be broken down into distinct phases.
    tied to the underlying behavior of either host language or implementation.
 8. Add a bytecode interpreter mode and bytecode compilation to the Go-based
    interpreter, ideally bringing the performance of the Go-based interpreter
-   more inline with similar bytecode-based interpreters such as CPython or the
+   more in line with similar bytecode-based interpreters such as CPython or the
    Lua VM.
 
 The idea with each one of these phases is to do the minimum amount of work
@@ -589,8 +588,8 @@ and built-in functions are added to the Go-based interpreter.
 
 I have actually done this sort of thing before at `$PREVIOUS_JOB` when I worked
 as a compiler engineer. There was a massive project to refactor a chunk of the
-our compiler's parser, and as part of that refactor I wanted to guarantee that
-the updated parser would produce byte-for-byte identical output to the original
+compiler's parser, and as part of that refactor I wanted to guarantee that the
+updated parser would produce byte-for-byte identical output to the original
 parser as a way to ensure that the refactor did not introduce any behavioral
 changes. In order to make that happen, I wrote a bunch of custom tooling that
 allowed me to built two versions of the compiler, one with the original parser
@@ -620,7 +619,7 @@ deploying in environments like Windows and Wasm will be less arduous of a task.
 
 This all sounds great in the abstract, however, it should be noted that the
 **{{Wave}}Mellifera Master Plan{{/Wave}}** is actually a ton of work. I am a
-software developer with a full time job, a house to maintain, a lovely partner
+software developer with a full-time job, a house to maintain, a lovely partner
 who I would like to spend time with, and three attention-hungry cats who need
 daily care and stimulation, so I am not exactly swimming in free time at the
 moment. Not to mention that Mellifera is not even my main side-project right
@@ -632,7 +631,7 @@ bespoke tag-based markup language that is used to generate the blog entry and
 recipe pages in the bestpoke static site generator that builds this website. So
 in many ways the **{{Wave}}Mellifera Master Plan{{/Wave}}** is a side quest of
 a side quest that is firmly in the category of "slow burn project that only
-receives updates when whenever I happen to feel the inspiration to work on it".
+receives updates whenever I happen to feel the inspiration to work on it".
 
 This is all to say that some of the early steps in the **{{Wave}}Mellifera
 Master Plan{{/Wave}}** may take a month. They may take a quarter. They may take
