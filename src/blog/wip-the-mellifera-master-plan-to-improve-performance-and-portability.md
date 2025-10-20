@@ -24,7 +24,7 @@ b is ["foo", "bar", "baz"]
 ```
 
 The Mellifera value system, core types, and a decent number of builtin
-functions have already been implemented in the reference interpreter and the
+functions have already been implemented in the reference interpreter. The
 language is now at a point where one could reasonably use it for the same
 flavor of ad-hoc command line tools that would typically be handled by
 something like Perl or POSIX Shell, albeit with more verbosity and less
@@ -204,13 +204,14 @@ sys     0m0.008s
 ```
 
 Perl and Python execute so quickly that I am not even able to perceive a period
-in which their interpreters are actively running. Compare that Mellifera where
-it takes almost a tenth of a second to print "hello world" on a fairly powerful
-machine. That Mellifera startup and execution time is a huge red flag! And it
-gets even worse with larger programs containing more compute-heavy operations.
-Consider the example word counting program featured in the Mellifera project
-README. Executing this program on a relatively small input is over 250x slower
-than running a similar command builtin from programs strung together in Shell.
+in which their interpreters are actively running. Compare that to Mellifera
+where it takes almost a tenth of a second to print "hello world" on a fairly
+powerful machine. That Mellifera startup and execution time is a huge red flag!
+And it gets even worse with larger programs containing more compute-heavy
+operations. Consider the example word counting program featured in the
+Mellifera project README. Executing this program on a relatively small input is
+over 250x slower than running a similar command builtin from programs strung
+together in Shell.
 
 ```sh
 $ curl -s https://www.gutenberg.org/files/71/71-0.txt >gutenberg-71.txt
