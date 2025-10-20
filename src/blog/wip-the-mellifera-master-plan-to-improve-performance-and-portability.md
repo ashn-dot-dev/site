@@ -1,5 +1,5 @@
-The Mellifera Master Plan to Maximize Portability and Performance
-=================================================================
+The Mellifera Master Plan to Improve Performance and Portability
+================================================================
 
 I have been developing [Mellifera](https://github.com/ashn-dot-dev/mellifera)
 for about a month now, during which time the language has shaped up into
@@ -398,7 +398,7 @@ existing performance problems one encounters when running Mellifera natively, I
 find it difficult to believe that the Mellifera reference interpreter perform
 at an acceptable speed in the browser.
 
-## Making The {{Wave}}Mellifera Master Plan{{/Wave}} To Maximize Portability and Performance
+## Musing On The {{Wave}}Mellifera Master Plan{{/Wave}} To Improve Performance and Portability
 
 To recap, the current Mellifera reference interpreter is unacceptably slow, is
 missing functionality that is critical for a modern ad-hoc scripting language,
