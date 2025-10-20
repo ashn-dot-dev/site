@@ -165,8 +165,8 @@ related to the portability and performance of the language and interpreter.
 From my perspective, the primary challenges facing Mellifera are:
 
 + Unacceptably slow interpreter performance
-+ A Standard library that is too minimalist for an ad-hoc scripting language
-+ A Poor cross-platform deployment and embedding story
++ A standard library that is too minimalist for an ad-hoc scripting language
++ A poor cross-platform deployment and embedding story
 
 ### Unacceptably Slow Interpreter Performance
 
@@ -238,8 +238,8 @@ sys     0m0.040s
 ```
 
 So why is Mellifera so slow? Like seriously, how could the interpreter
-performance be so bad that it takes two whole seconds to count the number words
-in a text file that is...
+performance be so bad that it takes two whole seconds to count the number of
+words in a text file that is...
 
 ```sh
 $ stat -c '%n %s' gutenberg-71.txt
@@ -257,9 +257,9 @@ already has a reputation for being slow, so the lower bound for our execution
 time is already not looking too great, and in practice it is difficult to even
 get close to that lower bound. Secondly, the reference interpreter is currently
 implemented as what is known as a "tree-walk interpreter", where program
-execution performed by evaluating individual nodes directly from the program's
-abstract syntax tree. Tree-walk interpreters are really easy to build and
-debug, but they are sloooooooow to execute, as evaluating a program in a
+execution is performed by evaluating individual nodes directly from the
+program's abstract syntax tree. Tree-walk interpreters are really easy to build
+and debug, but they are sloooooooow to execute, as evaluating a program in a
 tree-walk interpreter involves a lot of indirect calls that are not friendly to
 your CPU's instruction cache. So if Python is slow and tree-walk interpreters
 are slow, then one can imagine that a tree-walk interpreter written in Python
@@ -307,8 +307,8 @@ $ mf -c 'println(url::encode("hello world"));'
 From my experience working on [Sunder](https://github.com/ashn-dot-dev/sunder),
 I can confidently say that if these sorts of tools are not easily accessible,
 then it is hard to justify picking up that language for anything other than
-larger projects where one *might* have the time to properly sort through
-existing libraries or build/wrap their own dependencies as needed. For a modern
+larger projects where one would have the time to properly sort through existing
+libraries or build/wrap their own dependencies as needed. For a modern
 scripting language, these things are just table stakes.
 
 But this seems like a solvable problem right? Like, if Melliera is missing CSV
@@ -316,7 +316,7 @@ support, then why not just add a CSV library to the interpreter base
 environment? Look Python even has [CSV
 support](https://docs.python.org/3/library/csv.html) built into its standard
 library! Well, dear reader, the problem of spotty standard library support is
-less of a technical limitation, and more of deliberate choice to avoid
+less of a technical limitation, and more of a deliberate choice to avoid
 implementation specific behavior.
 
 See, I knew that this Mellifera reference interpreter would probably not scale,
@@ -345,7 +345,7 @@ to not let anything implementation specific slip by. With limited free time to
 work on personal projects like this, and without a second implementation of
 Mellifera to verify that core language and standard library additions are
 indeed implementation agnostic, it is difficult to make headway at a reasonable
-pace with a high degree confidence.
+pace with a high degree of confidence.
 
 ## A Poor Cross-Platform Deployment And Embedding Story
 
@@ -375,7 +375,7 @@ up-to-date Python install then... Oh wait Nuitka on Windows requires a C
 compiler with support for C11 installed, so I guess we need to install Visual
 Studio and then just... Well I guess we could use `$HOME\.mellifera` as the
 default install directory, and then have the user manually update their `$PATH`
-to include `$HOME\.mellifera\bin` using one of the like six or seven separate
+to include `$HOME\.mellifera\bin` using one of, like, six or seven separate
 ways to do that on Windows... And then *maybe* we are good?
 
 If it is not obvious from the above paragraph, I should be clear that there has
