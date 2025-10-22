@@ -430,7 +430,7 @@ that it should be possible to port the existing tree-walk interpreter from
 Python to Go while keeping the same shape of the code.
 
 In the **{{Wave}}Mellifera Master Plan{{/Wave}}**, development of the second
-Go-based interpreter will be broken down into distinct phases.
+Go-based interpreter will be broken down into the following phases.
 
 1. Add support for token dumps in the Python-based interpreter.
 2. Write a Mellifera lexer in the Go-based interpreter, adding support for
