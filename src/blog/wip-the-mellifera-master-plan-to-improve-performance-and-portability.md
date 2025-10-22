@@ -104,14 +104,14 @@ the `mf.py` script is compiled into a native executable, `mf`, using
 just Python.
 
 ```
-~/sources/mellifera$ python3 mf.py -c 'println("hello world");'
+$ python3 mf.py -c 'println("hello world");'
 hello world
-~/sources/mellifera$ make build >/dev/null 2>&1
-~/sources/mellifera$ ./bin/mf -c 'println("hello world");'
+$ make build >/dev/null 2>&1
+$ ./bin/mf -c 'println("hello world");'
 hello world
 
-~/sources/mellifera$ # on macOS
-~/sources/mellifera$ otool -L bin/mf
+$ # on macOS
+$ otool -L bin/mf
 bin/mf:
 	/usr/lib/libSystem.B.dylib (compatibility version 1.0.0, current version 1351.0.0)
 	/opt/homebrew/opt/python@3.13/Frameworks/Python.framework/Versions/3.13/Python (compatibility version 3.13.0, current version 3.13.0)
@@ -245,7 +245,7 @@ $ stat -c '%n %s' gutenberg-71.txt
 gutenberg-71.txt 7224
 ```
 
-...**ONLY 71K IN SIZE!?**
+...**ONLY 71KB IN SIZE!?**
 
 Well, the reference interpreter is basically receiving two gut punches to
 performance here. Firstly, the interpreter is written in Python, which is
@@ -351,16 +351,16 @@ pace with a high degree of confidence.
 How does one install Mellifera on macOS and Linux? It's actually pretty simple.
 
 ```sh
-~/sources/mellifera$ python3 -m venv .venv-mellifera; . .venv-mellifera/bin/activate; python3 -m pip install -r requirements.txt >/dev/null
-(.venv-mellifera) ~/sources/mellifera$ make install >/dev/null 2>&1
-(.venv-mellifera) ~/sources/mellifera$ cat >>~/.bashrc <<EOF
+$ python3 -m venv .venv-mellifera; . .venv-mellifera/bin/activate; python3 -m pip install -r requirements.txt >/dev/null
+(.venv-mellifera) $ make install >/dev/null 2>&1
+(.venv-mellifera) $ cat >>~/.bashrc <<EOF
 export MELLIFERA_HOME="$HOME/.mellifera"
 if [ -e "$MELLIFERA_HOME/env" ]; then
     . "$MELLIFERA_HOME/env"
 fi
 EOF
-(.venv-mellifera) ~/sources/mellifera$ . ~/.bashrc
-~/sources/mellifera$ mf -c 'println("hello world");'
+(.venv-mellifera) $ . ~/.bashrc
+$ mf -c 'println("hello world");'
 hello world
 ```
 
@@ -395,8 +395,8 @@ reasonable to expect that one could compile a game engine to run in the browser
 via WebAssembly with Mellifera embedded as the scripting interface to the
 engine. Python *can* run in the browser with WebAssembly, but given the
 existing performance problems one encounters when running Mellifera natively, I
-find it difficult to believe that the Mellifera reference interpreter perform
-at an acceptable speed in the browser.
+find it difficult to believe that the Mellifera reference interpreter would
+perform at an acceptable speed in the browser.
 
 ## Musing On The {{Wave}}Mellifera Master Plan{{/Wave}} To Improve Performance and Portability
 
@@ -592,7 +592,7 @@ compiler's parser, and as part of that refactor I wanted to guarantee that the
 updated parser would produce byte-for-byte identical output to the original
 parser as a way to ensure that the refactor did not introduce any behavioral
 changes. In order to make that happen, I wrote a bunch of custom tooling that
-allowed me to built two versions of the compiler, one with the original parser
+allowed me to build two versions of the compiler, one with the original parser
 enabled and one with the updated parser enabled, and then run those two
 compiler builds over a sample of 100k+ programs, similar to what we would be
 doing by `diff`ing the `--dump-tokens` output between the Python and Go
@@ -618,20 +618,22 @@ the nicer out-of-the box cross-platform support that Go provides, building and
 deploying in environments like Windows and Wasm will be less arduous of a task.
 
 This all sounds great in the abstract, however, it should be noted that the
-**{{Wave}}Mellifera Master Plan{{/Wave}}** is actually a ton of work. I am a
-software developer with a full-time job, a house to maintain, a lovely partner
-who I would like to spend time with, and three attention-hungry cats who need
-daily care and stimulation, so I am not exactly swimming in free time at the
-moment. Not to mention that Mellifera is not even my main side-project right
-now! I am actually trying to chill out a bit and focus on this website's
-[recipe section](/recipes.html), and a big chunk of the reason I have been
-dedicating so much time to Mellifera over the past month is because I wanted to
-use my own bespoke scripting language to implement the transpiler for my
-bespoke tag-based markup language that is used to generate the blog entry and
-recipe pages in the bestpoke static site generator that builds this website. So
-in many ways the **{{Wave}}Mellifera Master Plan{{/Wave}}** is a side quest of
-a side quest that is firmly in the category of "slow burn project that only
-receives updates whenever I happen to feel the inspiration to work on it".
+**{{Wave}}Mellifera Master Plan{{/Wave}}** is actually a **ton** of work. I am
+a software developer with a full-time job, a house to maintain, a lovely
+partner who I would like to spend time with, and three attention-hungry cats
+who need daily care and stimulation, so I am not exactly swimming in free time
+at the moment.
+
+Not to mention that Mellifera is not even my main side-project right now! I am
+actually trying to chill out a bit and focus on this website's [recipe
+section](/recipes.html), and a big chunk of the reason I have been dedicating
+so much time to Mellifera over the past month is because I wanted to use my own
+bespoke scripting language to implement the transpiler for my bespoke tag-based
+markup language that is used to generate the blog entry and recipe pages in the
+bestpoke static site generator that builds this website. So in many ways the
+**{{Wave}}Mellifera Master Plan{{/Wave}}** is a side quest of a side quest that
+is firmly in the category of "slow burn project that only receives updates
+whenever I happen to feel the inspiration to work on it".
 
 This is all to say that some of the early steps in the **{{Wave}}Mellifera
 Master Plan{{/Wave}}** may take a month. They may take a quarter. They may take
