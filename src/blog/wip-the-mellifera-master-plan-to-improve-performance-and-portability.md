@@ -76,10 +76,10 @@ before.
 
 At the time of writing, Mellifera, specifically Mellifera as implemented by the
 current reference interpreter written in Python, has a few major hurdles to
-overcome, all of which fall into two broad categories of **portability** and
-**performance**. I've used the phrase "reference interpreter" a couple of times
+overcome, all of which fall into two broad categories of **performance** and
+**portability**. I've used the phrase "reference interpreter" a couple of times
 now without explaining what I mean by that terminology, so before we dive into
-these portability and performance challenges, I want to take a moment to talk
+these performance and portability challenges, I want to take a moment to talk
 about this Mellifera reference interpreter, and about how Mellifera is
 currently developed and deployed.
 
@@ -156,11 +156,11 @@ talk about the challenges that the Mellifera project needs to overcome, keep in
 mind that many of these challenges are directly tied to the drawbacks of
 implementing a language like Mellifera in Python.
 
-## Portability and Performance Challenges in Mellifera
+## Performance and Portability Challenges in Mellifera
 
 Mellifera as it exists today is a *decent* programming language that is held
 back by what I quite frankly consider to be show-stopping usability problems
-related to the portability and performance of the language and interpreter.
+related to the performance and portability of the language and interpreter.
 From my perspective, the primary challenges facing Mellifera are:
 
 + Unacceptably slow interpreter performance
