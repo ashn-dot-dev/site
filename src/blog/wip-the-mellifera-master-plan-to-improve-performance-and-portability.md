@@ -86,13 +86,13 @@ currently developed and deployed.
 ## The Current Mellifera Reference Interpreter
 
 Looking at the [Mellifera
-repository](https://github.com/ashn-dot-dev/mellifera/tree/df1d59a822052c3f01b641576b04a53d9f46a6d9)
+repository](https://github.com/ashn-dot-dev/mellifera/tree/b55994dd38086924968a673bb235a0c612781cb4)
 on the day of this blog post publication, we see a relatively simple Python
 project structure with corresponding Python-flavored [development
-instructions](https://github.com/ashn-dot-dev/mellifera/blob/df1d59a822052c3f01b641576b04a53d9f46a6d9/README.md#development).
+instructions](https://github.com/ashn-dot-dev/mellifera/blob/b55994dd38086924968a673bb235a0c612781cb4/README.md#development).
 In this repository, the Mellifera interpreter is implemented within a single
 Python script,
-[`mf.py`](https://github.com/ashn-dot-dev/mellifera/blob/df1d59a822052c3f01b641576b04a53d9f46a6d9/mf.py).
+[`mf.py`](https://github.com/ashn-dot-dev/mellifera/blob/b55994dd38086924968a673bb235a0c612781cb4/mf.py).
 This Python script is the thing I have been referring to as the "reference
 interpreter", and is, at least at the time of writing, the authoritative
 definition of the Mellifera language.
@@ -346,7 +346,7 @@ Mellifera to verify that core language and standard library additions are
 indeed implementation agnostic, it is difficult to make headway at a reasonable
 pace with a high degree of confidence.
 
-## A Poor Cross-Platform Deployment And Embedding Story
+### A Poor Cross-Platform Deployment And Embedding Story
 
 How does one install Mellifera on macOS and Linux? It's actually pretty simple.
 
@@ -518,9 +518,9 @@ input file. We can test this on one large `all-of-the-tokens.mf` file where we
 try and lex every kind of token and exercise all of the known edge cases in the
 lexer, but we also have the benefit of over two hundred test files in the
 Mellifera [`tests`
-directory](https://github.com/ashn-dot-dev/mellifera/tree/df1d59a822052c3f01b641576b04a53d9f46a6d9/tests)
+directory](https://github.com/ashn-dot-dev/mellifera/tree/b55994dd38086924968a673bb235a0c612781cb4/tests)
 and several example programs in the [`examples`
-directory](https://github.com/ashn-dot-dev/mellifera/tree/df1d59a822052c3f01b641576b04a53d9f46a6d9/examples),
+directory](https://github.com/ashn-dot-dev/mellifera/tree/b55994dd38086924968a673bb235a0c612781cb4/examples),
 all of which can serve as additional test cases for comparing the token dump
 outputs. As long as there is no difference between the output of the
 Python-based interpreter token dump and the Go-based interpreter token dump for
@@ -556,7 +556,7 @@ one file. This is the testing technique I used for
 [Sunder](https://github.com/ashn-dot-dev/sunder/blob/main/bin/sunder-test),
 [Lumpy](https://github.com/ashn-dot-dev/lumpy/blob/main/bin/lumpy-test), and
 now
-[Mellifera](https://github.com/ashn-dot-dev/mellifera/blob/df1d59a822052c3f01b641576b04a53d9f46a6d9/bin/mf-test).
+[Mellifera](https://github.com/ashn-dot-dev/mellifera/blob/b55994dd38086924968a673bb235a0c612781cb4/bin/mf-test).
 When you run a test with Mellifera's `mf-test`, this golden testing technique
 is performed by `diff`ing the actual output of the provided test file with the
 expected output from that same test file.
