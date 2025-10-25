@@ -84,10 +84,11 @@ let tag_wave = type extends(tag, {
     .into_string = function(self) {
         let text = self.inner();
         let characters = [];
-        # TODO: Need to iterate over characters by grapheme-cluster, not by byte.
-        for i in range(0, text.count()) {
-            let character = text.slice(i, i+1);
-            if character == " " {
+        # TODO: Need to iterate over characters by grapheme-cluster, not by rune.
+        let runes = text.runes();
+        for i in range(0, runes.count()) {
+            let character = runes[i];
+            if character == " " or character == "\n" {
                 characters.push(" ");
                 continue;
             }

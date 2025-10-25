@@ -1,6 +1,8 @@
 #!/bin/sh
+set -eu
+
 echo 'Running `build.bash -mf`...'
-time bash build.bash -mf >/dev/null 2>&1
+/usr/bin/time -p bash build.bash -mf >/dev/null
 printf '\n'
 echo 'Running `build.bash -py`...'
-time bash build.bash -py >/dev/null 2>&1
+/usr/bin/time -p bash build.bash -py >/dev/null
