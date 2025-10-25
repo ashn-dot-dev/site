@@ -78,7 +78,7 @@ class TagWave(Tag):
         characters = []
         # TODO: Need to iterate over characters by grapheme-cluster, not by rune.
         for i, character in enumerate(text):
-            if character == " ":
+            if character == " " or character == "\n":
                 characters.append(" ")
                 continue
 

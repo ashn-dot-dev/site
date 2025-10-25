@@ -279,15 +279,15 @@ build_tmp_files() {
     { set +x; } 2>/dev/null
 }
 
-time build_main_pages
-time build_blog_page
-time build_blog_entry_pages
-time build_blog_rss_page
-time build_recipes_page
-time build_recipes_entry_pages
-time build_characters_page
-time build_characters_files
-time build_nihtml_page
-time build_nihtml_files
-time build_misc_files
-time build_tmp_files
+{ time build_main_pages; } 2>&1
+{ time build_blog_page; } 2>&1
+{ time build_blog_entry_pages; } 2>&1
+{ time build_blog_rss_page; } 2>&1
+{ time build_recipes_page; } 2>&1
+{ time build_recipes_entry_pages; } 2>&1
+{ time build_characters_page; } 2>&1
+{ time build_characters_files; } 2>&1
+{ time build_nihtml_page; } 2>&1
+{ time build_nihtml_files; } 2>&1
+{ time build_misc_files; } 2>&1
+{ time build_tmp_files; } 2>&1
