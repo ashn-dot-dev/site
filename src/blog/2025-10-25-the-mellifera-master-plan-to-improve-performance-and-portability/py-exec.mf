@@ -6,7 +6,7 @@ import urllib.request
 import json
 request = urllib.request.Request(
     "https://icanhazdadjoke.com/",
-    headers={'Accept': "text/plain"}
+    headers={"Accept": "text/plain"}
 )
 response = urllib.request.urlopen(request)
 print(response.read().decode("UTF-8"))
