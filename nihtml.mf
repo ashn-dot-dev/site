@@ -34,8 +34,8 @@ let tag = type {
     },
     .inner = function(self) {
         return "".join(self.children
-            .iterator()
-            .transform(function(child) { return string::init(child); })
+            .into_iterator()
+            .map(function(child) { return string::init(child); })
             .into_vector());
     },
 };
