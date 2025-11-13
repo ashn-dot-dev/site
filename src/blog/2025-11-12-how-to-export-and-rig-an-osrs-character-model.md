@@ -15,6 +15,13 @@ will then clean that exported 3D model up in
   <source src="/blog/2025-11-12-how-to-export-and-rig-an-osrs-character-model/blender-intro.mp4">
 </video>
 
+## Prerequisites
+
++ [RuneLite](https://runelite.net/)
++ [Blender](https://www.blender.org/download/) (this tutorial uses Blender v4.5.4)
++ [Mixamo](https://www.mixamo.com/) account (free Adobe account)
++ Basic familiarity with 3D software and terminology (model, skeleton, rig, animation, etc.)
+
 ## Exporting a Character Model with Creator's Kit
 
 Open RuneLite and log in to your Old School RuneScape account.
@@ -49,10 +56,10 @@ model with `CTRL + Left Click` in the next section.
 {{Image src="/blog/2025-11-12-how-to-export-and-rig-an-osrs-character-model/runelite-creators-kit-settings-menu-scene-enable-ctrl-hotkeys.png"}}
 {{/Image}}
 
-Close the `Scene` section and navigate to the `Model Exporter` section, and
-make sure the `Export File Format` setting is set to `Obj`. This will ensure
-that Creator's Kit exports our 3D model as a `.obj` file that Blender can
-understand without any external plugins.
+Close the `Scene` section and navigate to the `Model Exporter` section, and set
+the `Export File Format` to `Obj`. This will ensure that Creator's Kit exports
+our 3D model as a `.obj` file that Blender can understand without any external
+plugins.
 
 {{Image src="/blog/2025-11-12-how-to-export-and-rig-an-osrs-character-model/runelite-creators-kit-settings-menu-model-exporter.png"}}
 {{/Image}}
@@ -105,8 +112,8 @@ default pose.
 {{Image src="/blog/2025-11-12-how-to-export-and-rig-an-osrs-character-model/runelite-creators-kit-object-placed.png"}}
 {{/Image}}
 
-Finally, right click on the newly placed player chracter model, and select
-`Select {Your-Object-Name}` followed by `Export 3D`. Since I named by object
+Finally, right click on the newly placed player character model, and select
+`Select {Your-Object-Name}` followed by `Export 3D`. Since I named my object
 "Player", this showed up as `Select Player` in this example.
 
 {{Image src="/blog/2025-11-12-how-to-export-and-rig-an-osrs-character-model/runelite-creators-kit-select-player-export-3d.png"}}
@@ -130,7 +137,7 @@ All together the Creator's Kit export process looks as follows.
   <source src="/blog/2025-11-12-how-to-export-and-rig-an-osrs-character-model/runelite-creators-kit-export-player-model.mp4">
 </video>
 
-## Cleaning Up the Character Model In Blender
+## Cleaning Up the Character Model in Blender
 
 The character models exported from Creator's Kit need a bit of cleanup before
 they can be rigged using Mixamo. Specifically, we need to delete some
@@ -159,9 +166,9 @@ on the `Import Wavefront OBJ` button at the bottom of the window.
 You should now see your player character appear in the scene. Zoom in on your
 player model with the scroll wheel. Although a bit hard to spot (you may need
 to move the camera around by holding the middle mouse button and moving your
-mouse), there is a single a triangle between the feet of your model. This is
-the piece of miscellaneous geometry we need to delete in order for Mixamo to
-not get confused when we hand it our model.
+mouse), there is a single triangle between the feet of your model. This is the
+piece of miscellaneous geometry we need to delete in order for Mixamo to not
+get confused when we hand it our model.
 
 <video controls width="100%">
   <source src="/blog/2025-11-12-how-to-export-and-rig-an-osrs-character-model/blender-load-model.mp4">
@@ -169,7 +176,7 @@ not get confused when we hand it our model.
 
 Click the middle mouse button and move your mouse around so that you are
 looking up at your model from below. Alternatively, left click the group of
-red, green, and blue circles labled `X`, `Y`, and `Z` in the upper right
+red, green, and blue circles labeled `X`, `Y`, and `Z` in the upper right
 portion of the screen and move your mouse around to look up at your model that
 way.
 
@@ -248,11 +255,11 @@ rig without finger bones.
 {{Image src="/blog/2025-11-12-how-to-export-and-rig-an-osrs-character-model/mixamo-auto-rigger-done.png"}}
 {{/Image}}
 
-Click `Next` and wait for the auto-rigger to generate your rig. Once generation
-finishes, inspect your model to make sure nothing is obviously wrong, and then
-click `Next` to confirm the character rigging. On the left panel you can chose
-any one of the dozens of sample animations to see how they look on your rigged
-character.
+Click `Next` and wait for the auto-rigger to generate your rig. Once the
+generation finishes, inspect your model to make sure nothing is obviously
+wrong, and then click `Next` to confirm the character rigging. On the left
+panel you can choose any one of the dozens of sample animations to see how they
+look on your rigged character.
 
 <video controls width="100%">
   <source src="/blog/2025-11-12-how-to-export-and-rig-an-osrs-character-model/mixamo-animation.mp4">
@@ -285,7 +292,7 @@ so just click `Download`.
 ## Wrapping Up
 
 After downloading the completed model from Mixamo, you now have a fully rigged
-model suitable for for importing back into Blender or other 3D creation tools.
+model suitable for importing back into Blender or other 3D creation tools.
 Double check that your model cleanly imports back into Blender and then
 celebrate! 🥳 🎉
 
