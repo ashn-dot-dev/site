@@ -113,7 +113,7 @@ default pose.
 {{/Image}}
 
 Finally, right click on the newly placed player character model, and select
-`Select {Your-Object-Name}` followed by `Export 3D`. Since I named my object
+`Select {YOUR-OBJECT-NAME}` followed by `Export 3D`. Since I named my object
 "Player", this showed up as `Select Player` in this example.
 
 {{Image src="/blog/2025-11-12-how-to-export-and-rig-an-osrs-character-model/runelite-creators-kit-select-player-export-3d.png"}}
@@ -122,8 +122,10 @@ Finally, right click on the newly placed player character model, and select
 After clicking `Export 3D`, you should see a message in your chat window
 indicating that model has been saved somewhere within your `.runelite`
 directory. You can find this directory by right clicking the camera icon in
-RuneLite, selecting `Open screenshot folder...`, and navigating up one
-directory. On Windows this folder should be located at
+RuneLite, selecting `Open screenshot folder...`, navigating up one directory to
+`.runelite`, and then navigating into the `creatorskit` and `blender-models`
+directories under that `.runlite` directory. On Windows this `blender-models`
+folder should be located at
 `C:\Users\{YOUR-USERNAME}\.runelite\creatorskit\blender-models`.
 
 {{Image src="/blog/2025-11-12-how-to-export-and-rig-an-osrs-character-model/runelite-creators-kit-model-saved.png"}}
