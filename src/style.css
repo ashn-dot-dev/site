@@ -161,7 +161,7 @@ main a code {
   vertical-align: baseline; /* animation should not affect surrounding text */
 }
 
-/* {{Dialogue} - SOCRATIC DIALOGUE TEXT BOXES */
+/* {{Dialogue}} - SOCRATIC DIALOGUE TEXT BOXES */
 .dialogue-container {
     display: flex;
     align-items: flex-start;
