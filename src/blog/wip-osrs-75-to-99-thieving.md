@@ -39,3 +39,9 @@
 + I think a goal of ~100k xp/day amortized, which equates to ~1hr of playtime a day.
 + Created a spreadsheet to track metrics throughout the grind. Each entry will correspond to the EOD stats.
 + I got Rocky at 83 thieving with ~2,850,000 xp! I grabbed a redberry from Varok and turned him into Red!
+
+## End-Grind Notes
++ On 2025-12-02 I looted house key 1000/1000, ending at theiving level 73.
+    + Average thieving xp/hr was ~102k towards the end of the house looting grind.
+    + Traded in 114,462 valuables for 6,295,410 coins, bumping my gp from 1,935,725 to 8,231,135.
++ Trained a little bit of fletching and runecrafting as well as a bunch of crafting that day, but otherwise I think I am calling the grind there. I think just looting 1000 keys is easier than going all the way to 99, and I want to do some other contnet.
