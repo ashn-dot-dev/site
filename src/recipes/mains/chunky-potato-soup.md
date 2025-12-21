@@ -30,7 +30,7 @@ soup every time I make it, and it is delicious every time.
 + 1 cup of heavy cream
 + 1/2 cup of shredded cheddar cheese (plus extra for serving)
 + 3 green onions, sliced
-+ 2 teaspoons kosher salt (plus extra for cooking vegetables and serving)
++ 2 teaspoons of kosher salt (plus extra for cooking vegetables and serving)
 + 1 teaspoon of black pepper (plus extra for cooking vegetables and serving)
 
 ## Instructions
