@@ -86,6 +86,13 @@ iframe {
   margin: 0 auto;
   max-width: 90%;
 }
+/* Label for a media elements */
+.label {
+  display: block;
+  margin: 0 auto;
+  max-width: 90%;
+  text-align: center;
+}
 
 /* <blockquote> elements assume the last child is attribution */
 blockquote {
