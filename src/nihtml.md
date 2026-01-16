@@ -9,9 +9,7 @@ here.
 {{Dialogue character="Ashley"}}
 Oh and I guess I am like a new character on this website or something? I get
 these neat dialogue boxes which can also contain other text effects such as
-that {{Wave}}wavy text{{/Wave}} from earlier. That is pretty neat, although I
-would appreciate if you could find a human artist to make me some proper
-character portraits instead of this placeholder image.
+that {{Wave}}wavy text{{/Wave}} from earlier.
 {{/Dialogue}}
 
 For example, this `Image` tag has a body that contains the alt text for the
