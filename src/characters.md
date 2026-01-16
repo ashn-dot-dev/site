@@ -6,26 +6,36 @@ principles and build things from scratch, which occasionally prevents her from
 reaching out for help and building upon the foundation of others. Ashley is
 written as the student in Socratic dialogues.
 
-**WARNING**: The Asheley character portrait below was generated with the AI
-pixel-art generator at
-[perchance.org](https://perchance.org/ai-pixel-art-generator). I am working to
-replace this AI slop with character art from a professional artist as soon as
-possible.
+*Character illustrations by Citrineanna.*
 
-{{Image src="/characters/ashley/ashley-ai-slop.jpg"}}
-AI slop image of Ashley used as an initial character reference.
-{{/Image}}
-
-Ashley's character design is based off of this pixel art avatar in the style of
-Crypt of the Necrodancer that I made forever ago in
-[Piskel](https://www.piskelapp.com/).
-
-{{Image src="/characters/ashley/crypt-of-the-necrodancer-original-avatar.png"}}
-Pixel art character with a medium skin tone, maroon hair, a dark grey shirt,
-purple pants, a brown belt with a gold buckle, and brown shoes.
+{{Image src="characters/ashley/character-sheet.png"}}
 {{/Image}}
 
 {{Dialogue character="Ashley"}}
 Hey there! This is what my dialogue box will look like. My character portraits
 will be in this small square on the left side of each dialogue box.
+{{/Dialogue}}
+
+{{Dialogue character="Ashley" portrait="happy.png"}}
+This is my happy character portrait.
+{{/Dialogue}}
+
+{{Dialogue character="Ashley" portrait="smug.png"}}
+This is my smug character portrait.
+{{/Dialogue}}
+
+{{Dialogue character="Ashley" portrait="confused.png"}}
+This is my confused character portrait.
+{{/Dialogue}}
+
+{{Dialogue character="Ashley" portrait="frustrated.png"}}
+This is my frustrated character portrait.
+{{/Dialogue}}
+
+{{Dialogue character="Ashley" portrait="aha.png"}}
+This is my "aha!" character portrait.
+{{/Dialogue}}
+
+{{Dialogue character="Ashley" portrait="coffee.png"}}
+This is my "needs coffee" character portrait.
 {{/Dialogue}}
