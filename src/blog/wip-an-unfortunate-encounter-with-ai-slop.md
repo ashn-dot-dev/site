@@ -2,7 +2,7 @@ An Unfortunate Encounter With AI Slop
 =====================================
 
 Today I had an unfortunate encounter with some AI slop content on the internet while theory crafting for my Old School RuneScape account.
-This is the first time that I have ever really encountered a piece of AI writing that was so obviously bad that I wanted to talk about the experience.
+This is the first time that I have ever really encountered a piece of AI writing that was so obviously bad, and I wanted to talk about the experience.
 
 ## Background
 
@@ -33,7 +33,7 @@ Alright so I want to find some analysis of medium clue scroll sources.
 A reasonable thing to type into a search engine would be something like "osrs best medium clue source", right?
 Ideally this would pull up a page on the [wiki](https://oldschool.runescape.wiki/) with some dedicated analysis, or a YouTube video from an OSRS content creator who has done that analysis themselves.
 Really either would work, since I am just doing some exploratory research at this point.
-Here is what I got when I plugged that search result into DuckDuckGo.
+Here is what I got when I plugged that search into DuckDuckGo.
 
 {{Image src="/blog/wip-an-unfortunate-encounter-with-ai-slop/duckduckgo-search.png"}}
 {{/Image}}
@@ -77,15 +77,15 @@ That is not a whole lot to go off of.
 What enemies are there?
 Is there any active component to searching the chests, or is it similar to opening the nature rune chest in Ardougne?
 I already happen know where the lizarman temple is, but another player might not, so where are the instructions on how to get to the location?
-Why are all five of the links into this section pointing towards other pages on this website?
-Usually the Old School RuneScape wiki is the source of truth for a lot of information, so it is odd that none of these links would direct to the wiki at all.
+Why are all five of the links in this section pointing towards other pages on the same website?
+The Old School RuneScape wiki is the source of truth for a lot of information, so it is odd that none of these links would direct to the wiki at all.
 Why is this section written using bullet points instead of just a paragraph?
 Actually why does this entire page have unnecessary bullet points everywhere?
 
 And then it hits me - this page reads exactly like what an LLM would spit out if asked to produce an article on medium clue methods.
 The out of date information, the lack useful detail, the superfluous bullet points everywhere... IT'S JUST AI SLOP!
 
-Shortly after, I found what I believe to be the smoking gun. Clicking on the "Lizardman Temple" link took me to another page on the same site where I was immediately greeted with the most low effort, irrelevant, and completely incorrect "information".
+Shortly after, I found what I believe to be the smoking gun. Clicking on the "Lizardman Temple" link took me to another page on the same site where I was immediately greeted with the most low effort, irrelevant, and completely incorrect "information" I have ever seen on the web.
 
 {{Image src="/blog/wip-an-unfortunate-encounter-with-ai-slop/osrs-money-making-temple.png"}}
 {{/Image}}
@@ -99,15 +99,15 @@ Like, this is a fantasy video game that we play for fun, and I'm willing to bet 
 But the whole continent that the temple is a part of is intriguing.
 The whole game world is intriguing.
 This temple is not particularly more or less intriguing that anything else around it, and it just seems weird to use that language here.
-It would be like someone saying the back yard is an intriguing location in their house.
-Maybe their back yard is genuinely intriguing, but I am willing to bet the back yard is any more or less noteworthy or mysterious than their shower or laundry room.
-Bonus points for repeating the same sentence below, where now the Lizardman temple is apparently a "thrilling location" in addition to being an intriguing location.
+It would be like someone saying their back yard is an intriguing location around their house.
+Maybe their back yard is genuinely intriguing, but I am willing to bet the back yard is not any more or less noteworthy or mysterious than their shower or laundry room.
+Bonus points for repeating the same sentence further down, where now the Lizardman temple is apparently a "thrilling location" in addition to being an intriguing location.
 
 > Once inside the Lizardman Temple, players can explore various chambers filled with lizardmen and other challenges.
 
 Well what do those various chambers looks like, and what are those challenges?
 This is supposedly an article dedicated to the temple, so why is it so sparse on detail?
-This sentence conveys almost zero information, it's terrible.
+This sentence conveys almost zero information.
 
 In addition to the terrible writing, there is also gratuitous amounts of obviously false information!
 
@@ -121,11 +121,11 @@ Like, those two locations are **literally on the opposite sides of the map**!
 Just to be even more incorrect, further under that location and access section there notes for how to get there via teleport which states "players with access to the Amulet of Glory can teleport to Karamja, then travel southwest to reach the temple", which is once again just completely wrong.
 Karamja is no where even remotely close to the lizardman temple and not convenient at all if your actual goal was to get to the (incorrect) Kharidian Desert.
 
-When I was originally investigating this page, it was at this point where I became absolutely sure that this was some LLM-generate slop article.
+When I was originally investigating this page, it was at this point where I became absolutely sure that this was some LLM-generated slop.
 The text on this page reads like an LLM that is vaguely familiar with Old School RuneScape just started completely hallucinating.
-No serious player would ever write this crap, and it is obvious that this page was not even given a single proofread before publication.
+No serious player would ever write this crap, and it is obvious that this page was not even given a single proofreading pass before publication.
 
-Bonus shout-out to a section on questing further down the page which completely fabricates a connection between lizardman temple and the Dig Site / Fremennik Isles quests, attempts to draw a connection to a RuneScape 3 quest called [Herblore Habitat](https://runescape.wiki/w/Herblore_Habitat) which is not even in Old School RuneScape, and completely omits the one quest, A Kingdom Divided, that actualy *does* involve the lizardman temple. It is just... incredible.
+Bonus shout-out to a section on questing further down the page which completely fabricates a connection between lizardman temple and the Dig Site / Fremennik Isles quests, attempts to draw a connection to a RuneScape 3 quest called [Herblore Habitat](https://runescape.wiki/w/Herblore_Habitat) which is not even a part of Old School RuneScape, and completely omits the one quest, A Kingdom Divided, that actualy *does* involve the lizardman temple. It is just... incredible.
 
 {{Image src="/blog/wip-an-unfortunate-encounter-with-ai-slop/osrs-money-making-temple-quests.png"}}
 {{/Image}}
@@ -138,7 +138,7 @@ But this still sucks.
 How much collective time is this garbage website going to waste for the rest of the OSRS community?
 How many of those community members *won't* realize the site is filled with bare-bones self-conflicting inaccurate AI slop?
 
-As if this site wasn't bad enough already, if you dig even a little bit deeper you can see that this website thing is really just a shop that is trying to sell accounts, leveling & quest services, and in-game item services, all of which I belive is against Jagex's terms of service.
+As if this site wasn't bad enough already, if you dig even a little bit deeper you can see that this whole website is really just a shop that is trying to sell accounts, leveling & quest services, and in-game item services, all of which I belive is against Jagex's terms of service.
 
 {{Image src="/blog/wip-an-unfortunate-encounter-with-ai-slop/osrs-money-making-shop.png"}}
 {{/Image}}
