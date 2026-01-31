@@ -10,7 +10,7 @@ I have been playing a lot of Old School RuneScape lately, and am currently plann
 As an Ultimate Ironman, my account has the restriction that I cannot trade with other players or use a bank.
 In practice, this means that 4-8 of my 28 inventory slots are unavailable to hold combat gear and supplies, as they are filled with tools, teleports, and other permanent items I need to keep on my character.
 
-{{Image src="/blog/wip-an-unfortunate-encounter-with-ai-slop/sample-inventory.png"}}
+{{Image src="/blog/2026-01-30-an-unfortunate-encounter-with-ai-slop/sample-inventory.png"}}
 {{/Image}}
 <div class="label">
 Sample inventory setup for my current star mining grind where inventory slots 21-24 contains tools for mining and teleports for navigating the around the map, and inventory slots 25-28 contain my seed box, rune pouch, looting bag, and gp.
@@ -35,7 +35,7 @@ Ideally this would pull up a page on the [wiki](https://oldschool.runescape.wiki
 Really either would work, since I am just doing some exploratory research at this point.
 Here is what I got when I plugged that search into DuckDuckGo.
 
-{{Image src="/blog/wip-an-unfortunate-encounter-with-ai-slop/duckduckgo-search.png"}}
+{{Image src="/blog/2026-01-30-an-unfortunate-encounter-with-ai-slop/duckduckgo-search.png"}}
 {{/Image}}
 
 The first result is just the wiki page for medium clues.
@@ -44,13 +44,13 @@ The second result is a Reddit post, which I try to avoid when possible since Red
 Third result is from some website called FandomSpot.
 I have never heard of FandomSpot, but any website that has a navbar containing dedicated links to Pokémon, Skyrim, Minecraft, memes, anime, Genshin Impact, and some Sims 4 expansion, but *not* Old School RuneScape is uhhh... probably not a very reliable source.
 
-{{Image src="/blog/wip-an-unfortunate-encounter-with-ai-slop/fandomspot.png"}}
+{{Image src="/blog/2026-01-30-an-unfortunate-encounter-with-ai-slop/fandomspot.png"}}
 {{/Image}}
 
 Okay so fourth link in the DuckDuckGo search results is to some website called OSRS Money Making (don't actually go there since we will learn shortly that the website is shit).
 Again, I've never heard of this site, but it seems like the site is dedicated to Old School RuneScape content, so I thought it was at least worth a look.
 
-{{Image src="/blog/wip-an-unfortunate-encounter-with-ai-slop/osrs-money-making-page.png"}}
+{{Image src="/blog/2026-01-30-an-unfortunate-encounter-with-ai-slop/osrs-money-making-page.png"}}
 {{/Image}}
 
 Note that when I originally loaded this page on my Windows machine, that suspicious ad with the text "CREATE AI VIRAL VIDEOS WITH VEO 3" was actually at the bottom of the page, rather than prominently on the right side of the page as seen in the screenshot above.
@@ -63,7 +63,7 @@ Passing the split-second vibe check, I start scrolling down the page to do a qui
 + **Method 3: Killing Guards with a Cannon in Falador** - ehh not really my cup of tea, so skip.
 + **Method 4: Looting Stone Chests in Lizardman Temple** - okay this is interesting!
 
-{{Image src="/blog/wip-an-unfortunate-encounter-with-ai-slop/osrs-money-making-method-4.png"}}
+{{Image src="/blog/2026-01-30-an-unfortunate-encounter-with-ai-slop/osrs-money-making-method-4.png"}}
 {{/Image}}
 
 I have not heard of the lizardman temple method, so my attention is piqued.
@@ -87,7 +87,7 @@ The out of date information, the lack useful detail, the superfluous bullet poin
 
 Shortly after, I found what I believe to be the smoking gun. Clicking on the "Lizardman Temple" link took me to another page on the same site where I was immediately greeted with the most low effort, irrelevant, and completely incorrect "information" I have ever seen on the web.
 
-{{Image src="/blog/wip-an-unfortunate-encounter-with-ai-slop/osrs-money-making-temple.png"}}
+{{Image src="/blog/2026-01-30-an-unfortunate-encounter-with-ai-slop/osrs-money-making-temple.png"}}
 {{/Image}}
 
 Just to get the obvious out of the way, this whole page reads like shit.
@@ -115,7 +115,7 @@ The very first sentence of the page says the location of the temple is "nestled 
 But immediately below that, under the "location and access" section the article says that the temple is now apparently located in the Kharidian Desert, which is so obviously incorrect that it is astounding to believe that an article containing that information made it to publication.
 Like, those two locations are **literally on the opposite sides of the map**!
 
-{{Image src="/blog/wip-an-unfortunate-encounter-with-ai-slop/osrs-map.jpg"}}
+{{Image src="/blog/2026-01-30-an-unfortunate-encounter-with-ai-slop/osrs-map.jpg"}}
 {{/Image}}
 
 Just to be even more incorrect, further under that location and access section there notes for how to get there via teleport which states "players with access to the Amulet of Glory can teleport to Karamja, then travel southwest to reach the temple", which is once again just completely wrong.
@@ -127,7 +127,7 @@ No serious player would ever write this crap, and it is obvious that this page w
 
 Bonus shout-out to a section on questing further down the page which completely fabricates a connection between lizardman temple and the Dig Site / Fremennik Isles quests, attempts to draw a connection to a RuneScape 3 quest called [Herblore Habitat](https://runescape.wiki/w/Herblore_Habitat) which is not even a part of Old School RuneScape, and completely omits the one quest, A Kingdom Divided, that actualy *does* involve the lizardman temple. It is just... incredible.
 
-{{Image src="/blog/wip-an-unfortunate-encounter-with-ai-slop/osrs-money-making-temple-quests.png"}}
+{{Image src="/blog/2026-01-30-an-unfortunate-encounter-with-ai-slop/osrs-money-making-temple-quests.png"}}
 {{/Image}}
 
 ## This Sucks
@@ -140,7 +140,7 @@ How many of those community members *won't* realize the site is filled with bare
 
 As if this site wasn't bad enough already, if you dig even a little bit deeper you can see that this whole website is really just a shop that is trying to sell accounts, leveling & quest services, and in-game item services, all of which I belive is against Jagex's terms of service.
 
-{{Image src="/blog/wip-an-unfortunate-encounter-with-ai-slop/osrs-money-making-shop.png"}}
+{{Image src="/blog/2026-01-30-an-unfortunate-encounter-with-ai-slop/osrs-money-making-shop.png"}}
 {{/Image}}
 
 What really makes me upset here is that Old School RuneScape has one of the best wiki's of any game I have ever played.
