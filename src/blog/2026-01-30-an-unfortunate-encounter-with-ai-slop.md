@@ -21,7 +21,7 @@ With ~30% of my inventory unavailable, it is important that I get the maximal us
 Being able to use one piece of gear for two combat styles reduces the number of inventory/body spaces required to hold that type of gear from 3 to 2, and being able to use one piece of gear for all three combat styles reduces that even further to a single body slot which requires no additional inventory spaces.
 To that end, I would really like to upgrade my current hybrid [Armadyl d'hide boots](https://oldschool.runescape.wiki/w/Armadyl_d%27hide_boots) to some tribrid boots without such a negative magic attack bonus.
 My current best bet for a pair of tribrid boots would be either the [holy sandals](https://oldschool.runescape.wiki/w/Holy_sandals) with their +3 prayer bonus and no negative attack bonuses, or the [spiked manacles](https://oldschool.runescape.wiki/w/Spiked_manacles) with their +4 strength bonus and relatively minimal negative magic and ranged attack bonuses.
-Both of these boots are only avaliable as a 1/1,333 drop from [medium clue caskets](https://oldschool.runescape.wiki/w/Reward_casket_(medium)#Standard), so it seems like grinding out a ton of medium clues is required to obtain either piece of equipment.
+Both of these boots are only available as a 1/1,333 drop from [medium clue caskets](https://oldschool.runescape.wiki/w/Reward_casket_(medium)#Standard), so it seems like grinding out a ton of medium clues is required to obtain either piece of equipment.
 
 I have done about 50 or so medium clues on this account, most of which I got from monster drops and [eclectic implings](https://oldschool.runescape.wiki/w/Eclectic_impling) in Puro-Puro.
 Catching implings in Puro-Puro is really not something that I find fun, so I wanted to explore other ways of getting medium clues.
@@ -162,4 +162,4 @@ For those of you who care, the actual information I was hoping to find with my o
 ## Footnotes
 
 [^1]:
-Although I would later find out the image was directly stolen from [this YouTube video thumbnail](https://www.youtube.com/watch?v=n0SccMcimv0) from creator Kaoz OSRS.
+Although I would later find out the image was directly stolen from [this YouTube video thumbnail](https://www.youtube.com/watch?v=n0SccMcimv0) by creator Kaoz OSRS.
