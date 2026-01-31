@@ -157,7 +157,7 @@ Websites like the one I stumbled upon today will exist no matter what.
 Low-effort content mills were around long before the advent of LLMs, and they will continue to stay around long after the bubble pops and the AI industry collapses.
 But the rate and scale at which these LLMs and other AI tools can pump out incoherent garbage mean that right now more and more of the internet is seemingly going to be filled with bad actors using these tools to exploit and manipulate people at a rate that we have not previously seen.
 
-For those of you who care, the actually information I was hoping to find with my original search can be found on the [treasure trails strategies page](https://oldschool.runescape.wiki/w/Treasure_Trails/Strategies#Medium_clue_scrolls) wiki page.
+For those of you who care, the actual information I was hoping to find with my original search can be found on the [treasure trails strategies page](https://oldschool.runescape.wiki/w/Treasure_Trails/Strategies#Medium_clue_scrolls) wiki page.
 
 ## Footnotes
 
