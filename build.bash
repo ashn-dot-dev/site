@@ -54,6 +54,7 @@ mkdir -p "${OUT_DIR}/recipes"
 mkdir -p "${OUT_DIR}/recipes/mains"
 mkdir -p "${OUT_DIR}/recipes/sweet-treats"
 mkdir -p "${OUT_DIR}/characters"
+mkdir -p "${OUT_DIR}/mellifera"
 mkdir -p "${OUT_DIR}/nihtml"
 mkdir -p "${OUT_DIR}/tmp"
 
@@ -253,6 +254,18 @@ build_characters_files() {
     { set +x; } 2>/dev/null
 }
 
+build_mellifera_page() {
+    echo "==== BUILD MELLIFERA PAGE ===="
+    build_page_from_md 'mellifera.md' 'The Mellifera Programming Language'
+}
+
+build_mellifera_files() {
+    echo "==== BUILD MELLIFERA FILES ===="
+    set -x
+    cp -r ${SRC_DIR}/Mellifera/* ${OUT_DIR}/mellifera
+    { set +x; } 2>/dev/null
+}
+
 build_nihtml_page() {
     echo "==== BUILD NIHTML PAGE ===="
     build_page_from_md 'nihtml.md' 'NIHTML TEST PAGE'
@@ -288,6 +301,8 @@ build_tmp_files() {
 { time build_recipes_entry_pages; } 2>&1
 { time build_characters_page; } 2>&1
 { time build_characters_files; } 2>&1
+{ time build_mellifera_page; } 2>&1
+{ time build_mellifera_files; } 2>&1
 { time build_nihtml_page; } 2>&1
 { time build_nihtml_files; } 2>&1
 { time build_misc_files; } 2>&1
