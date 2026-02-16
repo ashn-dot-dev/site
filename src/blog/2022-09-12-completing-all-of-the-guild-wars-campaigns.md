@@ -1,4 +1,4 @@
-Completing All of the Guild Wars Campaigns
+Completing All Of The Guild Wars Campaigns
 ==========================================
 
 Previously I wrote a [blog

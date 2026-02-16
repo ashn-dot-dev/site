@@ -1,4 +1,4 @@
-Implementing the Advent of Code 2022 Day 13 Packet Parser
+Implementing The Advent Of Code 2022 Day 13 Packet Parser
 =========================================================
 
 In this post we are going to run through a lightning fast introduction to

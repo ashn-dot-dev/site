@@ -1,4 +1,4 @@
-Porting Some Code from C++ to Sunder
+Porting Some Code From C++ To Sunder
 ====================================
 
 [Sunder](https://github.com/ashn-dot-dev/sunder) is a systems programming

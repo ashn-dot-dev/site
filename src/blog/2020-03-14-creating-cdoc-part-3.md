@@ -1,4 +1,4 @@
-Creating a C Documentation Generator - Part 3
+Creating A C Documentation Generator - Part 3
 =============================================
 
 Welcome to part 3 of a series in which we design and implement `cdoc` - a

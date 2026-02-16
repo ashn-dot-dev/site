@@ -1,4 +1,4 @@
-Scripting with Value Semantics Even Harder Using Mellifera
+Scripting With Value Semantics Even Harder Using Mellifera
 ==========================================================
 
 For the past few weeks I have been working on

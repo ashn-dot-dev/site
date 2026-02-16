@@ -1,4 +1,4 @@
-Dead Simple Testing for Programming Language Projects
+Dead Simple Testing For Programming Language Projects
 =====================================================
 
 ## Introduction

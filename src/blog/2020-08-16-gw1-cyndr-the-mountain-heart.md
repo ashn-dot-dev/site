@@ -1,4 +1,4 @@
-How to Defeat Cyndr the Mountain Heart (Guild Wars 1)
+How To Defeat Cyndr The Mountain Heart (Guild Wars 1)
 =====================================================
 
 [Cyndr the Mountain Heart](https://wiki.guildwars.com/wiki/Cyndr_the_Mountain_Heart)

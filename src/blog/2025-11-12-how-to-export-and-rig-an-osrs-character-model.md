@@ -1,4 +1,4 @@
-How to Export and Rig an Old School RuneScape Character Model with Creator's Kit, Blender, and Mixamo
+How To Export And Rig An Old School RuneScape Character Model With Creator's Kit, Blender, And Mixamo
 =====================================================================================================
 
 ## Introduction

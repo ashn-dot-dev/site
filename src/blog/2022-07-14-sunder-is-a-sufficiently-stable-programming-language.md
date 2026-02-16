@@ -1,4 +1,4 @@
-Sunder is a Sufficiently Stable Programming Language
+Sunder Is A Sufficiently Stable Programming Language
 ====================================================
 
 This week I tagged what I consider to be the [first stable-ish

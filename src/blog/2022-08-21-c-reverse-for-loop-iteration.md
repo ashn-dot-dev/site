@@ -1,4 +1,4 @@
-Reverse For-Loop Iteration in C
+Reverse For-Loop Iteration In C
 ===============================
 
 One can reverse-iterate from `N-1` down to `0` in C using a for-loop of the

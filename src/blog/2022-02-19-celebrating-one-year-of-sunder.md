@@ -1,4 +1,4 @@
-Celebrating One Year of Sunder
+Celebrating One Year Of Sunder
 ==============================
 
 One year ago today I began working on the project that would eventually become

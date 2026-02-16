@@ -1,4 +1,4 @@
-How to Disable Visual Studio Code Shell Integration (Rant Edition)
+How To Disable Visual Studio Code Shell Integration (Rant Edition)
 ==================================================================
 
 TLDR - add this line to your `settings.json`:

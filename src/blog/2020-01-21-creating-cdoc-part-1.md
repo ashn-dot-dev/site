@@ -1,4 +1,4 @@
-Creating a C Documentation Generator - Part 1
+Creating A C Documentation Generator - Part 1
 =============================================
 
 In this series we are going to walk through the process of designing and

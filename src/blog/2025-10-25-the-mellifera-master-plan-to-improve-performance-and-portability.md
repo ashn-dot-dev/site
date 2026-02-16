@@ -1,4 +1,4 @@
-The Mellifera Master Plan to Improve Performance and Portability
+The Mellifera Master Plan To Improve Performance And Portability
 ================================================================
 
 I have been developing [Mellifera](https://github.com/ashn-dot-dev/mellifera)

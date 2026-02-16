@@ -1,4 +1,4 @@
-I Wrote a Compiler for My Own Programming Language
+I Wrote A Compiler For My Own Programming Language
 ==================================================
 
 This past Friday I officially tagged the [first

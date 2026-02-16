@@ -1,4 +1,4 @@
-Sauce of Sunder: Setup and Installation
+Sauce Of Sunder: Setup And Installation
 =======================================
 
 Welcome to the Sauce of Sunder, a series where we dive into the design and implementation of the

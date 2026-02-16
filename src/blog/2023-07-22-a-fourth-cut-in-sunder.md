@@ -1,4 +1,4 @@
-A Fourth Cut in Sunder
+A Fourth Cut In Sunder
 ======================
 
 Last week I read Alex Kladov's [Three Different

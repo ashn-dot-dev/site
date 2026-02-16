@@ -1,4 +1,4 @@
-New User Setup on a Debian/Ubuntu Server
+New User Setup On A Debian/Ubuntu Server
 ========================================
 
 This is my process to setup a new user with SSH access on a Debian/Ubuntu

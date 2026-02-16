@@ -1,4 +1,4 @@
-Testing Read Error and NUL Byte Error Handling
+Testing Read Error And NUL Byte Error Handling
 ==============================================
 
 I am in the middle of writing the code for part three of my "Creating a C

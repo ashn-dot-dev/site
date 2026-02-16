@@ -1,4 +1,4 @@
-I Miss Being an Amateur
+I Miss Being An Amateur
 =======================
 
 > Do what you love, and you'll never work a day in your life.

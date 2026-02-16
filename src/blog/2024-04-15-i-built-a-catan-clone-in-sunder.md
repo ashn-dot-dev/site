@@ -1,4 +1,4 @@
-I built a Networked Catan Clone in Sunder
+I Built A Networked Catan Clone In Sunder
 =========================================
 
 For the past eight or so months I have been building a networked implementation

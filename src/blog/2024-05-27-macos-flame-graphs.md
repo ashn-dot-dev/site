@@ -1,4 +1,4 @@
-A Quick Guide to Generating Flame Graphs on macOS
+A Quick Guide To Generating Flame Graphs On macOS
 =================================================
 
 Open a terminal and build your application. In this case we will build and

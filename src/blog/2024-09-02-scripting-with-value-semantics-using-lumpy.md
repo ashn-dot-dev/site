@@ -1,4 +1,4 @@
-Scripting with Value Semantics Using Lumpy
+Scripting With Value Semantics Using Lumpy
 ==========================================
 
 For the past few weeks I have had a blast working on

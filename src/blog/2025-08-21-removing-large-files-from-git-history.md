@@ -1,4 +1,4 @@
-Removing Large Files from a Repository's Git History
+Removing Large Files From A Repository's Git History
 ====================================================
 
 I consider myself to be a [grug-brained developer](https://grugbrain.dev/). I

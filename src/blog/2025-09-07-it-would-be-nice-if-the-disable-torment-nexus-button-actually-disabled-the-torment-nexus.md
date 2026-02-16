@@ -1,4 +1,4 @@
-It Would Be Nice if the "Disable Torment Nexus" Button Actually Disabled the Torment Nexus
+It Would Be Nice If The "Disable Torment Nexus" Button Actually Disabled The Torment Nexus
 ==========================================================================================
 
 Let's play a game of "Spot the Pattern".

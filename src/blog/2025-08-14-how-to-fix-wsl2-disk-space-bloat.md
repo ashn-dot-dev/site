@@ -1,4 +1,4 @@
-How to Fix WSL2 Disk Space Bloat
+How To Fix WSL2 Disk Space Bloat
 ================================
 
 This morning when I hopped online for work I was greeted with a murder mystery.
