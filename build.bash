@@ -20,7 +20,7 @@ EOF
 
 NIHTML_CMD_MF="mf nihtml.mf"
 NIHTML_CMD_PY="python3 nihtml.py"
-NIHTML_CMD="${NIHTML_CMD_PY}"
+NIHTML_CMD="${NIHTML_CMD_MF}"
 
 for arg in "$@"; do
 case "${arg}" in
