@@ -179,14 +179,14 @@ let lexer = type {
 
         if self._remaining() =~ re_opening_tag {
             debugln($"{lexer.next_token}: lexing {token_kind::OPENING_TAG} token@{location}");
-            self.position = self.position + re::group(0).count();
-            return token::init(location, token_kind::OPENING_TAG, re::group(0));
+            self.position = self.position + $0.count();
+            return token::init(location, token_kind::OPENING_TAG, $0);
         }
 
         if self._remaining() =~ re_closing_tag {
             debugln($"{lexer.next_token}: lexing {token_kind::CLOSING_TAG} token@{location}");
-            self.position = self.position + re::group(0).count();
-            return token::init(location, token_kind::CLOSING_TAG, re::group(0));
+            self.position = self.position + $0.count();
+            return token::init(location, token_kind::CLOSING_TAG, $0);
         }
 
         let text = "";
@@ -201,7 +201,7 @@ let lexer = type {
 
             if self._remaining() =~ re_nominal_text {
                 debugln($"{lexer.next_token}: lexing {token_kind::TEXT} chunk@{self.location}");
-                let chunk = re::group(0);
+                let chunk = $0;
                 text = text + chunk;
                 self.location.line = self.location.line + (chunk.split("\n").count() - 1);
                 self.position = self.position + chunk.count();
@@ -211,14 +211,14 @@ let lexer = type {
             if self._remaining() =~ re_escaped_lbraces {
                 debugln($"{lexer.next_token}: lexing {token_kind::TEXT} lbrace@{self.location}");
                 text = text + "{{";
-                self.position = self.position + re::group(0).count();
+                self.position = self.position + $0.count();
                 continue;
             }
 
             if self._remaining() =~ re_escaped_rbraces {
                 debugln($"{lexer.next_token}: lexing {token_kind::TEXT} rbrace@{self.location}");
                 text = text + "}}";
-                self.position = self.position + re::group(0).count();
+                self.position = self.position + $0.count();
                 continue;
             }
 
@@ -278,19 +278,19 @@ let parser = type {
     ._parse_tag = function(self) {
         let opening_tag = self._expect_current(token_kind::OPENING_TAG);
         assert(opening_tag.text =~ re_opening_tag);
-        let name = re::group(1);
+        let name = $1;
 
         let attributes = Map{};
-        if re::group(2) != null {
-            let text = re::group(2).trim();
+        if $2 != null {
+            let text = $2.trim();
             while text =~ re_attribute {
-                let k = re::group(1);
-                let v = re::group(3);
+                let k = $1;
+                let v = $3;
                 if v == null {
                     v = "";
                 }
                 attributes[k] = v;
-                text = text.slice(re::group(0).count(), text.count()).trim();
+                text = text.slice($0.count(), text.count()).trim();
             }
         }
 
@@ -301,7 +301,7 @@ let parser = type {
 
         let closing_tag = self._expect_current(token_kind::CLOSING_TAG);
         assert(closing_tag.text =~ re_closing_tag);
-        if re::group(1) != name {
+        if $1 != name {
             error parse_error::init(
                 self.current.location,
                 "expected " +
@@ -309,7 +309,7 @@ let parser = type {
                 " `" +
                 name +
                 "`, found `" +
-                re::group(1) +
+                $1 +
                 "`"
             );
         }
