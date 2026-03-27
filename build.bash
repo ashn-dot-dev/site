@@ -56,6 +56,7 @@ mkdir -p "${OUT_DIR}/recipes/sweet-treats"
 mkdir -p "${OUT_DIR}/characters"
 mkdir -p "${OUT_DIR}/mellifera"
 mkdir -p "${OUT_DIR}/nihtml"
+mkdir -p "${OUT_DIR}/talks"
 mkdir -p "${OUT_DIR}/tmp"
 
 #== Website Generation Helper Utilities ========================================
@@ -278,6 +279,13 @@ build_nihtml_files() {
     { set +x; } 2>/dev/null
 }
 
+build_talks_files() {
+    echo "==== BUILD TALKS FILES ===="
+    set -x
+    cp -r ${SRC_DIR}/talks/* ${OUT_DIR}/talks
+    { set +x; } 2>/dev/null
+}
+
 build_misc_files() {
     echo "==== BUILD MISC FILES ===="
     set -x
@@ -305,5 +313,6 @@ build_tmp_files() {
 { time build_mellifera_files; } 2>&1
 { time build_nihtml_page; } 2>&1
 { time build_nihtml_files; } 2>&1
+{ time build_talks_files; } 2>&1
 { time build_misc_files; } 2>&1
 { time build_tmp_files; } 2>&1
