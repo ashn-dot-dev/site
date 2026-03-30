@@ -23,12 +23,8 @@ case "${arg}" in
 esac
 done
 
-if [ -x "${MELLIFERA_HOME}/bin/mf" ]; then
-    MELLIFERA_PROG="${MELLIFERA_HOME}/bin/mf"
-else
-    MELLIFERA_PROG="${MELLIFERA_HOME}/mf.py"
-fi
-
+MELLIFERA_HOME=$(mf -e | grep MELLIFERA_HOME | cut -f2 -d=)
+MELLIFERA_PROG="${MELLIFERA_HOME}/bin/mf"
 
 TESTSRUN=0
 FAILURES=0
