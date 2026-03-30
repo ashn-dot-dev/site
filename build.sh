@@ -1,7 +1,8 @@
-#!/bin/bash
+#!/bin/sh
 set -eu
 
-NL=$'\n'
+NL='
+'
 SRC_DIR='src'
 OUT_DIR='out'
 TIMEFORMAT="TIME: %E"
