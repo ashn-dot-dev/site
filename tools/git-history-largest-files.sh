@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# Usage: git-history-largest-files.sh [NUMBER-OF-FILES]
+# usage: git-history-largest-files.sh [NUMBER-OF-FILES]
 set -eu
 
 if [ $# -ge 2 ]; then

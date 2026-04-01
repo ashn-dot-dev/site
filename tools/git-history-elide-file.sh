@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# Usage: git-history-elide-file.sh FILE
+# usage: git-history-elide-file.sh FILE
 set -eu
 
 if [ $# -ne 1 ]; then

@@ -56,6 +56,7 @@ mkdir -p "${OUT_DIR}/recipes/mains"
 mkdir -p "${OUT_DIR}/recipes/sweet-treats"
 mkdir -p "${OUT_DIR}/characters"
 mkdir -p "${OUT_DIR}/mellifera"
+mkdir -p "${OUT_DIR}/mellifera/wasm"
 mkdir -p "${OUT_DIR}/nihtml"
 mkdir -p "${OUT_DIR}/talks"
 mkdir -p "${OUT_DIR}/tmp"
@@ -263,8 +264,11 @@ build_mellifera_page() {
 
 build_mellifera_files() {
     echo "==== BUILD MELLIFERA FILES ===="
+    build_page_from_html 'mellifera/interpreter.html' 'Mellifera Interpreter'
     set -x
-    cp -r ${SRC_DIR}/Mellifera/* ${OUT_DIR}/mellifera
+    cp -r ${SRC_DIR}/mellifera/*.png ${OUT_DIR}/mellifera
+    cp -r ${SRC_DIR}/mellifera/*.svg ${OUT_DIR}/mellifera
+    cp -r ${SRC_DIR}/mellifera/wasm/* ${OUT_DIR}/mellifera/wasm
     { set +x; } 2>/dev/null
 }
 
