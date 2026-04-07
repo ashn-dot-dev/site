@@ -15,7 +15,7 @@ const go = new Go();
 // when deployed on a web server which has not been set up to serve Wasm files
 // with the content type application/wasm.
 (async () => {
-    const melliferaWasmResponse = await fetch("wasm/mellifera.wasm")
+    const melliferaWasmResponse = await fetch("wasm/mellifera.wasm");
     const melliferaWasmBuffer = await melliferaWasmResponse.arrayBuffer();
     WebAssembly.instantiate(melliferaWasmBuffer, go.importObject).then(async result => {
         let module = result.module;
