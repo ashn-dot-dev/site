@@ -1,7 +1,7 @@
 <script src="wasm/wasm_exec.js"></script>
 <script>
 mellifera = {
-    eval: (source, stdoutId, stderrId) => { throw new Error("Mellifera Wasm module is not initialized!"); }
+    eval: (source, options) => { throw new Error("Mellifera Wasm module is not initialized!"); }
 };
 
 const go = new Go();
@@ -83,7 +83,7 @@ println($`y is now {y}`);
 # Find more examples in the Mellifera project repository:
 # https://github.com/ashn-dot-dev/mellifera
 </textarea>
-<button onClick='mellifera.eval(document.getElementById("program").value, "stdout", "stderr");'>Run</button>
+<button onClick='mellifera.eval(document.getElementById("program").value, {stdout: "stdout", stderr: "stderr"});'>Run</button>
 
 <textarea rows="8" id="stdout" placeholder="Standard output..." readonly wrap="off"></textarea>
 <textarea rows="8" id="stderr" placeholder="Standard error..."  readonly wrap="off"></textarea>
