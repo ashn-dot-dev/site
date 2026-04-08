@@ -266,6 +266,7 @@ build_mellifera_files() {
     echo "==== BUILD MELLIFERA FILES ===="
     build_page_from_html 'mellifera/interpreter.html' 'Mellifera Interpreter'
     set -x
+    cp -r ${SRC_DIR}/mellifera/*.js ${OUT_DIR}/mellifera
     cp -r ${SRC_DIR}/mellifera/*.png ${OUT_DIR}/mellifera
     cp -r ${SRC_DIR}/mellifera/*.svg ${OUT_DIR}/mellifera
     cp -r ${SRC_DIR}/mellifera/wasm/* ${OUT_DIR}/mellifera/wasm

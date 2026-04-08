@@ -20,7 +20,7 @@ body {
   font-family: sans-serif;
   line-height: 1.25;
   margin: 1rem auto;
-  max-width: 72ch;
+  max-width: 80ch;
   background-color: var(--color-bg-drk);
   color: var(--color-text);
 }
@@ -146,6 +146,34 @@ main a code {
 /* RECIPES STYLING */
 .recipe-primary-image {
   max-width: 60%; /* recipe pages look better when the primary image occupies less screen space */
+}
+
+/* MELLIFERA STYLING */
+textarea.mellifera {
+    background-color: var(--color-bg-mid);
+    color: var(--color-text);
+    border: solid 1px var(--color-orange);
+    display: block;
+    font-size: 16px;
+    font-family: monospace;
+    resize: none;
+    width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+textarea.mellifera::selection {
+    background-color: var(--color-bg-lit);
+}
+textarea.mellifera:focus {
+    outline: 1px solid var(--color-orange);
+    box-shadow: 0 0 8px #7799cc;
+}
+button.mellifera {
+    display: block;
+    margin: 0 auto;
+    width: 100%;
 }
 
 /* {{Wave}} - RUNESCAPE WAVE EFFECT */

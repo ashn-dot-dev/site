@@ -1,72 +1,9 @@
-<script src="wasm/wasm_exec.js"></script>
-<script>
-mellifera = {
-    eval: (source, options) => { throw new Error("Mellifera Wasm module is not initialized!"); }
-};
-
-const go = new Go();
-
-// Manually fetch the .wasm file and instantiate with WebAssembly.instantiate
-// instead of WebAssembly.instantiateStreaming. Atempting to instante using
-// WebAssembly.instantiateStreaming will produce the error:
-//
-//      TypeError: WebAssembly: Response has unsupported MIME type 'application/octet-stream' expected 'application/wasm'
-//
-// when deployed on a web server which has not been set up to serve Wasm files
-// with the content type application/wasm.
-(async () => {
-    const melliferaWasmResponse = await fetch("wasm/mellifera.wasm");
-    const melliferaWasmBuffer = await melliferaWasmResponse.arrayBuffer();
-    WebAssembly.instantiate(melliferaWasmBuffer, go.importObject).then(async result => {
-        let module = result.module;
-        let instance = result.instance;
-        await go.run(instance);
-    });
-})();
-</script>
-
-<style>
-main pre {
-    font-size: 15px;
-    overflow-x: auto;
-}
-body {
-    font-family: sans-serif;
-    margin: 1rem auto;
-    max-width: 80ch;
-}
-textarea {
-    background-color: var(--color-bg-mid);
-    color: var(--color-text);
-    border: solid 1px var(--color-orange);
-    display: block;
-    font-size: 16px;
-    font-family: monospace;
-    resize: none;
-    width: 100%;
-    padding-left: 0;
-    padding-right: 0;
-    margin-left: auto;
-    margin-right: auto;
-}
-textarea::selection {
-    background-color: var(--color-bg-lit);
-}
-textarea:focus {
-    outline: 1px solid var(--color-orange);
-    box-shadow: 0 0 8px #7799cc;
-}
-
-button {
-    display: block;
-    margin: 0 auto;
-    width: 100%;
-}
-</style>
+<script src="/mellifera/wasm/wasm_exec.js"></script>
+<script src="/mellifera/mellifera.js"></script>
 
 <br> <!-- a little bit of extra space beween the nav and program textarea -->
 
-<textarea rows="16" id="program" placeholder="Enter your Mellifera program here..." wrap="off">
+<textarea class="mellifera" wrap="off" rows="16" id="program" placeholder="Enter your Mellifera program here...">
 println("hello 🐝");
 
 let x = ["foo", {"bar": 123}, "baz"];
@@ -83,7 +20,6 @@ println($`y is now {y}`);
 # Find more examples in the Mellifera project repository:
 # https://github.com/ashn-dot-dev/mellifera
 </textarea>
-<button onClick='mellifera.eval(document.getElementById("program").value, {stdout: "stdout", stderr: "stderr"});'>Run</button>
-
-<textarea rows="8" id="stdout" placeholder="Standard output..." readonly wrap="off"></textarea>
-<textarea rows="8" id="stderr" placeholder="Standard error..."  readonly wrap="off"></textarea>
+<button class="mellifera" onClick='mellifera.eval(document.getElementById("program").value, {stdout: "stdout", stderr: "stderr"});'>Run</button>
+<textarea class="mellifera" wrap="off" rows="8" id="stdout" placeholder="Standard output..." readonly></textarea>
+<textarea class="mellifera" wrap="off" rows="8" id="stderr" placeholder="Standard error..."  readonly></textarea>
