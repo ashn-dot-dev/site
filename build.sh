@@ -19,21 +19,11 @@ options:
 EOF
 }
 
-NIHTML_CMD_MF="mf nihtml.mf"
-NIHTML_CMD_PY="python3 nihtml.py"
-NIHTML_CMD="${NIHTML_CMD_MF}"
-
 for arg in "$@"; do
 case "${arg}" in
     -h|--help)
         usage
         exit 0
-        ;;
-    -mf|--mf)
-        NIHTML_CMD="${NIHTML_CMD_MF}"
-        ;;
-    -py|--py)
-        NIHTML_CMD="${NIHTML_CMD_PY}"
         ;;
     *)
         echo "unknown argument: ${arg}"
@@ -42,8 +32,6 @@ case "${arg}" in
         ;;
 esac
 done
-
-echo "Building site using NIHTML command: ${NIHTML_CMD}"
 
 #== Create Output Directory ====================================================
 if [ -d "${OUT_DIR}" ]; then
@@ -63,10 +51,32 @@ mkdir -p "${OUT_DIR}/tmp"
 
 #== Website Generation Helper Utilities ========================================
 TEMPLATE=$(cat template.html)
+NIHTML_CMD="mf nihtml.mf"
 
-md_blog_entry_title() {
+# ends_with(s, target)
+#
+# Returns 0 if string `s` ends with the string `target`.
+ends_with() {
+    case "$1" in
+        *"$2") return 0 ;;
+        *)     return 1 ;;
+    esac
+}
+
+blog_entry_title() {
     FILE="$1"
-    head -n 1 "${FILE}"
+
+    if ends_with "${FILE}" '.nihtml'; then
+        ${NIHTML_CMD} --title "${FILE}"
+        return
+    fi
+
+    if ends_with "${FILE}" '.md'; then
+        head -n 1 "${FILE}"
+        return
+    fi
+
+     >&2 echo "error: unknown blog entry filetype"
 }
 
 md_recipes_entry_title() {
@@ -103,6 +113,18 @@ build_page_from_html() {
     make_page "${TITLE}" "${CONTENT}" >"${OUT_FILE}"
 }
 
+build_page_from_nihtml() {
+    SRC_PATH="$1" # Path under the src/ directory.
+    TITLE="$2"    # Page title.
+    echo "BUILDING NIHTML PAGE: ${SRC_PATH}"
+
+    SRC_FILE="${SRC_DIR}/${SRC_PATH}"
+    OUT_FILE="${OUT_DIR}/${SRC_PATH%.nihtml}.html"
+
+    RENDERED=$(cat "${SRC_FILE}" | ${NIHTML_CMD})
+    make_page "${TITLE}" "${RENDERED}" >"${OUT_FILE}"
+}
+
 build_page_from_md() {
     SRC_PATH="$1" # Path under the src/ directory.
     TITLE="$2"    # Page title.
@@ -137,8 +159,8 @@ build_blog_page() {
         # YYYY-MM-DD
         # 123456789A bytes should be parsed to get the date from the filename.
         F_DATE=$(echo "${f}" | head -c 10)
-        F_TITLE=$(md_blog_entry_title "${SRC_DIR}/blog/${f}")
-        F_HREF="/blog/${f%.md}.html"
+        F_TITLE=$(blog_entry_title "${SRC_DIR}/blog/${f}")
+        F_HREF="/blog/${f%.*}.html"
 
         BLOG_PAGE_CONTENT="${BLOG_PAGE_CONTENT}${NL}<tr>"
         BLOG_PAGE_CONTENT="${BLOG_PAGE_CONTENT}${NL}<td style=\"white-space: nowrap;\">[${F_DATE}]</td>"
@@ -164,8 +186,20 @@ build_blog_entry_pages() {
 build_blog_entry_page() {
     SRC_PATH="$1" # Path under the src/ directory.
 
-    TITLE="$(md_blog_entry_title "${SRC_DIR}/${SRC_PATH}")"
-    build_page_from_md "${SRC_PATH}" "${TITLE}"
+    TITLE="$(blog_entry_title "${SRC_DIR}/${SRC_PATH}")"
+
+    if ends_with "${SRC_PATH}" '.nihtml'; then
+        build_page_from_nihtml "${SRC_PATH}" "${TITLE}"
+        return
+    fi
+
+    if ends_with "${SRC_PATH}" '.md'; then
+        build_page_from_md "${SRC_PATH}" "${TITLE}"
+        return
+    fi
+
+     >&2 echo "error: unknown blog entry filetype"
+     exit 1
 }
 
 build_blog_rss_page() {
@@ -185,7 +219,7 @@ build_blog_rss_page() {
         # YYYY-MM-DD
         # 123456789A bytes should be parsed to get the date from the filename.
         F_DATE=$(echo "${f}" | head -c 10)
-        F_TITLE=$(md_blog_entry_title "${SRC_DIR}/blog/${f}")
+        F_TITLE=$(blog_entry_title "${SRC_DIR}/blog/${f}")
         F_LINK="https://ashn.dev/blog/${f%.md}.html"
 
         RSS_CONTENT="${RSS_CONTENT}${NL}  <item>"
@@ -275,7 +309,7 @@ build_mellifera_files() {
 
 build_nihtml_page() {
     echo "==== BUILD NIHTML PAGE ===="
-    build_page_from_md 'nihtml.md' 'NIHTML TEST PAGE'
+    build_page_from_nihtml 'nihtml.nihtml' 'NIHTML TEST PAGE'
 }
 
 build_nihtml_files() {

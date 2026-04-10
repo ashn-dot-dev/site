@@ -41,6 +41,24 @@ let tag = type {
     },
 };
 
+let tag_title = type extends(tag, {
+    .init = function(attributes, children) {
+        return new tag_title tag::init(attributes, children);
+    },
+    .into_string = function(self) {
+        return $`<h1>{self.inner().trim()}</h1>`;
+    }
+});
+
+let tag_code_block = type extends(tag, {
+    .init = function(attributes, children) {
+        return new tag_code_block tag::init(attributes, children);
+    },
+    .into_string = function(self) {
+        return $"<pre><code>{self.inner().trim()}</code></pre>";
+    }
+});
+
 let tag_dialogue = type extends(tag, {
     .init = function(attributes, children) {
         return new tag_dialogue tag::init(attributes, children);
@@ -106,6 +124,8 @@ let tag_wave = type extends(tag, {
 });
 
 let TAG_REGISTRY = {
+    "Title": tag_title,
+    "CodeBlock": tag_code_block,
     "Dialogue": tag_dialogue,
     "Image": tag_image,
     "Wave": tag_wave,
@@ -334,16 +354,23 @@ positional arguments:
 
 optional arguments:
   -d, --debug   Write diagnostic debug information to stderr.
+  -t, --title   Get a page title from the {{Title}} tag.
   -h, --help    Display this help text and exit.
     ```.trim());
 };
 
+let opt = null;
 let file = null;
 let source = null;
 let argi = 1;
 while argi < argv.count() {
     if argv[argi] =~ r`^-+d(ebug)?$` {
         is_debug = true;
+        argi = argi + 1;
+        continue;
+    }
+    if argv[argi] =~ r`^-+t(itle)?$` {
+        opt = "title";
         argi = argi + 1;
         continue;
     }
@@ -366,6 +393,19 @@ if file == null and source == null {
 
 let location = source_location::init(file, 1);
 let nodes = parser::init(lexer::init(source, location)).parse();
+
+# --title
+if opt == "title" {
+    for node in nodes {
+        if ty::is(node, tag_title) {
+            print(node.inner().trim());
+            exit(0);
+        }
+    }
+    error $"file {file} is missing a Title tag";
+}
+
+# NIHTML to HTML conversion.
 for node in nodes {
     print(node);
 }

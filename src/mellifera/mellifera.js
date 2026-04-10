@@ -8,7 +8,10 @@ to add Mellifera support to the associated page:
 "use strict";
 
 window.mellifera = {
-    eval: (source, options) => { throw new Error("Mellifera Wasm module is not initialized!"); }
+    /* Evaluate the provided source string. */
+    eval: (source, options) => { throw new Error("Mellifera Wasm module is not initialized!"); },
+    /* Evaluate the source text in the HTML element with the provided ID. */
+    evalById: (id, options) => { mellifera.eval(document.getElementById(id).value, options); },
 };
 
 const go = new Go();
@@ -22,7 +25,7 @@ const go = new Go();
 // when deployed on a web server which has not been set up to serve Wasm files
 // with the content type application/wasm.
 (async () => {
-    const melliferaWasmResponse = await fetch("wasm/mellifera.wasm");
+    const melliferaWasmResponse = await fetch("/mellifera/wasm/mellifera.wasm");
     const melliferaWasmBuffer = await melliferaWasmResponse.arrayBuffer();
     WebAssembly.instantiate(melliferaWasmBuffer, go.importObject).then(async result => {
         let module = result.module;

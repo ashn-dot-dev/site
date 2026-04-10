@@ -1,0 +1,222 @@
+{{Title}}
+The Mellifera Interpreter Now Runs In Your Browser
+{{/Title}}
+
+<script src="/mellifera/wasm/wasm_exec.js"></script>
+<script src="/mellifera/mellifera.js"></script>
+
+<p>
+Mellifera, my scripting language featuring value semantics, now runs in your
+web browser! Seriously, try it now - click the <code>run</code> button under
+the script below and you should see "hello 🐝" printed to the output text area.
+</p>
+
+<textarea class="mellifera" wrap="off" rows="4" id="intro-program">
+println("hello 🐝");
+</textarea>
+<button class="mellifera" onClick='mellifera.evalById("intro-program", {stdout: "intro-output", stderr: "intro-output"});'>Run</button>
+<textarea class="mellifera" wrap="off" rows="4" id="intro-output" placeholder="Output..." readonly></textarea>
+
+<p>
+This isn't a magic trick either! All of the program input textboxes on this
+page are editable. Try changing the <code>year</code> value in the program
+below, and then hit the <code>run</code> button just below the program textbox
+to see different outputs for different <code>year</code> values.
+</p>
+
+<textarea class="mellifera" wrap="off" rows="16" id="ashley-program">
+let student = {
+    .name = "Ashley",
+    .major = "computer science",
+    .year = 3,
+};
+let year_to_class = function(year) {
+    if year <= 0 { error $"invalid year {year}"; }
+    if year == 1 { return "freshman"; }
+    if year == 2 { return "sophomore"; }
+    if year == 3 { return "junior"; }
+    if year == 4 { return "senior"; }
+    return "super-senior";
+};
+println($`{student.name} is a {year_to_class(student.year)} majoring in {student.major}.`);
+println($`Welcome {student.name}! 👏`);
+</textarea>
+<button class="mellifera" onClick='mellifera.evalById("ashley-program", {stdout: "ashley-output", stderr: "ashley-output"});'>Run</button>
+<textarea class="mellifera" wrap="off" rows="4" id="ashley-output" placeholder="Output..." readonly></textarea>
+
+{{Dialogue character="Ashley" portrait="happy.png"}}
+Oh hey that's me! This seems cool and all, but could you explain what exactly
+we are looking at here? And what is the big deal about this thing running the
+browser?
+{{/Dialogue}}
+
+<p>
+Great questions! Okay, so we are looking at
+<a href="https://github.com/ashn-dot-dev/mellifera">Mellifera</a>,
+a programming language that I have been working on in my free time for a few
+months now. Mellifera exists in the same family as languages like Awk or Perl:
+it is a batteries-included scripting language designed for solving problems
+quickly from the command line.
+</p>
+
+<p>
+For a long time, the only way one could execute a Mellifera program was from
+the command line using <code>mf</code>, the native Mellifera interpreter.
+</p>
+
+{{CodeBlock}}
+$ cat fizzbuzz.mf
+assert(argv.count() == 2);
+for i in number::init(argv[1]) {
+    let n = i + 1;
+    if n % 3 == 0 and n % 5 == 0 {
+        println("fizzbuzz");
+        continue;
+    }
+    if n % 3 == 0 {
+        println("fizz");
+        continue;
+    }
+    if n % 5 == 0 {
+        println("buzz");
+        continue;
+    }
+    println(n);
+}
+$ mf fizzbuzz.mf 15
+1
+2
+fizz
+4
+buzz
+fizz
+7
+8
+fizz
+buzz
+11
+fizz
+13
+14
+fizzbuzz
+{{/CodeBlock}}
+
+<p>
+However, I have been porting the Mellifera interpreter from Python to Go over
+the last couple of months, something I talked about a bit in another blog post:
+<a href=/blog/2025-10-25-the-mellifera-master-plan-to-improve-performance-and-portability.html>The {{Wave}}Mellifera Master Plan{{/Wave}} To Improve Performance And Portability</a>.
+Well that port is now complete! The Mellifera interpreter is now faster, more
+portable, and much more enjoyable to iterate on from my perspective as a
+language developer. One of the big benefits of this port to Go is that the
+interpreter core can now be compiled to WebAssembly. This allows us to use the
+same code written in Go for the native Mellifera interpreter, <code>mf</code>,
+<em>and</em> for a special build of the interpreter running in the web browser
+as part of this page.
+</p>
+
+<textarea class="mellifera" wrap="off" rows="18" id="fizzbuzz-program">
+let n = 15;
+for i in n {
+    let n = i + 1;
+    if n % 3 == 0 and n % 5 == 0 {
+        println("fizzbuzz");
+        continue;
+    }
+    if n % 3 == 0 {
+        println("fizz");
+        continue;
+    }
+    if n % 5 == 0 {
+        println("buzz");
+        continue;
+    }
+    println(string::init(n));
+}
+</textarea>
+<button class="mellifera" onClick='mellifera.evalById("fizzbuzz-program", {stdout: "fizzbuzz-output", stderr: "fizzbuzz-output"});'>Run</button>
+<textarea class="mellifera" wrap="off" rows="16" id="fizzbuzz-output" placeholder="Output..." readonly></textarea>
+
+{{Dialogue character="Ashley" portrait="confused.png"}}
+Well congrats on finishing that port from Python to Go, but I am still a bit
+confused. You mentioned that Mellifera is intended for command line scripting.
+I don't consider myself much of a web developer, but this webpage is about the
+furthest thing from the command line that I can think of. Can I use Mellifera
+as a replacement for JavaScript or something?
+{{/Dialogue}}
+
+<p>
+Well... um... no not really. Actually, you can't use Mellifera for much of
+anything in the browser at the moment. There is a
+<a href="/mellifera/interpreter.html">dedicated interpreter page</a>
+for messing around with Mellifera programs in the browser. But that is about
+it. At the time of writing, Mellifera in the browser doesn't have access to the
+DOM, can't be used for any sort of graphics or sound output a-la browser games,
+and probably has a bunch of hidden bugs stemming from differences in the Go
+desktop and web builds that I have not yet uncovered.
+</p>
+
+{{Dialogue character="Ashley" portrait="frustrated.png"}}
+You know you're not doing a great job of selling this thing? Why the heck would
+anyone want to use this language in their browser right now?
+{{/Dialogue}}
+
+<p>
+Okay so here is the deal. I will admit that Mellifera is not the best fit for a
+browser environment at the moment. However, this port still has me really amped
+up, and I'll tell you why.
+</p>
+<p>
+First off, getting this sort of thing to run in a browser is just
+<strong>cool</strong> (😎). Mellifera is my for-fun special interest side
+project, and a lot of my motivation to work on the language and tooling is
+fueled by the discoveries and learning moments I experience while messing
+around and trying out new things. I get this huge motivation boost and dopamine
+release just from taking something intended for the command line and jamming it
+into an unexpected environment. Getting Mellifera to run in the browser taught
+me a lot of neat stuff about Go and WebAssembly, and that is reason enough for
+me to be excited.
+</p>
+<p>
+More importantly, this WebAssembly build opens the door for individuals who may
+not have access to a computer that can run Mellifera from the command line. My
+ultimate goal with Mellifera (if I ever get there) is to use the language as a
+tool to teach the fundamentals of programming. I currently work for a
+non-profit helping to bring tech education to underrepresented groups in and
+around my city, and I spend a <strong>lot</strong> of time thinking about tech
+education and outreach. I believe that Mellifera could offer a great deal of
+value to first-time programmers with its minimal surface area and use of value
+semantics. But a programming language is not going to be very useful as a
+teaching tool if that language is not accessible to students. And surprise
+surprise, a lot of the students we work with don't have access to a
+conventional desktop operating system, let alone a Unix-flavored command line
+interface. I want Mellifera to be accessible from locked down school
+Chromebook, from the guest login on a library computer, or from a smart phone.
+Making Mellifera accessible to those students means meeting them where they are
+at, and in some cases the browser is pretty much the best programming
+environment we are going to get.
+</p>
+<p>
+So the <em>real</em> reason I am excited about this WebAssembly build of
+Mellifera is because it represents the first step towards bringing accessible
+educational content to students who have been historically left behind by tech
+education sphere.
+</p>
+
+{{Dialogue character="Ashley"}}
+Oh well that makes more sense then. It sounds like there is a lot of work to
+do, but I can see why you are excited. Again, congrats on getting Mellifera to
+run in the browser. It will be interesting to see how things develop as the
+language continues to mature.
+{{/Dialogue}}
+
+<p>
+Thank you! There <em>is</em> a lot of work to do, but there are no deadlines
+for this project, so I am looking forward to making steady improvements to the
+language and its web port at my own pace. 😊
+</p>
+
+<textarea class="mellifera" wrap="off" rows="4" id="outro-program">
+println("until next time, cya later 🐝");
+</textarea>
+<button class="mellifera" onClick='mellifera.evalById("outro-program", {stdout: "outro-output", stderr: "outro-output"});'>Run</button>
+<textarea class="mellifera" wrap="off" rows="4" id="outro-output" placeholder="Output..." readonly></textarea>
