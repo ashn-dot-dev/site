@@ -3,7 +3,7 @@
 
 <br> <!-- a little bit of extra space beween the nav and program textarea -->
 
-<textarea class="mellifera" wrap="off" rows="16" id="program" placeholder="Enter your Mellifera program here...">
+<textarea class="mellifera" wrap="off" rows="20" id="program" placeholder="Enter your Mellifera program here...">
 println("hello 🐝");
 
 let x = ["foo", {"bar": 123}, "baz"];
@@ -20,6 +20,5 @@ println($`y is now {y}`);
 # Find more examples in the Mellifera project repository:
 # https://github.com/ashn-dot-dev/mellifera
 </textarea>
-<button class="mellifera" onClick='mellifera.eval(document.getElementById("program").value, {stdout: "stdout", stderr: "stderr"});'>Run</button>
-<textarea class="mellifera" wrap="off" rows="8" id="stdout" placeholder="Standard output..." readonly></textarea>
-<textarea class="mellifera" wrap="off" rows="8" id="stderr" placeholder="Standard error..."  readonly></textarea>
+<button class="mellifera" onClick='mellifera.eval(document.getElementById("program").value, {stdout: "output", stderr: "output"});'>Run</button>
+<textarea class="mellifera" wrap="off" rows="12" id="output" placeholder="Output..." readonly></textarea>
