@@ -50,6 +50,19 @@ let tag_title = type extends(tag, {
     }
 });
 
+let tag_text = type extends(tag, {
+    .init = function(attributes, children) {
+        return new tag_text tag::init(attributes, children);
+    },
+    .into_string = function(self) {
+        let paragraphs = self.inner().trim().split("\n\n")
+            .into_iterator()
+            .map(function(p) { return $"<p>\n{p}</p>"; })
+            .into_vector();
+        return "".join(paragraphs);
+    }
+});
+
 let tag_code_block = type extends(tag, {
     .init = function(attributes, children) {
         return new tag_code_block tag::init(attributes, children);
@@ -125,6 +138,7 @@ let tag_wave = type extends(tag, {
 
 let TAG_REGISTRY = {
     "Title": tag_title,
+    "Text": tag_text,
     "CodeBlock": tag_code_block,
     "Dialogue": tag_dialogue,
     "Image": tag_image,
