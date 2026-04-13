@@ -149,6 +149,9 @@ main a code {
 }
 
 /* MELLIFERA STYLING */
+div.mellifera {
+  padding-left: 0 0.5rem;
+}
 textarea.mellifera {
     background-color: var(--color-bg-mid);
     color: var(--color-text);

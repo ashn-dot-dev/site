@@ -1,18 +1,23 @@
 {{Title}}NIHTML Test Page{{/Title}}
 
-This page is generated from a Markdown document containing standard Markdown-y
-things such as *emphasized text* and a [hyperlink](https://zombo.com/), as well
-custom templating elements such as this {{Wave}}wavy bit of text{{/Wave}} right
-here.
+{{Text}}
+This page is generated from an NIHTML document containing standard HTML
+elements such as <em>emphasized text</em> and a <a
+href="https://zombo.com/">hyperlink</a>,
+as well custom templating elements such as this
+{{Wave}}wavy bit of text{{/Wave}} right here.
+{{/Text}}
 
 {{Dialogue character="Ashley"}}
-Oh and I guess I am like a new character on this website or something? I get
-these neat dialogue boxes which can also contain other text effects such as
-that {{Wave}}wavy text{{/Wave}} from earlier.
+I am Ashley, a character used for Socratic dialogues on this side! I get these
+neat dialogue boxes which can also contain other text effects such as that
+{{Wave}}wavy text{{/Wave}} from earlier.
 {{/Dialogue}}
 
+{{Text}}
 For example, this `Image` tag has a body that contains the alt text for the
 displayed image.
+{{/Text}}
 
 {{Image src="/nihtml/2020-11-21-mya-with-ball-780x1040.png" style="height: 25vw"}}
 Mya, an elderly black lab, stares out of left frame while holding a green
@@ -20,3 +25,12 @@ tennis ball in her mouth. Mya is sitting outside in a grassy field next to a
 fence while wearing her pink activity harness, likely at the tail end of a
 fulfilling walk & ball session.
 {{/Image}}
+
+{{Mellifera id="mellifera-example"}}
+{{MelliferaProgram}}
+# Mellifera program created with an explicit MelliferaProgram tag.
+println("🐝");
+{{/MelliferaProgram}}
+{{MelliferaOutput rows="2"}}
+{{/MelliferaOutput}}
+{{/Mellifera}}

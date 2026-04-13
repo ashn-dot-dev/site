@@ -11,11 +11,13 @@ web browser! Seriously, try it now - click the <code>run</code> button under
 the script below and you should see "hello 🐝" printed to the output text area.
 {{/Text}}
 
-<textarea class="mellifera" wrap="off" rows="4" id="intro-program">
+{{Mellifera id="intro"}}
+{{MelliferaProgram rows="4"}}
 println("hello 🐝");
-</textarea>
-<button class="mellifera" onClick='mellifera.evalById("intro-program", {stdout: "intro-output", stderr: "intro-output"});'>Run</button>
-<textarea class="mellifera" wrap="off" rows="4" id="intro-output" placeholder="Output..." readonly></textarea>
+{{/MelliferaProgram}}
+{{MelliferaOutput rows="4"}}
+{{/MelliferaOutput}}
+{{/Mellifera}}
 
 {{Text}}
 This isn't a magic trick either! All of the program input textboxes on this
@@ -24,7 +26,8 @@ below, and then hit the <code>run</code> button just below the program textbox
 to see different outputs for different <code>year</code> values.
 {{/Text}}
 
-<textarea class="mellifera" wrap="off" rows="16" id="ashley-program">
+{{Mellifera id="ashley"}}
+{{MelliferaProgram}}
 let student = {
     .name = "Ashley",
     .major = "computer science",
@@ -40,9 +43,10 @@ let year_to_class = function(year) {
 };
 println($`{student.name} is a {year_to_class(student.year)} majoring in {student.major}.`);
 println($`Welcome {student.name}! 👏`);
-</textarea>
-<button class="mellifera" onClick='mellifera.evalById("ashley-program", {stdout: "ashley-output", stderr: "ashley-output"});'>Run</button>
-<textarea class="mellifera" wrap="off" rows="4" id="ashley-output" placeholder="Output..." readonly></textarea>
+{{/MelliferaProgram}}
+{{MelliferaOutput rows="4"}}
+{{/MelliferaOutput}}
+{{/Mellifera}}
 
 {{Dialogue character="Ashley" portrait="happy.png"}}
 Oh hey that's me! This seems cool and all, but could you explain what exactly
@@ -112,7 +116,8 @@ same code written in Go for the native Mellifera interpreter, <code>mf</code>,
 as part of this page.
 {{/Text}}
 
-<textarea class="mellifera" wrap="off" rows="18" id="fizzbuzz-program">
+{{Mellifera id="fizzbuzz"}}
+{{MelliferaProgram}}
 let n = 15;
 for i in n {
     let n = i + 1;
@@ -130,9 +135,10 @@ for i in n {
     }
     println(string::init(n));
 }
-</textarea>
-<button class="mellifera" onClick='mellifera.evalById("fizzbuzz-program", {stdout: "fizzbuzz-output", stderr: "fizzbuzz-output"});'>Run</button>
-<textarea class="mellifera" wrap="off" rows="16" id="fizzbuzz-output" placeholder="Output..." readonly></textarea>
+{{/MelliferaProgram}}
+{{MelliferaOutput rows="16"}}
+{{/MelliferaOutput}}
+{{/Mellifera}}
 
 {{Dialogue character="Ashley" portrait="confused.png"}}
 Well congrats on finishing that port from Python to Go, but I am still a bit
@@ -210,8 +216,10 @@ for this project, so I am looking forward to making steady improvements to the
 language and its web port at my own pace. 😊
 {{/Text}}
 
-<textarea class="mellifera" wrap="off" rows="4" id="outro-program">
+{{Mellifera id="outro"}}
+{{MelliferaProgram rows="4"}}
 println("until next time, cya later 🐝");
-</textarea>
-<button class="mellifera" onClick='mellifera.evalById("outro-program", {stdout: "outro-output", stderr: "outro-output"});'>Run</button>
-<textarea class="mellifera" wrap="off" rows="4" id="outro-output" placeholder="Output..." readonly></textarea>
+{{/MelliferaProgram}}
+{{MelliferaOutput rows="4"}}
+{{/MelliferaOutput}}
+{{/Mellifera}}

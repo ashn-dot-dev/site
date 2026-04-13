@@ -24,6 +24,23 @@ let text = type {
 
 let tag = type {
     .init = function(attributes, children) {
+        # Remove empty text child elements, as an empty tag such as:
+        #
+        #   {{Mellifera}
+        #   {{/Mellifera}}
+        #
+        # will contain a single text element of the form:
+        #
+        #   {"text": "\n"}
+        #
+        # which is a vestigial artifact of the way NIHTML is processed and
+        # should not form part of the actual tag output.
+        children = children
+            .into_iterator()
+            .filter(function(child) {
+                return not (ty::is(child, text) and child.text =~ r`^\s+$`);
+            })
+            .into_vector();
         return new tag {
             .attributes = attributes,
             .children = children,
@@ -69,6 +86,87 @@ let tag_code_block = type extends(tag, {
     },
     .into_string = function(self) {
         return $"<pre><code>{self.inner().trim()}</code></pre>";
+    }
+});
+
+let tag_mellifera = type extends(tag, {
+    .init = function(attributes, children) {
+        if not attributes.contains("id") {
+            error "missing Mellifera ID";
+        }
+
+        let self = new tag_mellifera tag::init(attributes, children);
+        self.id = attributes.id;
+        for child.& in self.children {
+            if ty::is(child.*, tag_mellifera_program) {
+                child.id = attributes.id;
+                self.program = child;
+                continue;
+            }
+            if ty::is(child.*, tag_mellifera_output) {
+                child.id = attributes.id;
+                self.output = child;
+                continue;
+            }
+            error $"unknown child type `{typename(child)}`";
+        }
+        return self;
+    },
+    .into_string = function(self) {
+        return $```
+<div class="mellifera" id="{self.id}">
+{self.program.*}
+<button class="mellifera" onClick='mellifera.evalById("{self.id}-program", {{stdout: "{self.id}-output", stderr: "{self.id}-output"}});'>Run</button>
+{self.output.*}
+</div">
+        ```.trim();
+    }
+});
+
+let tag_mellifera_program = type extends(tag, {
+    .init = function(attributes, children) {
+        return new tag_mellifera_program tag::init(attributes, children);
+    },
+    .into_string = function(self) {
+        if not map::contains(self, "id") {
+            error $"missing injected Mellifera ID in {typename(self.*)} {repr(self.*)}";
+        }
+
+        let inner = self.inner().trim();
+        # Let the row count of the text area be equal to the number of rows of
+        # text plus one extra row so that a reader knows that there is no more
+        # of the program that they need to to read.
+        let rows = inner.split("\n").count() + 1;
+        if self.attributes.contains("rows") {
+            # Override with explicit row count.
+            rows = self.attributes["rows"];
+        }
+        return $```
+<textarea class="mellifera" wrap="off" rows="{rows}" id="{self.id}-program">
+{inner}
+</textarea>
+        ```.trim();
+    }
+});
+
+let tag_mellifera_output = type extends(tag, {
+    .init = function(attributes, children) {
+        return new tag_mellifera_output tag::init(attributes, children);
+    },
+    .into_string = function(self) {
+        if not map::contains(self, "id") {
+            error $"missing injected Mellifera ID in {typename(self.*)} {repr(self.*)}";
+        }
+
+        if not self.attributes.contains("rows") {
+            error "missing mellifera output rows attribute in {typename(self.*)} {repr(self.*)}";
+        }
+        let rows = self.attributes["rows"];
+
+        return $```
+<textarea class="mellifera" wrap="off" rows="{rows}" id="{self.id}-output" placeholder="Output..." readonly></textarea>
+        ```.trim();
+        error "TODO";
     }
 });
 
@@ -140,6 +238,9 @@ let TAG_REGISTRY = {
     "Title": tag_title,
     "Text": tag_text,
     "CodeBlock": tag_code_block,
+    "Mellifera": tag_mellifera,
+    "MelliferaProgram": tag_mellifera_program,
+    "MelliferaOutput": tag_mellifera_output,
     "Dialogue": tag_dialogue,
     "Image": tag_image,
     "Wave": tag_wave,
