@@ -14,8 +14,6 @@ usage: ${PROGNAME}
 
 options:
   -h    Display usage information and exit.
-  -mf   Use Mellifera for NIHTML transpilation.
-  -py   Use Python for NIHTML transpilation.
 EOF
 }
 
