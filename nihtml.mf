@@ -42,19 +42,6 @@ let text = type {
     },
 };
 
-let tag = type {
-    .kind = null, # single or double
-    .init = function() {
-        error $"unimplemented for type {typename(self.*)}";
-    },
-    .into_string = function(self) {
-        error $"unimplemented for type {typename(self.*)}";
-    },
-    .inner = function(self) {
-        error $"unimplemented for type {typename(self.*)}";
-    },
-};
-
 let single_tag = type {
     .kind = "single",
     .init = function(attributes) {
@@ -90,7 +77,7 @@ let double_tag = type {
                 return not (ty::is(child, text) and child.text =~ r`^\s+$`);
             })
             .into_vector();
-        return new tag {
+        return new double_tag {
             .attributes = attributes,
             .children = children,
         };
