@@ -2,8 +2,10 @@
 The Mellifera Interpreter Now Runs In Your Browser
 {{/Title}}
 
+{{HTML}}
 <script src="/mellifera/wasm/wasm_exec.js"></script>
 <script src="/mellifera/mellifera.js"></script>
+{{/HTML}}
 
 {{Text}}
 Mellifera, my scripting language featuring value semantics, now runs in your
@@ -16,7 +18,6 @@ the script below and you should see "hello 🐝" printed to the output text area
 println("hello 🐝");
 {{/MelliferaProgram}}
 {{MelliferaOutput rows="4"}}
-{{/MelliferaOutput}}
 {{/Mellifera}}
 
 {{Text}}
@@ -45,7 +46,6 @@ println($`{student.name} is a {year_to_class(student.year)} majoring in {student
 println($`Welcome {student.name}! 👏`);
 {{/MelliferaProgram}}
 {{MelliferaOutput rows="4"}}
-{{/MelliferaOutput}}
 {{/Mellifera}}
 
 {{Dialogue character="Ashley" portrait="happy.png"}}
@@ -137,7 +137,6 @@ for i in n {
 }
 {{/MelliferaProgram}}
 {{MelliferaOutput rows="16"}}
-{{/MelliferaOutput}}
 {{/Mellifera}}
 
 {{Dialogue character="Ashley" portrait="confused.png"}}
@@ -221,5 +220,4 @@ language and its web port at my own pace. 😊
 println("until next time, cya later 🐝");
 {{/MelliferaProgram}}
 {{MelliferaOutput rows="4"}}
-{{/MelliferaOutput}}
 {{/Mellifera}}

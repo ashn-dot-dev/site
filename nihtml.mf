@@ -4,11 +4,23 @@
 #   cls && mf nihtml.mf --debug src/nihtml.md 2>&1 | ts-absolute
 
 let is_debug = false;
-let debugln = function(x) {
+let debugln = function(msg) {
     if not is_debug {
         return;
     }
-    eprintln($"[DEBUG] {x}");
+    eprintln($"[DEBUG] {msg}");
+};
+
+let is_warn = false;
+let warnln = function(location, msg) {
+    if not is_warn {
+        return;
+    }
+    if location != null {
+        eprintln($"[{location.file}, line {location.line}] warning: {msg}");
+        return;
+    }
+    eprintln($"warning: {msg}");
 };
 
 let text = type {
@@ -18,11 +30,48 @@ let text = type {
         };
     },
     .into_string = function(self) {
+        # We specifically do not trim the inner text here so that text blocks
+        # of the form
+        #
+        #   {{Text}}Some text {{Wave}}that is wavy{{/Wave}} in NIHTML{{/Text}}
+        #                    ^                             ^
+        #
+        # preserves the space characters before an after inner tags, as
+        # indicated by the ^ arrows above.
         return self.text;
     },
 };
 
 let tag = type {
+    .kind = null, # single or double
+    .init = function() {
+        error $"unimplemented for type {typename(self.*)}";
+    },
+    .into_string = function(self) {
+        error $"unimplemented for type {typename(self.*)}";
+    },
+    .inner = function(self) {
+        error $"unimplemented for type {typename(self.*)}";
+    },
+};
+
+let single_tag = type {
+    .kind = "single",
+    .init = function(attributes) {
+        return new single_tag {
+            .attributes = attributes,
+        };
+    },
+    .into_string = function(self) {
+        error $"unimplemented for type {typename(self.*)}";
+    },
+    .inner = function(self) {
+        error $"tag kind {typename(self.*)} does not have children";
+    },
+};
+
+let double_tag = type {
+    .kind = "double",
     .init = function(attributes, children) {
         # Remove empty text child elements, as an empty tag such as:
         #
@@ -54,48 +103,174 @@ let tag = type {
             .into_iterator()
             .map(function(child) { return string::init(child); })
             .into_vector();
-        return "".join(children);
+        return "".join(children).trim();
     },
 };
 
-let tag_title = type extends(tag, {
+let tag_html = type extends(double_tag, {
     .init = function(attributes, children) {
-        return new tag_title tag::init(attributes, children);
+        return new tag_html double_tag::init(attributes, children);
     },
     .into_string = function(self) {
-        return $`<h1>{self.inner().trim()}</h1>`;
+        return self.inner(); # verbatim HTML
     }
 });
 
-let tag_text = type extends(tag, {
+let tag_title = type extends(double_tag, {
     .init = function(attributes, children) {
-        return new tag_text tag::init(attributes, children);
+        return new tag_title double_tag::init(attributes, children);
     },
     .into_string = function(self) {
-        let paragraphs = self.inner().trim().split("\n\n")
+        return $`<h1>{self.inner()}</h1>`;
+    }
+});
+
+let tag_h1 = type extends(double_tag, {
+    .init = function(attributes, children) {
+        return new tag_h1 double_tag::init(attributes, children);
+    },
+    .into_string = function(self) {
+        return $`<h1>{self.inner()}</h1>`;
+    }
+});
+
+let tag_h2 = type extends(double_tag, {
+    .init = function(attributes, children) {
+        return new tag_h2 double_tag::init(attributes, children);
+    },
+    .into_string = function(self) {
+        return $`<h2>{self.inner()}</h2>`;
+    }
+});
+
+let tag_h3 = type extends(double_tag, {
+    .init = function(attributes, children) {
+        return new tag_h3 double_tag::init(attributes, children);
+    },
+    .into_string = function(self) {
+        return $`<h3>{self.inner()}</h3>`;
+    }
+});
+
+let tag_h4 = type extends(double_tag, {
+    .init = function(attributes, children) {
+        return new tag_h4 double_tag::init(attributes, children);
+    },
+    .into_string = function(self) {
+        return $`<h4>{self.inner()}</h4>`;
+    }
+});
+
+let tag_h5 = type extends(double_tag, {
+    .init = function(attributes, children) {
+        return new tag_h5 double_tag::init(attributes, children);
+    },
+    .into_string = function(self) {
+        return $`<h5>{self.inner()}</h5>`;
+    }
+});
+
+let tag_h6 = type extends(double_tag, {
+    .init = function(attributes, children) {
+        return new tag_h6 double_tag::init(attributes, children);
+    },
+    .into_string = function(self) {
+        return $`<h6>{self.inner()}</h6>`;
+    }
+});
+
+let tag_text = type extends(double_tag, {
+    .init = function(attributes, children) {
+        return new tag_text double_tag::init(attributes, children);
+    },
+    .into_string = function(self) {
+        let paragraphs = self.inner().split("\n\n")
             .into_iterator()
-            .map(function(p) { return $"<p>\n{p}</p>"; })
+            .map(function(p) { return $`<p>{p}</p>`; })
             .into_vector();
         return "".join(paragraphs);
     }
 });
 
-let tag_code_block = type extends(tag, {
+let tag_code = type extends(double_tag, {
     .init = function(attributes, children) {
-        return new tag_code_block tag::init(attributes, children);
+        return new tag_code double_tag::init(attributes, children);
     },
     .into_string = function(self) {
-        return $"<pre><code>{self.inner().trim()}</code></pre>";
+        return $"<code>{self.inner()}</code>";
     }
 });
 
-let tag_mellifera = type extends(tag, {
+let tag_code_block = type extends(double_tag, {
+    .init = function(attributes, children) {
+        return new tag_code_block double_tag::init(attributes, children);
+    },
+    .into_string = function(self) {
+        return $"<pre><code>{self.inner()}</code></pre>";
+    }
+});
+
+let tag_dialogue = type extends(double_tag, {
+    .init = function(attributes, children) {
+        return new tag_dialogue double_tag::init(attributes, children);
+    },
+    .into_string = function(self) {
+        let character = self.attributes["character"].to_lower();
+        let portrait = "default.png";
+        if self.attributes.contains("portrait") {
+            portrait = self.attributes["portrait"].to_lower();
+        }
+        return $```
+<div class="dialogue-container" dialogue-character="{character}">
+    <div class="dialogue-portrait">
+        <img src="/characters/{character}/{portrait}" alt="{character} portrait"/>
+    </div>
+    <div class="dialogue-content">
+        <div class="dialogue-name">{character.to_title()}</div>
+        <div>{self.inner()}</div>
+    </div>
+</div>
+        ```.trim();
+    }
+});
+
+let tag_footnote = type extends(single_tag, {
+    .init = function(attributes) {
+        if not attributes.contains("number") {
+            error $"missing footnote number attribute in {typename(self.*)} {repr(self.*)}";
+        }
+        return new tag_footnote single_tag::init(attributes);
+    },
+    .into_string = function(self) {
+        return $`<a href="#footnote-{self.attributes.number}"><sup>{self.attributes.number}</sup></a>`;
+    }
+});
+
+let tag_footnotes = type extends(double_tag, {
+    .init = function(attributes, children) {
+        return new tag_footnotes double_tag::init(attributes, children);
+    },
+    .into_string = function(self) {
+        let footnotes = self.inner().split("\n\n");
+        let footnotes_html = [];
+        for i in footnotes.count() {
+            let n = i + 1;
+            footnotes_html.push($`<span id="footnote-{n}">{n}. {footnotes[i]}</span>`);
+        }
+        return $```
+<h2>Footnotes</h2>
+{`<br><br>`.join(footnotes_html)}
+        ```.trim();
+    }
+});
+
+let tag_mellifera = type extends(double_tag, {
     .init = function(attributes, children) {
         if not attributes.contains("id") {
             error "missing Mellifera ID";
         }
 
-        let self = new tag_mellifera tag::init(attributes, children);
+        let self = new tag_mellifera double_tag::init(attributes, children);
         self.id = attributes.id;
         for child.& in self.children {
             if ty::is(child.*, tag_mellifera_program) {
@@ -123,16 +298,16 @@ let tag_mellifera = type extends(tag, {
     }
 });
 
-let tag_mellifera_program = type extends(tag, {
+let tag_mellifera_program = type extends(double_tag, {
     .init = function(attributes, children) {
-        return new tag_mellifera_program tag::init(attributes, children);
+        return new tag_mellifera_program double_tag::init(attributes, children);
     },
     .into_string = function(self) {
         if not map::contains(self, "id") {
             error $"missing injected Mellifera ID in {typename(self.*)} {repr(self.*)}";
         }
 
-        let inner = self.inner().trim();
+        let inner = self.inner();
         # Let the row count of the text area be equal to the number of rows of
         # text plus one extra row so that a reader knows that there is no more
         # of the program that they need to to read.
@@ -149,9 +324,9 @@ let tag_mellifera_program = type extends(tag, {
     }
 });
 
-let tag_mellifera_output = type extends(tag, {
-    .init = function(attributes, children) {
-        return new tag_mellifera_output tag::init(attributes, children);
+let tag_mellifera_output = type extends(single_tag, {
+    .init = function(attributes) {
+        return new tag_mellifera_output single_tag::init(attributes);
     },
     .into_string = function(self) {
         if not map::contains(self, "id") {
@@ -170,47 +345,23 @@ let tag_mellifera_output = type extends(tag, {
     }
 });
 
-let tag_dialogue = type extends(tag, {
+let tag_image = type extends(double_tag, {
     .init = function(attributes, children) {
-        return new tag_dialogue tag::init(attributes, children);
-    },
-    .into_string = function(self) {
-        let character = self.attributes["character"].to_lower();
-        let portrait = "default.png";
-        if self.attributes.contains("portrait") {
-            portrait = self.attributes["portrait"].to_lower();
-        }
-        return $```
-<div class="dialogue-container" dialogue-character="{character}">
-    <div class="dialogue-portrait">
-        <img src="/characters/{character}/{portrait}" alt="{character} portrait"/>
-    </div>
-    <div class="dialogue-content">
-        <div class="dialogue-name">{character.to_title()}</div>
-        <div>{self.inner().trim()}</div>
-    </div>
-</div>
-        ```.trim();
-    }
-});
-
-let tag_image = type extends(tag, {
-    .init = function(attributes, children) {
-        return new tag_image tag::init(attributes, children);
+        return new tag_image double_tag::init(attributes, children);
     },
     .into_string = function(self) {
         let attrs = [];
         for k, v in self.attributes {
             attrs.push($`{string::init(k)}="{string::init(v)}"`);
         }
-        let alt = html::escape(self.inner().trim()).replace("\n", " ");
+        let alt = html::escape(self.inner()).replace("\n", " ");
         return $`<img {" ".join(attrs)} alt="{alt}"/>`;
     }
 });
 
-let tag_wave = type extends(tag, {
+let tag_wave = type extends(double_tag, {
     .init = function(attributes, children) {
-        return new tag_wave tag::init(attributes, children);
+        return new tag_wave double_tag::init(attributes, children);
     },
     .into_string = function(self) {
         let text = self.inner();
@@ -224,7 +375,7 @@ let tag_wave = type extends(tag, {
                 continue;
             }
 
-            let delay = i * 0.15; # 150 ms delay per character
+            let delay = (i * 0.150).fixed(3); # 150 ms delay per character
             characters.push(
                 $`<span class="wave-character" style="animation-delay: {delay}s;">{html::escape(character)}</span>`
             );
@@ -234,14 +385,24 @@ let tag_wave = type extends(tag, {
     }
 });
 
-let TAG_REGISTRY = {
+let TAG_REGISTRY = freeze {
+    "HTML": tag_html,
     "Title": tag_title,
+    "H1": tag_h1,
+    "H2": tag_h2,
+    "H3": tag_h3,
+    "H4": tag_h4,
+    "H5": tag_h5,
+    "H6": tag_h6,
     "Text": tag_text,
+    "Code": tag_code,
     "CodeBlock": tag_code_block,
+    "Dialogue": tag_dialogue,
+    "Footnote": tag_footnote,
+    "Footnotes": tag_footnotes,
     "Mellifera": tag_mellifera,
     "MelliferaProgram": tag_mellifera_program,
     "MelliferaOutput": tag_mellifera_output,
-    "Dialogue": tag_dialogue,
     "Image": tag_image,
     "Wave": tag_wave,
 };
@@ -392,6 +553,13 @@ let parser = type {
             debugln($"{parser.parse}: parsing node with current token {current.kind}@{current.location}");
             let node = self._parse_node();
             debugln($"{parser.parse}: parsed node {typename(node)}@{current.location}");
+            if ty::is(node, text) and node["text"] =~ r`^\s+$` {
+                debugln($"{parser.parse}: skipping empty whitespace element {typename(node)}@{current.location}");
+                continue;
+            }
+            if ty::is(node, text) {
+                warnln(current.location, $"top level bare text {repr(node)}");
+            }
             nodes.push(node);
         }
         return nodes;
@@ -429,18 +597,25 @@ let parser = type {
             }
         }
 
-        let children = [];
-        while not self._check_current(token_kind::CLOSING_TAG) {
-            children.push(self._parse_node());
+        let tag = TAG_REGISTRY[name];
+        if tag::kind == "single" {
+            return tag::init(attributes);
         }
+        if tag::kind == "double" {
+            let children = [];
+            while not self._check_current(token_kind::CLOSING_TAG) {
+                children.push(self._parse_node());
+            }
 
-        let closing_tag = self._expect_current(token_kind::CLOSING_TAG);
-        assert(closing_tag.text =~ re_closing_tag);
-        if $1 != name {
-            error parse_error::init(self.current.location, $"expected: {token_kind::CLOSING_TAG} `{name}`, found `{$1}`");
+            let closing_tag = self._expect_current(token_kind::CLOSING_TAG);
+            assert(closing_tag.text =~ re_closing_tag);
+            if $1 != name {
+                error parse_error::init(self.current.location, $"expected: {token_kind::CLOSING_TAG} `{name}`, found `{$1}`");
+            }
+
+            return tag::init(attributes, children);
         }
-
-        return TAG_REGISTRY[name]::init(attributes, children);
+        error $"unkown tag kind {tag::kind}";
     },
     ._advance = function(self) {
         self.current = self.lexer.next_token();
@@ -460,7 +635,7 @@ let parser = type {
 
 let help = function(writeln) {
     writeln($```
-usage: {argv[0]} [file]
+usage: {argv[0]} [file] [-b template]
 
 Not Invented Here Text Markup Language
 
@@ -468,15 +643,21 @@ positional arguments:
   file          Text file to process (defaults to stdin).
 
 optional arguments:
-  -d, --debug   Write diagnostic debug information to stderr.
-  -t, --title   Get a page title from the {{Title}} tag.
-  -h, --help    Display this help text and exit.
+  -d, --debug       Write diagnostic debug information to stderr.
+  -t, --title       Get a page title from the {{Title}} tag.
+      --template    Build an HTML file from the provided template file.
+                    Comments of the form <!--TITLE--> will be replaced with the
+                    article title, and comments of the form <!--PAGE--> will be
+                    replaced with the main content of the NIHTML file.
+  -w, --warn        Enable warnings.
+  -h, --help        Display this help text and exit.
     ```.trim());
 };
 
 let opt = null;
 let file = null;
 let source = null;
+let template = null;
 let argi = 1;
 while argi < argv.count() {
     if argv[argi] =~ r`^-+d(ebug)?$` {
@@ -486,6 +667,22 @@ while argi < argv.count() {
     }
     if argv[argi] =~ r`^-+t(itle)?$` {
         opt = "title";
+        argi = argi + 1;
+        continue;
+    }
+    if argv[argi] =~ r`^-+template(=(.*))$` {
+        if $2 != null {
+            template = fs::read($2);
+        }
+        else {
+            argi = argi + 1;
+            template = fs::read(argv[argi]);
+        }
+        argi = argi + 1;
+        continue;
+    }
+    if argv[argi] =~ r`^-+w(arn)?$` {
+        is_warn = true;
         argi = argi + 1;
         continue;
     }
@@ -509,18 +706,33 @@ if file == null and source == null {
 let location = source_location::init(file, 1);
 let nodes = parser::init(lexer::init(source, location)).parse();
 
-# --title
-if opt == "title" {
+let title = function() {
     for node in nodes {
         if ty::is(node, tag_title) {
-            print(node.inner().trim());
-            exit(0);
+            return node.inner();
         }
     }
-    error $"file {file} is missing a Title tag";
+    return null;
+};
+
+# --title
+if opt == "title" {
+    let title = title();
+    if title == null {
+        error $"file {file} is missing a Title tag";
+    }
+    print(title);
+    exit(0);
 }
 
 # NIHTML to HTML conversion.
-for node in nodes {
-    print(node);
+let content = "".join(nodes.into_iterator().map(string::init).into_vector());
+if template != null {
+    let title = title();
+    if title == null {
+        title = ""; # document does not contain a title
+    }
+    print(template.replace("<!--TITLE-->", title).replace("<!--PAGE-->", content));
+    exit(0);
 }
+print(content);

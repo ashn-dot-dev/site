@@ -2,21 +2,15 @@
 
 {{Text}}
 This page is generated from an NIHTML document containing standard HTML
-elements such as <em>emphasized text</em> and a <a
-href="https://zombo.com/">hyperlink</a>,
+elements such as <em>emphasized text</em> and a
+<a href="https://zombo.com/">hyperlink</a>,
 as well custom templating elements such as this
 {{Wave}}wavy bit of text{{/Wave}} right here.
 {{/Text}}
 
-{{Dialogue character="Ashley"}}
-I am Ashley, a character used for Socratic dialogues on this side! I get these
-neat dialogue boxes which can also contain other text effects such as that
-{{Wave}}wavy text{{/Wave}} from earlier.
-{{/Dialogue}}
-
 {{Text}}
-For example, this `Image` tag has a body that contains the alt text for the
-displayed image.
+For example, this {{Code}}Image{{/Code}} tag has a body that contains the alt
+text for the displayed image.
 {{/Text}}
 
 {{Image src="/nihtml/2020-11-21-mya-with-ball-780x1040.png" style="height: 25vw"}}
@@ -26,11 +20,42 @@ fence while wearing her pink activity harness, likely at the tail end of a
 fulfilling walk & ball session.
 {{/Image}}
 
+{{Dialogue character="Ashley"}}
+I am Ashley, a character used for Socratic dialogues on this site! I get these
+neat dialogue boxes which can also contain other text effects such as that
+{{Wave}}wavy text{{/Wave}} from earlier.
+{{/Dialogue}}
+
+{{HTML}}
+<script src="/mellifera/wasm/wasm_exec.js"></script>
+<script src="/mellifera/mellifera.js"></script>
+{{/HTML}}
+
 {{Mellifera id="mellifera-example"}}
 {{MelliferaProgram}}
 # Mellifera program created with an explicit MelliferaProgram tag.
 println("🐝");
 {{/MelliferaProgram}}
 {{MelliferaOutput rows="2"}}
-{{/MelliferaOutput}}
 {{/Mellifera}}
+
+{{H1}}H1 Text{{/H1}}
+{{H2}}H2 Text{{/H2}}
+{{H3}}H3 Text{{/H3}}
+{{H4}}H4 Text{{/H4}}
+{{H5}}H5 Text{{/H5}}
+{{H6}}H6 Text{{/H6}}
+
+{{Text}}
+This is a text section to show how footnotes work. Here is a refrence to
+footnote number one{{Footnote number="1"}}. And here is the same for footnote
+number two{{Footnote number="2"}}, which appears in the middle of a sentence.
+{{/Text}}
+
+{{Footnotes}}
+This is footnote number one. Footnotes are separated in NIHTML source code by a
+blank line, which is used to automatically split the footnotes section up into
+individual footnote entries.
+
+This is footnote number two.
+{{/Footnotes}}

@@ -1,12 +1,15 @@
+{{Title}}
 Removing Large Files From A Repository's Git History
-====================================================
+{{/Title}}
 
-I consider myself to be a [grug-brained developer](https://grugbrain.dev/). I
-enjoy building and maintaining software systems that eschew complexity in favor
-of readability and ease of understanding. This website is one of those systems:
-the entire thing is built as a static site from a bunch of loose HTML and
-Markdown files all jammed together using a dead simple templating system in a
-Bash script. All pieces of media content (images, videos, etc.) are stored
+{{Text}}
+I consider myself to be a
+<a href="https://grugbrain.dev/">grug-brained developer</a>.
+I enjoy building and maintaining software systems that eschew complexity in
+favor of readability and ease of understanding. This website is one of those
+systems: the entire thing is built as a static site from a bunch of loose HTML
+and Markdown files all jammed together using a dead simple templating system in
+a Bash script. All pieces of media content (images, videos, etc.) are stored
 directly in the Git repository alongside the textual content. As a result of
 this grug-brained structure, the website repository has ended up with some
 rather large binary files in its Git history, many of which correspond to media
@@ -14,8 +17,9 @@ content no longer accessible on the actual deployed website.
 
 I put together a tool to scrape this repository's commit history and dump the
 largest files from that history to the terminal, sorted by size:
+{{/Text}}
 
-```sh
+{{CodeBlock}}
 #!/bin/sh
 #
 # Usage: git-history-largest-files.sh [NUMBER-OF-FILES]
@@ -57,13 +61,16 @@ git rev-list --objects --all | \
                 printf "%d B %s\n", size, path
             }
         }'
-```
+{{/CodeBlock}}
 
+{{Text}}
 Running the tool over this repo, we can see that a massive percentage of this
-repository's size comes from this [Braille Apple video](https://vimeo.com/636580388)
+repository's size comes from this
+<a href="https://vimeo.com/636580388">Braille Apple video</a>
 that I had actually moved from this site to Vimeo a while back:
+{{/Text}}
 
-```sh
+{{CodeBlock}}
 $ git gc >/dev/null 2>&1 && git count-objects -vH
 count: 0
 size: 0 bytes
@@ -84,19 +91,23 @@ $ sh tools/git-history-largest-files.sh
 1.87 MB src/blog/2024-09-02-scripting-with-value-semantics-using-lumpy/lumpy-game.mp4
 1.57 MB src/blog/2022-03-19-breaking-cookie-clicker/cookie-clicker-auto-clicker.png
 1.18 MB src/misc/2020-08-16-dvd-screensaver/2020-08-16-dvd-screensaver.mp4
-```
+{{/CodeBlock}}
 
-I don't actually *need* to keep this `src/misc/2021-10-18-braille-apple.webm`
+{{Text}}
+I don't actually *need* to keep this
+{{Code}}src/misc/2021-10-18-braille-apple.webm{{/Code}}
 video around in the repository git history; the content is stored elsewhere,
 and this site is much more of a living document than it is a historical
 archive. So I am fine removing this file if it shrinks the repository size and
 gives me more leeway to jam different media blobs in later.
 
-Okay so now that we have a file path, let's use `git filter-branch`[^1] to
-replace the binary file with a placeholder across the entire git history, and
-then yeet remaining references to the old objects/commits:
+Okay so now that we have a file path, let's use
+{{Code}}git filter-branch{{/Code}}{{Footnote number="1"}} to replace the binary
+file with a placeholder across the entire git history, and then yeet remaining
+references to the old objects/commits:
+{{/Text}}
 
-```sh
+{{CodeBlock}}
 #!/bin/sh
 #
 # Usage: git-history-elide-file.sh FILE
@@ -120,11 +131,13 @@ fi
 rm -rf .git/refs/original/
 git reflog expire --expire=now --all
 git gc --prune=now --aggressive
-```
+{{/CodeBlock}}
 
+{{Text}}
 Running this tool we can see that it removed all of that repository bloat:
+{{/Text}}
 
-```sh
+{{CodeBlock}}
 $ sh tools/git-history-elide-file.sh src/misc/2021-10-18-braille-apple.webm
 Rewrite e326cb816c72b2986ab9d6a7472ee3999860936b (287/294) (9 seconds passed, remaining 0 predicted)
 WARNING: Ref 'refs/heads/main' is unchanged
@@ -152,15 +165,20 @@ $ sh tools/git-history-largest-files.sh 5
 3.76 MB src/blog/2022-03-19-breaking-cookie-clicker/living-room-pi-and-tv.jpg
 2.13 MB src/blog/2022-03-19-breaking-cookie-clicker/cookie-clicker-final-stats.png
 2.08 MB src/misc/2020-07-04-disco-descent-1-1.mp3
-```
+{{/CodeBlock}}
 
-After getting rid of the `src/misc/2021-10-18-braille-apple.webm` file, we
-observe that we reduced our pack size from ~110 MB to ~33 MB. That size
-reduction is good enough for now, but there are plenty of other now-deleted
-files that I could remove in the future!
+{{Text}}
+After getting rid of the
+{{Code}}src/misc/2021-10-18-braille-apple.webm{{/Code}} file, we observe that
+we reduced our pack size from ~110 MB to ~33 MB. That size reduction is good
+enough for now, but there are plenty of other now-deleted files that I could
+remove in the future!
+{{/Text}}
 
-## Footnotes
-[^1]:
-Yes, we probably should be using the more modern `git-filter-repo`. And yes, I
-*was* too lazy to install it on my machine for this blog post; I am grug
-brained and `git filter-branch` was already on my machine and perfectly usable.
+{{Footnotes}}
+Yes, we probably should be using the more modern
+{{Code}}git-filter-repo{{/Code}}. And yes, I <em>was</em> too lazy to install
+it on my machine for this blog post; I am grug brained and
+{{Code}}git filter-branch{{/Code}} was already on my machine and perfectly
+usable.
+{{/Footnotes}}

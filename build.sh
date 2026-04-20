@@ -113,14 +113,12 @@ build_page_from_html() {
 
 build_page_from_nihtml() {
     SRC_PATH="$1" # Path under the src/ directory.
-    TITLE="$2"    # Page title.
     echo "BUILDING NIHTML PAGE: ${SRC_PATH}"
 
     SRC_FILE="${SRC_DIR}/${SRC_PATH}"
     OUT_FILE="${OUT_DIR}/${SRC_PATH%.nihtml}.html"
 
-    RENDERED=$(cat "${SRC_FILE}" | ${NIHTML_CMD})
-    make_page "${TITLE}" "${RENDERED}" >"${OUT_FILE}"
+    cat "${SRC_FILE}" | ${NIHTML_CMD} -template=template.html -warn >"${OUT_FILE}"
 }
 
 build_page_from_md() {
@@ -184,14 +182,13 @@ build_blog_entry_pages() {
 build_blog_entry_page() {
     SRC_PATH="$1" # Path under the src/ directory.
 
-    TITLE="$(blog_entry_title "${SRC_DIR}/${SRC_PATH}")"
-
     if ends_with "${SRC_PATH}" '.nihtml'; then
-        build_page_from_nihtml "${SRC_PATH}" "${TITLE}"
+        build_page_from_nihtml "${SRC_PATH}"
         return
     fi
 
     if ends_with "${SRC_PATH}" '.md'; then
+        TITLE="$(blog_entry_title "${SRC_DIR}/${SRC_PATH}")"
         build_page_from_md "${SRC_PATH}" "${TITLE}"
         return
     fi
