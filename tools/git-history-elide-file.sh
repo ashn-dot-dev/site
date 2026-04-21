@@ -10,14 +10,6 @@ fi
 
 FILE="$1"
 
-export FILE
-export FILTER_BRANCH_SQUELCH_WARNING=1
-git filter-branch -f --tree-filter '
-if git ls-files | grep -q "^${FILE}$"; then
-    mkdir -p "$(dirname "${FILE}")"
-    echo "original file removed from git history" > "${FILE}"
-fi
-' -- --all
-rm -rf .git/refs/original/
+git filter-repo --force --path "${FILE}" --invert-paths --refs ^HEAD
 git reflog expire --expire=now --all
 git gc --prune=now --aggressive
