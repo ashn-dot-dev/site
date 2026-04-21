@@ -10,6 +10,6 @@ fi
 
 FILE="$1"
 
-git filter-repo --force --path "${FILE}" --invert-paths --refs ^HEAD
+git filter-repo --force --path "${FILE}" --invert-paths
 git reflog expire --expire=now --all
 git gc --prune=now --aggressive
