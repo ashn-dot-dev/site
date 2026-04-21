@@ -87,9 +87,9 @@ make_page() {
     PAGE_CONTENT="$2"
 
     TEMP_FILE=$(mktemp)
-    echo "${PAGE_CONTENT}" > "${TEMP_FILE}"
+    printf '%s' "${PAGE_CONTENT}" > "${TEMP_FILE}"
 
-    echo "${TEMPLATE}" | \
+    printf '%s' "${TEMPLATE}" | \
     sed "s|<!--TITLE-->|${PAGE_TITLE}|g" | \
     sed -e '/<!--PAGE-->/{
         r '"${TEMP_FILE}"'
@@ -130,9 +130,9 @@ build_page_from_md() {
     OUT_FILE="${OUT_DIR}/${SRC_PATH%.md}.html"
 
     MARKDOWN=$(cat "${SRC_FILE}" | ${NIHTML_CMD})
-    MARKDOWN=$(echo "${MARKDOWN}" | sed -r 's/\[\^([1-9]+)\]:$/<span id="footnote-\1">\1./g')
-    MARKDOWN=$(echo "${MARKDOWN}" | sed -r 's/\[\^([1-9]+)\]/<a href="#footnote-\1"><sup>\1<\/sup><\/a>/g')
-    RENDERED=$(echo "${MARKDOWN}" | cmark --unsafe)
+    MARKDOWN=$(printf '%s\n' "${MARKDOWN}" | sed -r 's/\[\^([1-9]+)\]:$/<span id="footnote-\1">\1./g')
+    MARKDOWN=$(printf '%s\n' "${MARKDOWN}" | sed -r 's/\[\^([1-9]+)\]/<a href="#footnote-\1"><sup>\1<\/sup><\/a>/g')
+    RENDERED=$(printf '%s\n' "${MARKDOWN}" | cmark --unsafe)
     make_page "${TITLE}" "${RENDERED}" >"${OUT_FILE}"
 }
 
