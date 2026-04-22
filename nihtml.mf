@@ -94,79 +94,79 @@ let double_tag = type {
     },
 };
 
-let tag_html = type extends(double_tag, {
+let tag_html = type extends double_tag {
     .init = function(attributes, children) {
         return new tag_html double_tag::init(attributes, children);
     },
     .into_string = function(self) {
         return self.inner(); # verbatim HTML
     }
-});
+};
 
-let tag_title = type extends(double_tag, {
+let tag_title = type extends double_tag {
     .init = function(attributes, children) {
         return new tag_title double_tag::init(attributes, children);
     },
     .into_string = function(self) {
         return $`<h1>{self.inner()}</h1>`;
     }
-});
+};
 
-let tag_h1 = type extends(double_tag, {
+let tag_h1 = type extends double_tag {
     .init = function(attributes, children) {
         return new tag_h1 double_tag::init(attributes, children);
     },
     .into_string = function(self) {
         return $`<h1>{self.inner()}</h1>`;
     }
-});
+};
 
-let tag_h2 = type extends(double_tag, {
+let tag_h2 = type extends double_tag {
     .init = function(attributes, children) {
         return new tag_h2 double_tag::init(attributes, children);
     },
     .into_string = function(self) {
         return $`<h2>{self.inner()}</h2>`;
     }
-});
+};
 
-let tag_h3 = type extends(double_tag, {
+let tag_h3 = type extends double_tag {
     .init = function(attributes, children) {
         return new tag_h3 double_tag::init(attributes, children);
     },
     .into_string = function(self) {
         return $`<h3>{self.inner()}</h3>`;
     }
-});
+};
 
-let tag_h4 = type extends(double_tag, {
+let tag_h4 = type extends double_tag {
     .init = function(attributes, children) {
         return new tag_h4 double_tag::init(attributes, children);
     },
     .into_string = function(self) {
         return $`<h4>{self.inner()}</h4>`;
     }
-});
+};
 
-let tag_h5 = type extends(double_tag, {
+let tag_h5 = type extends double_tag {
     .init = function(attributes, children) {
         return new tag_h5 double_tag::init(attributes, children);
     },
     .into_string = function(self) {
         return $`<h5>{self.inner()}</h5>`;
     }
-});
+};
 
-let tag_h6 = type extends(double_tag, {
+let tag_h6 = type extends double_tag {
     .init = function(attributes, children) {
         return new tag_h6 double_tag::init(attributes, children);
     },
     .into_string = function(self) {
         return $`<h6>{self.inner()}</h6>`;
     }
-});
+};
 
-let tag_text = type extends(double_tag, {
+let tag_text = type extends double_tag {
     .init = function(attributes, children) {
         return new tag_text double_tag::init(attributes, children);
     },
@@ -177,27 +177,27 @@ let tag_text = type extends(double_tag, {
             .into_vector();
         return "".join(paragraphs);
     }
-});
+};
 
-let tag_code = type extends(double_tag, {
+let tag_code = type extends double_tag {
     .init = function(attributes, children) {
         return new tag_code double_tag::init(attributes, children);
     },
     .into_string = function(self) {
         return $"<code>{self.inner()}</code>";
     }
-});
+};
 
-let tag_code_block = type extends(double_tag, {
+let tag_code_block = type extends double_tag {
     .init = function(attributes, children) {
         return new tag_code_block double_tag::init(attributes, children);
     },
     .into_string = function(self) {
         return $"<pre><code>{self.inner()}</code></pre>";
     }
-});
+};
 
-let tag_dialogue = type extends(double_tag, {
+let tag_dialogue = type extends double_tag {
     .init = function(attributes, children) {
         return new tag_dialogue double_tag::init(attributes, children);
     },
@@ -219,9 +219,9 @@ let tag_dialogue = type extends(double_tag, {
 </div>
         ```.trim();
     }
-});
+};
 
-let tag_footnote = type extends(single_tag, {
+let tag_footnote = type extends single_tag {
     .init = function(attributes) {
         if not attributes.contains("number") {
             error $"missing footnote number attribute in {typename(self.*)} {repr(self.*)}";
@@ -231,9 +231,9 @@ let tag_footnote = type extends(single_tag, {
     .into_string = function(self) {
         return $`<a href="#footnote-{self.attributes.number}"><sup>{self.attributes.number}</sup></a>`;
     }
-});
+};
 
-let tag_footnotes = type extends(double_tag, {
+let tag_footnotes = type extends double_tag {
     .init = function(attributes, children) {
         return new tag_footnotes double_tag::init(attributes, children);
     },
@@ -249,9 +249,9 @@ let tag_footnotes = type extends(double_tag, {
 {`<br><br>`.join(footnotes_html)}
         ```.trim();
     }
-});
+};
 
-let tag_mellifera = type extends(double_tag, {
+let tag_mellifera = type extends double_tag {
     .init = function(attributes, children) {
         if not attributes.contains("id") {
             error "missing Mellifera ID";
@@ -283,9 +283,9 @@ let tag_mellifera = type extends(double_tag, {
 </div">
         ```.trim();
     }
-});
+};
 
-let tag_mellifera_program = type extends(double_tag, {
+let tag_mellifera_program = type extends double_tag {
     .init = function(attributes, children) {
         return new tag_mellifera_program double_tag::init(attributes, children);
     },
@@ -309,9 +309,9 @@ let tag_mellifera_program = type extends(double_tag, {
 </textarea>
         ```.trim();
     }
-});
+};
 
-let tag_mellifera_output = type extends(single_tag, {
+let tag_mellifera_output = type extends single_tag {
     .init = function(attributes) {
         return new tag_mellifera_output single_tag::init(attributes);
     },
@@ -330,9 +330,9 @@ let tag_mellifera_output = type extends(single_tag, {
         ```.trim();
         error "TODO";
     }
-});
+};
 
-let tag_image = type extends(double_tag, {
+let tag_image = type extends double_tag {
     .init = function(attributes, children) {
         return new tag_image double_tag::init(attributes, children);
     },
@@ -344,9 +344,9 @@ let tag_image = type extends(double_tag, {
         let alt = html::escape(self.inner()).replace("\n", " ");
         return $`<img {" ".join(attrs)} alt="{alt}"/>`;
     }
-});
+};
 
-let tag_wave = type extends(double_tag, {
+let tag_wave = type extends double_tag {
     .init = function(attributes, children) {
         return new tag_wave double_tag::init(attributes, children);
     },
@@ -370,7 +370,7 @@ let tag_wave = type extends(double_tag, {
 
         return $`<span class="wave-container">{"".join(characters)}</span>`;
     }
-});
+};
 
 let TAG_REGISTRY = freeze {
     "HTML": tag_html,
