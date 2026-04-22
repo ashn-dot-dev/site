@@ -540,11 +540,7 @@ let parser = type {
             debugln($"{parser.parse}: parsing node with current token {current.kind}@{current.location}");
             let node = self._parse_node();
             debugln($"{parser.parse}: parsed node {typename(node)}@{current.location}");
-            if ty::is(node, text) and node["text"] =~ r`^\s+$` {
-                debugln($"{parser.parse}: skipping empty whitespace element {typename(node)}@{current.location}");
-                continue;
-            }
-            if ty::is(node, text) {
+            if ty::is(node, text) and node.text !~ r`^\s+$` {
                 warnln(current.location, $"top level bare text {repr(node)}");
             }
             nodes.push(node);
