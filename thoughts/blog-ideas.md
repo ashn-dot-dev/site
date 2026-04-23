@@ -27,10 +27,6 @@ Automated text reminders to ask partner about their day at 18:00 every weekday.
 ## Elseless Programming
 Reference that Golang talk about the things in Go that the speaker never uses.
 
-## Golden Testing in C99
-Use autil library as example.
-Or put together a minimal Makefile + boilerplate code to get started.
-
 ## Pre C99 static assert
 Use the hackey enum trick.
 
