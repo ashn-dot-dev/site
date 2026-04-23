@@ -1,5 +1,5 @@
-Creating A C Documentation Generator - Part 6
-=============================================
+Creating A C Documentation Generator: Part 6
+============================================
 
 Welcome to last post in the series in which we design and implement `cdoc`
 - a source code documentation tool for the C programming language.
