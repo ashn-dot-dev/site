@@ -14,8 +14,8 @@ has a shadow effect around all sides of the window.
 {{/Image}}
 
 It is somewhat difficult to see, because the resulting PNG file has a
-transparent background. However, the shadow effect is easier to see if we place
-the image on a white background.
+transparent background. The shadow effect is easier to see if we place the
+image on a white background.
 
 <div style="background-color: white;">
 {{Image src="/blog/2026-02-19-how-to-set-macos-dock-size-from-the-cli/window-capture-with-shadow.png"}}
