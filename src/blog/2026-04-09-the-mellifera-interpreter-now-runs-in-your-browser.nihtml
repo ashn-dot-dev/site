@@ -56,7 +56,9 @@ browser?
 
 {{Text}}
 Great questions! Okay, so we are looking at
-<a href="https://github.com/ashn-dot-dev/mellifera">Mellifera</a>,
+{{Hyperlink href="https://github.com/ashn-dot-dev/mellifera"}}
+Mellifera
+{{/Hyperlink}},
 a programming language that I have been working on in my free time for a few
 months now. Mellifera exists in the same family as languages like Awk or Perl:
 it is a batteries-included scripting language designed for solving problems
@@ -106,7 +108,10 @@ fizzbuzz
 {{Text}}
 However, I have been porting the Mellifera interpreter from Python to Go over
 the last couple of months, something I talked about a bit in another blog post:
-<a href=/blog/2025-10-25-the-mellifera-master-plan-to-improve-performance-and-portability.html>The {{Wave}}Mellifera Master Plan{{/Wave}} To Improve Performance And Portability</a>.
+{{Hyperlink href="/blog/2025-10-25-the-mellifera-master-plan-to-improve-performance-and-portability.html"}}
+The {{Wave}}Mellifera Master Plan{{/Wave}} To Improve Performance And
+Portability
+{{/Hyperlink}}.
 Well that port is now complete! The Mellifera interpreter is now faster, more
 portable, and much more enjoyable to iterate on from my perspective as a
 language developer. One of the big benefits of this port to Go is that the
@@ -150,7 +155,9 @@ as a replacement for JavaScript or something?
 {{Text}}
 Well... um... no not really. Actually, you can't use Mellifera for much of
 anything in the browser at the moment. There is a
-<a href="/mellifera/interpreter.html">dedicated interpreter page</a>
+{{Hyperlink href="/mellifera/interpreter.html"}}
+dedicated interpreter page
+{{/Hyperlink}}
 for messing around with Mellifera programs in the browser. But that is about
 it. At the time of writing, Mellifera in the browser doesn't have access to the
 DOM, can't be used for any sort of graphics or sound output a-la browser games,

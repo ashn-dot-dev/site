@@ -251,6 +251,20 @@ let tag_footnotes = type extends double_tag {
     }
 };
 
+let tag_hyperlink = type extends double_tag {
+    .init = function(attributes, children) {
+        return new tag_hyperlink double_tag::init(attributes, children);
+    },
+    .into_string = function(self) {
+        let attrs = [];
+        for k, v in self.attributes {
+            attrs.push($`{string::init(k)}="{string::init(v)}"`);
+        }
+        let alt = html::escape(self.inner()).replace("\n", " ");
+        return $`<a {" ".join(attrs)}>{self.inner()}</a>`;
+    }
+};
+
 let tag_mellifera = type extends double_tag {
     .init = function(attributes, children) {
         if not attributes.contains("id") {
@@ -387,6 +401,7 @@ let TAG_REGISTRY = freeze {
     "Dialogue": tag_dialogue,
     "Footnote": tag_footnote,
     "Footnotes": tag_footnotes,
+    "Hyperlink": tag_hyperlink,
     "Mellifera": tag_mellifera,
     "MelliferaProgram": tag_mellifera_program,
     "MelliferaOutput": tag_mellifera_output,
